@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">COSC 111</a>
+            <a class="navbar-brand" href="{{ url('/home') }}">COSC 111</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,12 +18,24 @@
                 <li><a href="#">Slides</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">My Grades</a></li>
-                <li><a href="#">My Stats</a></li>
-                <li><a href="#">My Notes</a></li>
-                {{--@if (Auth::guest())--}}
-                <li><a href="#">Login</a></li>
-                {{--else show profile name with {{ Auth::user()->name }}--}}
+                {{--<li><a href="#">My Grades</a></li>--}}
+                {{--<li><a href="#">My Stats</a></li>--}}
+                {{--<li><a href="#">My Notes</a></li>--}}
+                @if (Auth::guest())
+                    <li><a href="{{ url('/auth/register') }}">Create Account</a></li>
+                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">My Grades</a></li>
+                            <li><a href="#">My Stats</a></li>
+                            <li><a href="#">My Notes</a></li>
+                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
