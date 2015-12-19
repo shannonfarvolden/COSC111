@@ -23,4 +23,14 @@ class User extends BaseUser
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * A user can have many threads.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threads()
+    {
+        return $this->hasMany('App\Thread');
+    }
 }

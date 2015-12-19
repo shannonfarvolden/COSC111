@@ -24,9 +24,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
 
         parent::boot($router);
+
+        // School route-model binding
+        $router->bind('forum', function ($id)
+        {
+            return \App\Thread::findOrFail($id);
+        });
     }
 
     /**
