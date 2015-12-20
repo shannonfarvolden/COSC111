@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/home', 'PagesController@home');
 
 Route::resource('/forum', 'ThreadsController');
+
+Route::post('/forum/{id}', 'RepliesController@store');
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

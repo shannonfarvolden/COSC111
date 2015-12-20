@@ -33,4 +33,14 @@ class User extends BaseUser
     {
         return $this->hasMany('App\Thread');
     }
+
+    /**
+     * A user can make many replies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany('App\Reply');
+    }
 }

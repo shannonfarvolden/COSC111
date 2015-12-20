@@ -11,7 +11,20 @@
         </div>
     </div>
     <h7>Category: {{$thread->category}}</h7>
-    <br><br><a href="{{ action('ThreadsController@create') }}" class=" btn btn-default"> Reply</a>
+    @if ($replies = $thread->replies)
+        @foreach( $replies as $reply)
+            @include('thread.partials.reply')
+        @endforeach
+    @endif
+    {{--add if statement for signed in--}}
+    {!! Form::open([ 'action' => ['RepliesController@store', $thread]]) !!}
+    {!! Form::hidden('thread_id', $thread->id) !!}
+    <div class="form-group">
+        {!! Form::label('body', 'Reply') !!}
+        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows' => 3]) !!}
+        {!! Form::submit('Reply', ['class' => 'btn btn-primary']) !!}
+    </div>
+    {!! Form::close() !!}
 
 
 @endsection
