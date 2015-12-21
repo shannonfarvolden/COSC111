@@ -29,7 +29,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">My Grades</a></li>
+                            <li><a href="{{ url('/grade') }}">My Grades</a></li>
                             <li><a href="#">My Stats</a></li>
                             <li><a href="#">My Notes</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
