@@ -51,19 +51,18 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show(Thread $thread)
     {
-//        dd($thread);
         return view('thread.show', ['thread'=>$thread]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function edit(Thread $thread)

@@ -32,6 +32,13 @@ class RouteServiceProvider extends ServiceProvider
         {
             return \App\Thread::findOrFail($id);
         });
+
+        // Grade route-model binding
+        $router->bind('grade', function ($id)
+        {
+            return \App\Grade::findOrFail($id);
+        });
+
     }
 
     /**

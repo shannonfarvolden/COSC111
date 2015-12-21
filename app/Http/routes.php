@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/home', 'PagesController@home');
 
+Route::get('/grade','GradesController@index');
+
 Route::resource('/forum', 'ThreadsController');
 
 Route::post('/forum/{id}', 'RepliesController@store');

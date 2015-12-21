@@ -12,7 +12,9 @@ class User extends BaseUser
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -35,12 +37,21 @@ class User extends BaseUser
     }
 
     /**
-     * A user can make many replies
+     * A user can make many replies.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function replies()
     {
         return $this->hasMany('App\Reply');
+    }
+    /**
+     * A user can have many grades.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function grades()
+    {
+        return $this->hasMany('App\Grade');
     }
 }
