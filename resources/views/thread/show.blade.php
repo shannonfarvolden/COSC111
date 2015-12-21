@@ -10,6 +10,7 @@
             <h7>{{$thread->body}}</h7>
         </div>
     </div>
+    <h7>{{$thread->user->name}}</h7><br>
     <h7>Category: {{$thread->category}}</h7>
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)

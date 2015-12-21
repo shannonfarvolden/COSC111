@@ -19,9 +19,12 @@ Route::get('/home', 'PagesController@home');
 
 Route::get('/grade','GradesController@index');
 
+Route::get('/slide', 'SlidesController@index');
+Route::get('/slide/{number}', 'SlidesController@show');
+
 Route::resource('/forum', 'ThreadsController');
 
-Route::post('/forum/{id}', 'RepliesController@store');
+Route::post('/forum/{id}/reply', 'RepliesController@store');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/forum') }}">Discussion Forum</a></li>
-                <li><a href="#">Slides</a></li>
+                <li><a href="{{ url('/slide') }}">Slides</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {{--<li><a href="#">My Grades</a></li>--}}
