@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ThreadRequest;
 use App\Http\Requests;
 use App\Thread;
 use Request;
@@ -38,12 +39,12 @@ class ThreadsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ThreadRequest|Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(ThreadRequest $request)
     {
-        $thread = Auth::user()->threads()->create(Request::all());
+        $thread = Auth::user()->threads()->create($request->all());
 
         return redirect()->action('ThreadsController@show', ['thread'=>$thread]);
     }

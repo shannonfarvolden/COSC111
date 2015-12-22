@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Thread;
+use Illuminate\Http\Request;
 use App\Reply;
-use Request;
 use Auth;
 
 class RepliesController extends Controller
@@ -17,10 +15,10 @@ class RepliesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-
-        $reply = new Reply(Request::all());
+        $this->validate($request, ['body'=>'required']);
+        $reply = new Reply($request->all());
         Auth::user()->replies()->save($reply);
 
         return back();
