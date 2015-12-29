@@ -5,7 +5,6 @@
         <h1>Discussion Forum</h1>
     </div>
     <a href="{{ action('ThreadsController@create') }}" class=" btn btn-default"> Create Thread </a><br>
-
     @foreach( $threads as $thread)
         <a href="{{ action('ThreadsController@show', [$thread]) }}">
             <div class="panel panel-default">

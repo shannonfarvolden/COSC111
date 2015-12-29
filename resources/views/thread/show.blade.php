@@ -12,12 +12,13 @@
     </div>
     <h7>{{$thread->user->name}}</h7><br>
     <h7>Category: {{$thread->category}}</h7>
+
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)
             @include('thread.partials.reply')
         @endforeach
     @endif
-    {{--add if statement for signed in--}}
+
     {!! Form::open([ 'action' => ['RepliesController@store', $thread]]) !!}
     {!! Form::hidden('thread_id', $thread->id) !!}
     <div class="form-group">

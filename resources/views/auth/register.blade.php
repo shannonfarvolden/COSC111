@@ -7,24 +7,24 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Name</label>
+                                <label class="col-md-4 control-label">First Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                    <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Last Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Student Number</label>
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" name="student_number" value="{{ old('student_number') }}">
                                 </div>
                             </div>
 
@@ -57,6 +57,16 @@
                                 </div>
                             </div>
                         </form>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

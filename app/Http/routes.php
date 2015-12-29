@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/', 'PagesController@home');
 
 Route::get('/grade','GradesController@index');
