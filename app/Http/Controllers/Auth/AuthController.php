@@ -52,7 +52,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'student_number'=>'required',
+            'student_number'=>'required|unique:users,student_number|size:8',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -66,6 +66,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $this->redirectTo = '/consent';
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -74,4 +75,5 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
 }

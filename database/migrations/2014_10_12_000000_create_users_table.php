@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->integer('student_number')->unique();
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->smallInteger('data_consent')->default(0);
+            $table->boolean('data_consent')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
