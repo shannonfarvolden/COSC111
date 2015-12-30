@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('data_consent')->default(false);
+            $table->boolean('survey_completed')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
