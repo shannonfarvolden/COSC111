@@ -25,7 +25,8 @@ class ConsentController extends Controller
      */
     public function show()
     {
-        return view('consent.show');
+        $data_consent = Auth::user()->data_consent;
+        return view('consent.show', ['data_consent'=>$data_consent] );
 
     }
 

@@ -8,7 +8,7 @@
     {!! Form::open([ 'action' => 'ConsentController@store']) !!}
     <div class="form-group">
         {!! Form::label('data_consent', 'Agree') !!}
-        {!! Form::checkbox('data_consent') !!}
+        {!! Form::checkbox('data_consent', 'value', $data_consent) !!}
     </div>
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}

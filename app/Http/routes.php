@@ -6,7 +6,6 @@ Route::get('/', 'PagesController@home');
 Route::get('/consent', 'ConsentController@show');
 Route::post('/consent', 'ConsentController@store');
 
-
 Route::get('/grade','GradesController@index');
 
 Route::get('/slide', 'SlidesController@index');
