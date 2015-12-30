@@ -4,26 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Thread;
-use Request;
 use Auth;
 
 
 class ThreadsController extends Controller
 {
     /**
+     * Create a new threads controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $threads = Thread::all();
+        $category = $request->get('category');
+
+//        $threads = $category ? Thread::where('category', $category)->orderBy('updated_at', 'desc')->get() : Thread::orderBy('updated_at', 'desc')->get();
+        if($category && $category != 'All')
+            $threads = Thread::where('category', $category)->orderBy('updated_at', 'desc')->get();
+        else
+            $threads = Thread::orderBy('updated_at', 'desc')->get();
 
 
         return view('thread.index', ['threads' => $threads]);
+
     }
 
     /**

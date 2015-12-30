@@ -10,7 +10,12 @@
             <h7>{{$thread->body}}</h7>
         </div>
     </div>
-    <h7>{{$thread->user->name}}</h7><br>
+    @if($thread->anonymous)
+        <h7>Anonymous</h7><br>
+    @else
+        <h7>{{$thread->user->first_name}} {{$thread->user->last_name}}</h7><br>
+    @endif
+
     <h7>Category: {{$thread->category}}</h7>
 
     @if ($replies = $thread->replies)
@@ -19,13 +24,10 @@
         @endforeach
     @endif
 
+
     {!! Form::open([ 'action' => ['RepliesController@store', $thread]]) !!}
     {!! Form::hidden('thread_id', $thread->id) !!}
-    <div class="form-group">
-        {!! Form::label('body', 'Reply') !!}
-        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows' => 3]) !!}
-        {!! Form::submit('Reply', ['class' => 'btn btn-primary']) !!}
-    </div>
+    @include('thread.partials.replyForm')
     {!! Form::close() !!}
 
     @if ($errors->any())

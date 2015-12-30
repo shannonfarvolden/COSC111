@@ -9,6 +9,15 @@ use Auth;
 
 class GradesController extends Controller
 {
+
+    /**
+     * Create a new grades controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

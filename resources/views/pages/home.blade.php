@@ -179,7 +179,9 @@
             <tr>
                 <!--week (date)-->
                 <td>13 (Mar 28)</td>
-                <td colspan=4 align=center>Easter Monday: No class</td>
+                <td colspan=3 align=center>Easter Monday: No class
+                {{--labs--}}
+                <td></td>
             </tr>
             <tr>
                 <!--week (date)-->

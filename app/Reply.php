@@ -15,6 +15,7 @@ class Reply extends Model {
         'user_id',
         'thread_id',
         'body',
+        'anonymous',
     ];
 
     /**

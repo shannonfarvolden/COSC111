@@ -10,6 +10,14 @@ use Auth;
 class RepliesController extends Controller
 {
     /**
+     * Create a new replies controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Leave new reply
      *
      * @param  \Illuminate\Http\Request  $request

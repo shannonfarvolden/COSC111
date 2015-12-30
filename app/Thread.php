@@ -16,6 +16,7 @@ class Thread extends Model
         'title',
         'body',
         'category',
+        'anonymous',
     ];
 
     /**

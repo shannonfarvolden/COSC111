@@ -10,6 +10,13 @@ use App\Slide;
 class SlidesController extends Controller
 {
     /**
+     * Create a new slides controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
