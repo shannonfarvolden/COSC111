@@ -26,7 +26,7 @@ class Quiz extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
+        return $this->belongsToMany('App\User', 'quiz_user', 'quiz_number', 'user_id')->withPivot('score', 'attempt')->withTimestamps();
     }
     /**
      * A quiz has many questions.

@@ -66,7 +66,7 @@ class User extends BaseUser
      */
     public function quizzes()
     {
-        return $this->belongsToMany('App\Quiz', 'quiz_user', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
+        return $this->belongsToMany('App\Quiz', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
     }
 
 }
