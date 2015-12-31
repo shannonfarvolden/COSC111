@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    protected $primaryKey = ['number', 'quiz_number'];
     /**
      * The attributes that are mass assignable.
      *
@@ -23,7 +24,7 @@ class Question extends Model
      */
     public function quiz()
     {
-        return $this->belongsTo('App\Quiz');
+        return $this->belongsTo('App\Quiz', 'quiz_number', 'number');
     }
     /**
      * A question has many answers.
@@ -32,6 +33,6 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->hasMany('App\Answer', 'question_number', 'number');
     }
 }

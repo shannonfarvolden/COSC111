@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration {
             $table->timestamps();
 
             $table->primary(['number', 'quiz_number']);
+
             $table->foreign('quiz_number')
                 ->references('number')
                 ->on('quizzes')

@@ -34,6 +34,7 @@ class CreateQuizzesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
             $table->foreign('quiz_number')
                 ->references('number')
                 ->on('quizzes')
@@ -49,7 +50,8 @@ class CreateQuizzesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quizzes');
+
         Schema::drop('quiz_user');
+        Schema::drop('quizzes');
     }
 }

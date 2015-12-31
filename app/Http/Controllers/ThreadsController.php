@@ -29,7 +29,6 @@ class ThreadsController extends Controller
 
         $category = $request->get('category');
 
-//        $threads = $category ? Thread::where('category', $category)->orderBy('updated_at', 'desc')->get() : Thread::orderBy('updated_at', 'desc')->get();
         if($category && $category != 'All')
             $threads = Thread::where('category', $category)->orderBy('updated_at', 'desc')->get();
         else

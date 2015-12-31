@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
+    protected $primaryKey = 'number';
     /**
      * The attributes that are mass assignable.
      *
@@ -25,15 +26,15 @@ class Quiz extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User')->withPivot('score', 'attempt')->withTimestamps();
+        return $this->belongsToMany('App\User', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
     }
     /**
      * A quiz has many questions.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies()
+    public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->hasMany('App\Question', 'quiz_number', 'number');
     }
 }
