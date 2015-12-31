@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Quiz;
 
 class QuizzesController extends Controller
 {
@@ -37,18 +36,27 @@ class QuizzesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $score = 0;
+        for ($i = 1; $i <= 10; $i++) {
+            if($request->has('answer.'.$i))
+                if ($request->input('answer.'.$i) == 1)
+                    $score++;
+        }
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $quiz = Quiz::findorFail($id);
+
+        return view('quiz.show', ['quiz'=>$quiz]);
     }
 
     /**

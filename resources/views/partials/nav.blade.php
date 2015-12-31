@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/forum') }}">Discussion Forum</a></li>
                 <li><a href="{{ url('/slide') }}">Slides</a></li>
-                <li><a href="{{ url('/quiz') }}">Quiz</a></li>
+                <li><a href="{{ url('/quiz/1') }}">Quiz</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())

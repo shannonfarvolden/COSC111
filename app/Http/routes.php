@@ -15,6 +15,8 @@ Route::resource('/forum', 'ThreadsController');
 
 Route::post('/forum/{id}/reply', 'RepliesController@store');
 
+Route::resource('/quiz', 'QuizzesController', ['except' => 'index']);
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
