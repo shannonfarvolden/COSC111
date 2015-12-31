@@ -22,7 +22,8 @@ class CreateQuestionsTable extends Migration {
             $table->primary(['number', 'quiz_number']);
             $table->foreign('quiz_number')
                 ->references('number')
-                ->on('quizzes');
+                ->on('quizzes')
+                ->onDelete('cascade');
         });
     }
 

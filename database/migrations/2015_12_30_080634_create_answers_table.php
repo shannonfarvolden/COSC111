@@ -24,10 +24,12 @@ class CreateAnswersTable extends Migration {
             $table->primary(['number', 'question_number', 'quiz_number']);
             $table->foreign('question_number')
                 ->references('number')
-                ->on('questions');
+                ->on('questions')
+                ->onDelete('cascade');
             $table->foreign('quiz_number')
                 ->references('number')
-                ->on('quizzes');
+                ->on('quizzes')
+                ->onDelete('cascade');
         });
     }
 

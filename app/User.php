@@ -48,6 +48,7 @@ class User extends BaseUser
     {
         return $this->hasMany('App\Reply');
     }
+
     /**
      * A user can have many grades.
      *
@@ -57,4 +58,15 @@ class User extends BaseUser
     {
         return $this->hasMany('App\Grade');
     }
+
+    /**
+     * Get the quizzes written by a give user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function quizzes()
+    {
+        return $this->belongsToMany('App\Quiz')->withPivot('score', 'attempt')->withTimestamps();
+    }
+
 }
