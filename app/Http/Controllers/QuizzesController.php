@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Quiz;
 use Auth;
 use DB;
@@ -39,7 +40,7 @@ class QuizzesController extends Controller
     }
 
     /**
-     * Store a quiz score into quiz_user and display result.
+     * Store a quiz score into quiz_user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -67,8 +68,8 @@ class QuizzesController extends Controller
             $attempt = 1;
             $user->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
         }
+        return redirect()->action('QuizzesController@result');
 
-        return view('quiz.score', ['score' => $score, 'attempt' => $attempt]);
 
 
     }
@@ -80,9 +81,32 @@ class QuizzesController extends Controller
      */
     public function show($id)
     {
-        $quiz = Quiz::findorFail($id);
+        $user=Auth::user();
+        $rst = DB::table('quiz_user')->select('score','attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
 
-        return view('quiz.show', ['quiz'=>$quiz]);
+        if($rst != null)
+        {
+            return redirect()->action('QuizzesController@result');
+        }
+        else
+        {
+            $quiz = Quiz::findorFail($id);
+
+            return view('quiz.show', ['quiz' => $quiz]);
+        }
+
+    }
+
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function result()
+    {
+        $user = Auth::user();
+        $rst = DB::table('quiz_user')->select('score','attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
+
+        return view('quiz.score', ['score' => $rst->score, 'attempt'=>$rst->attempt]);
     }
 
     /**

@@ -15,6 +15,7 @@ Route::resource('/forum', 'ThreadsController');
 
 Route::post('/forum/{id}/reply', 'RepliesController@store');
 
+Route::get('/quiz/result', 'QuizzesController@result');
 Route::resource('/quiz', 'QuizzesController');
 
 Route::controllers([
