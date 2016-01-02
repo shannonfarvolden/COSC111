@@ -38,7 +38,7 @@ class SurveyController extends Controller
         $user->survey()->create($request->all());
         $user->survey_completed = true;
         $user->save();
-        
+
         return redirect('/survey');
     }
 
