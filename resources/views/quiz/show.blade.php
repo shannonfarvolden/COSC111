@@ -5,8 +5,6 @@
         <h1>{{$quiz->name}}</h1>
     </div>
     {!! Form::open([ 'action' => 'QuizzesController@store']) !!}
-    {!! Form::hidden('name', 'Test') !!}
-    {!! Form::hidden('answer[0]', 1) !!}
     @foreach($quiz->questions as $question)
         <h5>{{$question->number}}) {{$question->question}}</h5>
         @foreach($question->answers as $answer)

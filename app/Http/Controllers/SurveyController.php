@@ -11,14 +11,13 @@ class SurveyController extends Controller
 {
 
     /**
-     * Display the specified resource.
+     * Display the survey view.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('survey.show');
     }
     /**
      * Store a newly created resource in storage.
@@ -28,7 +27,7 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
 
