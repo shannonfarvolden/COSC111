@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use Survey;
+use Auth;
 
 class SurveyController extends Controller
 {
-
+    /**
+     * Create a new survey controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display the survey view.
      *
@@ -27,7 +34,12 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $user = Auth::user();
+        $user->survey()->create($request->all());
+        $user->survey_completed = true;
+        $user->save();
+        
+        return redirect('/survey');
     }
 
 

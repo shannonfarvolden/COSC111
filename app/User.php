@@ -69,4 +69,14 @@ class User extends BaseUser
         return $this->belongsToMany('App\Quiz', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
     }
 
+    /**
+     * A user can have one survey.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function survey()
+    {
+        return $this->hasOne('App\Survey');
+    }
+
 }
