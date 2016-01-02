@@ -50,6 +50,6 @@
 
         </div>
     </div>
-    
+
     <a href={{ url('/lab1') }}>Back to Lab 1</a>
 @endsection

@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "doctrine/dbal": "^2.6@dev",
         "illuminate/html": "^5.0@dev",
-        "laravelcollective/html": "^5.2@dev"
+        "laravelcollective/html": "^5.2@dev",
+        "intervention/image": "^2.3@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

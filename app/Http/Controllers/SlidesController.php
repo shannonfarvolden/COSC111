@@ -52,13 +52,13 @@ class SlidesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $num
+     * @param  int  $slide_set
      * @return \Illuminate\Http\Response
      */
-    public function show($slide_number)
+    public function show($slide_set)
     {
-        $slides = Slide::where('lecture', '=', $slide_number)->orderBy('slide_number', 'desc')->get();
-        return view('slide.show', ['slides'=>$slides, 'slide_number'=> $slide_number]);
+        $slides = Slide::where('lecture', $slide_set)->orderBy('slide_number', 'asc')->get();
+        return view('slide.show', ['slides'=>$slides, 'slide_set'=> $slide_set]);
     }
 
     /**
@@ -94,4 +94,5 @@ class SlidesController extends Controller
     {
         //
     }
+
 }

@@ -47,7 +47,6 @@ class QuizzesController extends Controller
      */
     public function store(Request $request)
     {
-        $user=Auth::user();
 
         $score = 0;
         for ($i = 1; $i <= 10; $i++) {
@@ -55,19 +54,9 @@ class QuizzesController extends Controller
                 if ($request->input('answer.'.$i) == 1)
                     $score++;
         }
+        $attempt = $this->getAttempt()+1;
+        Auth::user()->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
 
-        $rst = DB::table('quiz_user')->select('attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
-
-        if($rst != null){
-            $attempt = $rst->attempt+1;
-            $user->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
-
-        }
-        else
-        {
-            $attempt = 1;
-            $user->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
-        }
         return redirect()->action('QuizzesController@result');
 
 
@@ -81,10 +70,7 @@ class QuizzesController extends Controller
      */
     public function show($id)
     {
-        $user=Auth::user();
-        $rst = DB::table('quiz_user')->select('score','attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
-
-        if($rst != null)
+        if($this->getAttempt() > 0)
         {
             return redirect()->action('QuizzesController@result');
         }
@@ -103,10 +89,8 @@ class QuizzesController extends Controller
      */
     public function result()
     {
-        $user = Auth::user();
-        $rst = DB::table('quiz_user')->select('score','attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
 
-        return view('quiz.score', ['score' => $rst->score, 'attempt'=>$rst->attempt]);
+        return view('quiz.score', ['score' => $this->getScore(), 'attempt'=>$this->getAttempt()]);
     }
 
     /**
@@ -141,5 +125,26 @@ class QuizzesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAttempt()
+    {
+        $user = Auth::user();
+        $rst = DB::table('quiz_user')->select('attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
+
+        if($rst!=null)
+            $attempt = $rst->attempt;
+
+        else
+            $attempt = 0;
+
+        return $attempt;
+    }
+
+    public function getScore()
+    {
+        $user = Auth::user();
+        $rst = DB::table('quiz_user')->select('score')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
+        return $rst->score;
     }
 }

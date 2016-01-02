@@ -14,10 +14,12 @@ class CreateSlidesTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('topic')->nullable();
+            $table->integer('slide_set')->unsigned();
             $table->integer('lecture')->unsigned();
+            $table->string('topic')->nullable();
             $table->integer('slide_number')->unsigned();
             $table->string('image_path');
+            $table->string('thumbnail_path');
             $table->timestamps();
         });
     }
