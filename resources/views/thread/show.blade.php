@@ -11,13 +11,13 @@
         </div>
     </div>
     @if($thread->anonymous)
-        <h7>Anonymous</h7><br>
+        <p>Anonymous</p>
     @else
-        <h7>{{$thread->user->first_name}} {{$thread->user->last_name}}</h7><br>
+        <p>{{$thread->user->first_name}} {{$thread->user->last_name}}</p>
     @endif
-
-    <h7>Category: {{$thread->category}}</h7>
-
+    <p>{{$thread->created_at->diffForHumans()}}</p>
+    <p>Category: {{$thread->category}}</p><br>
+    <hr>
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)
             @include('thread.partials.reply')

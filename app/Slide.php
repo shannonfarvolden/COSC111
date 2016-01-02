@@ -27,10 +27,4 @@ class Slide extends Model
             ->save('public/'.$this->thumbnail_path);
     }
 
-    /**
-     * @return string
-     */
-    public function path(){
-        return public_path($this->image_path);
-    }
 }

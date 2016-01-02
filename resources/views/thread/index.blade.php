@@ -17,15 +17,18 @@
             </div>
         {!! Form::close() !!}
     </div>
-    <a href="{{ action('ThreadsController@create') }}" class=" btn btn-default"> Create Thread </a><br>
+    <hr>
+
     @foreach( $threads as $thread)
-        <a href="{{ action('ThreadsController@show', [$thread]) }}">
+        <a style="color:black; text-decoration:none" href="{{ action('ThreadsController@show', [$thread]) }}">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h7>{{$thread->title}}</h7>
+                    <p>{{$thread->title}}</p>
+                    <p class="text-right">{{$thread->created_at->diffForHumans()}}</p>
                 </div>
             </div>
         </a>
     @endforeach
 
+    <a href="{{ action('ThreadsController@create') }}" class=" btn btn-primary"> Create Thread </a>
 @endsection

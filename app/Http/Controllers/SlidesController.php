@@ -57,7 +57,7 @@ class SlidesController extends Controller
      */
     public function show($slide_set)
     {
-        $slides = Slide::where('lecture', $slide_set)->orderBy('slide_number', 'asc')->get();
+        $slides = Slide::where('slide_set', $slide_set)->orderBy('slide_number', 'asc')->get();
         return view('slide.show', ['slides'=>$slides, 'slide_set'=> $slide_set]);
     }
 

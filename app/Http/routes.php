@@ -13,7 +13,7 @@ Route::get('/slide/{number}', 'SlidesController@show');
 
 Route::resource('/forum', 'ThreadsController');
 
-Route::post('/forum/{id}/reply', 'RepliesController@store');
+Route::post('/forum/{id}', 'RepliesController@store');
 
 Route::get('/quiz/result', 'QuizzesController@result');
 Route::resource('/quiz', 'QuizzesController');
@@ -21,6 +21,9 @@ Route::resource('/quiz', 'QuizzesController');
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');
 Route::get('/school', 'LabsController@school');
+
+Route::get('/survey', 'SurveyController@show');
+Route::post('/survey', 'SurveyController@store');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
