@@ -1,1 +1,8 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "partials/colours";
+@import "partials/headings";
+
+.consent-body{
+  padding-right: 50px;
+  padding-left: 50px;
+}

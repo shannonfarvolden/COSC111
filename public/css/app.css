@@ -8299,3 +8299,45 @@ button.close {
     display: none !important;
   }
 }
+
+.consent-heading {
+  text-align: center;
+}
+
+.colour-heading {
+  text-align: center;
+  margin-top: 1em;
+  text-align: center;
+  line-height: 1;
+  padding-bottom: 1em;
+}
+
+.colour-heading:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #2bb2cd;
+  margin: 20px auto 0;
+}
+
+.colour-paragraph {
+  margin-top: 1em;
+  text-align: center;
+  line-height: 1;
+  padding-bottom: 1em;
+}
+
+.colour-paragraph:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #2bb2cd;
+  margin: 20px auto 0;
+}
+
+.consent-body {
+  padding-right: 50px;
+  padding-left: 50px;
+}

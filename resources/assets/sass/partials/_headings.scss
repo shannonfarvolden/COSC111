@@ -1,0 +1,37 @@
+.consent-heading{
+  text-align: center;
+
+}
+
+.colour-heading{
+  text-align: center;
+  margin-top: 1em;
+  text-align: center;
+  line-height: 1;
+  padding-bottom: 1em;
+
+  &:after{
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: $brandColour;
+    margin: 20px auto 0;
+  }
+}
+
+.colour-paragraph{
+  margin-top: 1em;
+  text-align: center;
+  line-height: 1;
+  padding-bottom: 1em;
+
+  &:after{
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: $brandColour;
+    margin: 20px auto 0;
+  }
+}
