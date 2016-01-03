@@ -8,4 +8,4 @@
         <p>{{$reply->body}}</p>
     </div>
 </div>
-<p>{{$reply->created_at->diffForHumans()}}</p>
+<p>{{$reply->created_at->diffForHumans()}}</p><br>

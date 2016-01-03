@@ -1,17 +1,17 @@
 <div class="form-group">
     {!! Form::label('category', 'Category') !!}
-    {!! Form::select('category', ['Inheritance'=>'Inheritance', 'Interface'=>'Interface', 'Abstract'=>'Abstract', 'Linked Lists'=>'Linked Lists', 'Other'=>'Other'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('category', ['assignment'=>'Assignments', 'exam'=>'Exams', 'lecture'=>'Lecture Material','lab'=>'Lab Questions', 'feedback' => 'Complaints and Feedback', 'other'=>'Other'], null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('title', 'Title') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('body', 'Content') !!}
+    {!! Form::label('body', 'Message') !!}
     {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('anonymous', 'Anonymous User') !!}
+    {!! Form::label('anonymous', 'Post as anonymous user?') !!}
     {!! Form::checkbox('anonymous') !!}
 </div>
 <div class="form-group">

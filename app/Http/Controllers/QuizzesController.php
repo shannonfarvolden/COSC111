@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Quiz;
@@ -26,7 +27,9 @@ class QuizzesController extends Controller
      */
     public function index()
     {
-        //
+//        dd(Carbon::now());
+        $quizzes = Quiz::all();
+        return view('quiz.index', ['quizzes'=>$quizzes]);
     }
 
     /**

@@ -17,8 +17,8 @@ class Quiz extends Model
         'name',
         'chapters',
         'active',
-
     ];
+
     /**
      * Get the users who have written a given quiz.
      *
@@ -37,4 +37,5 @@ class Quiz extends Model
     {
         return $this->hasMany('App\Question', 'quiz_number', 'number');
     }
+
 }

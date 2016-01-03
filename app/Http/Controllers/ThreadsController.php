@@ -29,10 +29,10 @@ class ThreadsController extends Controller
 
         $category = $request->get('category');
 
-        if($category && $category != 'All')
-            $threads = Thread::where('category', $category)->orderBy('updated_at', 'desc')->get();
+        if($category && $category != 'all')
+            $threads = Thread::where('category', $category)->orderBy('created_at', 'desc')->get();
         else
-            $threads = Thread::orderBy('updated_at', 'desc')->get();
+            $threads = Thread::orderBy('created_at', 'desc')->get();
 
 
         return view('thread.index', ['threads' => $threads]);

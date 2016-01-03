@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="panel panel-default">
+    <div class="heading-margin panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{ $thread->title }}</h3>
         </div>
@@ -24,7 +24,6 @@
         @endforeach
     @endif
 
-
     {!! Form::open([ 'action' => ['RepliesController@store', $thread]]) !!}
     {!! Form::hidden('thread_id', $thread->id) !!}
     @include('thread.partials.replyForm')
@@ -37,5 +36,5 @@
             @endforeach
         </ul>
     @endif
-
+    <br><a href="/thread"> Back to discussion forum </a>
 @endsection

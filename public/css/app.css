@@ -8304,6 +8304,10 @@ button.close {
   text-align: center;
 }
 
+.heading-margin {
+  margin-top: 40px;
+}
+
 .colour-heading {
   text-align: center;
   margin-top: 1em;
@@ -8340,4 +8344,8 @@ button.close {
 .consent-body {
   padding-right: 50px;
   padding-left: 50px;
+}
+
+.margin-footer {
+  margin-bottom: 50px;
 }
