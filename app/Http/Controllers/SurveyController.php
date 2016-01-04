@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SurveyRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Survey;
@@ -32,7 +33,7 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SurveyRequest $request)
     {
         $user = Auth::user();
         $user->survey()->create($request->all());

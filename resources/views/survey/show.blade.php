@@ -13,23 +13,28 @@
         <div class="answers">
             <div class="radio">
                 <label>
-                    {!! Form::radio( 'question_1', 1 ) !!}1
+                    {!! Form::radio( 'question_1', 1 ) !!}0
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    {!! Form::radio( 'question_1', 2 ) !!}1
                 </label>
             </div>
 
             <div class="radio">
                 <label>
-                    {!! Form::radio( 'question_1', 2 ) !!}2
+                    {!! Form::radio( 'question_1', 3 ) !!}2
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    {!! Form::radio( 'question_1', 3 ) !!}3
+                    {!! Form::radio( 'question_1', 4 ) !!}3
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    {!! Form::radio( 'question_1', 4 ) !!}4 and up
+                    {!! Form::radio( 'question_1', 5 ) !!}4 and up
                 </label>
             </div>
         </div>
@@ -341,5 +346,15 @@
 
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
+    @endif
+    @if ($errors->any())
+        <br><div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 @endsection
