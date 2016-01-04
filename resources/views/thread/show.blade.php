@@ -36,5 +36,5 @@
             @endforeach
         </ul>
     @endif
-    <br><a href="/thread"> Back to discussion forum </a>
+    <br><a href="/forum"> Back to discussion forum </a>
 @endsection
