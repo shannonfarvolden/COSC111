@@ -24,7 +24,7 @@
                 selected in this image has the student number 64387087).
             </p>
 
-            <center><img src="images/fdrive.png" width="700" height="400"></center>
+            <center><img src="images/lab1/fdrive.png" width="700" height="400"></center>
 
             <p>
                 Now you are in your F drive. Everything you save here will be available on all
@@ -32,7 +32,7 @@
                 one file called <tt>untitled.bmp</tt> that are on this student's F drive already.
             </p>
 
-            <center><img src="images/newFolder.png" width="700" height="400"></center>
+            <center><img src="images/lab1/newFolder.png" width="700" height="400"></center>
 
             <p>
                 Since we are going to work in this, make a new folder for this course. To do

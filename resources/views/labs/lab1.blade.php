@@ -107,7 +107,7 @@ My age is 216 in dog years!
                 computer's favourite number is. The program code is below.
                 Load this program into Eclipse and run it. You can type it in line by
                 line as written below, or you can download it from this file <a
-                        href=../../code/GuessFavNum.java><tt>GuessFavNum.java</tt></a>.
+                        href="/documents/GuessFavNum.java"><tt>GuessFavNum.java</tt></a>.
                 Try running it a few times to see what it does.
       <pre>
 1   import java.util.Random;
