@@ -16,6 +16,7 @@ class CreateQuizzesTable extends Migration
             $table->integer('number')->unsigned();
             $table->string('name');
             $table->string('chapters');
+            $table->integer('total')->unsigned();
             $table->boolean('active')->default(false);
             $table->timestamps();
 

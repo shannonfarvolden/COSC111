@@ -19,6 +19,7 @@ class Quiz extends Model
         'active',
     ];
 
+
     /**
      * Get the users who have written a given quiz.
      *

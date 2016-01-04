@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('category', 'Category') !!}
-    {!! Form::select('category', ['assignment'=>'Assignments', 'exam'=>'Exams', 'lecture'=>'Lecture Material','lab'=>'Lab Questions', 'feedback' => 'Complaints and Feedback', 'other'=>'Other'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('category', ['Assignments'=>'Assignments', 'Exams'=>'Exams', 'Lecture Material'=>'Lecture Material','Lab Questions'=>'Lab Questions', 'Complaints and Feedback' => 'Complaints and Feedback', 'Other'=>'Other'], null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('title', 'Title') !!}

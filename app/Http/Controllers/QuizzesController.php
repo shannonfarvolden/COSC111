@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Quiz;
@@ -27,8 +26,8 @@ class QuizzesController extends Controller
      */
     public function index()
     {
-//        dd(Carbon::now());
         $quizzes = Quiz::all();
+
         return view('quiz.index', ['quizzes'=>$quizzes]);
     }
 
@@ -48,7 +47,7 @@ class QuizzesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $num)
     {
 
         $score = 0;
@@ -57,10 +56,12 @@ class QuizzesController extends Controller
                 if ($request->input('answer.'.$i) == 1)
                     $score++;
         }
-        $attempt = $this->getAttempt()+1;
+
+        $attempt = (Auth::user()->hasQuizAttempt($num))?Auth::user()->lastQuizTaken($num)->pivot->attempt+1 : 1;
+
         Auth::user()->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
 
-        return redirect()->action('QuizzesController@result');
+        return redirect()->action('QuizzesController@result', ['num'=>$num]);
 
 
 
@@ -71,17 +72,18 @@ class QuizzesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($num)
     {
-        if($this->getAttempt() > 0)
+
+        if(!Auth::user()->hasQuizAttempt($num) || Auth::user()->canRetakeQuiz($num))
         {
-            return redirect()->action('QuizzesController@result');
+            $quiz = Quiz::findorFail($num);
+
+            return view('quiz.show', ['quiz' => $quiz]);
         }
         else
         {
-            $quiz = Quiz::findorFail($id);
-
-            return view('quiz.show', ['quiz' => $quiz]);
+            return redirect()->action('QuizzesController@attempts', ['num'=>$num]);
         }
 
     }
@@ -90,10 +92,19 @@ class QuizzesController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function result()
+    public function result($num)
+    {
+        $attempt =  Auth::user()->lastQuizTaken($num)->pivot->attempt;
+        $score = Auth::user()->lastQuizTaken($num)->pivot->score;
+        return view('quiz.score', ['score' => $score, 'attempt'=>$attempt]);
+    }
+
+    public function attempts($num)
     {
 
-        return view('quiz.score', ['score' => $this->getScore(), 'attempt'=>$this->getAttempt()]);
+        $attempts = Auth::user()->quizzes->whereLoose('number', $num);
+
+        return view('quiz.attempts', ['attempts'=>$attempts]);
     }
 
     /**
@@ -128,26 +139,5 @@ class QuizzesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getAttempt()
-    {
-        $user = Auth::user();
-        $rst = DB::table('quiz_user')->select('attempt')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
-
-        if($rst!=null)
-            $attempt = $rst->attempt;
-
-        else
-            $attempt = 0;
-
-        return $attempt;
-    }
-
-    public function getScore()
-    {
-        $user = Auth::user();
-        $rst = DB::table('quiz_user')->select('score')->where('user_id', $user->id)->where('quiz_number', 1)->orderBy('attempt', 'desc')->first();
-        return $rst->score;
     }
 }

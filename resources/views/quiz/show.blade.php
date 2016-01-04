@@ -4,7 +4,7 @@
     <div class="page-header">
         <h1>{{$quiz->name}}</h1>
     </div>
-    {!! Form::open([ 'action' => 'QuizzesController@store']) !!}
+    {!! Form::open([ 'action' => ['QuizzesController@store', $quiz->number]]) !!}
     @foreach($quiz->questions as $question)
         <h5>{{$question->number}}) {{$question->question}}</h5>
         @foreach($question->answers as $answer)

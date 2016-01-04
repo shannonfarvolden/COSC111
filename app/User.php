@@ -79,4 +79,29 @@ class User extends BaseUser
         return $this->hasOne('App\Survey');
     }
 
+    public function hasQuizAttempt($quiz_number)
+    {
+        return !$this->quizzes->whereLoose('number', $quiz_number)->isEmpty();
+    }
+    public function lastQuizTaken($quiz_number)
+    {
+        return $this->quizzes->whereLoose('number', $quiz_number)->last();
+    }
+
+    public function retakeQuiz($quiz_number)
+    {
+
+        return $this->lastQuizTaken($quiz_number)->pivot->created_at->addHours(24);
+    }
+
+    public function canRetakeQuiz($quiz_number)
+    {
+        return  $this->retakeQuiz($quiz_number)->isPast();
+    }
+
+    public function timeTillRetake($quiz_number){
+        return $this->retakeQuiz($quiz_number)->diffForHumans();
+    }
+
+
 }

@@ -8349,3 +8349,8 @@ button.close {
 .margin-footer {
   margin-bottom: 50px;
 }
+
+.remove-style {
+  color: black;
+  text-decoration: none;
+}

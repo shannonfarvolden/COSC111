@@ -23,9 +23,8 @@ class SlidesController extends Controller
      */
     public function index()
     {
-//        $slides = Slide::all();
-//        return view('slide.index', ['slides'=>$slides]);
-        return view('slide.index');
+        $slides = Slide::all()->unique('slide_set');
+        return view('slide.index', ['slides'=>$slides]);
     }
 
     /**

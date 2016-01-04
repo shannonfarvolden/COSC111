@@ -9,7 +9,7 @@
         {!! Form::open(['method' => 'GET', 'class'=>'col-md-4']) !!}
         <div class="form-group">
             {!! Form::label('category', 'Filter By Category') !!}
-            {!! Form::select('category', ['all'=>'All','assignment'=>'Assignments', 'exam'=>'Exams', 'lecture'=>'Lecture Material','lab'=>'Lab Questions', 'feedback' => 'Complaints and Feedback', 'other'=>'Other'], null, ['class' => 'form-control']) !!}
+            {!! Form::select('category', ['All'=>'All','Assignments'=>'Assignments', 'Exams'=>'Exams', 'Lecture Material'=>'Lecture Material','Lab Questions'=>'Lab Questions', 'Complaints and Feedback' => 'Complaints and Feedback', 'Other'=>'Other'], null, ['class' => 'form-control']) !!}
 
         </div>
         <div class="form-group">

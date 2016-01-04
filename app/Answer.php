@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $primaryKey = ['number', 'question_number', 'quiz_number'];
     /**
      * The attributes that are mass assignable.
      *

@@ -15,8 +15,11 @@ Route::resource('/forum', 'ThreadsController');
 
 Route::post('/forum/{id}', 'RepliesController@store');
 
-Route::get('/quiz/result', 'QuizzesController@result');
-Route::resource('/quiz', 'QuizzesController');
+Route::get('/quiz/{num}/attempts', 'QuizzesController@attempts');
+Route::get('/quiz/{num}/result', 'QuizzesController@result');
+Route::get('/quiz', 'QuizzesController@index');
+Route::get('/quiz/{num}', 'QuizzesController@show');
+Route::post('/quiz/{num}', 'QuizzesController@store');
 
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');
