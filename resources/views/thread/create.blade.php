@@ -4,10 +4,6 @@
     <div class="page-header">
         <h1>Create Thread</h1>
     </div>
-    {!! Form::open(['url' => 'forum']) !!}
-    @include('thread.form', ['submitButtonText' => 'Create Thread'])
-    {!! Form::close() !!}
-
     @if ($errors->any())
         <ul class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -15,7 +11,9 @@
             @endforeach
         </ul>
     @endif
-
+    {!! Form::open(['url' => 'forum']) !!}
+    @include('thread.form', ['submitButtonText' => 'Create Thread'])
+    {!! Form::close() !!}
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

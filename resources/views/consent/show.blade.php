@@ -85,7 +85,7 @@
                 {!! Form::radio('data_consent', 0, ($data_consent)? 0: 1) !!}
 
             </div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
     </div>

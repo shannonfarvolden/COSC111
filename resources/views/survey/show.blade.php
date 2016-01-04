@@ -7,7 +7,16 @@
     @if(Auth::user()->survey_completed)
         <h1>Survey Completed!</h1>
     @else
-
+        @if ($errors->any())
+            <br><div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         {!! Form::open([ 'action' => 'SurveyController@store']) !!}
         <h5>How many years of post-secondary education have you completed?</h5>
         <div class="answers">
@@ -144,6 +153,11 @@
             <div class="radio">
                 <label>
                     {!! Form::radio( 'question_5', 4 ) !!}less than 70%
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    {!! Form::radio( 'question_5', 5 ) !!}I have not taken any of the prerequisite math courses
                 </label>
             </div>
         </div>
@@ -346,16 +360,6 @@
 
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
-    @endif
-    @if ($errors->any())
-        <br><div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
     @endif
 @endsection
 @section('footer')
