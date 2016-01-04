@@ -358,3 +358,13 @@
         </div>
     @endif
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Survey',
+            page: '/survey'
+        });
+    </script>
+@endsection

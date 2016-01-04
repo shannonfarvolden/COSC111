@@ -58,3 +58,13 @@
         </div>
     </div>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Login',
+            page: '/auth/login'
+        });
+    </script>
+@endsection

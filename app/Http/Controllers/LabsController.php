@@ -11,6 +11,13 @@ class LabsController extends Controller
 {
 
     /**
+     * Create a new labs controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Displays lab 1 view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

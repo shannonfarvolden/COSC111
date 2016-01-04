@@ -30,3 +30,13 @@
         </table>
     </div>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Grades',
+            page: '/grade'
+        });
+    </script>
+@endsection

@@ -200,3 +200,13 @@ My age is 216 in dog years!
     </div>
 
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Labs',
+            page: '/labs'
+        });
+    </script>
+@endsection

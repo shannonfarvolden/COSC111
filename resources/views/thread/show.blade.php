@@ -38,3 +38,14 @@
     @endif
     <br><a href="/forum"> Back to discussion forum </a>
 @endsection
+
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Thread',
+            page: '/forum'
+        });
+    </script>
+@endsection

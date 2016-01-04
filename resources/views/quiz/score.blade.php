@@ -7,3 +7,13 @@
     <h3>Your score was: {{$score}}/10</h3>
     <h3>Attempt # {{$attempt}}</h3>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Quiz',
+            page: '/quiz'
+        });
+    </script>
+@endsection

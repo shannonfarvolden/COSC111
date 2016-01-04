@@ -92,3 +92,13 @@
 
 
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Consent',
+            page: '/consent'
+        });
+    </script>
+@endsection

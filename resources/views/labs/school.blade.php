@@ -53,3 +53,13 @@
 
     <a href={{ url('/lab1') }}>Back to Lab 1</a>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Labs',
+            page: '/labs'
+        });
+    </script>
+@endsection

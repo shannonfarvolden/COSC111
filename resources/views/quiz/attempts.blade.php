@@ -11,3 +11,13 @@
             <br>
         @endforeach
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Quiz',
+            page: '/quiz'
+        });
+    </script>
+@endsection
