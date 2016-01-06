@@ -12,7 +12,6 @@ class Survey extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'question_1',
         'question_2',
         'question_3',

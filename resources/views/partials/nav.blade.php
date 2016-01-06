@@ -17,6 +17,7 @@
                 <li><a href="{{ url('/forum') }}">Discussion Forum</a></li>
                 <li><a href="{{ url('/slide') }}">Slides</a></li>
                 <li><a href="{{ url('/quiz') }}">Quizzes</a></li>
+                <li><a href="{{ url('/submission') }}">Submissions</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Labs<span class="caret"></span></a>

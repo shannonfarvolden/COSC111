@@ -60,13 +60,22 @@ class User extends BaseUser
     }
 
     /**
-     * Get the quizzes written by a give user.
+     * Get the quizzes written by a given user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function quizzes()
     {
         return $this->belongsToMany('App\Quiz', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
+    }
+    /**
+     * Get the submissions made by a given user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions()
+    {
+        return $this->belongsToMany('App\Submission')->withPivot('file_name', 'file_path', 'attempt', 'comments')->withTimestamps();
     }
 
     /**

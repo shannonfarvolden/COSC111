@@ -12,7 +12,6 @@ class Reply extends Model {
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'thread_id',
         'body',
         'anonymous',

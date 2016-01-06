@@ -12,7 +12,6 @@ class Thread extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'title',
         'body',
         'category',
