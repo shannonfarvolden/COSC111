@@ -27,7 +27,7 @@ class CreateSubmissionsTable extends Migration
             $table->integer('submission_id')->unsigned()->index();
             $table->string('file_name');
             $table->string('file_path');
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->integer('attempt')->unsigned()->default(0);
             $table->timestamps();
 
@@ -50,6 +50,7 @@ class CreateSubmissionsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('submission_user');
         Schema::drop('submissions');
     }
 }

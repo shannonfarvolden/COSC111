@@ -4,14 +4,13 @@
     <div class="page-header">
         <h1>Submissions</h1>
     </div>
-    <a style="color:black; text-decoration:none" href="{{ action('SubmissionsController@create') }}">
+    <a style="color:black; text-decoration:none" href="{{ action('SubmissionsController@addSubmission') }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 Lab 1
             </div>
         </div>
     </a>
-
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

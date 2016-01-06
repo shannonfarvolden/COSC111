@@ -77,7 +77,10 @@ class User extends BaseUser
     {
         return $this->belongsToMany('App\Submission')->withPivot('file_name', 'file_path', 'attempt', 'comments')->withTimestamps();
     }
-
+    public function hasSubmissionAttempt($submission_name)
+    {
+        return !$this->submissions->where('name', $submission_name)->isEmpty();
+    }
     /**
      * A user can have one survey.
      *

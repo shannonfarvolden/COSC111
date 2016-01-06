@@ -21,7 +21,10 @@ Route::get('/quiz', 'QuizzesController@index');
 Route::get('/quiz/{num}', 'QuizzesController@show');
 Route::post('/quiz/{num}', 'QuizzesController@store');
 
-Route::resource('/submission', 'SubmissionsController');
+Route::get('/submission', 'SubmissionsController@index');
+Route::get('/submission/complete', 'SubmissionsController@complete');
+Route::get('/submission/add', 'SubmissionsController@addSubmission');
+Route::post('/submission', 'SubmissionsController@storeSubmission');
 
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');

@@ -74,8 +74,8 @@
             <p>
                 <b>[1 pt for printing, 1 pt for calculation]</b>
                 After printing your name, have the program print out your age in dog
-                years. The string should be "My age is ... in dog years!" where ... is
-                replaced with your age times 9. (One human year is roughly 9 dog years.)
+                years. The string should be "My age is ... in dog years!" where ... is replaced with your age times 9.
+                (One human year is roughly 9 dog years.) Be sure your code has a multiplication formula that calculates the age in dog years.
 
             <p>
                 Sample output:

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="page-header">
-        <h1>Make Submission</h1>
+        <h1>Lab 1 Submission</h1>
     </div>
-    {!! Form::open(['url' => 'foo', 'files' => true]) !!}
+    {!! Form::open(['url' => '/submission', 'files' => true]) !!}
     @include('submission.form')
     {!! Form::close() !!}
 @endsection

@@ -1,6 +1,6 @@
 <div>
-    {!! Form::label('lab1', 'File Submission') !!}
-    {!! Form::file('lab1') !!}
+    {!! Form::label('submission', 'File Submission') !!}
+    {!! Form::file('submission') !!}
 </div>
 <div class="form-group">
     {!! Form::label('comments', 'Comments') !!}
