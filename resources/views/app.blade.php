@@ -32,7 +32,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="/js/libs.js"></script>
 
-{{--Data Analytics--}}
+{{--Google Analytics--}}
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,7 +41,10 @@
     <?php
     if (Auth::check()) {
         $gacode = "ga('create', 'UA-71941716-1', 'auto', {'userId': '%s'});";
+        $gacode2 = "ga('set', 'dimension1', '%s');";
         echo sprintf($gacode, Auth::user()->id);
+        echo sprintf($gacode2, Auth::user()->id);
+
     } else {
         $gacode = "ga('create', 'UA-71941716-1', 'auto');";
         echo sprintf($gacode);
@@ -49,6 +52,10 @@
    ?>
 </script>
 @yield('footer')
+{{--Google Anay--}}
+<script>
+
+</script>
 
 </body>
 </html>
