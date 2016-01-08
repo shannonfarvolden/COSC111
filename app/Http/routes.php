@@ -8,6 +8,9 @@ Route::post('/consent', 'ConsentController@store');
 
 Route::get('/grade','GradesController@index');
 
+Route::get('/admin','AdminController@indexSubmissions');
+Route::get('/admin/mark/{id}','AdminController@mark');
+
 Route::get('/slide', 'SlidesController@index');
 Route::get('/slide/{number}', 'SlidesController@show');
 

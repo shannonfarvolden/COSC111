@@ -33,6 +33,15 @@
                         <li><a href="{{ url('/assignment1') }}">Assignment 1</a></li>
                     </ul>
                 </li>
+                @if(Auth::user()->admin)
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="{{ url('/admin') }}">Grades</a></li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())

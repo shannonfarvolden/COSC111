@@ -69,7 +69,7 @@
                 <!--readings-->
                 <td>Ch 3</td>
                 <!--assignments/tests-->
-                <td>A1 due</td>
+                <td><a href="/assignment1">A1</a> due</td>
                 <!--labs-->
                 <td></td>
             </tr>
