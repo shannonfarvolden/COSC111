@@ -59,7 +59,7 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td></td>
+                <td><a href="/lab2">Lab 2</a></td>
             </tr>
             <tr>
                 <!--week (date)-->

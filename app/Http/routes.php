@@ -31,6 +31,8 @@ Route::get('/eclipse', 'LabsController@eclipse');
 Route::get('/school', 'LabsController@school');
 Route::get('/lab2', 'LabsController@lab2');
 
+Route::get('/assignment1', 'AssignmentsController@assignment1');
+
 Route::get('/survey', 'SurveyController@show');
 Route::post('/survey', 'SurveyController@store');
 

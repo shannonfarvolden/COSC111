@@ -241,3 +241,13 @@ Your BMI is 22.142528963188443
   </div>
 
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Labs',
+            page: '/labs'
+        });
+    </script>
+@endsection
