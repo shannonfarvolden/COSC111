@@ -50,14 +50,18 @@ class SubmissionsController extends Controller
      */
     public function storeSubmission(Request $request)
     {
-        $file=$request->file('submission');
-        $name = '1-' . Auth::user()->student_number . $file->getClientOriginalName();
-        $comments=$request->input('comments');
-        $file->move('submissions/lab1', $name);
-        if($comments)
-            Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}", 'comments'=>$comments  , 'attempt'=>1]);
-        else
-            Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}" , 'attempt'=>1]);
+
+        $files = $request->file('submissions');
+        foreach($files as $file){
+            $name = '1-' . Auth::user()->student_number . $file->getClientOriginalName();
+            $comments=$request->input('comments');
+            $file->move('submissions/lab1', $name);
+            if($comments)
+                Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}", 'comments'=>$comments  , 'attempt'=>1]);
+            else
+                Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}" , 'attempt'=>1]);
+        }
+
         return redirect()->action('SubmissionsController@complete');
     }
 

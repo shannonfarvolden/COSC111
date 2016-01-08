@@ -29,6 +29,7 @@ Route::post('/submission', 'SubmissionsController@storeSubmission');
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');
 Route::get('/school', 'LabsController@school');
+Route::get('/lab2', 'LabsController@lab2');
 
 Route::get('/survey', 'SurveyController@show');
 Route::post('/survey', 'SurveyController@store');
