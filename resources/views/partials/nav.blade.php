@@ -33,7 +33,8 @@
                         <li><a href="{{ url('/assignment1') }}">Assignment 1</a></li>
                     </ul>
                 </li>
-                @if(Auth::user()->admin)
+
+                @if(Auth::check() && Auth::user()->admin)
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Admin<span class="caret"></span></a>
