@@ -9,7 +9,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <pre>{{$question->number}}) {{$question->question}}</pre>
-                @foreach($question->answers->where('quiz_number', $quiz->number) as $answer)
+                @foreach($question->answers->whereLoose('quiz_number', $quiz->number) as $answer)
                     <div class="radio">
                         <label>
                             {!! Form::radio('answer['.$question->number.']', $answer->correct ) !!}{{$answer->answer}}
