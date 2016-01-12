@@ -1,23 +1,26 @@
 @extends('app')
 
 @section('content')
+
     <div class="page-header">
         <h1>{{$quiz->name}}</h1>
     </div>
     {!! Form::open([ 'action' => ['QuizzesController@store', $quiz->number]]) !!}
-    @foreach($quiz->questions as $question)
+    <?php $count=1; ?>
+    @foreach($quiz->questions->shuffle() as $question)
         <div class="panel panel-default">
             <div class="panel-body">
-                <pre>{{$question->number}}) {{$question->question}}</pre>
-                @foreach($question->answers->whereLoose('quiz_number', $quiz->number) as $answer)
+                <pre>{{$count}}) {{$question->question}}</pre>
+                @foreach($question->answers->whereLoose('quiz_number', $quiz->number)->shuffle() as $answer)
                     <div class="radio">
                         <label>
-                            {!! Form::radio('answer['.$question->number.']', $answer->correct ) !!}{{$answer->answer}}
+                            {!! Form::radio('answer['.$count.']', $answer->correct ) !!}{{$answer->answer}}
                         </label>
                     </div>
                 @endforeach
             </div>
         </div>
+        <?php $count++; ?>
     @endforeach
     <div class="form-group">
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}

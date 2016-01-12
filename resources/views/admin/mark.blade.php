@@ -16,6 +16,7 @@
                 <th>Student Name</th>
                 <th>Student Number</th>
                 <th>Files Submitted</th>
+                <th>Comments</th>
                 <th>Mark</th>
             </tr>
 
@@ -28,6 +29,9 @@
                         @foreach($student->submissions->whereLoose('id', $submission->id) as $submission)
                             <p>Attempt: {{$submission->pivot->attempt}} <a href="/{{$submission->pivot->file_path}}">{{$submission->pivot->file_name}}</a></p>
                         @endforeach
+                    </td>
+                    <td>
+                        {!! nl2br($student->submissions->whereLoose('id', $submission->id)->first()->pivot->comments) !!}
                     </td>
                     <td>
                         {!! Form::open() !!}

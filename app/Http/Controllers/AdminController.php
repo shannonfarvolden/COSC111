@@ -26,6 +26,7 @@ class AdminController extends Controller
         $submission = Submission::findorFail($id);
 
         $submitStudents = $submission->users->unique();
+
         $submitIds = $submitStudents->lists('student_number');
         $noSubmissions = User::where('admin', 0 )->whereNotIn('student_number', $submitIds )->get();
 
