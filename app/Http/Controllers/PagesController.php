@@ -20,5 +20,15 @@ class PagesController extends Controller
         return view('pages.home');
     }
 
+    /**
+     * Display the dev page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function development()
+    {
+        return view('pages.development');
+    }
+
 
 }
