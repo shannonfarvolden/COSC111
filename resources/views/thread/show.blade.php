@@ -7,7 +7,7 @@
             <h3 class="panel-title">{{ $thread->title }}</h3>
         </div>
         <div class="panel-body">
-            <h7>{{$thread->body}}</h7>
+            <p>{!! nl2br($thread->body) !!}</p>
         </div>
     </div>
     @if($thread->anonymous)
