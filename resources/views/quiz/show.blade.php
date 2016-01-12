@@ -6,15 +6,19 @@
     </div>
     {!! Form::open([ 'action' => ['QuizzesController@store', $quiz->number]]) !!}
     @foreach($quiz->questions as $question)
-        <h5>{{$question->number}}) {{$question->question}}</h5>
-        @foreach($question->answers as $answer)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <pre>{{$question->number}}) {{$question->question}}</pre>
+                @foreach($question->answers->where('quiz_number', $quiz->number) as $answer)
 
-            <div class="radio">
-                <label>
-                    {!! Form::radio('answer['.$question->number.']', $answer->correct ) !!}{{$answer->answer}}
-                </label>
+                    <div class="radio">
+                        <label>
+                            {!! Form::radio('answer['.$question->number.']', $answer->correct ) !!}{{$answer->answer}}
+                        </label>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+        </div>
     @endforeach
     <div class="form-group">
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}

@@ -3,6 +3,7 @@
 @section('content')
     <div class="jumbotron">
         <h2>Assignment 1 [23 pts]</h2>
+        <p>Due: Sunday 9:00am on Jan 24th</p>
         The purpose of this assignment is to give you practice writing simple Java
         programs on your own without step-by-step guidelines. You will still have
         the option to discuss problems with others and search online for help, but

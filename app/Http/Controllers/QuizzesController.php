@@ -59,7 +59,7 @@ class QuizzesController extends Controller
 
         $attempt = (Auth::user()->hasQuizAttempt($num))?Auth::user()->lastQuizTaken($num)->pivot->attempt+1 : 1;
 
-        Auth::user()->quizzes()->attach(1, ['score'=>$score, 'attempt'=> $attempt]);
+        Auth::user()->quizzes()->attach($num, ['score'=>$score, 'attempt'=> $attempt]);
 
         return redirect()->action('QuizzesController@result', ['num'=>$num]);
 
