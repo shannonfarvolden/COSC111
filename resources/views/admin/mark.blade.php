@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="page-header">
-        <h1>Add Grades</h1>
+        <h1>Add Grades <small> Note: Grade Submission in Progress</small></h1>
     </div>
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">
-           <h3 class="panel-title">{{$submission}}</h3>
+           <h3 class="panel-title">{{$submission->name}}</h3>
         </div>
 
         <!-- Table -->
@@ -15,6 +15,8 @@
             <tr>
                 <th>Student Name</th>
                 <th>Student Number</th>
+                <th>Files Submitted</th>
+                <th>Mark</th>
             </tr>
 
 
@@ -22,6 +24,17 @@
                 <tr>
                     <td>{{$student->first_name}} {{$student->last_name}}</td>
                     <td>{{$student->student_number}}</td>
+                    <td>
+                        @foreach($student->submissions->whereLoose('id', $submission->id) as $submission)
+                            <p>Attempt: {{$submission->pivot->attempt}} <a href="/{{$submission->pivot->file_path}}">{{$submission->pivot->file_name}}</a></p>
+                        @endforeach
+                    </td>
+                    <td>
+                        {!! Form::open() !!}
+                        {!! Form::text('mark', null) !!}
+                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
             @endforeach
 
@@ -40,6 +53,8 @@
             <tr>
                 <th>Student Name</th>
                 <th>Student Number</th>
+                <th>Mark</th>
+
             </tr>
 
 
@@ -47,6 +62,12 @@
                 <tr>
                     <td>{{$student->first_name}} {{$student->last_name}}</td>
                     <td>{{$student->student_number}}</td>
+                    <td>
+                        {!! Form::open() !!}
+                        {!! Form::text('mark', null) !!}
+                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
             @endforeach
 
