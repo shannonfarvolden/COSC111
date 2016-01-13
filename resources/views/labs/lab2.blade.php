@@ -202,7 +202,7 @@ Your BMI is 22.142528963188443
 14     {
 15       System.out.println( "Hey, you didn't enter a number in the valid range!" );
 16     }
-17     else.
+17     else
 18     {
 19       if( yourNum % 2 == 1 )
 20         System.out.println( "Your number is odd!  Haha, that's a pun." );
