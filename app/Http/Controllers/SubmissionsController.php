@@ -25,8 +25,8 @@ class SubmissionsController extends Controller
      */
     public function index()
     {
-
-        return view('submission.index');
+        $submissions = Submission::all();
+        return view('submission.index', ['submissions'=>$submissions]);
     }
 
     /**
@@ -34,12 +34,11 @@ class SubmissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addSubmission()
+    public function add($id)
     {
-        if(Auth::user()->hasSubmissionAttempt('Lab 1'))
-            return redirect()->action('SubmissionsController@complete');
-        else
-            return view('submission.add');
+        $submission = Submission::findOrFail($id);
+
+        return view('submission.add', ['submission'=>$submission]);
     }
 
     /**
@@ -48,26 +47,32 @@ class SubmissionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeSubmission(Request $request)
+    public function store(Request $request, $id)
     {
 
         $files = $request->file('submissions');
+
         foreach($files as $file){
-            $name = '1-' . Auth::user()->student_number . $file->getClientOriginalName();
+
+            $attempt = (Auth::user()->hasSubmissionAttempt($id))?Auth::user()->lastSubmissionMade($id)->pivot->attempt+1 : 1;
+
+            $name = $attempt . '-' . Auth::user()->student_number . $file->getClientOriginalName();
             $comments=$request->input('comments');
             $file->move('submissions/lab1', $name);
+
             if($comments)
-                Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}", 'comments'=>$comments  , 'attempt'=>1]);
+                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}", 'comments'=>$comments  , 'attempt'=>$attempt]);
             else
-                Auth::user()->submissions()->attach(1, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}" , 'attempt'=>1]);
+                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}" , 'attempt'=>$attempt]);
         }
 
-        return redirect()->action('SubmissionsController@complete');
+        return redirect()->action('SubmissionsController@complete', ['id'=>$id]);
     }
 
-    public function complete()
+    public function complete($id)
     {
-        return view('submission.complete');
+        $submission = Submission::findOrFail($id);
+        return view('submission.complete', ['submission'=>$submission] );
     }
 
     /**

@@ -8350,7 +8350,6 @@ button.close {
   margin-bottom: 50px;
 }
 
-.remove-style {
-  color: black;
-  text-decoration: none;
+.padding-sides {
+  padding: 0px 50px;
 }

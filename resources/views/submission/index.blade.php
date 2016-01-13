@@ -4,13 +4,16 @@
     <div class="page-header">
         <h1>Submissions</h1>
     </div>
-    <a style="color:black; text-decoration:none" href="{{ action('SubmissionsController@addSubmission') }}">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                Lab 1
+    @foreach($submissions as $submission)
+        <a style="color:black; text-decoration:none"
+           href="{{ action('SubmissionsController@add',['$id'=>$submission->id]) }}">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{$submission->name}}
+                </div>
             </div>
-        </div>
-    </a>
+        </a>
+    @endforeach
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

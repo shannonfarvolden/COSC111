@@ -1,12 +1,19 @@
 @extends('app')
 
 @section('content')
-    <div class="page-header">
-        <h1>Lab 1 Submission</h1>
+    <div class="panel panel-default heading-margin">
+        <div class="panel-body padding-sides">
+            <div class="page-header">
+                <h1>{{$submission->name}} Submission</h1>
+            </div>
+
+            {!! Form::open([ 'action' => ['SubmissionsController@store', $submission->id], 'files' => true]) !!}
+            @include('submission.form')
+            {!! Form::close() !!}
+
+        </div>
     </div>
-    {!! Form::open(['url' => '/submission', 'files' => true]) !!}
-    @include('submission.form')
-    {!! Form::close() !!}
+
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

@@ -13,16 +13,17 @@
         <!-- Table -->
         <table class="table">
             <tr>
+                <th>Submission Date</th>
                 <th>Student Name</th>
                 <th>Student Number</th>
                 <th>Files Submitted</th>
-                <th>Comments</th>
+                <th>Latest Attempt Comments</th>
                 <th>Mark</th>
             </tr>
 
-
             @foreach($submitStudents as $student)
                 <tr>
+                    <td>{{$student->submissions->whereLoose('id', $submission->id)->last()->pivot->created_at}}</td>
                     <td>{{$student->first_name}} {{$student->last_name}}</td>
                     <td>{{$student->student_number}}</td>
                     <td>
@@ -31,7 +32,7 @@
                         @endforeach
                     </td>
                     <td>
-                        {!! nl2br($student->submissions->whereLoose('id', $submission->id)->first()->pivot->comments) !!}
+                        {!! nl2br($student->submissions->whereLoose('id', $submission->id)->last()->pivot->comments) !!}
                     </td>
                     <td>
                         {!! Form::open() !!}

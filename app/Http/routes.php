@@ -25,9 +25,9 @@ Route::get('/quiz/{num}', 'QuizzesController@show');
 Route::post('/quiz/{num}', 'QuizzesController@store');
 
 Route::get('/submission', 'SubmissionsController@index');
-Route::get('/submission/complete', 'SubmissionsController@complete');
-Route::get('/submission/add', 'SubmissionsController@addSubmission');
-Route::post('/submission', 'SubmissionsController@storeSubmission');
+Route::get('/submission/complete/{id}', 'SubmissionsController@complete');
+Route::get('/submission/add/{id}', 'SubmissionsController@add');
+Route::post('/submission/add/{id}', 'SubmissionsController@store');
 
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');
