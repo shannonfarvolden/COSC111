@@ -25,7 +25,7 @@
             @foreach($submitStudents as $student)
                 <tr>
                     <td width="10%">{{$student->submissions->whereLoose('id', $submission->id)->last()->pivot->created_at}}</td>
-                    <td width="10%">{{$student->first_name}} {{$student->last_name}}</td>
+                    <td width="15%">{{$student->first_name}} {{$student->last_name}}</td>
                     <td width="10%">{{$student->student_number}}</td>
                     <td width="20%">
                         @foreach($student->submissions->whereLoose('id', $submission->id) as $submission)
@@ -45,7 +45,7 @@
                             {!! Form::close() !!}
                         </td>
                     @else
-                        <td width="10%">
+                        <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
                                 Feedback / Edit Mark </a>
@@ -76,7 +76,7 @@
             </tr>
             @foreach($noSubmissions as $student)
                 <tr>
-                    <td width="45%">{{$student->first_name}} {{$student->last_name}}</td>
+                    <td width="50%">{{$student->first_name}} {{$student->last_name}}</td>
                     <td width="45%">{{$student->student_number}}</td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
                         <td width="10%">
@@ -86,7 +86,7 @@
                             {!! Form::close() !!}
                         </td>
                     @else
-                        <td width="10%">
+                        <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
                                 Feedback / Edit Mark</a>
