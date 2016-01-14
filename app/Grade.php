@@ -41,8 +41,8 @@ class Grade extends Model
      * @param $num
      * @return float
      */
-    public function setMarkAttribute($num){
-        return $this->attributes['mark'] = (float)$num;
+    public function getMarkAttribute($num){
+        return (float)$num;
 
     }
 }
