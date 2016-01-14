@@ -38,7 +38,7 @@
                         {!! nl2br($student->submissions->whereLoose('id', $submission->id)->last()->pivot->comments) !!}
                     </td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
-                        <td width="10%">
+                        <td width="15%">
                             {!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}
                             {!! Form::hidden('user_id', $student->id) !!}
                             {!! Form::text('mark', null, ['class' => 'form-control']) !!}
@@ -79,7 +79,7 @@
                     <td width="50%">{{$student->first_name}} {{$student->last_name}}</td>
                     <td width="45%">{{$student->student_number}}</td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
-                        <td width="10%">
+                        <td width="15%">
                             {!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}
                             {!! Form::hidden('user_id', $student->id) !!}
                             {!! Form::text('mark', null, ['class' => 'form-control']) !!}
