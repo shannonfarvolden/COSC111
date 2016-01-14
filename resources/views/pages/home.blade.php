@@ -89,7 +89,7 @@
                 <!--week (date)-->
                 <td>5 (Feb 01)</td>
                 <!--topics-->
-                <td>Review</td>
+                <td>Loops</td>
                 <!--readings-->
                 <td>Ch 5</td>
                 <!--assignments/tests-->
@@ -108,7 +108,7 @@
                 <!--week (date)-->
                 <td>7 (Feb 15)</td>
                 <!--topics-->
-                <td>Loops</td>
+                <td>Q&A</td>
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->
@@ -156,7 +156,7 @@
                 <!--week (date)-->
                 <td>11 (Mar 14)</td>
                 <!--topics-->
-                <td>Review</td>
+                <td>Q&A</td>
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->

@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('mark', 'Mark') !!}
-        {!! Form::number('mark', null, ['class'=>'form-control', 'rows' => 3]) !!}
+        {!! Form::text('mark', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
