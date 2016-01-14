@@ -48,7 +48,7 @@
                         <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
-                                Feedback / Edit Mark </a>
+                                Feedback / Edit </a>
                         </td>
 
                     @endif
@@ -76,8 +76,8 @@
             </tr>
             @foreach($noSubmissions as $student)
                 <tr>
-                    <td width="50%">{{$student->first_name}} {{$student->last_name}}</td>
-                    <td width="45%">{{$student->student_number}}</td>
+                    <td width="45%">{{$student->first_name}} {{$student->last_name}}</td>
+                    <td width="40%">{{$student->student_number}}</td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
                         <td width="15%">
                             {!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}
@@ -89,7 +89,7 @@
                         <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
-                                Feedback / Edit Mark</a>
+                                Feedback / Edit </a>
                         </td>
 
                     @endif
