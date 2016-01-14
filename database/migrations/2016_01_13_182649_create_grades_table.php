@@ -15,17 +15,19 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('name');
+            $table->integer('submission_id')->unsigned();
             $table->integer('mark')->nullable();
-            $table->integer('total')->nullable();
-            $table->string('status')->nullable();
             $table->text('feedback')->nullable();
-            $table->string('type')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('submission_id')
+                ->references('id')
+                ->on('submissions')
                 ->onDelete('cascade');
         });
     }

@@ -13,12 +13,9 @@ class Grade extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
+        'submission_id',
         'mark',
-        'total',
-        'status',
         'feedback',
-        'type',
     ];
     /**
      * A grade belongs to a user.
@@ -28,5 +25,14 @@ class Grade extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+    /**
+     * A grade belongs to a submission.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function submission()
+    {
+        return $this->belongsTo('App\Submission');
     }
 }

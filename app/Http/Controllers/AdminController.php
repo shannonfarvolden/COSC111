@@ -25,13 +25,39 @@ class AdminController extends Controller
     {
         $submission = Submission::findorFail($id);
 
-        $submitStudents = $submission->users->unique();
+        $submitStudents = $submission->users()->orderBy('pivot_created_at', 'asc')->get()->unique();
 
         $submitIds = $submitStudents->lists('student_number');
         $noSubmissions = User::where('admin', 0 )->whereNotIn('student_number', $submitIds )->get();
 
+
         return view('admin.mark', ['submission'=>$submission, 'submitStudents'=>$submitStudents, 'noSubmissions'=>$noSubmissions]);
     }
+
+    public function storeGrade(Request $request, $id)
+    {
+
+        Grade::create(array_add($request->all(), 'submission_id', $id));
+
+//        return redirect()->action('AdminController@mark',['id'=>$id]);
+        return redirect()->back();
+    }
+
+    public function editGrade($sub_id, $student_id)
+    {
+        $student = User::findOrFail($student_id);
+        $grade = $student->grades->whereLoose('submission_id', $sub_id)->last();
+        return view('admin.editGrade', ['grade'=>$grade]);
+
+    }
+
+    public function updateGrade(Request $request, $grade_id)
+    {
+        $grade = Grade::findOrFail($grade_id);
+        $grade->update($request->all());
+        return redirect()->action('AdminController@mark',['id'=>$grade->submission_id]);
+    }
+
 
 
 }

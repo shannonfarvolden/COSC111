@@ -14,16 +14,12 @@
             <tr>
                 <th>Item</th>
                 <th>Mark</th>
-                <th>Status</th>
                 <th>Feedback</th>
             </tr>
             @foreach($grades as $grade)
                 <tr>
-                    <td>{{$grade->name}}</td>
-                    @if($grade->mark && $grade->total ) <td>{{$grade->mark}}/{{$grade->total}}</td>
-                    @else <td> - / - </td>
-                    @endif
-                    <td>{{$grade->status}}</td>
+                    <td>{{$grade->submission->name}}</td>
+                    <td>{{$grade->mark}}/{{$grade->submission->total}}</td>
                     <td>{{$grade->feedback}}</td>
                 </tr>
             @endforeach

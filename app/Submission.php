@@ -26,4 +26,13 @@ class Submission extends Model
     {
         return $this->belongsToMany('App\User')->withPivot('file_name', 'file_path', 'attempt', 'comments')->withTimestamps();
     }
+    /**
+     * A submission can have many grades associated with it.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function grades()
+    {
+        return $this->hasMany('App\Grade');
+    }
 }
