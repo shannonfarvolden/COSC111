@@ -35,4 +35,14 @@ class Grade extends Model
     {
         return $this->belongsTo('App\Submission');
     }
+
+    /**
+     * Cast the mark attribute to float (removes unnecessary zeros)
+     * @param $num
+     * @return float
+     */
+    public function setMarkAttribute($num){
+        return $this->attributes['mark'] = (float)$num;
+
+    }
 }
