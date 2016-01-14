@@ -91,9 +91,9 @@
                 <!--topics-->
                 <td>Review</td>
                 <!--readings-->
-                <td>N/A</td>
+                <td>Ch 5</td>
                 <!--assignments/tests-->
-                <td>Midterm 1</td>
+                <td></td>
                 <!--labs-->
                 <td></td>
             </tr>
@@ -110,9 +110,9 @@
                 <!--topics-->
                 <td>Loops</td>
                 <!--readings-->
-                <td>Ch 5</td>
+                <td>N/A</td>
                 <!--assignments/tests-->
-                <td></td>
+                <td>Midterm 1</td>
                 <!--labs-->
                 <td></td>
             </tr>

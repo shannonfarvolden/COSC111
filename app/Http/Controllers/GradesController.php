@@ -27,6 +27,7 @@ class GradesController extends Controller
     {
 
         $grades = Auth::user()->grades;
+
         return view('grade.index', ['grades'=>$grades]);
     }
 

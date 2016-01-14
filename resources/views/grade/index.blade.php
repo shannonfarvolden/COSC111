@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{$grade->submission->name}}</td>
                     <td>{{$grade->mark}}/{{$grade->submission->total}}</td>
-                    <td>{{$grade->feedback}}</td>
+                    <td>{!! nl2br($grade->feedback) !!}</td>
                 </tr>
             @endforeach
         </table>
