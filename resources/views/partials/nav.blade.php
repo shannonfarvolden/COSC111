@@ -24,6 +24,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="{{ url('/lab1') }}">Lab 1</a></li>
                         <li><a href="{{ url('/lab2') }}">Lab 2</a></li>
+                        <li><a href="{{ url('/lab3') }}">Lab 3</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
