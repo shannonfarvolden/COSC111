@@ -14,6 +14,15 @@ use Auth;
 
 class AdminController extends Controller
 {
+    /**
+     * Create a new admin controller instance. User must be logged in to view pages.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     public function indexSubmissions()
     {
         $submissions = Submission::all();
