@@ -17,7 +17,7 @@ class CreateRepliesTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('thread_id')->unsigned();
-            $table->string('body');
+            $table->text('body')->change();
             $table->boolean('anonymous')->default(false);
             $table->timestamps();
 

@@ -5,7 +5,7 @@
         @else
             <p>{{$reply->user->first_name}} {{$reply->user->last_name}}</p>
         @endif
-        <p>{{$reply->body}}</p>
+        <p>{!! nl2br($reply->body) !!}</p>
     </div>
 </div>
 <p>{{$reply->created_at->diffForHumans()}}</p><br>
