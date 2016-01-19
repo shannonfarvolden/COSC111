@@ -9,7 +9,7 @@
         {!! Form::open(['method' => 'GET', 'class'=>'col-md-4']) !!}
         <div class="form-group">
             {!! Form::label('category', 'Filter By Category') !!}
-            {!! Form::select('category', ['All'=>'All','Assignments'=>'Assignments', 'Exams'=>'Exams', 'Lecture Material'=>'Lecture Material','Lab Questions'=>'Lab Questions', 'Complaints and Feedback' => 'Complaints and Feedback', 'Other'=>'Other'], null, ['class' => 'form-control']) !!}
+            {!! Form::select('category', ['All'=>'All','Assignments'=>'Assignments', 'Exams'=>'Exams', 'Lecture Material'=>'Lecture Material','Labs'=>'Labs', 'Complaints and Feedback' => 'Complaints and Feedback', 'Other'=>'Other'], null, ['class' => 'form-control']) !!}
 
         </div>
         <div class="form-group">
@@ -25,8 +25,8 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-2">{{$thread->title}}</div>
-                        <div class="col-md-2 col-md-offset-8 text-right">Replies <span class="badge">{{$thread->replies->count()}}</span></div>
+                        <div class="col-md-4">{{$thread->title}}</div>
+                        <div class="col-md-2 col-md-offset-6 text-right">Replies <span class="badge">{{$thread->replies->count()}}</span></div>
                     </div>
                     <p class="text-right">{{$thread->created_at->diffForHumans()}}</p>
                 </div>

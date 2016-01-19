@@ -71,7 +71,7 @@
                 <!--assignments/tests-->
                 <td><a href="/assignment1">A1</a> due</td>
                 <!--labs-->
-                <td></td>
+                <td><a href="/lab3">Lab 3</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
