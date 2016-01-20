@@ -58,12 +58,12 @@ class SubmissionsController extends Controller
 
             $name = $attempt . '-' . Auth::user()->student_number . $file->getClientOriginalName();
             $comments=$request->input('comments');
-            $file->move('submissions/lab1', $name);
+            $file->move('submissions', $name);
 
             if($comments)
-                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}", 'comments'=>$comments  , 'attempt'=>$attempt]);
+                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/{$name}", 'comments'=>$comments  , 'attempt'=>$attempt]);
             else
-                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/lab1/{$name}" , 'attempt'=>$attempt]);
+                Auth::user()->submissions()->attach($id, ['file_name'=>$file->getClientOriginalName(), 'file_path'=> "submissions/{$name}" , 'attempt'=>$attempt]);
         }
 
         return redirect()->action('SubmissionsController@complete', ['id'=>$id]);
