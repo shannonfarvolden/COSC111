@@ -28,7 +28,10 @@
                         <div class="col-md-4">{{$thread->title}}</div>
                         <div class="col-md-2 col-md-offset-6 text-right">Replies <span class="badge">{{$thread->replies->count()}}</span></div>
                     </div>
-                    <p class="text-right">{{$thread->created_at->diffForHumans()}}</p>
+                    @if($thread->replies->count()>0)
+                        <p class="text-right"><b>Latest Reply: </b>{{$thread->replies->last()->created_at->diffForHumans()}}</p>
+                    @endif
+                        <p class="text-right"><b>Post Created: </b>{{$thread->created_at->diffForHumans()}}</p>
                 </div>
             </div>
         </a>

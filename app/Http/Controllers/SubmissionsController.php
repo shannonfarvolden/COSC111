@@ -25,7 +25,7 @@ class SubmissionsController extends Controller
      */
     public function index()
     {
-        $submissions = Submission::all();
+        $submissions = Submission::where('active', 1)->get();
         return view('submission.index', ['submissions'=>$submissions]);
     }
 
