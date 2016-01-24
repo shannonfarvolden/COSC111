@@ -69,7 +69,7 @@
                 <!--readings-->
                 <td>Ch 3</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment1">A1</a> due</td>
+                <td><a href="/assignment1">A1</a> due this week</td>
                 <!--labs-->
                 <td><a href="/lab3">Lab 3</a></td>
             </tr>
@@ -83,7 +83,7 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td></td>
+                <td><a href="/lab4">Lab 4</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -136,7 +136,7 @@
                 <!--readings-->
                 <td>Ch 7</td>
                 <!--assignments/tests-->
-                <td>A2 due</td>
+                <td>A2 due this week</td>
                 <!--labs-->
                 <td></td>
             </tr>
@@ -191,7 +191,7 @@
                 <!--readings-->
                 <td>Ch 10</td>
                 <!--assignments/tests-->
-                <td>A3 due</td>
+                <td>A3 due this week</td>
                 <!--labs-->
                 <td>No lab</td>
             </tr>

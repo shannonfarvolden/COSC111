@@ -25,6 +25,7 @@
                         <li><a href="{{ url('/lab1') }}">Lab 1</a></li>
                         <li><a href="{{ url('/lab2') }}">Lab 2</a></li>
                         <li><a href="{{ url('/lab3') }}">Lab 3</a></li>
+                        <li><a href="{{ url('/lab4') }}">Lab 4</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
