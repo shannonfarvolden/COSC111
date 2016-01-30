@@ -10,8 +10,9 @@ Route::get('/grade','GradesController@index');
 
 Route::get('/admin','AdminController@indexSubmissions');
 Route::get('/admin/mark/{id}','AdminController@mark');
-Route::post('/admin/mark/{id}','AdminController@storeGrade');
-Route::get('/admin/mark/{sub_id}/{student_id}','AdminController@editGrade');
+Route::post('/admin/mark/{sub_id}/{student_id}','AdminController@storeGrade');
+Route::get('/admin/mark/{sub_id}/{student_id}/edit','AdminController@editGrade');
+Route::get('/admin/mark/{sub_id}/{student_id}/create','AdminController@createGrade');
 Route::patch('/admin/mark/{id}','AdminController@updateGrade');
 
 Route::get('/slide', 'SlidesController@index');

@@ -39,16 +39,18 @@
                     </td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
                         <td width="15%">
-                            {!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}
-                            {!! Form::hidden('user_id', $student->id) !!}
-                            {!! Form::text('mark', null, ['class' => 'form-control']) !!}
-                            {!! Form::close() !!}
+                            {{--{!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}--}}
+                            {{--{!! Form::hidden('user_id', $student->id) !!}--}}
+                            {{--{!! Form::text('mark', null, ['class' => 'form-control']) !!}--}}
+                            {{--{!! Form::close() !!}--}}
+                            <a href="{{action('AdminController@createGrade', [$submission->id, $student->id])}}" class="btn btn-default">Add
+                                Grade/Feedback </a>
                         </td>
                     @else
                         <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
-                            <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
-                                Feedback / Edit </a>
+                            <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}" class="btn btn-info">Edit
+                                Grade/Feedback </a>
                         </td>
 
                     @endif
@@ -80,16 +82,14 @@
                     <td width="40%">{{$student->student_number}}</td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
                         <td width="15%">
-                            {!! Form::open([ 'action' => ['AdminController@storeGrade', $submission->id]]) !!}
-                            {!! Form::hidden('user_id', $student->id) !!}
-                            {!! Form::text('mark', null, ['class' => 'form-control']) !!}
-                            {!! Form::close() !!}
+                            <a href="{{action('AdminController@createGrade', [$submission->id, $student->id])}}" class="btn btn-default">Add
+                                Grade/Feedback </a>
                         </td>
                     @else
                         <td width="15%">
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
-                            <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}">Add
-                                Feedback / Edit </a>
+                            <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}" class="btn btn-info">Edit
+                                Grade/Feedback </a>
                         </td>
 
                     @endif

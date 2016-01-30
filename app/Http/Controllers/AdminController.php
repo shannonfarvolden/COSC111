@@ -43,15 +43,22 @@ class AdminController extends Controller
         return view('admin.mark', ['submission'=>$submission, 'submitStudents'=>$submitStudents, 'noSubmissions'=>$noSubmissions]);
     }
 
-    public function storeGrade(Request $request, $id)
+    public function storeGrade(Request $request, $id, $sid)
     {
 
-        Grade::create(array_add($request->all(), 'submission_id', $id));
+        $input = array_add($request->all(), 'submission_id', $id);
+        $input = array_add($input, 'user_id', $sid);
+        Grade::create($input);
+        return redirect()->action('AdminController@mark',['id'=>$id]);
 
-//        return redirect()->action('AdminController@mark',['id'=>$id]);
-        return redirect()->back();
     }
 
+    public function createGrade($sub_id, $student_id)
+    {
+        $student = User::findOrFail($student_id);
+        return view('admin.createGrade', ['sub_id'=>$sub_id, 'student'=>$student]);
+
+    }
     public function editGrade($sub_id, $student_id)
     {
         $student = User::findOrFail($student_id);

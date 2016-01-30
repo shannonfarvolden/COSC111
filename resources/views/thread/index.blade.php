@@ -18,7 +18,7 @@
         {!! Form::close() !!}
     </div>
     <hr>
-
+    <a href="{{ action('ThreadsController@create') }}" class=" btn btn-primary margin-button"> Create Thread </a>
     @foreach( $threads as $thread)
         <a style="color:black; text-decoration:none" href="{{ action('ThreadsController@show', [$thread]) }}">
 
@@ -37,7 +37,7 @@
         </a>
     @endforeach
 
-    <a href="{{ action('ThreadsController@create') }}" class=" btn btn-primary margin-footer"> Create Thread </a>
+
 
 @endsection
 @section('footer')
