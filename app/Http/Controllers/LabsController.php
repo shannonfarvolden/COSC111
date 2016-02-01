@@ -74,4 +74,13 @@ class LabsController extends Controller
     {
         return view('labs.lab4');
     }
+    /**
+     * Displays lab 5 view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function lab5()
+    {
+        return view('labs.lab5');
+    }
 }

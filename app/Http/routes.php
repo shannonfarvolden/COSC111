@@ -39,6 +39,7 @@ Route::get('/school', 'LabsController@school');
 Route::get('/lab2', 'LabsController@lab2');
 Route::get('/lab3', 'LabsController@lab3');
 Route::get('/lab4', 'LabsController@lab4');
+Route::get('/lab5', 'LabsController@lab5');
 
 Route::get('/assignment1', 'AssignmentsController@assignment1');
 
