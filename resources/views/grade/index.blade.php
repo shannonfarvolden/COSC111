@@ -7,8 +7,6 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Grades</div>
-
-
         <!-- Table -->
         <table class="table">
             <tr>
@@ -25,6 +23,26 @@
             @endforeach
         </table>
     </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Quizzes</div>
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Quiz</th>
+                <th>Attempt</th>
+                <th>Score</th>
+            </tr>
+            @foreach($quizzes as $attempt)
+                <tr>
+                    <td>{{$attempt->name}}</td>
+                    <td>#{{$attempt->pivot->attempt}}</td>
+                    <td>{{$attempt->pivot->score}}/10</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

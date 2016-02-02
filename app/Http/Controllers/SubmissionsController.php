@@ -37,8 +37,9 @@ class SubmissionsController extends Controller
     public function add($id)
     {
         $submission = Submission::findOrFail($id);
-
-        return view('submission.add', ['submission'=>$submission]);
+        $lastAttempt = Auth::user()->submissions->whereLoose('id', $id)->last();
+//        dd($lastAttempt);
+        return view('submission.add', ['submission'=>$submission, 'lastAttempt'=>$lastAttempt]);
     }
 
     /**
@@ -55,8 +56,9 @@ class SubmissionsController extends Controller
         foreach($files as $file){
 
             $attempt = (Auth::user()->hasSubmissionAttempt($id))?Auth::user()->lastSubmissionMade($id)->pivot->attempt+1 : 1;
-
-            $name = $attempt . '-' . Auth::user()->student_number . $file->getClientOriginalName();
+            $invalid = [':','/','?', '#', '[', ']', '@'];
+            $filename = str_replace($invalid, '-', $file->getClientOriginalName()) ;
+            $name = $attempt . '-' . Auth::user()->student_number . $filename;
             $comments=$request->input('comments');
             $file->move('submissions', $name);
 
@@ -75,48 +77,4 @@ class SubmissionsController extends Controller
         return view('submission.complete', ['submission'=>$submission] );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

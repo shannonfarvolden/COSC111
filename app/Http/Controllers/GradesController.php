@@ -27,8 +27,9 @@ class GradesController extends Controller
     {
 
         $grades = Auth::user()->grades;
+        $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
 
-        return view('grade.index', ['grades'=>$grades]);
+        return view('grade.index', ['grades'=>$grades, 'quizzes'=>$quizzes]);
     }
 
     /**

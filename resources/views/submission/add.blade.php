@@ -7,6 +7,13 @@
                 <h1>{{$submission->name}} Submission</h1>
             </div>
 
+            @if($lastAttempt)
+            <h5>Last Submission</h5>
+                <p>Attempt #{{$lastAttempt->pivot->attempt}}
+                    <a href="/{{$lastAttempt->pivot->file_path}}">{{$lastAttempt->pivot->file_name}}</a>
+                </p>
+            <hr>
+            @endif
             {!! Form::open([ 'action' => ['SubmissionsController@store', $submission->id], 'files' => true]) !!}
             @include('submission.form')
             {!! Form::close() !!}

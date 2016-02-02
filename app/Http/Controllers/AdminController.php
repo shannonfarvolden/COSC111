@@ -23,6 +23,11 @@ class AdminController extends Controller
         $this->middleware('admin');
     }
 
+    /**
+     * Displays submission index.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function indexSubmissions()
     {
         $submissions = Submission::all();
@@ -30,6 +35,12 @@ class AdminController extends Controller
     }
 
 
+    /**
+     * Displays student submissions.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function mark($id)
     {
         $submission = Submission::findorFail($id);
@@ -43,6 +54,14 @@ class AdminController extends Controller
         return view('admin.mark', ['submission'=>$submission, 'submitStudents'=>$submitStudents, 'noSubmissions'=>$noSubmissions]);
     }
 
+    /**
+     *  Store a new grade in database.
+     *
+     * @param Request $request
+     * @param $id
+     * @param $sid
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeGrade(Request $request, $id, $sid)
     {
 
@@ -53,12 +72,27 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Show the form for creating a new grade for specified student.
+     *
+     * @param $sub_id
+     * @param $student_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function createGrade($sub_id, $student_id)
     {
         $student = User::findOrFail($student_id);
         return view('admin.createGrade', ['sub_id'=>$sub_id, 'student'=>$student]);
 
     }
+
+    /**
+     * Show the form for editing the specified submission and student.
+     *
+     * @param $sub_id
+     * @param $student_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editGrade($sub_id, $student_id)
     {
         $student = User::findOrFail($student_id);
@@ -67,6 +101,13 @@ class AdminController extends Controller
 
     }
 
+    /**
+     *  Update the specified grade in database.
+     *
+     * @param Request $request
+     * @param $grade_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateGrade(Request $request, $grade_id)
     {
         $grade = Grade::findOrFail($grade_id);

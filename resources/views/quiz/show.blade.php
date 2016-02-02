@@ -6,15 +6,17 @@
         <h1>{{$quiz->name}}</h1>
     </div>
     {!! Form::open([ 'action' => ['QuizzesController@store', $quiz->number]]) !!}
-    <?php $count=1; ?>
+    <?php $count=1;?>
     @foreach($quiz->questions->shuffle() as $question)
+        {{--{!! Form::hidden('questions['.$count.']', $question->question) !!}--}}
         <div class="panel panel-default">
             <div class="panel-body">
                 <pre>{{$count}}) {{$question->question}}</pre>
                 @foreach($question->answers->whereLoose('quiz_number', $quiz->number)->shuffle() as $answer)
                     <div class="radio">
                         <label>
-                            {!! Form::radio('answer['.$count.']', $answer->correct ) !!}{{$answer->answer}}
+                            {!! Form::radio('select['.$count.']', $answer->correct ) !!}{{$answer->answer}}
+                            {{--{!! Form::hidden('answers['.$count.']', $answer->answer) !!}--}}
                         </label>
                     </div>
                 @endforeach
