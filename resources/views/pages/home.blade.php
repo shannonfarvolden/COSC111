@@ -112,7 +112,7 @@
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->
-                <td>Midterm 1</td>
+                <td>Midterm 1 (<a href='/documents/111cheatsheet.pdf'>cheatsheet</a> provided)</td>
                 <!--labs-->
                 <td></td>
             </tr>

@@ -2,22 +2,46 @@
 
 @section('content')
     <div class="jumbotron">
-    <h2>Lab 5 [21 pts]</h2>
-    <p>Working with Loops</p>
-    The purpose of this lab is to give you hands on practice with loops.
-    If you need clarification with any of the steps below, ask your TA and/or
-    your neighbour.
-    <p> </p>
-    <b>What to Submit:</b>
-    <ul>
-        <li><tt>Backwards.java</tt>
-        <li><tt>Pyramid.java</tt>
-    </ul>
+        <h2>Lab 5 [23 pts]</h2>
+        <p>Working with Loops</p>
+        The purpose of this lab is to give you hands on practice with loops.
+        If you need clarification with any of the steps below, ask your TA and/or
+        your neighbour.
+        <p> </p>
+        <b>What to Submit:</b>
+        <ul>
+            <li>Peer evaluation forms for your team
+            <li><tt>Backwards.java</tt>
+            <li><tt>Pyramid.java</tt>
+        </ul>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">1. A String Backwards [9 pts]</h3>
+            <h3 class="panel-title">1. Peer Evaluation Forms [2 pts]</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                <b>[2 pts]</b>
+                The TA will distribute evaluation forms for you to complete. Be sure to
+                complete one form for each member of your team. Based on the in-class
+                activities you have done so far, evaluate each team member using the
+                rubric provided.
+
+            <p>
+                This evaluation mark, when averaged across the team,
+                will be used as a multiplier to the marks you received for the
+                activities completed in class. For example, if your team received 10/10
+                on an exercise, and your peer evaluation mark is 110%, then your
+                individual mark for that exercise becomes 110% times 10/10 which is
+                11/10. Likewise, if you got 10/10 on a team exercise but your peer
+                evaluation mark is 50%, then your individual mark becomes 5/10.
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">2. A String Backwards [9 pts]</h3>
         </div>
         <div class="panel-body">
             <p>
@@ -77,7 +101,7 @@ eduj yeh
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. A Pyramid Pattern [12 pts]</h3>
+            <h3 class="panel-title">3. A Pyramid Pattern [12 pts]</h3>
         </div>
         <div class="panel-body">
             <p>
