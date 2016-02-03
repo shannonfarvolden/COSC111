@@ -114,7 +114,7 @@
                 <!--assignments/tests-->
                 <td>Midterm 1 (<a href='/documents/111cheatsheet.pdf'>cheatsheet</a> provided)</td>
                 <!--labs-->
-                <td></td>
+                <td><a href="/lab5">Lab 5 Continued</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
