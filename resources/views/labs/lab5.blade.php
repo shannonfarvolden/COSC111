@@ -12,6 +12,7 @@
         <ul>
             <li>Peer evaluation forms for your team
             <li><tt>Backwards.java</tt>
+            <li><tt>backwards-trace.txt</tt>
             <li><tt>Pyramid.java</tt>
         </ul>
     </div>
@@ -90,7 +91,7 @@ eduj yeh
                 iteration for the string "chimp". The table should have the columns:
                 iteration number, the loop variable, and the letter extracted and
                 printed in that iteration. (If you are not sure what is expected, check
-                the slides and/or ask the TA.)
+                the slides and/or ask the TA.) Type up the table in a text document called backwards-trace.txt.
 
             <p>
                 <b>[1 pt]</b> Lastly, be sure to write comments above your class to
