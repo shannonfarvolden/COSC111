@@ -57,7 +57,7 @@
 
             <p>
                 <b>[2 pts]</b>
-                Check that the string entered has at least 3 characters. If it's too
+                Check that the string entered has more than 3 characters. If it's too
                 short, ask the user to enter a longer string. Use a loop to keep asking
                 until you get a string with more than 3 characters in it.
 
