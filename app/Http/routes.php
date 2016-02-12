@@ -40,8 +40,10 @@ Route::get('/lab2', 'LabsController@lab2');
 Route::get('/lab3', 'LabsController@lab3');
 Route::get('/lab4', 'LabsController@lab4');
 Route::get('/lab5', 'LabsController@lab5');
+Route::get('/lab6', 'LabsController@lab6');
 
 Route::get('/assignment1', 'AssignmentsController@assignment1');
+Route::get('/assignment2', 'AssignmentsController@assignment2');
 
 Route::get('/survey', 'SurveyController@show');
 Route::post('/survey', 'SurveyController@store');

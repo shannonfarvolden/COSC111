@@ -18,12 +18,21 @@ class AssignmentsController extends Controller
     }
 
     /**
-     * Display the consent form view.
+     * Display the assignment 1 view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function assignment1()
     {
         return view('assignments.assignment1' );
+    }
+    /**
+     * Display the assignment 2 view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function assignment2()
+    {
+        return view('assignments.assignment2' );
     }
 }

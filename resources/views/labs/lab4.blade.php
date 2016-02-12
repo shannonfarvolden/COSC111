@@ -230,3 +230,13 @@ Net Pay: $111.57
         </div>
     </div>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Labs',
+            page: '/labs'
+        });
+    </script>
+@endsection

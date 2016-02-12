@@ -241,3 +241,13 @@ Enter a number between 1 and 9 (inclusive):
         </div>
     </div>
 @endsection
+@section('footer')
+    {{--Sends pageview google anaytics--}}
+    <script>
+        ga('send', {
+            hitType: 'pageview',
+            title: 'Labs',
+            page: '/labs'
+        });
+    </script>
+@endsection

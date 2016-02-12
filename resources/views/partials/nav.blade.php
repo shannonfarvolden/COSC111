@@ -27,6 +27,7 @@
                         <li><a href="{{ url('/lab3') }}">Lab 3</a></li>
                         <li><a href="{{ url('/lab4') }}">Lab 4</a></li>
                         <li><a href="{{ url('/lab5') }}">Lab 5</a></li>
+                        <li><a href="{{ url('/lab6') }}">Lab 6</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -34,6 +35,7 @@
                        aria-expanded="false">Assignments<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="{{ url('/assignment1') }}">Assignment 1</a></li>
+                        <li><a href="{{ url('/assignment2') }}">Assignment 2</a></li>
                     </ul>
                 </li>
 
