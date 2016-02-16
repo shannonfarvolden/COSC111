@@ -59,7 +59,7 @@
                            aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="{{ url('/grade') }}">My Grades</a></li>
-                            {{--<li><a href="#">My Stats</a></li>--}}
+                            {{--<li><a href="{{ url('/stats') }}">My Stats</a></li>--}}
                             {{--<li><a href="#">My Notes</a></li>--}}
                             <li><a href="{{ url('/consent') }}">Consent Form</a></li>
                             <li><a href="{{ url('/survey') }}">Survey</a></li>
