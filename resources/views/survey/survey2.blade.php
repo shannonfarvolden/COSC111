@@ -70,7 +70,7 @@
             </div>
         </div>
         <br>
-        <h5>As part of my test preparation for this midterm I :</h5>
+        <h5>As part of my test preparation for this midterm, I :</h5>
         <div class="answers">
             <div class="radio">
                 <label>
@@ -91,7 +91,7 @@
             </div>
         </div>
         <br>
-        <h5>As part of my test preparation for this midterm I :</h5>
+        <h5>As part of my test preparation for this midterm, I :</h5>
         <div class="answers">
             <div class="radio">
                 <label>

@@ -61,7 +61,7 @@
 28     System.out.println( "(O.o)" ); // owl face
 29   }
 30
-31	 public static void what()
+31   public static void what()
 32   {
 33     System.out.println( "(?_?)" ); // confused face
 34   }
