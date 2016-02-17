@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 5 [23 pts + 2 bonus pts]</h2>
+        <h2>Lab 5 [23 pts]</h2>
         <p>Working with Loops</p>
         The purpose of this lab is to give you hands on practice with loops.
         If you need clarification with any of the steps below, ask your TA and/or
@@ -15,7 +15,6 @@
             <li><tt>backwards-trace.txt</tt>
             <li><tt>Pyramid.java</tt>
         </ul>
-        <b>Complete Survey 2 for 2 bonus pts</b>
     </div>
 
     <div class="panel panel-default">
