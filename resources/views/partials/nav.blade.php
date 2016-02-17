@@ -28,6 +28,15 @@
                         <li><a href="{{ url('/lab4') }}">Lab 4</a></li>
                         <li><a href="{{ url('/lab5') }}">Lab 5</a></li>
                         <li><a href="{{ url('/lab6') }}">Lab 6</a></li>
+                        <li><a href="{{ url('/lab7') }}">Lab 7</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Surveys<span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{ url('/survey1') }}">Survey 1</a></li>
+                        <li><a href="{{ url('/survey2') }}">Survey 2</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -62,7 +71,6 @@
                             {{--<li><a href="{{ url('/stats') }}">My Stats</a></li>--}}
                             {{--<li><a href="#">My Notes</a></li>--}}
                             <li><a href="{{ url('/consent') }}">Consent Form</a></li>
-                            <li><a href="{{ url('/survey') }}">Survey</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>

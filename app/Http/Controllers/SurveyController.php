@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ExamSurvey;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SurveyRequest;
 use Illuminate\Http\Request;
@@ -23,15 +24,29 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function survey1()
     {
-        return view('survey.show');
+        return view('survey.survey1');
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Display the survey view.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+    public function survey2()
+    {
+        $uid = Auth::id();
+        $surveyCompleted = (ExamSurvey::all()->contains('user_id', $uid)) ? true : false;
+
+        return view('survey.survey2', ['surveyCompleted'=>$surveyCompleted]);
+    }
+
+    /**
+     * Store a newly created exam survey in storage.
+     *
+     * @param SurveyRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(SurveyRequest $request)
     {
@@ -40,7 +55,34 @@ class SurveyController extends Controller
         $user->survey_completed = true;
         $user->save();
 
-        return redirect('/survey');
+        return redirect('/survey1');
+    }
+
+    /**
+     * Store a newly created exam survey in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store2(Request $request)
+    {
+        $this->validate($request, [
+            'question_1' => 'required',
+            'question_2' => 'required',
+            'question_3' => 'required',
+            'question_4' => 'required',
+            'question_5' => 'required',
+            'question_6' => 'required',
+            'question_7' => 'required',
+            'question_8' => 'required',
+            'question_9' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->examSurvey()->create($request->all());
+        $user->save();
+
+        return redirect('/survey2');
     }
 
 

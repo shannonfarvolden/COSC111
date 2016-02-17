@@ -41,14 +41,18 @@ Route::get('/lab3', 'LabsController@lab3');
 Route::get('/lab4', 'LabsController@lab4');
 Route::get('/lab5', 'LabsController@lab5');
 Route::get('/lab6', 'LabsController@lab6');
+Route::get('/lab7', 'LabsController@lab7');
 
 Route::get('/assignment1', 'AssignmentsController@assignment1');
 Route::get('/assignment2', 'AssignmentsController@assignment2');
 
 Route::get('/stats', 'StatsController@show');
 
-Route::get('/survey', 'SurveyController@show');
-Route::post('/survey', 'SurveyController@store');
+Route::get('/survey1', 'SurveyController@survey1');
+Route::post('/survey1', 'SurveyController@store');
+
+Route::get('/survey2', 'SurveyController@survey2');
+Route::post('/survey2', 'SurveyController@store2');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

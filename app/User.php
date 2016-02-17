@@ -95,6 +95,15 @@ class User extends BaseUser
     {
         return $this->hasOne('App\Survey');
     }
+    /**
+     * A user can have one exam survey.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function examSurvey()
+    {
+        return $this->hasOne('App\ExamSurvey');
+    }
 
     public function hasQuizAttempt($quiz_number)
     {

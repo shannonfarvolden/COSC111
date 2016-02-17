@@ -27,4 +27,9 @@ public class Smileys
   {
     System.out.println( "(O.o)" ); // owl face
   }
+
+  public static void what()
+  {
+    System.out.println( "(?_?)" ); // confused face
+  }
 }

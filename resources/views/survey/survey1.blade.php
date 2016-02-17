@@ -1,11 +1,12 @@
 @extends('app')
 
 @section('content')
-    <div class="page-header">
-        <h1>Survey</h1>
+    <div class="jumbotron">
+        <h2>Survey 1</h2>
+        <p></p>
     </div>
     @if(Auth::user()->survey_completed)
-        <h1>Survey Completed!</h1>
+        <h3>Survey Completed!</h3>
     @else
         @if ($errors->any())
             <br><div class="alert alert-danger">
