@@ -9,7 +9,7 @@
         <a href="{{ action('SlidesController@show', $slide->slide_set) }}">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h7>Lecture {{$slide->lecture}} - {{$slide->topic}}</h7>
+                    <h7>Week {{$slide->lecture}} - {{$slide->topic}}</h7>
                 </div>
             </div>
         </a>

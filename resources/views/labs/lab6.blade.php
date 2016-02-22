@@ -220,6 +220,20 @@ How many do you want to buy?
             <b>[1 pt]</b>
             Since the <tt>compose</tt> method returns a string, after you call it,
             be sure to display the string output.
+        <p>
+            When you are done, your sample output should look like this:
+      <pre>
+Which cartoon t-shirt do you want to buy?
+1. Bugs Bunny
+2. Bart Simpson
+3. Pinky and the Brain
+4. The Powerpuff Girls
+4
+How many do you want to buy?
+5
+You ordered 5 of The Powerpuff Girls t-shirts.
+The cost including taxes is 26.25
+      </pre>
 
         <p>
             <b>[1 pt]</b> Lastly, be sure to write comments above your class to
