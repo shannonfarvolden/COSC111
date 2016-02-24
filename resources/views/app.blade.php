@@ -52,7 +52,7 @@
    ?>
 </script>
 @yield('footer')
-{{--Google Anay--}}
+
 <script>
 
 </script>

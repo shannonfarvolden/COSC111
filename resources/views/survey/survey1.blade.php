@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Survey 1</h2>
+        <h2>Survey 1 [2 bonus pts]</h2>
         <p></p>
     </div>
     @if(Auth::user()->survey_completed)
