@@ -13,20 +13,34 @@
                 ['Submission', 'Average', 'Your Mark'],
 
                 <?php foreach($labs as $lab):?>
-                    <?php if($lab->grades->count()>0): ?>
-                       ['<?=$lab->name?>', <?=($lab->grades->sum('mark')/$lab->grades->count())/$lab->total * 100?>, <?= ($lab->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $lab->grades->whereLoose('user_id', Auth::id())->first()->mark/$lab->total * 100 ?>],
+                    <?php if($lab->grades->count()>0 && !$lab->grades->whereLoose('user_id', Auth::id())->isEmpty()): ?>
+                       ['<?=$lab->name?>', <?=($lab->grades->sum('mark')/$lab->grades->count())/$lab->total * 100?>, <?= $lab->grades->whereLoose('user_id', Auth::id())->first()->mark/$lab->total * 100 ?>],
                     <?php endif;?>
                 <?php endforeach;?>
-
+                <?php foreach($inClasses as $inClass):?>
+                    <?php if($inClass->grades->count()>0 && !$inClass->grades->whereLoose('user_id', Auth::id())->isEmpty()): ?>
+                        ['<?=$inClass->name?>', <?=($inClass->grades->sum('mark')/$inClass->grades->count())/$inClass->total * 100?>, <?= $inClass->grades->whereLoose('user_id', Auth::id())->first()->mark/$inClass->total * 100 ?>],
+                    <?php endif;?>
+                <?php endforeach;?>
                 <?php foreach($assignments as $assignment):?>
-                    <?php if($assignment->grades->count()>0): ?>
-                        ['<?=$assignment->name?>', <?=($assignment->grades->sum('mark')/$lab->grades->count())/$assignment->total * 100?>, <?= ($assignment->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $assignment->grades->whereLoose('user_id', Auth::id())->first()->mark/$assignment->total * 100 ?>],
+                        <?php if($assignment->grades->count()>0 && !$assignment->grades->whereLoose('user_id', Auth::id())->isEmpty()): ?>
+                            ['<?=$assignment->name?>', <?=($assignment->grades->sum('mark')/$assignment->grades->count())/$assignment->total * 100?>, <?= $assignment->grades->whereLoose('user_id', Auth::id())->first()->mark/$assignment->total * 100 ?>],
                     <?php endif;?>
                <?php endforeach;?>
-            ]);
+               <?php foreach($midterms as $midterm):?>
+                    <?php if($midterm->grades->count()>0 && !$midterm->grades->whereLoose('user_id', Auth::id())->isEmpty()): ?>
+                            ['<?=$midterm->name?>', <?=($midterm->grades->sum('mark')/$midterm->grades->count())/$midterm->total * 100?>, <?= $midterm->grades->whereLoose('user_id', Auth::id())->first()->mark/$midterm->total * 100 ?>],
+                    <?php endif;?>
+               <?php endforeach;?>
+               <?php foreach($surveys as $survey):?>
+                    <?php if($survey->grades->count()>0 && !$survey->grades->whereLoose('user_id', Auth::id())->isEmpty()): ?>
+                            ['<?=$survey->name?>', <?=($survey->grades->sum('mark')/$survey->grades->count())/$survey->total * 100?>, <?= $survey->grades->whereLoose('user_id', Auth::id())->first()->mark/$survey->total * 100 ?>],
+                    <?php endif;?>
+               <?php endforeach;?>
+]);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Course Marks',
                 curveType: 'function',
                 legend: {position: 'bottom'}
             };
@@ -45,9 +59,7 @@
         <h2>Stats</h2>
     </div>
 
-    <div class="page-header">
-        <h3>Marks</h3>
-    </div>
+
     <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
 
