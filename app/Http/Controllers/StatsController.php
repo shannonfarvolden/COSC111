@@ -32,7 +32,7 @@ class StatsController extends Controller
         $assignments = Submission::where('name', 'like', 'Assignment%')->get();
         $inClasses = Submission::where('name', 'like', 'in-class%')->get();
         $midterms = Submission::where('name', 'like', 'Midterm%')->get();
-        $surveys = Submission::where('name', 'like', 'Midterm%')->get();
+        $surveys = Submission::where('name', 'like', 'Survey%')->get();
 
         return view('stats.show', ['labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
     }
