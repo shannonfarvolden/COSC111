@@ -24,11 +24,14 @@ class StatsController extends Controller
     public function show()
     {
 
-        $survey2 = ExamSurvey::where('number',1)->get();
-        $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
-        $grades = Auth::user()->grades;
+//        $survey2 = ExamSurvey::where('number',1)->get();
+//        $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
+//        $grades = Auth::user()->grades;
 
-        return view('stats.show', ['survey2'=>$survey2, 'quizzes'=>$quizzes, 'grades'=>$grades]);
+        $labs = Submission::where('name', 'like', 'Lab%')->get();
+        $assignments = Submission::where('name', 'like', 'Assignment%')->get();
+
+        return view('stats.show', ['labs'=>$labs, 'assignments'=>$assignments]);
     }
 
 }
