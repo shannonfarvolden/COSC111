@@ -13,12 +13,17 @@
                 ['Submission', 'Average', 'Your Mark'],
 
                 <?php foreach($labs as $lab):?>
-                   ['<?=$lab->name?>', <?=($lab->grades->sum('mark')/$lab->grades->count())/$lab->total * 100?>, <?= ($lab->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $lab->grades->whereLoose('user_id', Auth::id())->first()->mark/$lab->total * 100 ?>],
+                    <?php if($lab->grades->count()>0): ?>
+                       ['<?=$lab->name?>', <?=($lab->grades->sum('mark')/$lab->grades->count())/$lab->total * 100?>, <?= ($lab->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $lab->grades->whereLoose('user_id', Auth::id())->first()->mark/$lab->total * 100 ?>],
+                    <?php endif;?>
                 <?php endforeach;?>
+
                 <?php foreach($assignments as $assignment):?>
-                    ['<?=$assignment->name?>', <?=($assignment->grades->sum('mark')/$lab->grades->count())/$assignment->total * 100?>, <?= ($assignment->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $assignment->grades->whereLoose('user_id', Auth::id())->first()->mark/$assignment->total * 100 ?>],
-                <?php endforeach;?>
-             ]);
+                    <?php if($assignment->grades->count()>0): ?>
+                        ['<?=$assignment->name?>', <?=($assignment->grades->sum('mark')/$lab->grades->count())/$assignment->total * 100?>, <?= ($assignment->grades->whereLoose('user_id', Auth::id())->isEmpty())? 0: $assignment->grades->whereLoose('user_id', Auth::id())->first()->mark/$assignment->total * 100 ?>],
+                    <?php endif;?>
+               <?php endforeach;?>
+            ]);
 
             var options = {
                 title: 'Company Performance',
