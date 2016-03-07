@@ -35,7 +35,7 @@
                     Declare an array that stores 500 student names.
                 <li><b>[2pts: 1 pt for array declaration, 1 pt for using
                         <tt>random</tt> properly]</b>
-                    Declare an array that stores a random number between 50 and 350 characters.
+                    Declare an array that stores a random number between 50 and 350.
                 <li><b>[1 pt]</b>
                     Given an array called <tt>num</tt>, assign its second element to -5.
                 <li><b>[1 pt]</b>
