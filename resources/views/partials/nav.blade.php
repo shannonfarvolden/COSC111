@@ -54,7 +54,7 @@
                            aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="{{ url('/admin') }}">Grades</a></li>
-                            <li><a href="{{ url('/stats') }}">My Stats</a></li>
+                            <li><a href="{{ url('/adminStats') }}">My Stats</a></li>
                         </ul>
                     </li>
                 @endif

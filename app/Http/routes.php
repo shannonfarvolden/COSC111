@@ -47,6 +47,7 @@ Route::get('/assignment1', 'AssignmentsController@assignment1');
 Route::get('/assignment2', 'AssignmentsController@assignment2');
 
 Route::get('/stats', 'StatsController@show');
+Route::get('/adminStats', 'StatsController@adminStats');
 
 Route::get('/survey1', 'SurveyController@survey1');
 Route::post('/survey1', 'SurveyController@store');

@@ -19,6 +19,7 @@ class StatsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['only' => 'adminStats']);
     }
 
     public function show()
@@ -27,14 +28,27 @@ class StatsController extends Controller
 //        $survey2 = ExamSurvey::where('number',1)->get();
 //        $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
 //        $grades = Auth::user()->grades;
-
+        $userGrades = Auth::user()->grades;
         $labs = Submission::where('name', 'like', 'Lab%')->get();
         $assignments = Submission::where('name', 'like', 'Assignment%')->get();
         $inClasses = Submission::where('name', 'like', 'in-class%')->get();
         $midterms = Submission::where('name', 'like', 'Midterm%')->get();
         $surveys = Submission::where('name', 'like', 'Survey%')->get();
 
-        return view('stats.show', ['labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
+        return view('stats.show', ['userGrades'=>$userGrades,'labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
+    }
+
+    public function adminStats()
+    {
+
+        $submissions = Submission::all();
+        $labs = Submission::where('name', 'like', 'Lab%')->get();
+        $assignments = Submission::where('name', 'like', 'Assignment%')->get();
+        $inClasses = Submission::where('name', 'like', 'in-class%')->get();
+        $midterms = Submission::where('name', 'like', 'Midterm%')->get();
+        $surveys = Submission::where('name', 'like', 'Survey%')->get();
+
+        return view('stats.admin', ['submissions'=>$submissions,'labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
     }
 
 }
