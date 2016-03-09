@@ -64,8 +64,7 @@
                 <b>[1 pt]</b>
                 In your program, define an integer array called <tt>numbers</tt> that
                 holds 100 numbers. Separately, define an integer array called
-                <tt>frequencies</tt> that holds the numbers 0, 1, 2, ..., up to and
-                including 9.
+                <tt>frequencies</tt> that holds 10 numbers.
 
             <p>
                 <b>[2 pts]</b>
