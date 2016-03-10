@@ -174,7 +174,7 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td>No lab</td>
+                <td>Lab 9</td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -193,7 +193,7 @@
                 <!--assignments/tests-->
                 <td>A3 due this week</td>
                 <!--labs-->
-                <td>No lab</td>
+                <td>A3 Support</td>
             </tr>
         </table>
     </div>
