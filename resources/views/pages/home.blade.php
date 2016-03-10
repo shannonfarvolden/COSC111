@@ -160,9 +160,9 @@
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->
-                <td>Midterm 2</td>
+                <td>Midterm 2(<a href='/documents/111cheatsheet.pdf'>cheatsheet</a> provided)</td>
                 <!--labs-->
-                <td></td>
+                <td><a href="/lab8">Lab 8</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
