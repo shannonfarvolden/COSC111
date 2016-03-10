@@ -174,14 +174,14 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td>Lab 9</td>
+                <td>No Lab</td>
             </tr>
             <tr>
                 <!--week (date)-->
                 <td>13 (Mar 28)</td>
                 <td colspan=3 align=center>Easter Monday: No class
                 {{--labs--}}
-                <td></td>
+                <td>Lab 9</td>
             </tr>
             <tr>
                 <!--week (date)-->
