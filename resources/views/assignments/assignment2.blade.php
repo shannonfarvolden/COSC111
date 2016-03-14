@@ -35,7 +35,7 @@
         <p>
             <b>Grading Scheme</b>:
         <ul>
-            <li> <b>[2 pts]</b> Comments
+            <li> <b>[1 pts]</b> Comments
             <li> <b>[1 pt]</b> Table formatting
             <li> <b>[1 pt]</b> Loop through the values for each row of the table
             <li> <b>[1 pt]</b> Calling <tt>footToMeter</tt>

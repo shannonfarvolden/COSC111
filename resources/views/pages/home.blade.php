@@ -108,7 +108,7 @@
                 <!--week (date)-->
                 <td>7 (Feb 15)</td>
                 <!--topics-->
-                <td>Q&A</td>
+                <td>Upper Level Courses and Student Projects</td>
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->
@@ -156,7 +156,7 @@
                 <!--week (date)-->
                 <td>11 (Mar 14)</td>
                 <!--topics-->
-                <td>Q&A</td>
+                <td>Projects from HCI, AI, IUI, Web Dev, Mobile Dev</td>
                 <!--readings-->
                 <td>N/A</td>
                 <!--assignments/tests-->
