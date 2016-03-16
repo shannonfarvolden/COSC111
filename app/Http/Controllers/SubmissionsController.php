@@ -58,7 +58,7 @@ class SubmissionsController extends Controller
             $attempt = (Auth::user()->hasSubmissionAttempt($id))?Auth::user()->lastSubmissionMade($id)->pivot->attempt+1 : 1;
             $invalid = [':','/','?', '#', '[', ']', '@'];
             $filename = str_replace($invalid, '-', $file->getClientOriginalName()) ;
-            $name = $attempt . '-' . Auth::user()->student_number . $filename;
+            $name = $attempt . '-' . Auth::user()->student_number .'('.$id.')'.$filename;
             $comments=$request->input('comments');
             $file->move('submissions', $name);
 
