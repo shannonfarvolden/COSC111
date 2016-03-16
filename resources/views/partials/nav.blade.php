@@ -38,6 +38,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="{{ url('/survey1') }}">Survey 1</a></li>
                         <li><a href="{{ url('/survey2') }}">Survey 2</a></li>
+                        <li><a href="{{ url('/survey3') }}">Survey 3</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

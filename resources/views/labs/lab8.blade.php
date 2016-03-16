@@ -29,8 +29,7 @@
                 <b>[1 pt]</b>
                 In the <tt>main</tt> method of your program, define a variable called
                 <tt>myArray</tt>, which is a 2D array of integers of size 10 x 50. That
-                is, 10 rows and 50 columns. Initialize the elements of this array with
-                random numbers.
+                is, 10 rows and 50 columns. Initialize the elements of this array with random numbers (of any range). In the sample output below, the range is between 0 up to 1000.
 
             <p>
                 <b>[1 pt]</b>

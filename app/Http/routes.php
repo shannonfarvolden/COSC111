@@ -56,6 +56,9 @@ Route::post('/survey1', 'SurveyController@store');
 Route::get('/survey2', 'SurveyController@survey2');
 Route::post('/survey2', 'SurveyController@store2');
 
+Route::get('/survey3', 'SurveyController@survey3');
+Route::post('/survey3', 'SurveyController@store3');
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

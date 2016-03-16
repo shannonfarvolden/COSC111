@@ -37,9 +37,21 @@ class SurveyController extends Controller
     public function survey2()
     {
         $uid = Auth::id();
-        $surveyCompleted = (ExamSurvey::all()->contains('user_id', $uid)) ? true : false;
+        $surveyCompleted = (ExamSurvey::where('number', 1)->get()->contains('user_id', $uid)) ? true : false;
 
         return view('survey.survey2', ['surveyCompleted'=>$surveyCompleted]);
+    }
+    /**
+     * Display the survey view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function survey3()
+    {
+        $uid = Auth::id();
+        $surveyCompleted = (ExamSurvey::where('number', 2)->get()->contains('user_id', $uid)) ? true : false;
+
+        return view('survey.survey3', ['surveyCompleted'=>$surveyCompleted]);
     }
 
     /**
@@ -83,6 +95,32 @@ class SurveyController extends Controller
         $user->save();
 
         return redirect('/survey2');
+    }
+    /**
+     * Store a newly created exam survey in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store3(Request $request)
+    {
+        $this->validate($request, [
+            'question_1' => 'required',
+            'question_2' => 'required',
+            'question_3' => 'required',
+            'question_4' => 'required',
+            'question_5' => 'required',
+            'question_6' => 'required',
+            'question_7' => 'required',
+            'question_8' => 'required',
+            'question_9' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->examSurvey()->create($request->all());
+        $user->save();
+
+        return redirect('/survey3');
     }
 
 

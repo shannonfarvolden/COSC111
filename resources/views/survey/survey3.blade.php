@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Survey 2 [2 bonus pts]</h2>
-        <p>Questions regarding Midterm 1</p>
-        <p>Due: Monday 11:59 pm on February 22nd</p>
+        <h2>Survey 3 [2 bonus pts]</h2>
+        <p>Questions regarding Midterm 2</p>
+        <p>Due: Monday 11:59 pm on March 21nd</p>
     </div>
     @if($surveyCompleted)
         <h3>Survey Completed!</h3>
@@ -19,8 +19,8 @@
                 </ul>
             </div>
         @endif
-        {!! Form::open([ 'action' => 'SurveyController@store2']) !!}
-        {!! Form::hidden('number', 1) !!}
+        {!! Form::open([ 'action' => 'SurveyController@store3']) !!}
+        {!! Form::hidden('number', 2) !!}
         <h5>Roughly, the number of hours that I spent studying for this midterm was:</h5>
         <div class="answers">
             <div class="radio">
