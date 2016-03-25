@@ -61,6 +61,27 @@
     @else
         <h3>No submissions to show stats on yet.</h3>
     @endif
-
-
+    {{--<table class="table">--}}
+    {{--<tr>--}}
+        {{--<td>User id</td>--}}
+        {{--<td>Number of Threads</td>--}}
+        {{--<td>User id</td>--}}
+        {{--<td>Number of Replies</td>--}}
+        {{--<td>User id</td>--}}
+        {{--<td>Number of quizzes</td>--}}
+        {{--<td>Sum of quizzes</td>--}}
+    {{--</tr>--}}
+    {{--<tr>--}}
+        {{--@foreach ($users as $user)--}}
+        {{--{{$sum = 0}}--}}
+        {{--echo ($user->id.', '.$user->quizzes->count().", ");--}}
+        {{--@foreach($user->quizzes as $quiz)--}}
+        {{--{{$sum = $sum + $quiz->pivot->score}}--}}
+                {{--<td>{{$sum}}</td>--}}
+        {{--@endforeach--}}
+        {{--@endforeach--}}
+        {{--<td>Row 2, Column 1</td>--}}
+        {{--<td>Row 2, Column 2</td>--}}
+    {{--</tr>--}}
+    {{--</table>--}}
 @endsection

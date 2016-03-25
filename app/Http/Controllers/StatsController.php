@@ -9,10 +9,11 @@ use App\Submission;
 use App\Grade;
 use Auth;
 use App\Http\Requests;
+use App\User;
 use App\Http\Controllers\Controller;
 
-class StatsController extends Controller
-{
+class StatsController extends Controller {
+
     /**
      * Create a new stats controller instance. User must be logged in to view pages.
      */
@@ -35,7 +36,7 @@ class StatsController extends Controller
         $midterms = Submission::where('name', 'like', 'Midterm%')->get();
         $surveys = Submission::where('name', 'like', 'Survey%')->get();
 
-        return view('stats.show', ['userGrades'=>$userGrades,'labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
+        return view('stats.show', ['userGrades' => $userGrades, 'labs' => $labs, 'assignments' => $assignments, 'inClasses' => $inClasses, 'midterms' => $midterms, 'surveys' => $surveys]);
     }
 
     public function adminStats()
@@ -48,7 +49,14 @@ class StatsController extends Controller
         $midterms = Submission::where('name', 'like', 'Midterm%')->get();
         $surveys = Submission::where('name', 'like', 'Survey%')->get();
 
-        return view('stats.admin', ['submissions'=>$submissions,'labs'=>$labs, 'assignments'=>$assignments, 'inClasses'=>$inClasses, 'midterms'=>$midterms, 'surveys'=>$surveys]);
+        return view('stats.admin', [
+            'submissions' => $submissions,
+            'labs'        => $labs,
+            'assignments' => $assignments,
+            'inClasses'   => $inClasses,
+            'midterms'    => $midterms,
+            'surveys'     => $surveys
+        ]);
     }
 
 }

@@ -35,4 +35,13 @@ class AssignmentsController extends Controller
     {
         return view('assignments.assignment2' );
     }
+    /**
+     * Display the assignment 3 view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function assignment3()
+    {
+        return view('assignments.assignment3' );
+    }
 }

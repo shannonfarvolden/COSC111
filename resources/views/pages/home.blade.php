@@ -191,7 +191,7 @@
                 <!--readings-->
                 <td>Ch 10</td>
                 <!--assignments/tests-->
-                <td>A3 due this week</td>
+                <td><a href="/assignment3">A3</a> due this week</td>
                 <!--labs-->
                 <td>A3 Support</td>
             </tr>
