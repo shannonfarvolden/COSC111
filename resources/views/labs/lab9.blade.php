@@ -280,6 +280,7 @@ c) A pirate
 d) A taxi driver
 
 What is your answer?  a
+That's wrong!
 Who is Tom?
 a) A cat
 b) A dog
@@ -287,6 +288,7 @@ c) A girrafe
 d) A cow
 
 What is your answer?  a
+That's right!
 Quiz is over! Your score is: 1 / 2
       </pre>
 
@@ -316,6 +318,7 @@ c) A pirate
 d) A taxi driver
 
 What is your answer?  c
+That's right!
 Who is Tom?
 a) A cat
 b) A dog
@@ -323,6 +326,7 @@ c) A girrafe
 d) A cow
 
 What is your answer?  a
+That's right!
 Quiz is over! Your score is: 2 / 2
       </pre>
 
