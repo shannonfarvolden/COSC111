@@ -86,11 +86,10 @@
 
             <p>
                 <b>[1 pt]</b>
-                Download <a href=../../code/TestItem.java><tt>TestItem.java</tt></a> and
+                Download <a href="/documents/TestItem.java"><tt>TestItem.java</tt></a> and
                 make sure that code in the <tt>main</tt> method makes sense to you.
                 Run the program and when it works, it will generate the following sample
                 output:
-
       <pre>
 Who is Jake?
 a) A chef
