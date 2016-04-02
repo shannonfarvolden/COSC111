@@ -17,6 +17,7 @@
                 <th>Submission Date</th>
                 <th>Student Name</th>
                 <th>Student Number</th>
+                <th>Lab Section</th>
                 <th>Files Submitted</th>
                 <th>Latest Attempt Comments</th>
                 <th>Mark</th>
@@ -24,27 +25,28 @@
 
             @foreach($submitStudents as $student)
                 <tr>
-                    <td width="10%">{{$student->submissions->whereLoose('id', $submission->id)->last()->pivot->created_at}}</td>
-                    <td width="15%">{{$student->first_name}} {{$student->last_name}}</td>
-                    <td width="10%">{{$student->student_number}}</td>
-                    <td width="20%">
+                    <td>{{$student->submissions->whereLoose('id', $submission->id)->last()->pivot->created_at}}</td>
+                    <td>{{$student->first_name}} {{$student->last_name}}</td>
+                    <td>{{$student->student_number}}</td>
+                    <td>{{$student->lab}}</td>
+                    <td>
                         @foreach($student->submissions->whereLoose('id', $submission->id) as $submission)
                             <p>Attempt: {{$submission->pivot->attempt}}
                                 <a href="/{{$submission->pivot->file_path}}">{{$submission->pivot->file_name}}</a>
                             </p>
                         @endforeach
                     </td>
-                    <td width="30%">
+                    <td>
                         {!! nl2br($student->submissions->whereLoose('id', $submission->id)->last()->pivot->comments) !!}
                     </td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
-                        <td width="15%">
+                        <td>
                             <a href="{{action('AdminController@createGrade', [$submission->id, $student->id])}}"
                                class="btn btn-default">Add
                                 Grade/Feedback </a>
                         </td>
                     @else
-                        <td width="15%">
+                        <td>
                             {{$student->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br><a href="{{action('AdminController@editGrade', [$submission->id, $student->id])}}"
                                    class="btn btn-info">Edit
@@ -72,12 +74,14 @@
             <tr>
                 <th>Student Name</th>
                 <th>Student Number</th>
+                <th>Lab Section</th>
                 <th>Mark</th>
             </tr>
             @foreach($noSubmissions as $student)
                 <tr>
-                    <td width="45%">{{$student->first_name}} {{$student->last_name}}</td>
-                    <td width="40%">{{$student->student_number}}</td>
+                    <td>{{$student->first_name}} {{$student->last_name}}</td>
+                    <td>{{$student->student_number}}</td>
+                    <td>{{$student->lab}}</td>
                     @if($student->grades->whereLoose('submission_id', $submission->id)->isEmpty())
                         <td width="15%">
                             <a href="{{action('AdminController@createGrade', [$submission->id, $student->id])}}"
