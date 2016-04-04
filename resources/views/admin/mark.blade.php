@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="page-header">
-        <h1>Add Grades
-            <small> Note: Tap enter under mark only once per person</small>
-        </h1>
+        <h1>Add Grades</h1>
     </div>
     <div class="panel panel-default">
         <!-- Default panel contents -->

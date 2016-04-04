@@ -189,7 +189,7 @@
                 <!--topics-->
                 <td>Object-Oriented Thinking</td>
                 <!--readings-->
-                <td>Ch 10</td>
+                <td>Ch9 (cont.)</td>
                 <!--assignments/tests-->
                 <td><a href="/assignment3">A3</a> due this week</td>
                 <!--labs-->
