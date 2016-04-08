@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use App\Quiz;
+use App\Submission;
 
 class GradesController extends Controller
 {
@@ -28,7 +30,29 @@ class GradesController extends Controller
 
         $grades = Auth::user()->grades;
         $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
+        $quizCount = Quiz::all()->count();
+        $inClasses = Submission::where('name', 'like', 'in-class%')->get();
 
-        return view('grade.index', ['grades'=>$grades, 'quizzes'=>$quizzes]);
+        $user = Auth::user();
+        $inclassSum = 0;
+        $inclassTotal = 0;
+        for($i = 1; $i<=$quizCount; $i++)
+        {
+            $inclassSum += $user->quizzes()->where('number', $i)->max('score');
+            $inclassTotal+=10;
+
+        }
+
+        foreach($inClasses as $inclass)
+        {
+            if ($inclass->grades->count() > 0 && !$inclass->grades->whereLoose('user_id', $user->id)->isEmpty())
+            {
+                $inclassSum += $inclass->grades->whereLoose('user_id', $user->id)->first()->mark;
+            }
+            $inclassTotal += $inclass->total;
+
+        }
+
+        return view('grade.index', ['grades'=>$grades, 'quizzes'=>$quizzes, 'inclassSum'=>$inclassSum, 'inclassTotal'=>$inclassTotal]);
     }
 }

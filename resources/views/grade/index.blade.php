@@ -43,6 +43,26 @@
         </table>
     </div>
 
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Grade Averages</div>
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Section</th>
+                <th>Mark</th>
+                <th>Percentage</th>
+            </tr>
+
+                <tr>
+                    <td>in-class total (includes quizzes and inclass marks)</td>
+                    <td>{{$inclassSum}}/{{$inclassTotal}}</td>
+                    <td>{{round($inclassSum/$inclassTotal, 4)*100}}%</td>
+                </tr>
+
+        </table>
+    </div>
+
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

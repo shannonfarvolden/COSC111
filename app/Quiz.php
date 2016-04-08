@@ -39,4 +39,5 @@ class Quiz extends Model
         return $this->hasMany('App\Question', 'quiz_number', 'number');
     }
 
+
 }

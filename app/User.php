@@ -117,7 +117,7 @@ class User extends BaseUser
     public function retakeQuiz($quiz_number)
     {
 
-        return $this->lastQuizTaken($quiz_number)->pivot->created_at->addHours(24);
+        return $this->lastQuizTaken($quiz_number)->pivot->created_at->addHour();
     }
 
     public function canRetakeQuiz($quiz_number)
