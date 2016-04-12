@@ -49,9 +49,6 @@ class QuizzesController extends Controller
      */
     public function store(Request $request, $num)
     {
-//        $all = $request->all();
-//        $questions = $request->input('questions');
-//        dd($all);
         $score = 0;
         for ($i = 1; $i <= 10; $i++) {
             if($request->has('select.'.$i))
@@ -59,15 +56,12 @@ class QuizzesController extends Controller
                     $score++;
         }
 
-        $attempt = (Auth::user()->hasQuizAttempt($num))?Auth::user()->lastQuizTaken($num)->pivot->attempt+1 : 1;
+//        $attempt = (Auth::user()->hasQuizAttempt($num))?Auth::user()->lastQuizTaken($num)->pivot->attempt+1 : 1;
+//
+//        Auth::user()->quizzes()->attach($num, ['score'=>$score, 'attempt'=> $attempt]);
 
-        Auth::user()->quizzes()->attach($num, ['score'=>$score, 'attempt'=> $attempt]);
-
-        return redirect()->action('QuizzesController@result', ['num'=>$num]);
-//        return view('quiz.score', ['attempt'=>$attempt, 'score'=>$score, 'questions'=>$request->input('questions'), 'answers'=>$request->input('answers')]);
-
-
-
+//        return redirect()->action('QuizzesController@result', ['num'=>$num]);
+        return view('quiz.score', ['score' => $score]);
     }
     /**
      * Display the specified resource.

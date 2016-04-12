@@ -27,13 +27,13 @@ class GradesController extends Controller
      */
     public function index()
     {
-
-        $grades = Auth::user()->grades;
-        $quizzes = Auth::user()->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
+        $user = Auth::user();
+        $grades = $user->grades;
+        $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('number', 'asc')->orderBy('pivot_attempt', 'asc')->get();
         $quizCount = Quiz::all()->count();
         $inClasses = Submission::where('name', 'like', 'in-class%')->get();
 
-        $user = Auth::user();
+        // total inclass marks
         $inclassSum = 0;
         $inclassTotal = 0;
         for($i = 1; $i<=$quizCount; $i++)
@@ -43,13 +43,14 @@ class GradesController extends Controller
 
         }
 
-        foreach($inClasses as $inclass)
+        foreach($inClasses as $key=>$inclass)
         {
             if ($inclass->grades->count() > 0 && !$inclass->grades->whereLoose('user_id', $user->id)->isEmpty())
-            {
                 $inclassSum += $inclass->grades->whereLoose('user_id', $user->id)->first()->mark;
-            }
-            $inclassTotal += $inclass->total;
+
+            // first inclass mark is bonus
+            if($key!=0)
+                $inclassTotal += $inclass->total;
 
         }
 
