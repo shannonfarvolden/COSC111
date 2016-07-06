@@ -14,26 +14,9 @@ class CreateSurveysTable extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('question_1')->unsigned();
-            $table->integer('question_2')->unsigned();
-            $table->integer('question_3')->unsigned();
-            $table->integer('question_4')->unsigned();
-            $table->integer('question_5')->unsigned();
-            $table->integer('question_6')->unsigned();
-            $table->integer('question_7')->unsigned();
-            $table->integer('question_8')->unsigned();
-            $table->integer('question_9')->unsigned();
-            $table->integer('question_10')->unsigned();
-            $table->integer('question_11')->unsigned();
+            $table->string('name');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
-
     }
 
     /**

@@ -4,33 +4,38 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Survey extends Model
-{
+class Survey extends Model {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'question_1',
-        'question_2',
-        'question_3',
-        'question_4',
-        'question_5',
-        'question_6',
-        'question_7',
-        'question_8',
-        'question_9',
-        'question_10',
-        'question_11',
+        'name'
     ];
+
     /**
-     * A survey belongs to a user.
+     * Get the users who have completed a given survey.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User')->withPivot('survey_question_id', 'survey_answer_id')->withTimestamps();
+    }
+
+    /**
+     * A survey has many questions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questions()
+    {
+        return $this->hasMany('App\SurveyQuestion');
+    }
+
+    public function size(){
+        return $this->questions->count();
     }
 }

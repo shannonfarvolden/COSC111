@@ -13,10 +13,10 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
-        'number',
-        'quiz_number',
+        'quiz_id',
         'question',
     ];
+
     /**
      * A question belongs to a quiz.
      *
@@ -24,8 +24,9 @@ class Question extends Model
      */
     public function quiz()
     {
-        return $this->belongsTo('App\Quiz', 'quiz_number', 'number');
+        return $this->belongsTo('App\Quiz');
     }
+
     /**
      * A question has many answers.
      *
@@ -33,6 +34,6 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->hasMany('App\Answer', 'question_number', 'number');
+        return $this->hasMany('App\Answer');
     }
 }

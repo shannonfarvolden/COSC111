@@ -27,8 +27,20 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
-        // Forum route-model binding
-        $router->bind('forum', function ($id)
+        // User route-model binding
+        $router->bind('user', function ($id)
+        {
+            return \App\User::findOrFail($id);
+        });
+
+        // Submission route-model binding
+        $router->bind('submission', function ($id)
+        {
+            return \App\Submission::findOrFail($id);
+        });
+
+        // Thread route-model binding
+        $router->bind('threads', function ($id)
         {
             return \App\Thread::findOrFail($id);
         });
@@ -38,6 +50,19 @@ class RouteServiceProvider extends ServiceProvider
         {
             return \App\Grade::findOrFail($id);
         });
+
+        // Quiz route-model binding
+        $router->bind('quiz', function ($id)
+        {
+            return \App\Quiz::findOrFail($id);
+        });
+
+        // Survey route-model binding
+        $router->bind('survey', function ($id)
+        {
+            return \App\Survey::findOrFail($id);
+        });
+
 
     }
 

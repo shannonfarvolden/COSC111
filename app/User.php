@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as BaseUser;
 
-class User extends BaseUser
-{
+class User extends BaseUser {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -66,8 +66,19 @@ class User extends BaseUser
      */
     public function quizzes()
     {
-        return $this->belongsToMany('App\Quiz', 'quiz_user', 'user_id', 'quiz_number')->withPivot('score', 'attempt')->withTimestamps();
+        return $this->belongsToMany('App\Quiz')->withPivot('score', 'attempt')->withTimestamps();
     }
+
+    /**
+     * Get the surveys taken by a given user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function surveys()
+    {
+        return $this->belongsToMany('App\Survey')->withPivot('survey_question_id', 'survey_answer_id')->withTimestamps();
+    }
+
     /**
      * Get the submissions made by a given user.
      *
@@ -77,6 +88,7 @@ class User extends BaseUser
     {
         return $this->belongsToMany('App\Submission')->withPivot('file_name', 'file_path', 'attempt', 'comments')->withTimestamps();
     }
+
     public function hasSubmissionAttempt($id)
     {
         return !$this->submissions->whereLoose('id', $id)->isEmpty();
@@ -86,48 +98,41 @@ class User extends BaseUser
     {
         return $this->submissions->whereLoose('id', $id)->last();
     }
+
+    public function hasQuizAttempt($id)
+    {
+        return !$this->quizzes->whereLoose('id', $id)->isEmpty();
+    }
+
+    public function lastQuizTaken($id)
+    {
+        return $this->quizzes->whereLoose('id', $id)->last();
+    }
+
+    public function retakeQuiz($id)
+    {
+
+        return $this->lastQuizTaken($id)->pivot->created_at->addHour();
+    }
+
+    public function canRetakeQuiz($id)
+    {
+        return $this->retakeQuiz($id)->isPast();
+    }
+
+    public function timeTillRetake($id)
+    {
+        return $this->retakeQuiz($id)->diffForHumans();
+    }
+
     /**
-     * A user can have one survey.
+     * Checks to see if user has completed a given survey.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @param $id
+     * @return bool
      */
-    public function survey()
+    public function surveyComplete($id)
     {
-        return $this->hasOne('App\Survey');
+        return !$this->surveys()->where('id',$id)->get()->isEmpty();
     }
-    /**
-     * A user can have one exam survey.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function examSurvey()
-    {
-        return $this->hasOne('App\ExamSurvey');
-    }
-
-    public function hasQuizAttempt($quiz_number)
-    {
-        return !$this->quizzes->whereLoose('number', $quiz_number)->isEmpty();
-    }
-    public function lastQuizTaken($quiz_number)
-    {
-        return $this->quizzes->whereLoose('number', $quiz_number)->last();
-    }
-
-    public function retakeQuiz($quiz_number)
-    {
-
-        return $this->lastQuizTaken($quiz_number)->pivot->created_at->addHour();
-    }
-
-    public function canRetakeQuiz($quiz_number)
-    {
-        return  $this->retakeQuiz($quiz_number)->isPast();
-    }
-
-    public function timeTillRetake($quiz_number){
-        return $this->retakeQuiz($quiz_number)->diffForHumans();
-    }
-
-
 }

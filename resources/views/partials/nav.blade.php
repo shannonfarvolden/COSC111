@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/forum') }}">Discussion Forum</a></li>
+                <li><a href="{{ url('/threads') }}">Discussion Forum</a></li>
                 <li><a href="{{ url('/slide') }}">Slides</a></li>
                 <li><a href="{{ url('/quiz') }}">Quizzes</a></li>
                 <li><a href="{{ url('/submission') }}">Submissions</a></li>
@@ -37,9 +37,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Surveys<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{ url('/survey1') }}">Survey 1</a></li>
-                        <li><a href="{{ url('/survey2') }}">Survey 2</a></li>
-                        <li><a href="{{ url('/survey3') }}">Survey 3</a></li>
+                        <li><a href="{{ url('/survey/1') }}">Survey 1</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

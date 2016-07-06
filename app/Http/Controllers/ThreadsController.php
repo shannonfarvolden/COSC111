@@ -35,7 +35,7 @@ class ThreadsController extends Controller
             $threads = Thread::orderBy('created_at', 'desc')->get();
 
 
-        return view('thread.index', ['threads' => $threads]);
+        return view('threads.index', ['threads' => $threads]);
 
     }
 
@@ -46,7 +46,7 @@ class ThreadsController extends Controller
      */
     public function create()
     {
-        return view('thread.create');
+        return view('threads.create');
     }
 
     /**
@@ -57,6 +57,8 @@ class ThreadsController extends Controller
      */
     public function store(ThreadRequest $request)
     {
+        dd($request->all());
+
         $thread = Auth::user()->threads()->create($request->all());
 
         return redirect()->action('ThreadsController@show', ['thread'=>$thread]);
@@ -70,7 +72,7 @@ class ThreadsController extends Controller
      */
     public function show(Thread $thread)
     {
-        return view('thread.show', ['thread'=>$thread]);
+        return view('threads.show', ['thread'=>$thread]);
     }
 
     /**
@@ -81,7 +83,7 @@ class ThreadsController extends Controller
      */
     public function edit(Thread $thread)
     {
-        return view('thread.edit', ['thread'=>$thread]);
+        return view('threads.edit', ['thread'=>$thread]);
     }
 
     /**

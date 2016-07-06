@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSlidesTable extends Migration
-{
+class CreateSlidesTable extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -12,7 +12,8 @@ class CreateSlidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('slides', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->integer('slide_set')->unsigned();
             $table->integer('lecture')->unsigned();

@@ -6,16 +6,16 @@
     </div>
 
     @foreach($quizzes as $quiz)
-        <a style="color:black; text-decoration:none" href="{{ action('QuizzesController@show', [$quiz->number]) }}">
+        <a style="color:black; text-decoration:none" href="{{ action('QuizzesController@show', [$quiz->id]) }}">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <p>{{$quiz->name}}</p>
-                    @if(Auth::user()->hasQuizAttempt($quiz->number))
-                        @if(Auth::user()->canRetakeQuiz($quiz->number))
+                    @if(Auth::user()->hasQuizAttempt($quiz->id))
+                        @if(Auth::user()->canRetakeQuiz($quiz->id))
                             <p>Retake</p>
 
                         @else
-                            <p>Retake {{Auth::user()->timeTillRetake($quiz->number)}}</p>
+                            <p>Retake {{Auth::user()->timeTillRetake($quiz->id)}}</p>
                         @endif
                     @else
                         <p>Take Now</p>

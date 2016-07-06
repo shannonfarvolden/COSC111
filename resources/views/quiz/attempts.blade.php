@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-header">
-        <h1>{{$attempts->first()->name}} Attempts<small>   Retake {{Auth::user()->timeTillRetake($attempts->first()->number)}}</small></h1>
+        <h1>{{$attempts->first()->name}} Attempts<small>   Retake {{Auth::user()->timeTillRetake($attempts->first()->id)}}</small></h1>
     </div>
         @foreach($attempts as $attempt)
             <h5>Score {{$attempt->pivot->score}}/10</h5>

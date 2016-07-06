@@ -20,13 +20,13 @@
     <hr>
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)
-            @include('thread.partials.reply')
+            @include('threads.partials.reply')
         @endforeach
     @endif
 
     {!! Form::open([ 'action' => ['RepliesController@store', $thread]]) !!}
     {!! Form::hidden('thread_id', $thread->id) !!}
-    @include('thread.partials.replyForm')
+    @include('threads.partials.replyForm')
     {!! Form::close() !!}
 
     @if ($errors->any())
@@ -36,7 +36,7 @@
             @endforeach
         </ul>
     @endif
-    <br><a href="/forum"> Back to discussion forum </a>
+    <br><a href="/threads"> Back to discussion forum </a>
 @endsection
 
 @section('footer')
@@ -44,8 +44,8 @@
     <script>
         ga('send', {
             hitType: 'pageview',
-            title: 'Thread',
-            page: '/forum'
+            title: 'Threads',
+            page: '/threads'
         });
     </script>
 @endsection

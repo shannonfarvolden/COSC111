@@ -47,7 +47,7 @@ class QuizzesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $num)
+    public function store(Request $request, $id)
     {
         $score = 0;
         for ($i = 1; $i <= 10; $i++) {
@@ -56,12 +56,12 @@ class QuizzesController extends Controller
                     $score++;
         }
 
-//        $attempt = (Auth::user()->hasQuizAttempt($num))?Auth::user()->lastQuizTaken($num)->pivot->attempt+1 : 1;
-//
-//        Auth::user()->quizzes()->attach($num, ['score'=>$score, 'attempt'=> $attempt]);
+        $attempt = (Auth::user()->hasQuizAttempt($id))?Auth::user()->lastQuizTaken($id)->pivot->attempt+1 : 1;
 
-//        return redirect()->action('QuizzesController@result', ['num'=>$num]);
-        return view('quiz.score', ['score' => $score]);
+        Auth::user()->quizzes()->attach($id, ['score'=>$score, 'attempt'=> $attempt]);
+
+        return redirect()->action('QuizzesController@result', ['id'=>$id]);
+//        return view('quiz.score', ['score' => $score]);
     }
     /**
      * Display the specified resource.
@@ -69,18 +69,18 @@ class QuizzesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($num)
+    public function show($id)
     {
 
-        if(!Auth::user()->hasQuizAttempt($num) || Auth::user()->canRetakeQuiz($num))
+        if(!Auth::user()->hasQuizAttempt($id) || Auth::user()->canRetakeQuiz($id))
         {
-            $quiz = Quiz::findorFail($num);
+            $quiz = Quiz::findorFail($id);
 
             return view('quiz.show', ['quiz' => $quiz]);
         }
         else
         {
-            return redirect()->action('QuizzesController@attempts', ['num'=>$num]);
+            return redirect()->action('QuizzesController@attempts', ['id'=>$id]);
         }
 
     }
@@ -89,17 +89,17 @@ class QuizzesController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function result($num)
+    public function result($id)
     {
-        $attempt =  Auth::user()->lastQuizTaken($num)->pivot->attempt;
-        $score = Auth::user()->lastQuizTaken($num)->pivot->score;
+        $attempt =  Auth::user()->lastQuizTaken($id)->pivot->attempt;
+        $score = Auth::user()->lastQuizTaken($id)->pivot->score;
         return view('quiz.score', ['score' => $score, 'attempt'=>$attempt]);
     }
 
-    public function attempts($num)
+    public function attempts($id)
     {
 
-        $attempts = Auth::user()->quizzes->whereLoose('number', $num);
+        $attempts = Auth::user()->quizzes->whereLoose('id', $id);
 
         return view('quiz.attempts', ['attempts'=>$attempts]);
     }

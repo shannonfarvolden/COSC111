@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuizzesTable extends Migration
-{
+class CreateQuizzesTable extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -12,21 +12,20 @@ class CreateQuizzesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quizzes', function (Blueprint $table) {
-            $table->integer('number')->unsigned();
+        Schema::create('quizzes', function (Blueprint $table)
+        {
+            $table->increments('id');
             $table->string('name');
-            $table->string('chapters');
             $table->integer('total')->unsigned();
             $table->boolean('active')->default(false);
             $table->timestamps();
-
-            $table->primary('number');
         });
 
-        Schema::create('quiz_user', function(Blueprint $table){
+        Schema::create('quiz_user', function (Blueprint $table)
+        {
 
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('quiz_number')->unsigned()->index();
+            $table->integer('quiz_id')->unsigned()->index();
             $table->integer('score')->unsigned();
             $table->integer('attempt')->unsigned()->default(0);
             $table->timestamps();
@@ -36,8 +35,8 @@ class CreateQuizzesTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('quiz_number')
-                ->references('number')
+            $table->foreign('quiz_id')
+                ->references('id')
                 ->on('quizzes')
                 ->onDelete('cascade');
         });

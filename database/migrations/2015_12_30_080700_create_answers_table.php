@@ -14,21 +14,15 @@ class CreateAnswersTable extends Migration {
     {
         Schema::create('answers', function (Blueprint $table)
         {
-            $table->integer('number')->unsigned();
-            $table->integer('question_number')->unsigned();
-            $table->integer('quiz_number')->unsigned();
+            $table->increments('id');
+            $table->integer('question_id')->unsigned();
             $table->text('answer');
             $table->boolean('correct');
             $table->timestamps();
 
-            $table->primary(['number', 'question_number', 'quiz_number']);
-            $table->foreign('question_number')
-                ->references('number')
+            $table->foreign('question_id')
+                ->references('id')
                 ->on('questions')
-                ->onDelete('cascade');
-            $table->foreign('quiz_number')
-                ->references('number')
-                ->on('quizzes')
                 ->onDelete('cascade');
         });
     }

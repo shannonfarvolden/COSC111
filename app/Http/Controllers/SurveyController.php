@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\ExamSurvey;
+use App\Survey;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SurveyRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Survey;
+use App\SurveyAnswer;
 use Auth;
 
-class SurveyController extends Controller
-{
+class SurveyController extends Controller {
+
     /**
      * Create a new survey controller instance. User must be logged in to view pages.
      */
@@ -19,109 +18,50 @@ class SurveyController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display the survey view.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function survey1()
-    {
-        return view('survey.survey1');
-    }
 
     /**
      * Display the survey view.
      *
-     * @return \Illuminate\Http\Response
+     * @param Survey $survey
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function survey2()
+    public function show(Survey $survey)
     {
-        $uid = Auth::id();
-        $surveyCompleted = (ExamSurvey::where('number', 1)->get()->contains('user_id', $uid)) ? true : false;
+        if(Auth::user()->surveyComplete($survey->id)){
+            return view('survey.complete', ['survey' => $survey]);
+        }
+        else
+            return view('survey.show', ['survey' => $survey]);
 
-        return view('survey.survey2', ['surveyCompleted'=>$surveyCompleted]);
-    }
-    /**
-     * Display the survey view.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function survey3()
-    {
-        $uid = Auth::id();
-        $surveyCompleted = (ExamSurvey::where('number', 2)->get()->contains('user_id', $uid)) ? true : false;
-
-        return view('survey.survey3', ['surveyCompleted'=>$surveyCompleted]);
     }
 
     /**
-     * Store a newly created exam survey in storage.
-     *
-     * @param SurveyRequest $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(SurveyRequest $request)
-    {
-        $user = Auth::user();
-        $user->survey()->create($request->all());
-        $user->survey_completed = true;
-        $user->save();
-
-        return redirect('/survey1');
-    }
-
-    /**
-     * Store a newly created exam survey in storage.
+     * Story surveys completed by users in the database
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Survey $survey
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store2(Request $request)
+    public function store(Request $request, Survey $survey)
     {
-        $this->validate($request, [
-            'question_1' => 'required',
-            'question_2' => 'required',
-            'question_3' => 'required',
-            'question_4' => 'required',
-            'question_5' => 'required',
-            'question_6' => 'required',
-            'question_7' => 'required',
-            'question_8' => 'required',
-            'question_9' => 'required',
-        ]);
+        // add validation rules and error messages to insure all radio buttons of the survey are filled out
+        $rules = [];
+        $messages = [];
+        for ( $i = 1; $i <= $survey->size(); $i++ ){
+            $rules['radio.'.$i] = 'required';
+            $messages['radio.'.$i.'.required'] = 'Survey Question '.$i.' is required.';
+        }
 
-        $user = Auth::user();
-        $user->examSurvey()->create($request->all());
-        $user->save();
+        $this->validate($request, $rules, $messages);
 
-        return redirect('/survey2');
+        //store answers in database if all questions have been filled out
+        $numResponses = count($request->input('radio'));
+        for ( $i = 1; $i <= $numResponses; $i++ )
+        {
+            $answer = SurveyAnswer::findOrFail($request->input('radio.' . $i));
+            Auth::user()->surveys()->attach($survey->id, ['survey_question_id' => $answer->survey_question_id, 'survey_answer_id' => $answer->id]);
+        }
+
+        return back();
     }
-    /**
-     * Store a newly created exam survey in storage.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store3(Request $request)
-    {
-        $this->validate($request, [
-            'question_1' => 'required',
-            'question_2' => 'required',
-            'question_3' => 'required',
-            'question_4' => 'required',
-            'question_5' => 'required',
-            'question_6' => 'required',
-            'question_7' => 'required',
-            'question_8' => 'required',
-            'question_9' => 'required',
-        ]);
-
-        $user = Auth::user();
-        $user->examSurvey()->create($request->all());
-        $user->save();
-
-        return redirect('/survey3');
-    }
-
-
 }

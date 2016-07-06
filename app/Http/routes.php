@@ -18,15 +18,15 @@ Route::patch('/admin/mark/{id}','AdminController@updateGrade');
 Route::get('/slide', 'SlidesController@index');
 Route::get('/slide/{number}', 'SlidesController@show');
 
-Route::resource('/forum', 'ThreadsController');
+Route::resource('/threads', 'ThreadsController');
 
-Route::post('/forum/{id}', 'RepliesController@store');
+Route::post('/threads/{threads}', 'RepliesController@store');
 
-Route::get('/quiz/{num}/attempts', 'QuizzesController@attempts');
-Route::get('/quiz/{num}/result', 'QuizzesController@result');
+Route::get('/quiz/{id}/attempts', 'QuizzesController@attempts');
+Route::get('/quiz/{id}/result', 'QuizzesController@result');
 Route::get('/quiz', 'QuizzesController@index');
-Route::get('/quiz/{num}', 'QuizzesController@show');
-Route::post('/quiz/{num}', 'QuizzesController@store');
+Route::get('/quiz/{id}', 'QuizzesController@show');
+Route::post('/quiz/{id}', 'QuizzesController@store');
 
 Route::get('/submission', 'SubmissionsController@index');
 Route::get('/submission/complete/{id}', 'SubmissionsController@complete');
@@ -52,14 +52,8 @@ Route::get('/assignment3', 'AssignmentsController@assignment3');
 Route::get('/stats', 'StatsController@show');
 Route::get('/adminStats', 'StatsController@adminStats');
 
-Route::get('/survey1', 'SurveyController@survey1');
-Route::post('/survey1', 'SurveyController@store');
-
-Route::get('/survey2', 'SurveyController@survey2');
-Route::post('/survey2', 'SurveyController@store2');
-
-Route::get('/survey3', 'SurveyController@survey3');
-Route::post('/survey3', 'SurveyController@store3');
+Route::get('/survey/{survey}', 'SurveyController@show');
+Route::post('/survey/{survey}', 'SurveyController@store');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

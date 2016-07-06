@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class SurveyAnswer extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,19 +12,17 @@ class Answer extends Model
      * @var array
      */
     protected $fillable = [
-        'question_id',
-        'answer',
-        'correct',
+        'survey_question_id',
+        'answer'
     ];
 
     /**
-     * An answer belongs to a question.
+     * A survey answer belongs to a question.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function question()
     {
-        return $this->belongsTo('App\Question');
+        return $this->belongsTo('App\SurveyQuestion', 'survey_question_id');
     }
-
 }

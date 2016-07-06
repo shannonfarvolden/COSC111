@@ -55,33 +55,56 @@
     <div class="jumbotron">
         <h2>Stats</h2>
     </div>
+    <div class="panel panel-default">
 
-    @if(!$submissions->isEmpty())
-        <div id="curve_chart" style="width: 900px; height: 500px"></div>
-    @else
-        <h3>No submissions to show stats on yet.</h3>
-    @endif
+        <table class="table">
+            <tr>
+                <td>
+                    @if(!$submissions->isEmpty())
+                        <div id="curve_chart" style="display: block; margin: 0 auto; width: 900px; height: 500px"></div>
+                    @else
+                        <h3>No submissions to show stats on yet.</h3>
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <iframe width="650" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=941886812&amp;format=interactive"></iframe>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <iframe width="675" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=437415473&amp;format=interactive"></iframe>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <iframe width="650" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=1464334678&amp;format=interactive"></iframe>
+                </td>
+            </tr>
+        </table>
+    </div>
     {{--<table class="table">--}}
     {{--<tr>--}}
-        {{--<td>User id</td>--}}
-        {{--<td>Number of Threads</td>--}}
-        {{--<td>User id</td>--}}
-        {{--<td>Number of Replies</td>--}}
-        {{--<td>User id</td>--}}
-        {{--<td>Number of quizzes</td>--}}
-        {{--<td>Sum of quizzes</td>--}}
+    {{--<td>User id</td>--}}
+    {{--<td>Number of Threads</td>--}}
+    {{--<td>User id</td>--}}
+    {{--<td>Number of Replies</td>--}}
+    {{--<td>User id</td>--}}
+    {{--<td>Number of quizzes</td>--}}
+    {{--<td>Sum of quizzes</td>--}}
     {{--</tr>--}}
     {{--<tr>--}}
-        {{--@foreach ($users as $user)--}}
-        {{--{{$sum = 0}}--}}
-        {{--echo ($user->id.', '.$user->quizzes->count().", ");--}}
-        {{--@foreach($user->quizzes as $quiz)--}}
-        {{--{{$sum = $sum + $quiz->pivot->score}}--}}
-                {{--<td>{{$sum}}</td>--}}
-        {{--@endforeach--}}
-        {{--@endforeach--}}
-        {{--<td>Row 2, Column 1</td>--}}
-        {{--<td>Row 2, Column 2</td>--}}
+    {{--@foreach ($users as $user)--}}
+    {{--{{$sum = 0}}--}}
+    {{--echo ($user->id.', '.$user->quizzes->count().", ");--}}
+    {{--@foreach($user->quizzes as $quiz)--}}
+    {{--{{$sum = $sum + $quiz->pivot->score}}--}}
+    {{--<td>{{$sum}}</td>--}}
+    {{--@endforeach--}}
+    {{--@endforeach--}}
+    {{--<td>Row 2, Column 1</td>--}}
+    {{--<td>Row 2, Column 2</td>--}}
     {{--</tr>--}}
     {{--</table>--}}
 @endsection

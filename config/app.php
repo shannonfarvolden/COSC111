@@ -2,6 +2,9 @@
 
 return [
 
+    // set app environment
+    'env' => env('APP_ENV', 'production'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

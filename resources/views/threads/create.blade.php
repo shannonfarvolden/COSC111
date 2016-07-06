@@ -11,8 +11,8 @@
             @endforeach
         </ul>
     @endif
-    {!! Form::open(['url' => 'forum']) !!}
-    @include('thread.form', ['submitButtonText' => 'Create Thread'])
+    {!! Form::open(['url' => 'threads']) !!}
+    @include('threads.form', ['submitButtonText' => 'Create Thread'])
     {!! Form::close() !!}
 @endsection
 @section('footer')
@@ -21,7 +21,7 @@
         ga('send', {
             hitType: 'pageview',
             title: 'Create Thread',
-            page: '/forum/create'
+            page: '/threads/create'
         });
     </script>
 @endsection
