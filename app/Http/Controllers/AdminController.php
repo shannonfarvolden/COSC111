@@ -12,8 +12,8 @@ use App\User;
 use Auth;
 
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
+
     /**
      * Create a new admin controller instance. User must be logged in to view pages.
      */
@@ -24,14 +24,13 @@ class AdminController extends Controller
     }
 
     /**
-     * Displays submission index.
+     * Displays view of admin options.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function indexSubmissions()
+    public function admin()
     {
-        $submissions = Submission::all();
-        return view('admin.submissions', ['submissions'=>$submissions]);
+        return view('admin.index');
     }
 
 
@@ -41,80 +40,65 @@ class AdminController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function mark($id)
+    public function mark(Submission $submission, Request $request)
     {
-        $submission = Submission::findorFail($id);
+        $users = User::where('admin', 0)->get();
 
-        $submitStudents = $submission->users()->orderBy('pivot_created_at', 'asc')->get()->unique();
+        if (sizeof($request->input()) > 0)
+        {
+            $users = $this->search($request, $submission);
+        }
 
-        $submitIds = $submitStudents->lists('student_number');
-        $noSubmissions = User::where('admin', 0 )->whereNotIn('student_number', $submitIds )->get();
-
-
-        return view('admin.mark', ['submission'=>$submission, 'submitStudents'=>$submitStudents, 'noSubmissions'=>$noSubmissions]);
+        return view('admin.mark', ['submission' => $submission, 'users' => $users]);
     }
 
-    /**
-     *  Store a new grade in database.
-     *
-     * @param Request $request
-     * @param $id
-     * @param $sid
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeGrade(Request $request, $id, $sid)
+    public function search(Request $request, Submission $submission)
     {
+        $query = where('admin', 0)->get();
 
-        $input = array_add($request->all(), 'submission_id', $id);
-        $input = array_add($input, 'user_id', $sid);
-        Grade::create($input);
-        return redirect()->action('AdminController@mark',['id'=>$id]);
-
+        $filter = $request->get('filter');
+        $sort = $request->get('sort');
+        $order = $request->get('order');
+        if ($filter && $filter != 'none')
+        {
+            if (strpos($filter, 'L0') !== false)
+            {
+                $query = $query->where('lab', $filter);
+            }
+            if($filter == "file_submitted"){
+                $query = $submission->users;
+            }
+        }
+        if ($sort && $sort != 'none')
+        {
+            if ($sort == 'last_name')
+            {
+                if ($order && $order == 'desc')
+                    $query = $query->sortByDesc('last_name');
+                else
+                    $query = $query->sortBy('last_name');
+            } elseif ($sort == 'first_name')
+            {
+                if ($order && $order == 'desc')
+                    $query = $query->sortByDesc('first_name');
+                else
+                    $query = $query->sortBy('first_name');
+            } elseif ($sort == 'student_number')
+            {
+                if ($order && $order == 'desc')
+                    $query = $query->sortByDesc('student_number');
+                else
+                    $query = $query->sortBy('student_number');
+            } elseif ($sort == 'submission_date')
+            {
+                if ($order && $order == 'desc')
+                    $query = $submission->users()->orderBy('pivot_created_at', 'desc')->get()->unique();
+                else
+                    $query = $submission->users()->orderBy('pivot_created_at', 'asc')->get()->unique();
+            }
+        }
+        return $query;
     }
-
-    /**
-     * Show the form for creating a new grade for specified student.
-     *
-     * @param $sub_id
-     * @param $student_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function createGrade($sub_id, $student_id)
-    {
-        $student = User::findOrFail($student_id);
-        return view('admin.createGrade', ['sub_id'=>$sub_id, 'student'=>$student]);
-
-    }
-
-    /**
-     * Show the form for editing the specified submission and student.
-     *
-     * @param $sub_id
-     * @param $student_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function editGrade($sub_id, $student_id)
-    {
-        $student = User::findOrFail($student_id);
-        $grade = $student->grades->whereLoose('submission_id', $sub_id)->last();
-        return view('admin.editGrade', ['grade'=>$grade]);
-
-    }
-
-    /**
-     *  Update the specified grade in database.
-     *
-     * @param Request $request
-     * @param $grade_id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function updateGrade(Request $request, $grade_id)
-    {
-        $grade = Grade::findOrFail($grade_id);
-        $grade->update($request->all());
-        return redirect()->action('AdminController@mark',['id'=>$grade->submission_id]);
-    }
-
 
 
 }

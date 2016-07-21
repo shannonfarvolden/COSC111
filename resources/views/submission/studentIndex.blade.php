@@ -2,27 +2,25 @@
 
 @section('content')
     <div class="page-header">
-        <h1>Slides</h1>
+        <h1>Submissions</h1>
     </div>
-
-    @foreach($slides as $slide)
-        <a href="{{ action('SlidesController@slideSet', $slide->lecture) }}">
+    @foreach($submissions as $submission)
+        <a style="color:black; text-decoration:none" href="{{ action('SubmissionsController@studentCreate', $submission) }}">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h7>Week {{$slide->lecture}}</h7>
+                    {{$submission->name}}
                 </div>
             </div>
         </a>
     @endforeach
-
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}
     <script>
         ga('send', {
             hitType: 'pageview',
-            title: 'Slides',
-            page: '/slide'
+            title: 'Submission',
+            page: '/submission'
         });
     </script>
 @endsection

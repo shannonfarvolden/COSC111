@@ -14,8 +14,8 @@
                 </p>
             <hr>
             @endif
-            {!! Form::open([ 'action' => ['SubmissionsController@store', $submission->id], 'files' => true]) !!}
-            @include('submission.form')
+            {!! Form::open([ 'action' => ['SubmissionsController@studentStore', $submission], 'files' => true]) !!}
+            @include('submission.studentForm')
             {!! Form::close() !!}
 
         </div>

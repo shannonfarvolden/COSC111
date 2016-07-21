@@ -17,6 +17,8 @@ class CreateSubmissionsTable extends Migration
             $table->string('name');
             $table->dateTime('due_date');
             $table->integer('total')->unsigned();
+            $table->string('category');
+            $table->boolean('bonus')->default(false);
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

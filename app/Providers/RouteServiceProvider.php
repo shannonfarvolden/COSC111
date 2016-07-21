@@ -24,46 +24,28 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-
         parent::boot($router);
 
         // User route-model binding
-        $router->bind('user', function ($id)
-        {
-            return \App\User::findOrFail($id);
-        });
+        $router->model('user', 'App\User');
 
         // Submission route-model binding
-        $router->bind('submission', function ($id)
-        {
-            return \App\Submission::findOrFail($id);
-        });
+        $router->model('submission', 'App\Submission');
 
         // Thread route-model binding
-        $router->bind('threads', function ($id)
-        {
-            return \App\Thread::findOrFail($id);
-        });
+        $router->model('thread', 'App\Thread');
 
         // Grade route-model binding
-        $router->bind('grade', function ($id)
-        {
-            return \App\Grade::findOrFail($id);
-        });
+        $router->model('grade', 'App\Grade');
 
         // Quiz route-model binding
-        $router->bind('quiz', function ($id)
-        {
-            return \App\Quiz::findOrFail($id);
-        });
+        $router->model('quiz', 'App\Quiz');
 
         // Survey route-model binding
-        $router->bind('survey', function ($id)
-        {
-            return \App\Survey::findOrFail($id);
-        });
+        $router->model('survey', 'App\Survey');
 
-
+        // Survey route-model binding
+        $router->model('slide', 'App\Slide');
     }
 
     /**

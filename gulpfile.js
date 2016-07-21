@@ -15,9 +15,11 @@ elixir(function (mix) {
     mix.sass('app.scss')
         .scripts([
             'libs/jquery.swipebox.js',
+            'libs/bootstrap.js',
             ],
         './public/js/libs.js')
         .styles([
-            'libs/swipebox.css'
+            'libs/swipebox.css',
+            'libs/bootstrap.css'
         ], './public/css/libs.css');
 });

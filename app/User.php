@@ -89,37 +89,79 @@ class User extends BaseUser {
         return $this->belongsToMany('App\Submission')->withPivot('file_name', 'file_path', 'attempt', 'comments')->withTimestamps();
     }
 
+    /**
+     * Checks if student has made a submission yet.
+     *
+     * @param $id
+     * @return bool
+     */
     public function hasSubmissionAttempt($id)
     {
-        return !$this->submissions->whereLoose('id', $id)->isEmpty();
+        return !$this->submissions()->where('id', $id)->get()->isEmpty();
     }
 
+    /**
+     * Gets last submission made.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function lastSubmissionMade($id)
     {
-        return $this->submissions->whereLoose('id', $id)->last();
+        return $this->submissions()->where('id', $id)->get()->last();
     }
 
+    /**
+     * Checks if student has taken a quiz.
+     *
+     * @param $id
+     * @return bool
+     */
     public function hasQuizAttempt($id)
     {
-        return !$this->quizzes->whereLoose('id', $id)->isEmpty();
+        return !$this->quizzes()->where('id', $id)->get()->isEmpty();
     }
 
+    /**
+     * Returns last quiz that student has taken.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function lastQuizTaken($id)
     {
-        return $this->quizzes->whereLoose('id', $id)->last();
+        return $this->quizzes()->where('id', $id)->get()->last();
     }
 
+    /**
+     * Adds a specified amount of time before students can retake a quiz.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function retakeQuiz($id)
     {
 
         return $this->lastQuizTaken($id)->pivot->created_at->addHour();
     }
 
+    /**
+     * Checks if student can retake a quiz.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function canRetakeQuiz($id)
     {
         return $this->retakeQuiz($id)->isPast();
     }
 
+    /**
+     * Amount of time before student can retake quiz
+     *
+     * @param $id
+     * @return mixed
+     */
     public function timeTillRetake($id)
     {
         return $this->retakeQuiz($id)->diffForHumans();
@@ -134,5 +176,17 @@ class User extends BaseUser {
     public function surveyComplete($id)
     {
         return !$this->surveys()->where('id',$id)->get()->isEmpty();
+    }
+
+    /**
+     * Get a students submission mark.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function submissionMark($id){
+
+        return $this->grades()->where('submission_id', $id)->get()->last()->mark;
+
     }
 }

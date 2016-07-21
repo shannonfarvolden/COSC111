@@ -57,8 +57,6 @@ class ThreadsController extends Controller
      */
     public function store(ThreadRequest $request)
     {
-        dd($request->all());
-
         $thread = Auth::user()->threads()->create($request->all());
 
         return redirect()->action('ThreadsController@show', ['thread'=>$thread]);

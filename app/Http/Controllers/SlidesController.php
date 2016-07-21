@@ -23,8 +23,19 @@ class SlidesController extends Controller
      */
     public function index()
     {
-        $slides = Slide::all()->unique('slide_set')->sortBy('slide_set');
+        $slides = Slide::all()->unique('lecture')->sortBy('lecture');
         return view('slide.index', ['slides'=>$slides]);
+    }
+
+    /**
+     * Display list of slides depending on week.
+     * @param $week
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function slideSet($week){
+
+        $slides = Slide::where('lecture', $week)->orderBy('slide_set', 'asc')->get()->unique('slide_set');
+        return view('slide.slideSet', ['slides'=>$slides]);
     }
 
     /**

@@ -2,36 +2,38 @@
 
 
 Route::get('/', 'PagesController@home');
+Route::get('/consent', 'PagesController@consent');
+Route::post('/consent', 'PagesController@giveConsent');
 
-Route::get('/consent', 'ConsentController@show');
-Route::post('/consent', 'ConsentController@store');
+Route::resource('/admin/submission', 'SubmissionsController');
+Route::get('/submission', 'SubmissionsController@studentIndex');
+Route::get('/submission/complete/{submission}', 'SubmissionsController@complete');
+Route::get('/submission/create/{submission}', 'SubmissionsController@studentCreate');
+Route::post('/submission/create/{submission}', 'SubmissionsController@studentStore');
+
+Route::get('/admin', 'AdminController@admin');
+Route::get('/admin/mark/{submission}','AdminController@mark');
 
 Route::get('/grade','GradesController@index');
+Route::post('/admin/mark/{submission}/{user}','GradesController@store');
+Route::get('/admin/mark/{submission}/{user}/edit','GradesController@edit');
+Route::get('/admin/mark/{submission}/{user}/create','GradesController@create');
+Route::patch('/admin/mark/{grade}','GradesController@update');
 
-Route::get('/admin','AdminController@indexSubmissions');
-Route::get('/admin/mark/{id}','AdminController@mark');
-Route::post('/admin/mark/{sub_id}/{student_id}','AdminController@storeGrade');
-Route::get('/admin/mark/{sub_id}/{student_id}/edit','AdminController@editGrade');
-Route::get('/admin/mark/{sub_id}/{student_id}/create','AdminController@createGrade');
-Route::patch('/admin/mark/{id}','AdminController@updateGrade');
+Route::get('/users', 'UsersController@index');
 
 Route::get('/slide', 'SlidesController@index');
-Route::get('/slide/{number}', 'SlidesController@show');
+Route::get('/slide/{week}', 'SlidesController@slideSet');
+Route::get('/slide/set/{slide_set}', 'SlidesController@show');
 
-Route::resource('/threads', 'ThreadsController');
+Route::resource('/thread', 'ThreadsController');
+Route::post('/thread/{thread}', 'RepliesController@store');
 
-Route::post('/threads/{threads}', 'RepliesController@store');
-
-Route::get('/quiz/{id}/attempts', 'QuizzesController@attempts');
-Route::get('/quiz/{id}/result', 'QuizzesController@result');
+Route::get('/quiz/{quiz}/attempts', 'QuizzesController@attempts');
+Route::get('/quiz/{quiz}/result', 'QuizzesController@result');
 Route::get('/quiz', 'QuizzesController@index');
-Route::get('/quiz/{id}', 'QuizzesController@show');
-Route::post('/quiz/{id}', 'QuizzesController@store');
-
-Route::get('/submission', 'SubmissionsController@index');
-Route::get('/submission/complete/{id}', 'SubmissionsController@complete');
-Route::get('/submission/add/{id}', 'SubmissionsController@add');
-Route::post('/submission/add/{id}', 'SubmissionsController@store');
+Route::get('/quiz/{quiz}', 'QuizzesController@show');
+Route::post('/quiz/{quiz}', 'QuizzesController@store');
 
 Route::get('/lab1', 'LabsController@lab1');
 Route::get('/eclipse', 'LabsController@eclipse');

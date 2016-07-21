@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Submission extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -15,8 +17,14 @@ class Submission extends Model
         'name',
         'due_date',
         'total',
+        'category',
         'active',
+        'bonus'
     ];
+
+    /** Set date attributes as Carbon instances */
+    protected $dates = ['due_date'];
+
     /**
      * Get the users who have written a given submission.
      *
@@ -34,6 +42,15 @@ class Submission extends Model
     public function grades()
     {
         return $this->hasMany('App\Grade');
+    }
+
+    /**
+     * Set due date attribute
+     *
+     * @param $date
+     */
+    public function setDueDateAttribute($date){
+        $this->attributes['due_date'] = Carbon::parse($date);
     }
 
 }

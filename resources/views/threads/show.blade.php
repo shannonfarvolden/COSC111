@@ -45,7 +45,7 @@
         ga('send', {
             hitType: 'pageview',
             title: 'Threads',
-            page: '/threads'
+            page: '/thread'
         });
     </script>
 @endsection

@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder {
         $this->call(SubmissionTableSeeder::class);
         $this->call(QuizTableSeeder::class);
         $this->call(SurveyTableSeeder::class);
+        $this->call(GradeTableSeeder::class);
+        $this->call(ThreadTableSeeder::class);
         Model::reguard();
     }
 }

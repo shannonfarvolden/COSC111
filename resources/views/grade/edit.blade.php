@@ -6,7 +6,7 @@
 </div>
 <h3>{{$grade->user->first_name}} {{$grade->user->last_name}}</h3>
 <h4>{{$grade->user->student_number}}</h4>
-    {!! Form::model($grade, ['method' => 'PATCH', 'action' => ['AdminController@updateGrade', $grade->id]]) !!}
-    @include('admin.gradeForm')
+    {!! Form::model($grade, ['method' => 'PATCH', 'action' => ['GradesController@update', $grade->id]]) !!}
+    @include('grade.form')
     {!! Form::close() !!}
 @endsection

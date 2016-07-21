@@ -53,12 +53,34 @@
                 <th>Mark</th>
                 <th>Percentage</th>
             </tr>
-
+            @if($labTotal > 0)
                 <tr>
-                    <td>in-class total (includes quizzes and inclass marks)</td>
-                    <td>{{$inclassSum}}/{{$inclassTotal}}</td>
-                    <td>{{round($inclassSum/$inclassTotal, 4)*100}}%</td>
+                    <td>Labs</td>
+                    <td>{{$labMark}}/{{$labTotal}}</td>
+                    <td>{{round($labMark/$labTotal, 4)*100}}%</td>
                 </tr>
+            @endif
+            @if($quizTotal > 0)
+                <tr>
+                    <td>Quizzes</td>
+                    <td>{{$quizMark}}/{{$quizTotal}}</td>
+                    <td>{{round($quizMark/$quizTotal, 4)*100}}%</td>
+                </tr>
+            @endif
+            @if($inClassTotal > 0)
+                <tr>
+                    <td>in-class assignments</td>
+                    <td>{{$inClassMark}}/{{$inClassTotal}}</td>
+                    <td>{{round($inClassMark/$inClassTotal, 4)*100}}%</td>
+                </tr>
+            @endif
+            @if($assignmentTotal > 0)
+                <tr>
+                    <td>Assignments</td>
+                    <td>{{$assignmentMark}}/{{$assignmentTotal}}</td>
+                    <td>{{round($assignmentMark/$assignmentTotal, 4)*100}}%</td>
+                </tr>
+            @endif
 
         </table>
     </div>

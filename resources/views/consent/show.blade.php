@@ -74,10 +74,9 @@
                 By giving my consent, I affirm that I am at least 18 years old and I have a copy of this consent form.</p><br>
 
             <h5>Do you agree to give consent to participate in this study?</h5>
-            {!! Form::open([ 'action' => 'ConsentController@store']) !!}
+
+            {!! Form::open([ 'action' => 'PagesController@giveConsent']) !!}
             <div class="form-group">
-
-
                 {!! Form::label('data_consent', 'Yes') !!}
                 {!! Form::radio('data_consent', 1, ($data_consent)? 1: 0) !!}<br>
 

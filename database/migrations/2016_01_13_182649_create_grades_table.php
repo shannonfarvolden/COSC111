@@ -16,7 +16,7 @@ class CreateGradesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('submission_id')->unsigned();
-            $table->float('mark')->nullable();
+            $table->float('mark');
             $table->text('feedback')->nullable();
             $table->timestamps();
 
