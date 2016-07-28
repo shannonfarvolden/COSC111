@@ -37,4 +37,11 @@
             </div>
         </div>
     </a>
+    <a href="{{ url('/admin/evaluation') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Evaluation Criteria</p>
+            </div>
+        </div>
+    </a>
 @endsection

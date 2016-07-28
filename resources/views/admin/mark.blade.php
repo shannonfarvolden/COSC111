@@ -1,12 +1,12 @@
 @extends('app')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header center-title">
         <h1>Add Grades</h1>
     </div>
+    {!! Form::open(['method' => 'GET']) !!}
     <div class="row">
-        {!! Form::open(['method' => 'GET']) !!}
-        <div class="col-md-4">
+        <div class="col-md-offset-2 col-md-4">
             <div class="form-group">
                 {!! Form::label('filter', 'Filter') !!}
                 {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'file_submitted'=>'File Submitted'], null, ['class' => 'form-control']) !!}
@@ -23,9 +23,8 @@
             </div>
         </div>
     </div>
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-offset-2 col-md-4']) !!}
+    {!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-offset-4 col-md-4']) !!}
     {!! Form::close() !!}
-
     <br>
     <hr>
     <div class="panel panel-default">
@@ -36,10 +35,11 @@
         <!-- Table -->
         <table class="table">
             <tr>
-                <th>Submission Date</th>
-                <th>Student Name</th>
+                <th>Last Name</th>
+                <th>First Name</th>
                 <th>Student Number</th>
                 <th>Lab Section</th>
+                <th>Submission Date</th>
                 <th>Files Submitted</th>
                 <th>Latest Attempt Comments</th>
                 <th>Mark</th>
@@ -47,7 +47,8 @@
 
             @foreach($users as $user)
                 <tr>
-                    <td>{{$user->first_name}} {{$user->last_name}}</td>
+                    <td>{{$user->last_name}}</td>
+                    <td>{{$user->first_name}}</td>
                     <td>{{$user->student_number}}</td>
                     <td>{{$user->lab}}</td>
                     @if(!$user->submissions()->where('id', $submission->id)->get()->isEmpty())

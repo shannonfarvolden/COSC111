@@ -9,12 +9,11 @@
     @foreach($slides as $slide)
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>{{$slide->name}}</p>
-                <br><a href="{{action('AdminController@mark', $slide->id)}}"
-                       class="btn btn-default">Grade Students</a>
-                <a href="{{action('SlidesController@edit', [$slide->id])}}"
-                   class="btn btn-default">Edit Submission </a>
-                <a href="#" class=" btn btn-default"> Delete Submission</a>
+                <p>{{$slide->topic}}</p>
+                <br>
+                <a href="{{action('SlidesController@edit', [$slide->slide_set])}}"
+                   class="btn btn-default">Edit Slides </a>
+                <a href="{{action('SlidesController@destroy', [$slide->slide_set])}}" class=" btn btn-default"> Delete Slide Set</a>
             </div>
         </div>
     @endforeach

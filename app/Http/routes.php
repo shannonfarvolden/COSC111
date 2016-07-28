@@ -11,6 +11,8 @@ Route::get('/submission/complete/{submission}', 'SubmissionsController@complete'
 Route::get('/submission/create/{submission}', 'SubmissionsController@studentCreate');
 Route::post('/submission/create/{submission}', 'SubmissionsController@studentStore');
 
+Route::resource('/admin/evaluation', 'EvaluationsController', ['except'=>'show']);
+
 Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/mark/{submission}','AdminController@mark');
 
@@ -23,12 +25,13 @@ Route::patch('/admin/mark/{grade}','GradesController@update');
 Route::get('/users', 'UsersController@index');
 
 Route::get('/slide', 'SlidesController@index');
-Route::get('/slide/create', 'SlidesController@create');
 Route::get('/slide/set/{slide_set}', 'SlidesController@show');
-Route::get('/slide/{week}/edit', 'SlidesController@edit');
+Route::get('/admin/slide/create', 'SlidesController@create');
 Route::get('/admin/slide', 'SlidesController@adminIndex');
+Route::get('/admin/slide/{id}/edit', 'SlidesController@edit');
 Route::post('/admin/slide', 'SlidesController@store');
 Route::post('/admin/slide/{id}', 'SlidesController@update');
+Route::post('/admin/slide/{id}', 'SlidesController@destroy');
 
 Route::resource('/thread', 'ThreadsController');
 Route::post('/thread/{thread}', 'RepliesController@store');

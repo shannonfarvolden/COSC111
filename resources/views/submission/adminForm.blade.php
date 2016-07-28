@@ -16,7 +16,7 @@
     {!! Form::select('category', [ 'Labs'=>'Labs','In-Class'=>'In-Class', 'Assignments'=>'Assignments', 'Exams'=>'Exams'], null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('bonus', 'Bonus') !!}
+    {!! Form::label('bonus', 'Make this entire submission bonus?') !!}
     {!! Form::checkbox('bonus') !!}
 </div>
 <div class="form-group">

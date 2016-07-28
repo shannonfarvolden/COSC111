@@ -15,12 +15,9 @@
             <p>
                 Evaluation Criteria: Total 100%
             <ul>
-                <li> 10% In-class activities</li>
-                <li> 15% Assignments</li>
-                <li> 15% Labs</li>
-                <li> 10% Midterm 1</li>
-                <li> 20% Midterm 2 (cumulative)</li>
-                <li> 30% Final Exam (cumulative)</li>
+                @foreach($evaluations as $evaluation)
+                    <li>{{$evaluation->grade}}% {{$evaluation->category}}</li>
+                @endforeach
             </ul>
         </div>
     </div>

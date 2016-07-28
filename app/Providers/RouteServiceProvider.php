@@ -46,6 +46,9 @@ class RouteServiceProvider extends ServiceProvider
 
         // Survey route-model binding
         $router->model('slide', 'App\Slide');
+
+        // Evaluation route-model binding
+        $router->model('evaluation', 'App\Evaluation');
     }
 
     /**

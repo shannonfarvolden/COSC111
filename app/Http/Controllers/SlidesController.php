@@ -15,6 +15,10 @@ class SlidesController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['except' => [
+            'index',
+            'show',
+        ]]);
     }
 
     /**
@@ -91,7 +95,8 @@ class SlidesController extends Controller {
      */
     public function edit($id)
     {
-        return view('slide.edit');
+
+        return view('slide.edit', ['slideset'=>$id]);
     }
 
     /**
