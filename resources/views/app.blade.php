@@ -13,7 +13,7 @@
     {{---Fonts--}}
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:600,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
     @yield('head')
 
 </head>
@@ -52,9 +52,6 @@
 </script>
 @yield('footer')
 
-<script>
-
-</script>
 
 </body>
 </html>

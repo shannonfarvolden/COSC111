@@ -16,7 +16,7 @@
             </div>
         </div>
     </a>
-    <a href="{{ url('#') }}">
+    <a href="{{ url('/admin/slide') }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>Slide Sets</p>

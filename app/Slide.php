@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Image;
 
-class Slide extends Model
-{
+class Slide extends Model {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,10 +21,26 @@ class Slide extends Model
         'thumbnail_path',
     ];
 
-    public function makeThumbnail(){
-        Image::make('public/'.$this->image_path)
+    /**
+     * Generates a thumbnail image of the slide uploaded.
+     */
+    public function makeThumbnail()
+    {
+        Image::make($this->image_path)
             ->fit(360, 270)
-            ->save('public/'.$this->thumbnail_path);
+            ->save($this->thumbnail_path);
     }
+
+    /**
+     * Query scope for finding slide sets in a given week.
+     * @param $query
+     * @param $week
+     * @return mixed
+     */
+    public function scopeSlideSet($query, $week)
+    {
+       return $query->where('lecture', $week)->orderBy('slide_set', 'asc');
+    }
+
 
 }

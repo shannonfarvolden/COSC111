@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-
     <div class="page-header">
         <h1>Create Submission</h1>
     </div>

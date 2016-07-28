@@ -38,7 +38,7 @@ class SubmissionsController extends Controller {
     }
 
     /**
-     * Displays Create Submission view.
+     * Displays create submission view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -59,17 +59,24 @@ class SubmissionsController extends Controller {
         return redirect('admin/submission');
     }
 
+    /**
+     * Displays edit a submission view.
+     *
+     * @param Submission $submission
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Submission $submission)
     {
         return view('submission.edit', ['submission'=>$submission]);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SubmissionRequest $request
+     * @param Submission $submission
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(SubmissionRequest $request, Submission $submission)
     {
@@ -82,7 +89,7 @@ class SubmissionsController extends Controller {
         $submission->save();
 
 
-        return redirect()->action('SubmissionController@index');
+        return redirect()->action('SubmissionsController@index');
     }
 
     /**
@@ -128,7 +135,8 @@ class SubmissionsController extends Controller {
      */
     public function studentStore(Request $request, Submission $submission)
     {
-
+        // validate request, check that files are submitted
+        $this->validate($request, ['submissions.*'=>'required'], ['submissions.*'=>'Files are required to make a submission']);
         $files = $request->file('submissions');
 
         foreach ( $files as $file )

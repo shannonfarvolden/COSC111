@@ -9,7 +9,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('filter', 'Filter') !!}
-                {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'not_marked'=>'Not Marked', 'file_submitted'=>'File Submitted'], null, ['class' => 'form-control']) !!}
+                {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'file_submitted'=>'File Submitted'], null, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-md-4">

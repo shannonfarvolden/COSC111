@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+    @include('partials.error')
     <div class="panel panel-default heading-margin">
         <div class="panel-body padding-sides">
             <div class="page-header">

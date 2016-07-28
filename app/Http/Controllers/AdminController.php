@@ -52,9 +52,17 @@ class AdminController extends Controller {
         return view('admin.mark', ['submission' => $submission, 'users' => $users]);
     }
 
+
+    /**
+     * Filter and Sort users.
+     *
+     * @param Request $request
+     * @param Submission $submission
+     * @return mixed
+     */
     public function search(Request $request, Submission $submission)
     {
-        $query = where('admin', 0)->get();
+        $query = User::where('admin', 0);
 
         $filter = $request->get('filter');
         $sort = $request->get('sort');
@@ -64,40 +72,49 @@ class AdminController extends Controller {
             if (strpos($filter, 'L0') !== false)
             {
                 $query = $query->where('lab', $filter);
+            } elseif ($filter == "file_submitted")
+            {
+                $query = $submission->users();
             }
-            if($filter == "file_submitted"){
-                $query = $submission->users;
-            }
+//            elseif ($filter == "not_marked")
+//            {
+//                $id = $submission->id;
+//                $graded = $query->whereHas('grades', function ($q) use ($id){
+//                    $q->where('submission_id', $id);
+//                });
+//                $query = $query->whereNotIn('id',$graded->list('id'));
+//            }
         }
         if ($sort && $sort != 'none')
         {
             if ($sort == 'last_name')
             {
                 if ($order && $order == 'desc')
-                    $query = $query->sortByDesc('last_name');
+                    $query = $query->orderBy('last_name', 'desc');
                 else
-                    $query = $query->sortBy('last_name');
+                    $query = $query->orderBy('last_name');
             } elseif ($sort == 'first_name')
             {
                 if ($order && $order == 'desc')
-                    $query = $query->sortByDesc('first_name');
+                    $query = $query->orderBy('first_name', 'desc');
                 else
-                    $query = $query->sortBy('first_name');
+                    $query = $query->orderBy('first_name');
             } elseif ($sort == 'student_number')
             {
                 if ($order && $order == 'desc')
-                    $query = $query->sortByDesc('student_number');
+                    $query = $query->orderBy('student_number', 'desc');
                 else
-                    $query = $query->sortBy('student_number');
+                    $query = $query->orderBy('student_number');
             } elseif ($sort == 'submission_date')
             {
                 if ($order && $order == 'desc')
-                    $query = $submission->users()->orderBy('pivot_created_at', 'desc')->get()->unique();
+                    $query = $submission->users()->orderBy('pivot_created_at', 'desc');
                 else
-                    $query = $submission->users()->orderBy('pivot_created_at', 'asc')->get()->unique();
+                    $query = $submission->users()->orderBy('pivot_created_at');
             }
         }
-        return $query;
+
+        return $query->get();
     }
 
 

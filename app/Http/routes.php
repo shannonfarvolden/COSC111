@@ -23,8 +23,12 @@ Route::patch('/admin/mark/{grade}','GradesController@update');
 Route::get('/users', 'UsersController@index');
 
 Route::get('/slide', 'SlidesController@index');
-Route::get('/slide/{week}', 'SlidesController@slideSet');
+Route::get('/slide/create', 'SlidesController@create');
 Route::get('/slide/set/{slide_set}', 'SlidesController@show');
+Route::get('/slide/{week}/edit', 'SlidesController@edit');
+Route::get('/admin/slide', 'SlidesController@adminIndex');
+Route::post('/admin/slide', 'SlidesController@store');
+Route::post('/admin/slide/{id}', 'SlidesController@update');
 
 Route::resource('/thread', 'ThreadsController');
 Route::post('/thread/{thread}', 'RepliesController@store');
