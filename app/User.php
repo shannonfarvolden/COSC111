@@ -189,4 +189,8 @@ class User extends BaseUser {
         return $this->grades()->where('submission_id', $id)->get()->last()->mark;
 
     }
+    public function threadsRead(){
+        return $this->hasMany('App\ThreadRead');
+
+    }
 }

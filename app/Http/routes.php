@@ -34,7 +34,9 @@ Route::post('/admin/slide/{id}', 'SlidesController@update');
 Route::post('/admin/slide/{id}', 'SlidesController@destroy');
 
 Route::resource('/thread', 'ThreadsController');
+Route::post('/thread/{thread}/star', 'ThreadsController@star');
 Route::post('/thread/{thread}', 'RepliesController@store');
+
 
 Route::get('/quiz/{quiz}/attempts', 'QuizzesController@attempts');
 Route::get('/quiz/{quiz}/result', 'QuizzesController@result');

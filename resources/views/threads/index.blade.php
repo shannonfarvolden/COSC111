@@ -21,17 +21,39 @@
     <a href="{{ action('ThreadsController@create') }}" class=" btn btn-primary margin-button"> Create Thread </a>
     @foreach( $threads as $thread)
         <a style="color:black; text-decoration:none" href="{{ action('ThreadsController@show', [$thread]) }}">
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-4">{{$thread->title}}</div>
-                        <div class="col-md-2 col-md-offset-6 text-right">Replies <span class="badge">{{$thread->replies->count()}}</span></div>
+                        @if($thread->starred)
+                            <span class="col-md-1 glyphicon glyphicon-star thread-star" aria-hidden="true"></span>
+                        @endif
+
+                        @if( Auth::user()->threadsRead->contains('thread_id', $thread->id))
+                            <div class="col-md-8">{{$thread->title}}</div>
+                        @else
+                            <div class="col-md-8"><b>{{$thread->title}}</b></div>
+                        @endif
+                        <div class="col-md-2 col-md-offset-1 text-right">Replies <span class="badge">{{$thread->replies->count()}}</span></div>
                     </div>
+
                     @if($thread->replies->count()>0)
                         <p class="text-right"><b>Latest Reply: </b>{{$thread->replies->last()->created_at->diffForHumans()}}</p>
                     @endif
                         <p class="text-right"><b>Post Created: </b>{{$thread->created_at->diffForHumans()}}</p>
+                    @if(Auth::user()->admin)
+                        <form method="POST" action="thread/{{$thread->id}}/star" >
+                            {{csrf_field()}}
+                            @if($thread->starred)
+                            <button class="btn btn-default">
+                                Unstar
+                            </button>
+                            @else
+                            <button class="btn btn-default">
+                                Star
+                            </button>
+                            @endif
+                        </form>
+                    @endif
                 </div>
             </div>
         </a>

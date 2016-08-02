@@ -7,6 +7,7 @@ use App\Http\Requests\ThreadRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Thread;
+use App\ThreadRead;
 use Auth;
 
 
@@ -18,6 +19,8 @@ class ThreadsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('admin', ['only' => 'star']);
     }
     /**
      * Display a listing of the resource.
@@ -34,6 +37,7 @@ class ThreadsController extends Controller
         else
             $threads = Thread::orderBy('created_at', 'desc')->get();
 
+//        $threadsRead = ThreadRead::where('user_id', Auth::id())->pluck('thread_id');
 
         return view('threads.index', ['threads' => $threads]);
 
@@ -70,6 +74,11 @@ class ThreadsController extends Controller
      */
     public function show(Thread $thread)
     {
+        if(!Auth::user()->threadsRead->contains('thread_id', $thread->id))
+        {
+            ThreadRead::create(['user_id' => Auth::id(), 'thread_id' => $thread->id]);
+        }
+
         return view('threads.show', ['thread'=>$thread]);
     }
 
@@ -106,4 +115,27 @@ class ThreadsController extends Controller
     {
         //
     }
+
+    public function star(Thread $thread){
+
+        if($thread->starred){
+            $thread->starred = false;
+            $thread->save();
+        }
+        else{
+            $thread->starred = true;
+            $thread->save();
+        }
+        if($thread->starred){
+            $thread->update(['starred'=>false]);
+
+        }
+        else{
+            $thread->update(['starred'=>true]);
+        }
+
+        return back();
+    }
+
+
 }

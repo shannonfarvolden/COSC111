@@ -5,7 +5,7 @@
         <h1>Edit Slide Set</h1>
     </div>
     @include('partials.error')
-    {!! Form::open([ 'action' => ['SlidesController@update', $slideset]]) !!}
+    {!! Form::open([ 'method'=>'PATCH','action' => ['SlidesController@update', $slideset]]) !!}
     @include('slide.form', ['submitButtonText' => 'Save'])
     {!! Form::close() !!}
 

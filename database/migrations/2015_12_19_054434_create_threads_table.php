@@ -20,6 +20,7 @@ class CreateThreadsTable extends Migration {
             $table->text('body');
             $table->string('category');
             $table->boolean('anonymous')->default(false);
+            $table->boolean('starred')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')
