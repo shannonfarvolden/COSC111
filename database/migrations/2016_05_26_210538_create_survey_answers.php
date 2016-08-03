@@ -31,7 +31,7 @@ class CreateSurveyAnswers extends Migration {
             $table->integer('survey_id')->unsigned()->index();
             $table->integer('survey_question_id')->unsigned()->index();
             $table->integer('survey_answer_id')->unsigned()->index();
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('user_id')
                 ->references('id')

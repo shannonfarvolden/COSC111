@@ -16,7 +16,7 @@ class CreateThreadsReadTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index();
             $table->integer('thread_id')->index();
-            $table->timestamps();
+            $table->nullableTimestamps();
 
         });
     }

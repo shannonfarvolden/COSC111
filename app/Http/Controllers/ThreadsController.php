@@ -126,13 +126,6 @@ class ThreadsController extends Controller
             $thread->starred = true;
             $thread->save();
         }
-        if($thread->starred){
-            $thread->update(['starred'=>false]);
-
-        }
-        else{
-            $thread->update(['starred'=>true]);
-        }
 
         return back();
     }

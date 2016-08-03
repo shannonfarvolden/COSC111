@@ -21,7 +21,7 @@ class CreateThreadsTable extends Migration {
             $table->string('category');
             $table->boolean('anonymous')->default(false);
             $table->boolean('starred')->default(false);
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('user_id')
                 ->references('id')

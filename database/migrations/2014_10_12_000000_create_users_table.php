@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration {
             $table->boolean('data_consent')->default(true);
             $table->boolean('admin')->default(false);
             $table->rememberToken();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

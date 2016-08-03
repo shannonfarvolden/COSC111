@@ -18,7 +18,7 @@ class CreateAnswersTable extends Migration {
             $table->integer('question_id')->unsigned();
             $table->text('answer');
             $table->boolean('correct');
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('question_id')
                 ->references('id')

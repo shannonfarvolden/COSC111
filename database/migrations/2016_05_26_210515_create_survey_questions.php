@@ -17,7 +17,7 @@ class CreateSurveyQuestions extends Migration {
             $table->increments('id');
             $table->integer('survey_id')->unsigned();
             $table->text('question');
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('survey_id')
                 ->references('id')

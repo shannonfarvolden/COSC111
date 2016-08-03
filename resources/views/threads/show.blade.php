@@ -30,7 +30,7 @@
     {!! Form::close() !!}
 
     @include('partials.error')
-    <br><a href="/threads"> Back to discussion forum </a>
+    <br><a href="/thread"> Back to discussion forum </a>
 @endsection
 
 @section('footer')

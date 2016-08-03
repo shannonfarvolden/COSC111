@@ -18,7 +18,7 @@ class CreateQuizzesTable extends Migration {
             $table->string('name');
             $table->integer('total')->unsigned();
             $table->boolean('active')->default(false);
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
 
         Schema::create('quiz_user', function (Blueprint $table)
@@ -28,7 +28,7 @@ class CreateQuizzesTable extends Migration {
             $table->integer('quiz_id')->unsigned()->index();
             $table->integer('score')->unsigned();
             $table->integer('attempt')->unsigned()->default(0);
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('user_id')
                 ->references('id')

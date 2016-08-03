@@ -21,7 +21,7 @@ class CreateSlidesTable extends Migration {
             $table->integer('slide_number')->unsigned();
             $table->string('image_path');
             $table->string('thumbnail_path');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

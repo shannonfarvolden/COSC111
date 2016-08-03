@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration {
             $table->increments('id');
             $table->integer('quiz_id')->unsigned();
             $table->text('question');
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('quiz_id')
                 ->references('id')

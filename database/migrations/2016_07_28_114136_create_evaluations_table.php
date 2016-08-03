@@ -16,7 +16,7 @@ class CreateEvaluationsTable extends Migration
             $table->increments('id');
             $table->string('category');
             $table->integer('grade');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

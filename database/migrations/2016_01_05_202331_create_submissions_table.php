@@ -17,10 +17,15 @@ class CreateSubmissionsTable extends Migration
             $table->string('name');
             $table->dateTime('due_date');
             $table->integer('total')->unsigned();
-            $table->string('category');
+            $table->integer('evaluation_id')->unsigned();
             $table->boolean('bonus')->default(false);
             $table->boolean('active')->default(false);
-            $table->timestamps();
+            $table->nullableTimestamps();
+
+            $table->foreign('evaluation_id')
+                ->references('id')
+                ->on('evaluations')
+                ->onDelete('cascade');
         });
 
         Schema::create('submission_user', function(Blueprint $table){
@@ -31,7 +36,7 @@ class CreateSubmissionsTable extends Migration
             $table->string('file_path');
             $table->text('comments')->nullable();
             $table->integer('attempt')->unsigned()->default(0);
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('user_id')
                 ->references('id')
