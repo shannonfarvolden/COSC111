@@ -17,7 +17,7 @@ class Submission extends Model
         'name',
         'due_date',
         'total',
-        'category',
+        'evaluation_id',
         'active',
         'bonus'
     ];
@@ -53,4 +53,24 @@ class Submission extends Model
         $this->attributes['due_date'] = Carbon::parse($date);
     }
 
+    /**
+     * A grade belongs to an evaluation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function evaluation()
+    {
+        return $this->belongsTo('App\Evaluation');
+    }
+
+    /**
+     * Calculate class average of submission.
+     *
+     * @return float
+     */
+    public function average(){
+
+        return ($this->grades->sum('mark')/$this->grades->count())/$this->total * 100;
+
+    }
 }

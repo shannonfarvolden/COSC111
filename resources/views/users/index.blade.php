@@ -12,19 +12,21 @@
             <th>Student Name</th>
             <th>Student Number</th>
             <th>Lab Section</th>
-            <th>Email</th>
             <th>Grades</th>
             <th>Delete</th>
 
         </tr>
         @foreach($users as $user)
             <tr>
-                <td>{{$user->first_name}} {{$user->last_name}}</td>
+
+                <td><a href="{{ action('GradesController@index', $user) }}">{{$user->first_name}} {{$user->last_name}}</a></td>
                 <td>{{$user->student_number}}</td>
                 <td>{{$user->lab}}</td>
-                <td>{{$user->email}}</td>
-                <td>Temp</td>
-                <td><a href="#" class=" btn btn-danger"> Delete</a></td>
+                <td>Risk</td>
+                <td>{!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user], 'style' => 'display:inline;']) !!}
+                    {!! Form::submit('Delete User', ['class' => 'btn btn-default']) !!}
+                    {!! Form::close() !!}
+                </td>
             </tr>
         @endforeach
 

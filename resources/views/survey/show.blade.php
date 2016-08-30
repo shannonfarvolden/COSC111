@@ -5,7 +5,7 @@
         <h1>{{$survey->name}}</h1>
     </div>
     @include('partials.error')
-    {!! Form::open([ 'action' => ['SurveyController@store', $survey]]) !!}
+    {!! Form::open([ 'action' => ['SurveyController@userSurvey', $survey->id]]) !!}
     <?php $count=1;?>
     @foreach($survey->questions as $question)
         <div class="panel panel-default">

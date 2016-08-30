@@ -12,8 +12,8 @@
     {!! Form::text('total', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('category', 'Category') !!}
-    {!! Form::select('category', [ 'Labs'=>'Labs','In-Class'=>'In-Class', 'Assignments'=>'Assignments', 'Exams'=>'Exams'], null, ['class' => 'form-control']) !!}
+    {!! Form::label('evaluation_id', 'Category') !!}
+    {!! Form::select('evaluation_id', $evaluations, null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('bonus', 'Make this entire submission bonus?') !!}

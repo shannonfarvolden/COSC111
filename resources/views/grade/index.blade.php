@@ -49,39 +49,21 @@
         <!-- Table -->
         <table class="table">
             <tr>
-                <th>Section</th>
+                <th>Category</th>
                 <th>Mark</th>
                 <th>Percentage</th>
+                <th>Percentage of Final Mark</th>
             </tr>
-            @if($labTotal > 0)
+            @foreach($evaluations as $key=>$evaluation)
+                @if($evaluation['total']>0)
                 <tr>
-                    <td>Labs</td>
-                    <td>{{$labMark}}/{{$labTotal}}</td>
-                    <td>{{round($labMark/$labTotal, 4)*100}}%</td>
+                    <td>{{$key}}</td>
+                    <td>{{$evaluation['grade']}}/{{$evaluation['total']}}</td>
+                    <td>{{round($evaluation['grade']/$evaluation['total'], 4)*100}}%</td>
+                    <td>{{$evaluation['percent']}}%</td>
                 </tr>
-            @endif
-            @if($quizTotal > 0)
-                <tr>
-                    <td>Quizzes</td>
-                    <td>{{$quizMark}}/{{$quizTotal}}</td>
-                    <td>{{round($quizMark/$quizTotal, 4)*100}}%</td>
-                </tr>
-            @endif
-            @if($inClassTotal > 0)
-                <tr>
-                    <td>in-class assignments</td>
-                    <td>{{$inClassMark}}/{{$inClassTotal}}</td>
-                    <td>{{round($inClassMark/$inClassTotal, 4)*100}}%</td>
-                </tr>
-            @endif
-            @if($assignmentTotal > 0)
-                <tr>
-                    <td>Assignments</td>
-                    <td>{{$assignmentMark}}/{{$assignmentTotal}}</td>
-                    <td>{{round($assignmentMark/$assignmentTotal, 4)*100}}%</td>
-                </tr>
-            @endif
-
+                @endif
+            @endforeach
         </table>
     </div>
 

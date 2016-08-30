@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/thread') }}">Discussion Forum</a></li>
-                <li><a href="{{ url('/slide') }}">Slides</a></li>
+                <li><a href="{{ url('/slideset') }}">Slides</a></li>
                 <li><a href="{{ url('/quiz') }}">Quizzes</a></li>
                 <li><a href="{{ url('/submission') }}">Submissions</a></li>
                 <li class="dropdown">
@@ -34,13 +34,7 @@
                         <li><a href="{{ url('/lab9') }}">Lab 9</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Surveys<span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{ url('/survey/1') }}">Survey 1</a></li>
-                    </ul>
-                </li>
+                <li><a href="{{ url('/survey') }}">Surveys</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Assignments<span class="caret"></span></a>
@@ -64,9 +58,8 @@
                            aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span
                                     class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="{{ url('/grade') }}">My Grades</a></li>
-                            {{--<li><a href="{{ url('/stats') }}">My Stats</a></li>--}}
-                            {{--<li><a href="#">My Notes</a></li>--}}
+                            <li><a href="{{ action('GradesController@index', Auth::user()) }}">My Grades</a></li>
+                            <li><a href="{{ url('/stats') }}">My Stats</a></li>
                             <li><a href="{{ url('/consent') }}">Consent Form</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>

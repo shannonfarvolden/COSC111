@@ -13,10 +13,8 @@ class Slide extends Model {
      * @var array
      */
     protected $fillable = [
-        'slide_set',
-        'lecture',
+        'slide_set_id',
         'slide_number',
-        'topic',
         'image_path',
         'thumbnail_path',
     ];
@@ -32,14 +30,22 @@ class Slide extends Model {
     }
 
     /**
-     * Query scope for finding slide sets in a given week.
-     * @param $query
-     * @param $week
-     * @return mixed
+     * A Slide belongs to a Slide Set
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function scopeSlideSet($query, $week)
+    public function slideSet()
     {
-       return $query->where('lecture', $week)->orderBy('slide_set', 'asc');
+        return $this->belongsTo('App\SlideSet');
+    }
+
+    public function delete(){
+        \File::delete([
+            $this->path,
+            $this->thumbnail_path
+        ]);
+
+        parent::delete();
     }
 
 

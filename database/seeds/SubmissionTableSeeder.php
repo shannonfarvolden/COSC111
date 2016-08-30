@@ -18,7 +18,7 @@ class SubmissionTableSeeder extends Seeder {
                 'name'     => 'Lab ' . $i,
                 'due_date' => Carbon\Carbon::createFromDate(2016, rand(8, 12), rand(1, 30)),
                 'total'    => rand(10, 30),
-                'category' => 'Labs',
+                'evaluation_id' => 3,
                 'active'   => true,
                 'bonus'    => false
             ]);

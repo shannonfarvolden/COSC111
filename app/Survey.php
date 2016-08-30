@@ -36,6 +36,7 @@ class Survey extends Model {
     }
 
     public function size(){
+
         return $this->questions->count();
     }
 }

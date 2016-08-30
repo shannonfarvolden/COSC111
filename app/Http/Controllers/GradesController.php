@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Evaluation;
 use App\Submission;
 use App\Grade;
 use App\Quiz;
@@ -19,21 +20,26 @@ class GradesController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['except' => [
+            'index'
+        ]]);
     }
 
     /**
-     * Displays grades of a user.
+     * Index grades of a specific user.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $user = Auth::user();
         $grades = $user->grades;
         $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
-        $marks = $this->calculateMarks();
+        $evaluations = $this->calculateMarks($user);
+        $marks = [];
+        $marks = array_add($marks, 'evaluations', $evaluations);
         $marks = array_add($marks, 'grades', $grades);
         $marks = array_add($marks, 'quizzes', $quizzes);
+
         return view('grade.index', $marks);
     }
 
@@ -42,47 +48,28 @@ class GradesController extends Controller {
      *
      * @return array
      */
-    public function calculateMarks()
+    public function calculateMarks(User $user)
     {
-        $user = Auth::user();
-        $grades = $user->grades;
-        $quizzes = Quiz::all();
+        $evaluations = Evaluation::all();
+        $userEvaluations=[];
+        foreach($evaluations as $evaluation){
+            $submissions = $evaluation->submissions;
+            $submissionTotal = 0;
+            $submissionMark = 0;
+            foreach($submissions as $submission){
+                $userGrade = $submission->grades()->where('user_id',$user->id);
+                if($userGrade->exists()){
+                    $submissionMark += $userGrade->get()->first()->mark;
+                    if(!$submission->bonus){
+                        $submissionTotal += $submission->total;
+                    }
 
-        $labMark = 0;
-        $labTotal = 0;
-        $assignmentMark = 0;
-        $assignmentTotal = 0;
-        $inClassMark = 0;
-        $inClassTotal = 0;
-        $quizMark = 0;
-        $quizTotal = 0;
-
-        foreach($grades as $grade){
-            if($grade->submission->category == 'Labs'){
-                $labMark += $grade->mark;
-                if($grade->submission->bonus == false)
-                    $labTotal += $grade->submission->total;
+                }
             }
-            elseif($grade->submission->category == 'Assignments'){
-                $assignmentMark += $grade->mark;
-                if($grade->submission->bonus == false)
-                    $assignmentTotal += $grade->submission->total;
-            }
-            elseif($grade->submission->category == 'In-Class'){
-                $inClassMark += $grade->mark;
-                if($grade->submission->bonus == false)
-                    $inClassTotal += $grade->submission->total;
-            }
-
-        }
-        foreach($quizzes as $quiz){
-            $quizMark+= $user->quizzes()->where('id', $quiz->id)->max('score');
-            $quizTotal += 10;
+            $userEvaluations[$evaluation->category] = ['grade'=>$submissionMark, 'total'=>$submissionTotal, 'percent'=>$evaluation->grade];
         }
 
-        $marks = compact(['labMark', 'labTotal', 'assignmentMark', 'assignmentTotal', 'inClassMark', 'inClassTotal', 'examMark', 'examTotal', 'quizMark', 'quizTotal']);
-
-        return $marks;
+        return $userEvaluations;
     }
 
     /**
@@ -127,7 +114,7 @@ class GradesController extends Controller {
      */
     public function edit(Submission $submission, User $user)
     {
-        $grade = $user->grades->whereLoose('submission_id', $submission->id)->last();
+        $grade = $user->grades()->where('submission_id', $submission->id)->first();
         return view('grade.edit', ['grade'=>$grade]);
 
     }

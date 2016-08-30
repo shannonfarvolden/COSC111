@@ -28,4 +28,17 @@ class UsersController extends Controller
         $users = User::all();
         return view('users.index', ['users'=>$users]);
     }
+
+    /**
+     * Destroy a specific user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(User $user){
+        $user->delete();
+        return back();
+    }
+
 }

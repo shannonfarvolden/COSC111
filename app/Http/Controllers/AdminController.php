@@ -37,7 +37,7 @@ class AdminController extends Controller {
     /**
      * Displays student submissions.
      *
-     * @param $id
+     * @param Submission $submission
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function mark(Submission $submission, Request $request)

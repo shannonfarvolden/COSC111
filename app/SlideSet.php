@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evaluation extends Model
+class SlideSet extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,17 +12,19 @@ class Evaluation extends Model
      * @var array
      */
     protected $fillable = [
+        'slide_set',
+        'topic',
+        'week',
         'category',
-        'grade',
     ];
 
     /**
-     * A evaluation can have many submissions associated with it.
+     * A Slide Set has many Slides.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function submissions()
+    public function slides()
     {
-        return $this->hasMany('App\Submission');
+        return $this->hasMany('App\Slide');
     }
 }

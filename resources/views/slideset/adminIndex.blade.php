@@ -7,6 +7,7 @@
 
     <a href="{{ action('SlidesController@create') }}" class=" btn btn-primary margin-button"> Create Slides </a>
     @foreach($slides as $slide)
+        <a href="{{ action('SlidesController@show', $slide->slide_set) }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>{{$slide->topic}}</p>
@@ -18,5 +19,6 @@
                 {!! Form::close() !!}
             </div>
         </div>
+        </a>
     @endforeach
 @endsection

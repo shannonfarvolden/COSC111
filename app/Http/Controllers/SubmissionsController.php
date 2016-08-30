@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmissionRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Evaluation;
 use App\Submission;
 use Auth;
 
@@ -43,7 +44,10 @@ class SubmissionsController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(){
-        return view('submission.create');
+
+        $evaluations = Evaluation::lists('category','id');
+
+        return view('submission.create', ['evaluations'=>$evaluations]);
     }
 
     /**
@@ -67,7 +71,8 @@ class SubmissionsController extends Controller {
      */
     public function edit(Submission $submission)
     {
-        return view('submission.edit', ['submission'=>$submission]);
+        $evaluations = Evaluation::lists('category','id');
+        return view('submission.edit', ['submission'=>$submission, 'evaluations'=>$evaluations]);
     }
 
 
@@ -122,7 +127,7 @@ class SubmissionsController extends Controller {
      */
     public function studentCreate(Submission $submission)
     {
-        $lastAttempt = Auth::user()->submissions->whereLoose('id', $submission->id)->last();
+        $lastAttempt = Auth::user()->submissions->where('id', $submission->id)->get()->last();
 
         return view('submission.studentCreate', ['submission' => $submission, 'lastAttempt' => $lastAttempt]);
     }
@@ -168,5 +173,6 @@ class SubmissionsController extends Controller {
     {
         return view('submission.complete', ['submission' => $submission]);
     }
+
 
 }

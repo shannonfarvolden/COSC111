@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Quiz;
 use Auth;
 use DB;
-
+use Carbon\Carbon
 class QuizzesController extends Controller
 {
     /**
@@ -38,16 +38,17 @@ class QuizzesController extends Controller
      */
     public function create()
     {
-        //
+        return view('quiz.create');
     }
 
     /**
-     * Store a quiz score into quiz_user.
+     * Store a user's quiz score into storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Quiz $quiz)
+    public function userQuiz(Request $request, Quiz $quiz)
     {
         $score = 0;
         for ($i = 1; $i <= 10; $i++) {
@@ -66,7 +67,7 @@ class QuizzesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
     public function show(Quiz $quiz)
@@ -86,6 +87,7 @@ class QuizzesController extends Controller
 
 
     /**
+     * @param  Quiz $quiz
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function result(Quiz $quiz)
@@ -106,34 +108,37 @@ class QuizzesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Quiz $quiz)
     {
-        //
+        return view('quiz.edit', ['quiz'=>$quiz]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quiz $quiz)
     {
-        //
+        $quiz->update($request->all());
+        return redirect()->action('QuizzesController@index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Quiz $quiz
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quiz $quiz)
     {
-        //
+        $quiz->delete();
+
+        return redirect()->action('QuizzesController@index');
     }
 }

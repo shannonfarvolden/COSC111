@@ -4,6 +4,7 @@
     <div class="page-header">
         <h1>Submissions</h1>
     </div>
+
     @foreach($submissions as $submission)
         <a style="color:black; text-decoration:none" href="{{ action('SubmissionsController@studentCreate', $submission) }}">
             <div class="panel panel-default">

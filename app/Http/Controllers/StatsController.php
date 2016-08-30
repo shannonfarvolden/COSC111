@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\ExamSurvey;
-use Illuminate\Http\Request;
-use App\Quiz;
-use App\Submission;
-use App\Grade;
-use Auth;
-use App\Http\Requests;
-use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\ExamSurvey;
+use App\Evaluation;
+use App\Submission;
 use Carbon\Carbon;
 use App\Survey;
+use App\Grade;
+use App\Quiz;
+use App\User;
+use Auth;
 
 
 class StatsController extends Controller {
@@ -28,14 +29,9 @@ class StatsController extends Controller {
 
     public function show()
     {
-        $userGrades = Auth::user()->grades;
-        $labs = Submission::where('name', 'like', 'Lab%')->get();
-        $assignments = Submission::where('name', 'like', 'Assignment%')->get();
-        $inClasses = Submission::where('name', 'like', 'in-class%')->get();
-        $midterms = Submission::where('name', 'like', 'Midterm%')->get();
-        $surveys = Submission::where('name', 'like', 'Survey%')->get();
+        $grades = Auth::user()->grades;
 
-        return view('stats.show', ['userGrades' => $userGrades, 'labs' => $labs, 'assignments' => $assignments, 'inClasses' => $inClasses, 'midterms' => $midterms, 'surveys' => $surveys]);
+        return view('stats.show', ['grades'=>$grades]);
     }
 
     public function adminStats()

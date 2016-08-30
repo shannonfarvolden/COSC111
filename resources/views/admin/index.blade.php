@@ -9,24 +9,31 @@
             </div>
         </div>
     </a>
-    <a href="{{ url('#') }}">
+    <a href="{{ url('/quiz') }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>Quizzes</p>
             </div>
         </div>
     </a>
-    <a href="{{ url('/admin/slide') }}">
+    <a href="{{ url('/slidesets') }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>Slide Sets</p>
             </div>
         </div>
     </a>
-    <a href="{{ url('#') }}">
+    <a href="{{ url('/adminStats') }}">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>Class Stats</p>
+            </div>
+        </div>
+    </a>
+    <a href="{{ url('/survey') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Surveys</p>
             </div>
         </div>
     </a>

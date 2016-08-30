@@ -5,7 +5,7 @@
     <div class="page-header">
         <h1>{{$quiz->name}}</h1>
     </div>
-    {!! Form::open([ 'action' => ['QuizzesController@store', $quiz->id]]) !!}
+    {!! Form::open([ 'action' => ['QuizzesController@userQuiz', $quiz->id]]) !!}
     <?php $count=1;?>
     @foreach($quiz->questions->shuffle() as $question)
         <div class="panel panel-default">

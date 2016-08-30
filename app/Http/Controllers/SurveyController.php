@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Survey;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\SurveyAnswer;
+use App\Survey;
 use Auth;
 
-class SurveyController extends Controller {
-
+class SurveyController extends Controller
+{
     /**
      * Create a new survey controller instance. User must be logged in to view pages.
      */
@@ -18,12 +18,73 @@ class SurveyController extends Controller {
     {
         $this->middleware('auth');
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $surveys = Survey::all();
+        return view('survey.index', ['surveys'=>$surveys]);
+    }
 
     /**
-     * Display the survey view.
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('survey.create');
+    }
+
+
+    /**
+     * Store a user survey in storage.
+     *
+     * @param Request $request
+     * @param Survey $survey
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function userSurvey(Request $request, Survey $survey)
+    {
+        // add validation rules and error messages to insure all radio buttons of the survey are filled out
+        $rules = [];
+        $messages = [];
+        for ( $i = 1; $i <= $survey->size(); $i++ ){
+            $rules['radio.'.$i] = 'required';
+            $messages['radio.'.$i.'.required'] = 'Survey Question '.$i.' is required.';
+        }
+
+        $this->validate($request, $rules, $messages);
+        //store answers in database if all questions have been filled out
+        $numResponses = count($request->input('radio'));
+        for ( $i = 1; $i <= $numResponses; $i++ )
+        {
+            $answer = SurveyAnswer::findOrFail($request->input('radio.' . $i));
+            Auth::user()->surveys()->attach($survey->id, ['survey_question_id' => $answer->survey_question_id, 'survey_answer_id' => $answer->id]);
+
+        }
+
+        return back();
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request){
+
+    }
+    /**
+     * Display the specified resource.
      *
      * @param Survey $survey
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function show(Survey $survey)
     {
@@ -36,32 +97,40 @@ class SurveyController extends Controller {
     }
 
     /**
-     * Story surveys completed by users in the database
+     * Show the form for editing the specified resource.
      *
-     * @param Request $request
-     * @param Survey $survey
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Survey $survey
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Survey $survey)
+    public function edit(Survey $survey)
     {
-        // add validation rules and error messages to insure all radio buttons of the survey are filled out
-        $rules = [];
-        $messages = [];
-        for ( $i = 1; $i <= $survey->size(); $i++ ){
-            $rules['radio.'.$i] = 'required';
-            $messages['radio.'.$i.'.required'] = 'Survey Question '.$i.' is required.';
-        }
-
-        $this->validate($request, $rules, $messages);
-
-        //store answers in database if all questions have been filled out
-        $numResponses = count($request->input('radio'));
-        for ( $i = 1; $i <= $numResponses; $i++ )
-        {
-            $answer = SurveyAnswer::findOrFail($request->input('radio.' . $i));
-            Auth::user()->surveys()->attach($survey->id, ['survey_question_id' => $answer->survey_question_id, 'survey_answer_id' => $answer->id]);
-        }
-
-        return back();
+        return view('survey.edit', ['survey'=>$survey]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Survey $survey
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Survey $survey)
+    {
+        $survey->update($request->all());
+        return redirect()->action('SurveyController@index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Survey $survey
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Survey $survey)
+    {
+        $survey->delete();
+
+        return redirect()->action('SurveyController@index');
+    }
+
 }

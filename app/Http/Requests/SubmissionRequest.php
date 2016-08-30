@@ -27,7 +27,7 @@ class SubmissionRequest extends Request
             'name' => 'required',
             'due_date' => 'required',
             'total' => 'required',
-            'category' => 'required',
+            'evaluation_id' => 'required',
         ];
     }
 }
