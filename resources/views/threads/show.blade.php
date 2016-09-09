@@ -4,6 +4,9 @@
 
     <div class="heading-margin panel panel-default">
         <div class="panel-heading">
+            @if($thread->starred)
+                <span class="col-md-1 glyphicon glyphicon-star thread-star" aria-hidden="true"></span>
+            @endif
             <h3 class="panel-title">{{ $thread->title }}</h3>
         </div>
         <div class="panel-body">
@@ -17,6 +20,7 @@
     @endif
     <p>{{$thread->created_at->diffForHumans()}}</p>
     <p>Category: {{$thread->category}}</p><br>
+    @include('threads.partials.star')
     <hr>
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)

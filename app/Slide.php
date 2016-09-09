@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Image;
+use File;
 
 class Slide extends Model {
 
@@ -39,9 +40,15 @@ class Slide extends Model {
         return $this->belongsTo('App\SlideSet');
     }
 
+
+    /**
+     * Delete Slide and images in database
+     * @throws \Exception
+     */
     public function delete(){
-        \File::delete([
-            $this->path,
+
+        File::delete([
+            $this->image_path,
             $this->thumbnail_path
         ]);
 

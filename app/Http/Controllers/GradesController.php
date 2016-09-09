@@ -34,42 +34,10 @@ class GradesController extends Controller {
     {
         $grades = $user->grades;
         $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
-        $evaluations = $this->calculateMarks($user);
-        $marks = [];
-        $marks = array_add($marks, 'evaluations', $evaluations);
-        $marks = array_add($marks, 'grades', $grades);
-        $marks = array_add($marks, 'quizzes', $quizzes);
 
-        return view('grade.index', $marks);
-    }
-
-    /**
-     * Calculates student marks.
-     *
-     * @return array
-     */
-    public function calculateMarks(User $user)
-    {
         $evaluations = Evaluation::all();
-        $userEvaluations=[];
-        foreach($evaluations as $evaluation){
-            $submissions = $evaluation->submissions;
-            $submissionTotal = 0;
-            $submissionMark = 0;
-            foreach($submissions as $submission){
-                $userGrade = $submission->grades()->where('user_id',$user->id);
-                if($userGrade->exists()){
-                    $submissionMark += $userGrade->get()->first()->mark;
-                    if(!$submission->bonus){
-                        $submissionTotal += $submission->total;
-                    }
+        return view('grade.index', ['grades'=>$grades, 'quizzes'=>$quizzes, 'evaluations'=>$evaluations, 'user'=>$user]);
 
-                }
-            }
-            $userEvaluations[$evaluation->category] = ['grade'=>$submissionMark, 'total'=>$submissionTotal, 'percent'=>$evaluation->grade];
-        }
-
-        return $userEvaluations;
     }
 
     /**

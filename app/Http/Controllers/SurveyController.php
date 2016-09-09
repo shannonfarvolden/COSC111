@@ -39,7 +39,30 @@ class SurveyController extends Controller
         return view('survey.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
 
+        $questions = $request->input('question');
+        $options = $request->input('option');
+
+        $survey = $request->input('active') ? Survey::create(['name' => $request->input('name'), 'active' => $request->input('active'), 'total' => count($questions)]) : Survey::create(['name' => $request->input('name'), 'total' => count($questions)]);
+
+        for ( $i = 1; $i <= count($questions); $i++ ){
+            $question = $survey->questions()->create(['question' => $questions[$i]]);
+            for ( $j = 1; $j <= count($options[$i]); $j++ ){
+                $question->answers()->create(['answer' => $options[$i][$j]]);
+            }
+        }
+
+        return redirect()->action('SurveyController@index');
+
+    }
     /**
      * Store a user survey in storage.
      *
@@ -70,16 +93,6 @@ class SurveyController extends Controller
         return back();
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request){
-
-    }
     /**
      * Display the specified resource.
      *

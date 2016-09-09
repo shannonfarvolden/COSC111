@@ -40,19 +40,13 @@
                         <p class="text-right"><b>Latest Reply: </b>{{$thread->replies->last()->created_at->diffForHumans()}}</p>
                     @endif
                         <p class="text-right"><b>Post Created: </b>{{$thread->created_at->diffForHumans()}}</p>
-                    @if(Auth::user()->admin)
-                        <form method="POST" action="thread/{{$thread->id}}/star" >
-                            {{csrf_field()}}
-                            @if($thread->starred)
-                            <button class="btn btn-default">
-                                Unstar
-                            </button>
-                            @else
-                            <button class="btn btn-default">
-                                Star
-                            </button>
+                    @include('threads.partials.star')
+                    @if(Auth::user()->threadsRead->contains('thread_id', $thread->id))
+                        @if(!Auth::user()->threadsRead()->where('thread_id',$thread->id)->get()->first()->thread->replies->isEmpty())
+                            @if(Auth::user()->threadsRead()->where('thread_id',$thread->id)->get()->first()->thread->replies->last()->created_at > Auth::user()->threadsRead()->where('thread_id',$thread->id)->get()->first()->updated_at)
+                                <span class="label label-primary">New Reply</span>
                             @endif
-                        </form>
+                        @endif
                     @endif
                 </div>
             </div>

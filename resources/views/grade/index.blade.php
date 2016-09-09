@@ -42,7 +42,12 @@
             @endforeach
         </table>
     </div>
-
+    <div class="well well-sm">
+        Most urgent risk factor displayed. Possible standing labels are:
+        <span class="label label-success">success</span>
+        <span class="label label-warning">warning</span>
+        <span class="label label-danger">danger</span>
+    </div>
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Grade Averages</div>
@@ -52,16 +57,23 @@
                 <th>Category</th>
                 <th>Mark</th>
                 <th>Percentage</th>
-                <th>Percentage of Final Mark</th>
+                <th>Percentage of Final Mark So Far</th>
+                <th>Standing</th>
             </tr>
-            @foreach($evaluations as $key=>$evaluation)
-                @if($evaluation['total']>0)
-                <tr>
-                    <td>{{$key}}</td>
-                    <td>{{$evaluation['grade']}}/{{$evaluation['total']}}</td>
-                    <td>{{round($evaluation['grade']/$evaluation['total'], 4)*100}}%</td>
-                    <td>{{$evaluation['percent']}}%</td>
-                </tr>
+
+            @foreach($evaluations as $evaluation)
+                @if($evaluation->evaluationTotal($user)>0)
+                    <tr>
+                        <td>{{$evaluation->category}}</td>
+                        <td>{{$evaluation->userTotalMark($user)}}/{{$evaluation->evaluationTotal($user)}}</td>
+                        <td>{{$evaluation->userPercentage($user)}}%
+                        </td>
+                        <td>{{$evaluation->userFinalPercentage($user)}}/{{$evaluation->grade}}%
+                        </td>
+                        <td>
+                            <span class="label label-{{$evaluation->userStanding($user)}}">{{$evaluation->userStanding($user)}}</span>
+                        </td>
+                    </tr>
                 @endif
             @endforeach
         </table>

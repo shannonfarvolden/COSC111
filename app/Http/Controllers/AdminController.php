@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Submission;
-use App\Grade;
+use App\Evaluation;
 use App\User;
 use Auth;
 
@@ -52,7 +52,11 @@ class AdminController extends Controller {
         return view('admin.mark', ['submission' => $submission, 'users' => $users]);
     }
 
+    public function overview(){
+        $evaluations = Evaluation::all();
 
+        return view('admin.overview', ['evaluations'=>$evaluations]);
+    }
     /**
      * Filter and Sort users.
      *

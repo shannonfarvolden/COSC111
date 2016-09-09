@@ -2,53 +2,33 @@
 
 @section('content')
     <br>
-    <a href="{{ url('/admin/submission') }}">
+    <a href="/admin/overview">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Submissions</p>
-            </div>
-        </div>
-    </a>
-    <a href="{{ url('/quiz') }}">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>Quizzes</p>
-            </div>
-        </div>
-    </a>
-    <a href="{{ url('/slidesets') }}">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>Slide Sets</p>
+                <p>Overview</p>
             </div>
         </div>
     </a>
     <a href="{{ url('/adminStats') }}">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Class Stats</p>
-            </div>
-        </div>
-    </a>
-    <a href="{{ url('/survey') }}">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>Surveys</p>
+                <p>Detailed Class Stats</p>
             </div>
         </div>
     </a>
     <a href="{{ url('/users') }}">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Students</p>
+                <p>All Students Info</p>
             </div>
         </div>
     </a>
-    <a href="{{ url('/admin/evaluation') }}">
+    <a href="{{ url('/admin/submission') }}">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Evaluation Criteria</p>
+                <p>Manage & View Submissions</p>
             </div>
         </div>
     </a>
+
 @endsection

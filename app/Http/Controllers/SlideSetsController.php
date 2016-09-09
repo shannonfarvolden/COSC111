@@ -12,7 +12,7 @@ use App\Slide;
 class SlideSetsController extends Controller {
 
     /**
-     * Create a new slides controller instance. User must be logged in to view pages.
+     * Create a new slide sets controller instance. User must be logged in to view pages.
      */
     public function __construct()
     {
@@ -166,13 +166,13 @@ class SlideSetsController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  SlideSet $slideset
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SlideSet $slideset)
     {
 
-        $id->delete();
+        $slideset->delete();
 
         return redirect()->action('SlideSetsController@index');
     }

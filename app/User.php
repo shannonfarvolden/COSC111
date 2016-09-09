@@ -60,7 +60,7 @@ class User extends BaseUser {
     }
 
     /**
-     * Get the quizzes written by a given user.
+     * A User can write many quizzes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -77,6 +77,16 @@ class User extends BaseUser {
     public function surveys()
     {
         return $this->belongsToMany('App\Survey')->withPivot('survey_question_id', 'survey_answer_id')->withTimestamps();
+    }
+
+    /**
+     * A User can read many threads.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threadsRead(){
+        return $this->hasMany('App\ThreadRead');
+
     }
 
     /**
@@ -189,8 +199,7 @@ class User extends BaseUser {
         return $this->grades()->where('submission_id', $id)->get()->last()->mark;
 
     }
-    public function threadsRead(){
-        return $this->hasMany('App\ThreadRead');
 
-    }
+
+
 }

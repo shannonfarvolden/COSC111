@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Thread;
 use App\ThreadRead;
+use Carbon\Carbon;
 use Auth;
 
 
@@ -78,6 +79,12 @@ class ThreadsController extends Controller
         {
             ThreadRead::create(['user_id' => Auth::id(), 'thread_id' => $thread->id]);
         }
+        else
+        {
+            $threadRead = Auth::user()->threadsRead()->where('thread_id', $thread->id)->get()->first();
+            $threadRead->updated_at = Carbon::now();
+            $threadRead->save();
+        }
 
         return view('threads.show', ['thread'=>$thread]);
     }
@@ -116,6 +123,13 @@ class ThreadsController extends Controller
         //
     }
 
+
+    /**
+     * Add or remove star to thread.
+     *
+     * @param Thread $thread
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function star(Thread $thread){
 
         if($thread->starred){

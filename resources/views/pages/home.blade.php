@@ -19,6 +19,10 @@
                     <li>{{$evaluation->grade}}% {{$evaluation->category}}</li>
                 @endforeach
             </ul>
+            @if(Auth::user()->admin)
+                <a href="{{action('EvaluationsController@index')}}"
+                   class="btn btn-default">Manage</a>
+            @endif
         </div>
     </div>
     <div class="panel panel-default">

@@ -16,12 +16,16 @@
                 @for($j = 1; $j<=4; $j++)
                     <div class="row">
                         <div class="form-group col-md-offset-2 col-md-10">
-                            {!! Form::label('answer['.$j.']', 'Answer '.$j) !!}
-                            {!! Form::text('answer['.$j.']', null, ['class' => 'form-control']) !!}
+                            {!! Form::label('option['.$i.']['.$j.']', 'Option '.$j) !!}
+                            {!! Form::text('option['.$i.']['.$j.']', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 @endfor
             @endfor
+            <div class="form-group">
+                {!! Form::label('active', 'Active Submission (students can see survey)') !!}
+                {!! Form::checkbox('active') !!}
+            </div>
             <div class="form-group">
                 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
             </div>

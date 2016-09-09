@@ -14,6 +14,7 @@ Route::post('/submission/create/{submission}', 'SubmissionsController@studentSto
 Route::resource('/admin/evaluation', 'EvaluationsController', ['except'=>'show']);
 
 Route::get('/admin', 'AdminController@admin');
+Route::get('/admin/overview', 'AdminController@overview');
 Route::get('/admin/mark/{submission}','AdminController@mark');
 
 Route::get('/grade/{user}','GradesController@index');
@@ -25,10 +26,9 @@ Route::patch('/admin/mark/{grade}','GradesController@update');
 Route::get('/users', 'UsersController@index');
 Route::delete('/users/{user}', 'UsersController@destroy');
 
-
 Route::resource('/slideset', 'SlideSetsController');
 Route::post('/slideset/{slideset}/slides', 'SlideSetsController@addSlide');
-//Route::delete('/slide/{id}', 'SlidesController@destroy');
+Route::delete('/slide/{slide}', 'SlidesController@destroy');
 
 Route::resource('/thread', 'ThreadsController');
 Route::post('/thread/{thread}/star', 'ThreadsController@star');
