@@ -16,17 +16,10 @@
             </div>
         </div>
     </a>
-    <a href="{{ url('/users') }}">
+    <a href="{{ action('UsersController@index') }}">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>All Students Info</p>
-            </div>
-        </div>
-    </a>
-    <a href="{{ url('/admin/submission') }}">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>Manage & View Submissions</p>
+                <p>All Users Info</p>
             </div>
         </div>
     </a>

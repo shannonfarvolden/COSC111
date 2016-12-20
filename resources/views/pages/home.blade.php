@@ -19,7 +19,7 @@
                     <li>{{$evaluation->grade}}% {{$evaluation->category}}</li>
                 @endforeach
             </ul>
-            @if(Auth::user()->admin)
+            @if(Auth::check() && Auth::user()->admin)
                 <a href="{{action('EvaluationsController@index')}}"
                    class="btn btn-default">Manage</a>
             @endif
@@ -137,7 +137,7 @@
                 <!--readings-->
                 <td>Ch 7</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment2">A2</a>  due this week</td>
+                <td><a href="/assignment2">A2</a> due this week</td>
                 <!--labs-->
                 <td><a href="/lab6">Lab 6 Continued</a></td>
             </tr>
@@ -204,7 +204,7 @@
 @section('footer')
     {{--Sends pageview google anaytics--}}
     <script>
-        ga('send',{
+        ga('send', {
             hitType: 'pageview',
             title: 'Home',
             page: '/'

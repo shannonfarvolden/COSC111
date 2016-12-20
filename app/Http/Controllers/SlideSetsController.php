@@ -132,9 +132,8 @@ class SlideSetsController extends Controller {
      */
     public function edit(SlideSet $slideset)
     {
-        $slides = Slide::where('slide_set', $id)->orderBy('slide_number', 'asc')->get();
 
-        return view('slideset.edit', ['slides' => $slides]);
+        return view('slideset.edit', ['slideset'=>$slideset]);
     }
 
     /**
@@ -160,7 +159,7 @@ class SlideSetsController extends Controller {
     public function update(Request $request, SlideSet $slideset)
     {
         $slideset->update($request->all());
-        redirect()->action('SlideSetsController@index');
+        return redirect()->action('SlideSetsController@index');
     }
 
     /**

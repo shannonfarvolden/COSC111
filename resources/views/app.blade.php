@@ -28,7 +28,7 @@
 {{--Javascript--}}
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="/js/libs.js"></script>
 
 {{--Google Analytics--}}

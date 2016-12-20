@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Evaluation;
 use App\User;
 
 
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('admin',['except'=>['show', 'edit', 'update']]);
     }
     /**
      * Displays vew of users registered to the site.
@@ -26,9 +27,36 @@ class UsersController extends Controller
     public function index(){
 
         $users = User::all();
-        return view('users.index', ['users'=>$users]);
+        $evaluations = Evaluation::all();
+        return view('users.index', ['users'=>$users, 'evaluations'=>$evaluations]);
+    }
+    /**
+     * Index grades of a specific user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        $this->authorize('userProfile', $user);
+        $grades = $user->grades;
+        $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
+
+        $evaluations = Evaluation::all();
+        return view('users.show', ['grades'=>$grades, 'quizzes'=>$quizzes, 'evaluations'=>$evaluations, 'user'=>$user]);
+
+    }
+    public function edit(User $user){
+        $this->authorize('userProfile', $user);
+        return view('users.edit', ['user'=>$user]);
     }
 
+    public function update(Request $request, User $user)
+    {
+        $this->authorize('userProfile', $user);
+        $user->update($request->all());
+        return redirect()->action('UsersController@show', ['user'=>$user]);
+    }
     /**
      * Destroy a specific user.
      *

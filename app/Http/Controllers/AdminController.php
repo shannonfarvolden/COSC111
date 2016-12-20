@@ -117,9 +117,34 @@ class AdminController extends Controller {
                     $query = $submission->users()->orderBy('pivot_created_at');
             }
         }
+        // Flash old input to repopulate on search
+        $request->flash();
 
         return $query->get();
     }
 
+    /**
+     * Displays students at risk for a given evaluation at a certain level.
+     *
+     * @param Evaluation $evaluation
+     * @param $level
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function risk(Evaluation $evaluation, $level){
+
+        $studentRisk = $evaluation->risk($level);
+        $studentIds = [];
+
+        $i = 0;
+        foreach($studentRisk as $student)
+        {
+           $studentIds[$i] = $student['user_id'];
+           $i++;
+
+        }
+        $students = User::students()->whereIn('id', $studentIds)->get();
+
+        return view('admin.risk',['evaluation'=>$evaluation, 'students'=>$students, 'level'=>$level]);
+    }
 
 }

@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         // User route-model binding
-        $router->model('user', 'App\User');
+        $router->model('users', 'App\User');
 
         // Submission route-model binding
         $router->model('submission', 'App\Submission');
@@ -52,6 +52,8 @@ class RouteServiceProvider extends ServiceProvider
 
         // Evaluation route-model binding
         $router->model('evaluation', 'App\Evaluation');
+
+
     }
 
     /**

@@ -9,9 +9,11 @@ use App\Quiz;
 use App\Question;
 use App\Answer;
 use Auth;
+use Gate;
 use DB;
 
-class QuizzesController extends Controller {
+class QuizzesController extends Controller
+{
 
     /**
      * Create a new quizzes controller instance. User must be logged in to view pages.
@@ -19,6 +21,9 @@ class QuizzesController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['only' => [
+            'create','edit','store','update'
+        ]]);
     }
 
     /**
@@ -58,9 +63,9 @@ class QuizzesController extends Controller {
 
         $quiz = $request->input('active') ? Quiz::create(['name' => $request->input('name'), 'active' => $request->input('active'), 'total' => count($questions)]) : Quiz::create(['name' => $request->input('name'), 'total' => count($questions)]);
 
-        for ( $i = 1; $i <= count($questions); $i++ ){
+        for ($i = 0; $i < count($questions); $i++) {
             $question = $quiz->questions()->create(['question' => $questions[$i]]);
-            for ( $j = 1; $j <= count($answers[$i]); $j++ ){
+            for ($j = 0; $j < count($answers[$i]); $j++) {
                 ($j == $correct[$i]) ? $question->answers()->create(['answer' => $answers[$i][$j], 'correct' => true]) : $question->answers()->create(['answer' => $answers[$i][$j], 'correct' => false]);
             }
         }
@@ -78,20 +83,27 @@ class QuizzesController extends Controller {
      */
     public function userQuiz(Request $request, Quiz $quiz)
     {
-        $score = 0;
-        for ( $i = 1; $i <= 10; $i++ )
-        {
-            if ($request->has('select.' . $i))
-                if ($request->input('select.' . $i) == 1)
-                    $score++;
+//        if(Gate::denies('allow-quiz', $quiz->id)){
+//            redirect()->action('QuizzesController@index');
+//        };
+
+
+        $answers = collect([]);
+        for ($i = 0; $i < $quiz->questions->count(); $i++) {
+            if ($request->has('select.' . $i)) {
+                $answer = Answer::findOrFail($request->input('select.' . $i));
+                $answers = $answers->merge([$answer]);
+            }
+
         }
+        $score = $answers->whereLoose('correct', 1)->count();
 
         $attempt = (Auth::user()->hasQuizAttempt($quiz->id)) ? Auth::user()->lastQuizTaken($quiz->id)->pivot->attempt + 1 : 1;
 
         Auth::user()->quizzes()->attach($quiz->id, ['score' => $score, 'attempt' => $attempt]);
 
-        return redirect()->action('QuizzesController@result', ['$quiz' => $quiz]);
-//        return view('quiz.score', ['score' => $score]);
+        return view('quiz.score', ['answers' => $answers, 'attempt' => $attempt]);
+
     }
 
     /**
@@ -103,28 +115,15 @@ class QuizzesController extends Controller {
     public function show(Quiz $quiz)
     {
 
-        if (!Auth::user()->hasQuizAttempt($quiz->id) || Auth::user()->canRetakeQuiz($quiz->id))
-        {
-
+//        if(Gate::denies('allow-quiz', $quiz->id)){
+//            return redirect()->action('QuizzesController@index');
+//        };
+        if (!Auth::user()->hasQuizAttempt($quiz->id) || Auth::user()->canRetakeQuiz($quiz->id)) {
             return view('quiz.show', ['quiz' => $quiz]);
-        } else
-        {
+        } else {
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
         }
 
-    }
-
-
-    /**
-     * @param  Quiz $quiz
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function result(Quiz $quiz)
-    {
-        $attempt = Auth::user()->lastQuizTaken($quiz->id)->pivot->attempt;
-        $score = Auth::user()->lastQuizTaken($quiz->id)->pivot->score;
-
-        return view('quiz.score', ['score' => $score, 'attempt' => $attempt]);
     }
 
     public function attempts(Quiz $quiz)
@@ -155,7 +154,18 @@ class QuizzesController extends Controller {
      */
     public function update(Request $request, Quiz $quiz)
     {
-        $quiz->update($request->all());
+        $questions = $request->input('question');
+        $answers = $request->input('answer');
+        $correct = $request->input('correct');
+        $quiz->update(['name' => $request->input('name'), 'active' => $request->input('active'), 'total' => count($questions)]);
+
+        foreach ($quiz->questions as $i => $question) {
+            $question->update(['question' => $questions[$i]]);
+            foreach ($question->answers as $j => $answer) {
+
+                ($j == $correct[$i]) ? $answer->update(['answer' => $answers[$i][$j], 'correct' => true]) : $answer->update(['answer' => $answers[$i][$j], 'correct' => false]);
+            }
+        }
 
         return redirect()->action('QuizzesController@index');
     }

@@ -58,7 +58,7 @@
                            aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span
                                     class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="{{ action('GradesController@index', Auth::user()) }}">My Grades</a></li>
+                            <li><a href="{{ action('UsersController@show', Auth::user()) }}">My Grades</a></li>
                             <li><a href="{{ url('/stats') }}">My Stats</a></li>
                             <li><a href="{{ url('/consent') }}">Consent Form</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>

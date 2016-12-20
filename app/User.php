@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as BaseUser;
 
-class User extends BaseUser {
+class User extends BaseUser
+{
 
     /**
      * The attributes that are mass assignable.
@@ -15,6 +16,7 @@ class User extends BaseUser {
         'first_name',
         'last_name',
         'student_number',
+        'lab',
         'email',
         'password',
         'consent',
@@ -28,6 +30,17 @@ class User extends BaseUser {
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     *  Scope a query to only include student users.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeStudents($query)
+    {
+        return $query->where('admin', 0);
+    }
 
     /**
      * A user can have many threads.
@@ -84,7 +97,8 @@ class User extends BaseUser {
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function threadsRead(){
+    public function threadsRead()
+    {
         return $this->hasMany('App\ThreadRead');
 
     }
@@ -153,6 +167,7 @@ class User extends BaseUser {
     {
 
         return $this->lastQuizTaken($id)->pivot->created_at->addHour();
+//        return $this->lastQuizTaken($id)->pivot->created_at;
     }
 
     /**
@@ -185,7 +200,7 @@ class User extends BaseUser {
      */
     public function surveyComplete($id)
     {
-        return !$this->surveys()->where('id',$id)->get()->isEmpty();
+        return !$this->surveys()->where('id', $id)->get()->isEmpty();
     }
 
     /**
@@ -194,12 +209,36 @@ class User extends BaseUser {
      * @param $id
      * @return mixed
      */
-    public function submissionMark($id){
+    public function submissionMark($id)
+    {
 
         return $this->grades()->where('submission_id', $id)->get()->last()->mark;
 
     }
 
+    /**
+     * Has read a thread before.
+     *
+     * @param Thread $thread
+     * @return mixed
+     */
+    public function hasReadThread(Thread $thread)
+    {
+        return $this->threadsRead->contains('thread_id', $thread->id);
+    }
 
+    /**
+     * Has a new reply that the user has not read.
+     *
+     * @param Thread $thread
+     * @return bool
+     */
+    public function hasNewReply(Thread $thread)
+    {
+        if ($this->hasReadThread($thread))
+            if (!$this->threadsRead()->where('thread_id', $thread->id)->get()->first()->thread->replies->isEmpty())
+                return $this->threadsRead()->where('thread_id', $thread->id)->get()->first()->thread->replies->last()->created_at > $this->threadsRead()->where('thread_id', $thread->id)->get()->first()->updated_at;
+        return false;
+    }
 
 }

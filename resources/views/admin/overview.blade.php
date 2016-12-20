@@ -26,9 +26,9 @@
                         <td>{{$evaluation->evalMax()}}</td>
                         <td>{{$evaluation->evalMedian()}}</td>
                         <td>{{$evaluation->evalAvg()}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation,'level'=>'danger'])}}">{{$evaluation->risk('danger')->count()}}</a></td>
+                        <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation,'level'=>'warning'])}}">{{$evaluation->risk('warning')->count()}}</a></td>
+                        <td><a href="{{action('AdminController@risk', ['$evaluation'=>$evaluation,'level'=>'success'])}}">{{$evaluation->risk('success')->count()}}</a></td>
                     </tr>
                 @endif
             @endforeach

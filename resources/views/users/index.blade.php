@@ -4,12 +4,6 @@
     <div class="page-header">
         <h1>Users</h1>
     </div>
-    <div class="well well-sm">
-        Most urgent risk factor displayed. Possible standing labels are:
-        <span class="label label-success">success</span>
-        <span class="label label-warning">warning</span>
-        <span class="label label-danger">danger</span>
-    </div>
     <div class="panel panel-default">
         <!-- Users Table -->
         <table class="table">
@@ -17,21 +11,26 @@
                 <th>Student Name</th>
                 <th>Student Number</th>
                 <th>Lab Section</th>
-                <th>Grades</th>
-                <th>Delete</th>
+                <th>Edit/Delete</th>
 
             </tr>
             @foreach($users as $user)
                 <tr>
 
                     <td>
-                        <a href="{{ action('GradesController@index', $user) }}">{{$user->first_name}} {{$user->last_name}}</a>
+                        <a href="{{ action('UsersController@show', $user) }}">{{$user->first_name}} {{$user->last_name}}</a>
                     </td>
                     <td>{{$user->student_number}}</td>
                     <td>{{$user->lab}}</td>
-                    <td>Risk</td>
-                    <td>{!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user], 'style' => 'display:inline;']) !!}
-                        {!! Form::submit('Delete User', ['class' => 'btn btn-default']) !!}
+                    <td>
+                        <a href="{{ action('UsersController@edit', $user) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user], 'style' => 'display:inline;']) !!}
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        {{--{!! Form::submit('Delete User', ['class' => 'btn btn-default']) !!}--}}
                         {!! Form::close() !!}
                     </td>
                 </tr>

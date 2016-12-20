@@ -27,13 +27,18 @@ class Evaluation extends Model {
         return $this->hasMany('App\Submission');
     }
 
+    /**
+     * Returns true if the evaluation has no submissions(assignments, labs, etc.) created for it yet.
+     *
+     * @return bool
+     */
     public function evalEmpty()
     {
         $users = User::where('admin', 0)->get();
         $evalEmpty = true;
         foreach ( $users as $user )
         {
-            if ($this->evaluationTotal($user) > 0){
+            if ($this->evalGradeExists($user)){
                 $evalEmpty = false;
                 break;
             }
@@ -41,13 +46,18 @@ class Evaluation extends Model {
         return $evalEmpty;
     }
 
+    /**
+     * Returns the minimum mark for this evaluation.
+     *
+     * @return float|int
+     */
     public function evalMin()
     {
         $users = User::where('admin', 0)->get();
         $min = 100;
         foreach ( $users as $user )
         {
-            if ($this->evaluationTotal($user) > 0)
+            if ($this->evalGradeExists($user))
             {
                 if ($this->userPercentage($user) < $min)
                 {
@@ -60,6 +70,11 @@ class Evaluation extends Model {
 
     }
 
+    /**
+     * Returns max mark for an evaluation.
+     *
+     * @return float|int
+     */
     public function evalMax()
     {
         $users = User::where('admin', 0)->get();
@@ -67,7 +82,7 @@ class Evaluation extends Model {
 
         foreach ( $users as $user )
         {
-            if ($this->evaluationTotal($user) > 0)
+            if ($this->evalGradeExists($user))
             {
                 if ($this->userPercentage($user) > $max)
                 {
@@ -81,13 +96,18 @@ class Evaluation extends Model {
         return $max;
     }
 
+    /**
+     * Returns median grade of an evaluation.
+     *
+     * @return float|int|mixed
+     */
     public function evalMedian()
     {
         $users = User::where('admin', 0)->get();
         $marks = [];
         foreach ( $users as $user )
         {
-            if ($this->evaluationTotal($user) > 0)
+            if ($this->evalGradeExists($user))
             {
                 array_push($marks,$this->userPercentage($user));
 
@@ -108,13 +128,18 @@ class Evaluation extends Model {
         return $median;
     }
 
+    /**
+     * Returns average grade for an evaluation.
+     *
+     * @return float
+     */
     public function evalAvg()
     {
         $users = User::where('admin', 0)->get();
         $marks = [];
         foreach ( $users as $user )
         {
-            if ($this->evaluationTotal($user) > 0)
+            if ($this->evalGradeExists($user))
             {
                 array_push($marks,$this->userPercentage($user));
 
@@ -131,6 +156,12 @@ class Evaluation extends Model {
 
     }
 
+    /**
+     * Returns total mark for an evaluation.
+     *
+     * @param \App\User $user
+     * @return int
+     */
     public function evaluationTotal(User $user)
     {
 
@@ -152,6 +183,12 @@ class Evaluation extends Model {
         return $evaluationTotal;
     }
 
+    /**
+     * Returns user total mark for an evaluation.
+     *
+     * @param \App\User $user
+     * @return int
+     */
     public function userTotalMark(User $user)
     {
 
@@ -169,25 +206,71 @@ class Evaluation extends Model {
         return $userTotalMark;
     }
 
+    /**
+     * Returns a specific users average percentage for an evaluation.
+     *
+     * @param \App\User $user
+     * @return float
+     */
     public function userPercentage(User $user)
     {
         return round($this->userTotalMark($user) / $this->evaluationTotal($user), 4) * 100;
     }
 
+    /**
+     * Returns a specific users percentage of the final so far.
+     *
+     * @param \App\User $user
+     * @return float
+     */
     public function userFinalPercentage(User $user)
     {
         return round(($this->userTotalMark($user) / $this->evaluationTotal($user)) * $this->grade, 1);
     }
 
+    /**
+     * Returns the risk level for a given user's in the evaluation category.
+     *
+     * @param \App\User $user
+     * @return string
+     */
     public function userStanding(User $user)
     {
-
-        if ($this->userTotalMark($user) < 55)
+        if ($this->userPercentage($user) < 55)
             return 'danger';
         elseif ($this->userPercentage($user) >= 55 && $this->userPercentage($user) < 70)
             return 'warning';
         else
             return 'success';
+    }
+
+    public function riskArray(){
+        //get all users that are students
+        $users = User::where('admin', 0)->get();
+        //create a collection
+        $studentrisk = collect([]);
+        // loop through students
+        foreach($users as $key=>$user){
+            //add userid and risk factor to collection
+            if ($this->evalGradeExists($user)){
+                $studentrisk=$studentrisk->push(collect(['user_id'=>$user->id, 'standing'=>$this->userStanding($user)]));
+            }
+        }
+
+       return $studentrisk->values();
+    }
+    public function risk($risk){
+        $studentrisk = $this->riskArray();
+
+        return $studentrisk->where('standing', $risk);;
+    }
+
+    public function evalGradeExists(User $user)
+    {
+        $list = $this->submissions()->pluck('id');
+        $userGrade = $user->grades()->whereIn('submission_id', $list)->get();
+        return !$userGrade->isEmpty();
+
     }
 
 }

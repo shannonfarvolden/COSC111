@@ -1,11 +1,13 @@
 <div class="panel panel-default">
     <div class="panel-body">
+        <p class="author">
         @if($reply->anonymous)
-            <p>Anonymous</p>
+            Anonymous
         @else
-            <p>{{$reply->user->first_name}} {{$reply->user->last_name}}</p>
+           {{$reply->user->first_name}} {{$reply->user->last_name}}
         @endif
+        <span class="date">{{$reply->created_at->diffForHumans()}}</span>
+        </p>
         <p>{!! nl2br($reply->body) !!}</p>
     </div>
 </div>
-<p>{{$reply->created_at->diffForHumans()}}</p><br>

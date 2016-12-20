@@ -6,21 +6,19 @@
         <h1>{{$quiz->name}}</h1>
     </div>
     {!! Form::open([ 'action' => ['QuizzesController@userQuiz', $quiz->id]]) !!}
-    <?php $count=1;?>
-    @foreach($quiz->questions->shuffle() as $question)
+    @foreach($quiz->questions->shuffle() as $count=>$question)
         <div class="panel panel-default">
             <div class="panel-body">
-                <pre>{{$count}}) {{$question->question}}</pre>
+                <pre>{{$count+1}}) {{$question->question}}</pre>
                 @foreach($question->answers->shuffle() as $answer)
                     <div class="radio">
                         <label>
-                            {!! Form::radio('select['.$count.']', $answer->correct ) !!}{{$answer->answer}}
+                            {!! Form::radio('select['.$count.']', $answer->id ) !!}{{$answer->answer}}
                         </label>
                     </div>
                 @endforeach
             </div>
         </div>
-        <?php $count++; ?>
     @endforeach
     <div class="form-group">
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}

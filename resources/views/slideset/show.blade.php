@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="page-header">
-        <h1>{{$slideset->topic}}</h1>
+        <h1>{{$slideset->topic}}
+            @if(Auth::user()->admin)
+                <a href="{{action('SlideSetsController@edit', $slideset)}}"
+                   class="btn btn-default">Edit </a>
+                {!! Form::open(['method' => 'DELETE', 'action' => ['SlideSetsController@destroy', $slideset], 'style' => 'display:inline;']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                {!! Form::close() !!}
+            @endif</h1>
     </div>
 
 

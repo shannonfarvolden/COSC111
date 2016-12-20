@@ -7,7 +7,7 @@
     @if(Auth::user()->admin)
         <a href="{{ action('QuizzesController@create') }}" class=" btn btn-primary margin-button"> Create Quiz </a>
     @endif
-    @foreach($quizzes as $quiz)
+    @foreach($quizzes->whereLoose('active',1) as $quiz)
         <a style="color:black; text-decoration:none" href="{{ action('QuizzesController@show', [$quiz->id]) }}">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -33,6 +33,28 @@
             </div>
         </a>
     @endforeach
+    @if(Auth::user()->admin)
+        @if(!$quizzes->whereLoose('active',0)->isEmpty())
+            <hr>
+            <div class="page-header">
+                <h1>Non active submissions</h1>
+            </div>
+            @foreach($quizzes->whereLoose('active',0) as $quiz)
+                <a style="color:black; text-decoration:none" href="{{ action('QuizzesController@show', [$quiz->id]) }}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>{{$quiz->name}}</p>
+                                <a href="{{action('QuizzesController@edit', $quiz)}}"
+                                   class="btn btn-default">Edit Quiz </a>
+                                {!! Form::open(['method' => 'DELETE', 'action' => ['QuizzesController@destroy', $quiz], 'style' => 'display:inline;']) !!}
+                                {!! Form::submit('Delete Quiz', ['class' => 'btn btn-default']) !!}
+                                {!! Form::close() !!}
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        @endif
+    @endif
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

@@ -20,7 +20,6 @@ class ThreadsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('auth');
         $this->middleware('admin', ['only' => 'star']);
     }
     /**
@@ -30,15 +29,17 @@ class ThreadsController extends Controller
      */
     public function index(Request $request)
     {
-
+        // get category in select field for filtering
         $category = $request->get('category');
 
+        // filter by catergoy
         if($category && $category != 'All')
             $threads = Thread::where('category', $category)->orderBy('created_at', 'desc')->get();
         else
             $threads = Thread::orderBy('created_at', 'desc')->get();
 
-//        $threadsRead = ThreadRead::where('user_id', Auth::id())->pluck('thread_id');
+        // Flash old input to repopulate on search
+        $request->flash();
 
         return view('threads.index', ['threads' => $threads]);
 

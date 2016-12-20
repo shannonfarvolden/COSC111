@@ -35,7 +35,7 @@ class SubmissionsController extends Controller {
     {
         $submissions = Submission::orderBy('created_at', 'desc')->get();
 
-        return view('submission.adminIndex', ['submissions'=>$submissions]);
+        return view('submission.index', ['submissions'=>$submissions]);
     }
 
     /**
@@ -109,25 +109,13 @@ class SubmissionsController extends Controller {
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function studentIndex()
-    {
-        $submissions = Submission::where('active', 1)->get();
-
-        return view('submission.studentIndex', ['submissions' => $submissions]);
-    }
-
-    /**
      * Show the form for creating a new user submission.
      *
      * @return \Illuminate\Http\Response
      */
     public function studentCreate(Submission $submission)
     {
-        $lastAttempt = Auth::user()->submissions->where('id', $submission->id)->get()->last();
+        $lastAttempt = Auth::user()->submissions()->where('id', $submission->id)->get()->last();
 
         return view('submission.studentCreate', ['submission' => $submission, 'lastAttempt' => $lastAttempt]);
     }

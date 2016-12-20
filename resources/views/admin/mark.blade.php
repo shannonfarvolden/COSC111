@@ -9,13 +9,13 @@
         <div class="col-md-offset-2 col-md-4">
             <div class="form-group">
                 {!! Form::label('filter', 'Filter') !!}
-                {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'file_submitted'=>'File Submitted'], null, ['class' => 'form-control']) !!}
+                {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'file_submitted'=>'File Submitted'], old('category'), ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('sort', 'Sort') !!}
-                {!! Form::select('sort', ['none'=>'None','last_name'=>'Last Name', 'first_name'=>'First Name', 'student_number'=>'Student Number', 'submission_date'=>'Submission Date'], null, ['class' => 'form-control']) !!}
+                {!! Form::select('sort', ['none'=>'None','last_name'=>'Last Name', 'first_name'=>'First Name', 'student_number'=>'Student Number', 'submission_date'=>'Submission Date'], old('category'), ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('order', 'Order') !!}

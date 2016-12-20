@@ -1,26 +1,35 @@
 @extends('app')
 
 @section('content')
-
-    <div class="heading-margin panel panel-default">
-        <div class="panel-heading">
+    <a href="{{ action('ThreadsController@index') }}"><span class="glyphicon glyphicon-menu-left"
+                                                            aria-hidden="true"></span>Back to forum</a>
+    <p class="heading-margin author">
+        @if($thread->anonymous)
+            Anonymous
+        @else
+            {{$thread->user->first_name}} {{$thread->user->last_name}}
+        @endif
+        <span class="date">{{$thread->created_at->diffForHumans()}}</span>
+    </p>
+    <div class="panel panel-default">
+        <div class="panel-heading ">
+            <h3 class="panel-title padding-top">
             @if($thread->starred)
-                <span class="col-md-1 glyphicon glyphicon-star thread-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star thread-star" aria-hidden="true"></span>
             @endif
-            <h3 class="panel-title">{{ $thread->title }}</h3>
+             {{ $thread->title }}
+            </h3>
         </div>
         <div class="panel-body">
             <p>{!! nl2br($thread->body) !!}</p>
         </div>
     </div>
-    @if($thread->anonymous)
-        <p>Anonymous</p>
-    @else
-        <p>{{$thread->user->first_name}} {{$thread->user->last_name}}</p>
-    @endif
-    <p>{{$thread->created_at->diffForHumans()}}</p>
-    <p>Category: {{$thread->category}}</p><br>
-    @include('threads.partials.star')
+
+    <span class="label label-default">Category: {{$thread->category}}</span>
+
+    <div class="padding-top">
+        @include('threads.partials.star')
+    </div>
     <hr>
     @if ($replies = $thread->replies)
         @foreach( $replies as $reply)
@@ -34,7 +43,6 @@
     {!! Form::close() !!}
 
     @include('partials.error')
-    <br><a href="/thread"> Back to discussion forum </a>
 @endsection
 
 @section('footer')

@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\User' => 'App\Policies\UserPolicy'
     ];
 
     /**
@@ -26,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('allow-quiz', function($user, $quiz_id){
+            if($user->hasQuizAttempt($quiz_id))
+                if($user->canRetakeQuiz($quiz_id)){
+                    return true;
+                }
+             return false;
+        });
     }
 }

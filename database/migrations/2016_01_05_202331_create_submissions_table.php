@@ -14,10 +14,10 @@ class CreateSubmissionsTable extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('evaluation_id')->unsigned();
             $table->string('name');
             $table->dateTime('due_date');
             $table->integer('total')->unsigned();
-            $table->integer('evaluation_id')->unsigned();
             $table->boolean('bonus')->default(false);
             $table->boolean('active')->default(false);
             $table->nullableTimestamps();

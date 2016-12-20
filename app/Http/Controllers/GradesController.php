@@ -20,24 +20,7 @@ class GradesController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['except' => [
-            'index'
-        ]]);
-    }
-
-    /**
-     * Index grades of a specific user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(User $user)
-    {
-        $grades = $user->grades;
-        $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
-
-        $evaluations = Evaluation::all();
-        return view('grade.index', ['grades'=>$grades, 'quizzes'=>$quizzes, 'evaluations'=>$evaluations, 'user'=>$user]);
-
+        $this->middleware('admin');
     }
 
     /**

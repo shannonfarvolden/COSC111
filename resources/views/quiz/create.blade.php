@@ -6,6 +6,6 @@
     </div>
     @include('partials.error')
     {!! Form::open(['url' => 'quiz']) !!}
-    @include('quiz.form', ['submitButtonText' => 'Create'])
+    @include('quiz.createform', ['submitButtonText' => 'Create'])
     {!! Form::close() !!}
 @endsection
