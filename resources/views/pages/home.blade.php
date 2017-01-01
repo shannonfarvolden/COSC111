@@ -13,7 +13,7 @@
             Download the course <a href='/documents/111outline2015WT2.pdf'>syllabus</a>.
             <p>
             <p>
-                Evaluation Criteria: Total 100%
+                Evaluation Criteria: Total {{$total}}%
             <ul>
                 @foreach($evaluations as $evaluation)
                     <li>{{$evaluation->grade}}% {{$evaluation->category}}</li>
@@ -42,13 +42,14 @@
                 <!--week (date)-->
                 <td>1 (Jan 04)</td>
                 <!--topics-->
-                <td>Introduction Material</td>
+                <td>Introduction
+                </td>
                 <!--readings-->
                 <td>Ch 1</td>
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab1">Lab 1</a></td>
+                <td>No labs</td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -60,7 +61,7 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab2">Lab 2</a></td>
+                <td><a href="/lab1">Lab 1</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -70,9 +71,9 @@
                 <!--readings-->
                 <td>Ch 3</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment1">A1</a> due this week</td>
+                <td></td>
                 <!--labs-->
-                <td><a href="/lab3">Lab 3</a></td>
+                <td><a href="/lab2">Lab 2</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -82,9 +83,9 @@
                 <!--readings-->
                 <td>Ch 4</td>
                 <!--assignments/tests-->
-                <td></td>
+                <td><a href="/assignment1">A1</a> (due Jan 29)</td>
                 <!--labs-->
-                <td><a href="/lab4">Lab 4</a></td>
+                <td><a href="/lab3">Lab 3</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -96,26 +97,28 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab5">Lab 5</a></td>
+                <td><a href="/lab4">Lab 4</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
                 <td>6 (Feb 08)</td>
-                <td colspan=3 align=center>Family Day: No class</td>
+                <!--topics-->
+                <td>Two-Stage Exam</td>
+                <!--readings-->
+                <td>N/A</td>
+                <!--assignments/tests-->
+                <td><font color=red>Midterm 1</font>
+                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)
+                </td>
                 <!--labs-->
-                <td>No lab</td>
+                <td><a href="/lab5">Lab 5</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
                 <td>7 (Feb 15)</td>
-                <!--topics-->
-                <td>Upper Level Courses and Student Projects</td>
-                <!--readings-->
-                <td>N/A</td>
-                <!--assignments/tests-->
-                <td>Midterm 1 (<a href='/documents/111cheatsheet.pdf'>cheatsheet</a> provided)</td>
+                <td colspan=3 align=center>Family Day: No class</td>
                 <!--labs-->
-                <td><a href="/lab5">Lab 5 Continued</a></td>
+                <td>No labs</td>
             </tr>
             <tr>
                 <!--week (date)-->
@@ -127,23 +130,23 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab6">Lab 6</a></td>
+                <td><a href="/lab5">Lab 5 Continued</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>9 (Feb 29)</td>
+                <td>9 (Mar 01)</td>
                 <!--topics-->
                 <td>Arrays</td>
                 <!--readings-->
                 <td>Ch 7</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment2">A2</a> due this week</td>
+                <td><a href="/assignment2">A2</a> (due Mar 05)</td>
                 <!--labs-->
-                <td><a href="/lab6">Lab 6 Continued</a></td>
+                <td><a href="/lab6">Lab 6</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>10 (Mar 07)</td>
+                <td>10 (Mar 08)</td>
                 <!--topics-->
                 <td>Multidimensional Arrays</td>
                 <!--readings-->
@@ -151,23 +154,25 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
+                <td><a href="/lab6">Lab 6 Continued</a></td>
+            </tr>
+            <tr>
+                <!--week (date)-->
+                <td>11 (Mar 15)</td>
+                <!--topics-->
+                <td>Two-Stage Exam</td>
+                <!--readings-->
+                <td>N/A</td>
+                <!--assignments/tests-->
+                <td><font color=red>Midterm 2</font>
+                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)
+                </td>
+                <!--labs-->
                 <td><a href="/lab7">Lab 7</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>11 (Mar 14)</td>
-                <!--topics-->
-                <td>Projects from HCI, AI, IUI, Web Dev, Mobile Dev</td>
-                <!--readings-->
-                <td>N/A</td>
-                <!--assignments/tests-->
-                <td>Midterm 2(<a href='/documents/111cheatsheet.pdf'>cheatsheet</a> provided)</td>
-                <!--labs-->
-                <td><a href="/lab8">Lab 8</a></td>
-            </tr>
-            <tr>
-                <!--week (date)-->
-                <td>12 (Mar 21)</td>
+                <td>12 (Mar 22)</td>
                 <!--topics-->
                 <td>Objects and Classes</td>
                 <!--readings-->
@@ -175,30 +180,35 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td>No Lab</td>
+                <td><a href="/lab8">Lab 8</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>13 (Mar 28)</td>
-                <td colspan=3 align=center>Easter Monday: No class
-                {{--labs--}}
+                <td>13 (Mar 29)</td>
+                <!--topics-->
+                <td>Object-Oriented Thinking</td>
+                <!--readings-->
+                <td>Ch 10</td>
+                <!--assignments/tests-->
+                <td><a href="/assignment3">A3</a> (due Apr 02)</td>
+                <!--labs-->
                 <td><a href="/lab9">Lab 9</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>14 (Apr 04)</td>
+                <td>14 (Apr 05)</td>
                 <!--topics-->
                 <td>Object-Oriented Thinking</td>
                 <!--readings-->
-                <td>Ch9 (cont.)</td>
+                <td>Ch 10</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment3">A3</a> due this week</td>
+                <td></td>
                 <!--labs-->
-                <td>A3 Support</td>
+                <td>No labs</td>
             </tr>
         </table>
     </div>
-
+    </div>
 @endsection
 
 @section('footer')

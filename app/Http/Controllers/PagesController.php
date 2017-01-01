@@ -27,7 +27,11 @@ class PagesController extends Controller
     public function home()
     {
         $evaluations = Evaluation::all();
-        return view('pages.home', ['evaluations'=>$evaluations]);
+        $total = 0;
+        foreach($evaluations as $evaluation){
+            $total += $evaluation->grade;
+        }
+        return view('pages.home', ['evaluations'=>$evaluations, 'total'=>$total]);
     }
 
     /**
