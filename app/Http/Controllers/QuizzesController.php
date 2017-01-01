@@ -22,7 +22,7 @@ class QuizzesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin', ['only' => [
-            'create','edit','store','update'
+            'create', 'edit', 'store', 'update'
         ]]);
     }
 
@@ -157,7 +157,11 @@ class QuizzesController extends Controller
         $questions = $request->input('question');
         $answers = $request->input('answer');
         $correct = $request->input('correct');
-        $quiz->update(['name' => $request->input('name'), 'active' => $request->input('active'), 'total' => count($questions)]);
+
+        $quiz->update(['name' => $request->input('name'), 'total' => count($questions)]);
+
+        ($request->input('active')) ? $quiz->active = true : $quiz->active = false;
+        $quiz->save();
 
         foreach ($quiz->questions as $i => $question) {
             $question->update(['question' => $questions[$i]]);

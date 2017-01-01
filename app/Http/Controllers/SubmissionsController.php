@@ -20,7 +20,7 @@ class SubmissionsController extends Controller {
     {
         $this->middleware('auth');
         $this->middleware('admin', ['except' => [
-            'studentIndex',
+            'index',
             'studentCreate',
             'studentStore',
             'complete'
