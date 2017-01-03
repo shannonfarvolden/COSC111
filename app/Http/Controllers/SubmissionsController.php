@@ -104,9 +104,10 @@ class SubmissionsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Submission $submission)
     {
-        //
+        $submission->delete();
+        return redirect()->action('SubmissionsController@index');
     }
 
     /**

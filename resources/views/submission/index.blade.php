@@ -20,8 +20,10 @@
                         <a href="{{action('AdminController@mark', $submission->id)}}"
                            class="btn btn-default">Grade Students</a>
                         <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
-                           class="btn btn-default">Edit Submission </a>
-                        <a href="#" class=" btn btn-default"> Delete Submission</a>
+                           class="btn btn-default">Edit </a>
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                        {!! Form::close() !!}
                     @endif
                 </div>
             </div>
@@ -39,12 +41,13 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p>{{$submission->name}}</p>
-
-                                <a href="{{action('AdminController@mark', $submission->id)}}"
-                                   class="btn btn-default">Grade Students</a>
-                                <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
-                                   class="btn btn-default">Edit Submission </a>
-                                <a href="#" class=" btn btn-default"> Delete Submission</a>
+                            <a href="{{action('AdminController@mark', $submission->id)}}"
+                               class="btn btn-default">Grade Students</a>
+                            <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
+                               class="btn btn-default">Edit</a>
+                            {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </a>
