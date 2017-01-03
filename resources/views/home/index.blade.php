@@ -10,7 +10,7 @@
             <h3 class="panel-title">Administration</h3>
         </div>
         <div class="panel-body">
-            Download the course <a href='/documents/111outline2015WT2.pdf'>syllabus</a>.
+            Download the course <a href='/documents/111outline2016WT2.pdf'>syllabus</a>.
             <p>
             <p>
                 Evaluation Criteria: Total {{$total}}%

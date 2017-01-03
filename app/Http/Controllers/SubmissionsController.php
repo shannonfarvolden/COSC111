@@ -11,7 +11,8 @@ use App\Evaluation;
 use App\Submission;
 use Auth;
 
-class SubmissionsController extends Controller {
+class SubmissionsController extends Controller
+{
 
     /**
      * Create a new submissions controller instance. User must be logged in to view pages.
@@ -26,6 +27,7 @@ class SubmissionsController extends Controller {
             'complete'
         ]]);
     }
+
     /**
      * Displays submission index.
      *
@@ -35,7 +37,7 @@ class SubmissionsController extends Controller {
     {
         $submissions = Submission::orderBy('created_at', 'desc')->get();
 
-        return view('submission.index', ['submissions'=>$submissions]);
+        return view('submission.index', ['submissions' => $submissions]);
     }
 
     /**
@@ -43,11 +45,12 @@ class SubmissionsController extends Controller {
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(){
+    public function create()
+    {
 
-        $evaluations = Evaluation::lists('category','id');
+        $evaluations = Evaluation::lists('category', 'id');
 
-        return view('submission.create', ['evaluations'=>$evaluations]);
+        return view('submission.create', ['evaluations' => $evaluations]);
     }
 
     /**
@@ -56,11 +59,12 @@ class SubmissionsController extends Controller {
      * @param SubmissionRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SubmissionRequest $request){
+    public function store(SubmissionRequest $request)
+    {
 
         Submission::create($request->all());
 
-        return redirect('admin/submission');
+        return redirect()->action('SubmissionsController@index');
     }
 
     /**
@@ -71,8 +75,8 @@ class SubmissionsController extends Controller {
      */
     public function edit(Submission $submission)
     {
-        $evaluations = Evaluation::lists('category','id');
-        return view('submission.edit', ['submission'=>$submission, 'evaluations'=>$evaluations]);
+        $evaluations = Evaluation::lists('category', 'id');
+        return view('submission.edit', ['submission' => $submission, 'evaluations' => $evaluations]);
     }
 
 
@@ -86,13 +90,10 @@ class SubmissionsController extends Controller {
     public function update(SubmissionRequest $request, Submission $submission)
     {
         $submission->update($request->all());
-        if ($request->get('active')) $submission->active = true;
-        else $submission->active = false;
 
-        if ($request->get('bonus')) $submission->bonus = true;
-        else $submission->bonus = false;
+        $submission->active = ($request->input('active')) ? true : false;
+        $submission->bonus = ($request->get('bonus'))? true : false;
         $submission->save();
-
 
         return redirect()->action('SubmissionsController@index');
     }
@@ -100,7 +101,7 @@ class SubmissionsController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -129,11 +130,10 @@ class SubmissionsController extends Controller {
     public function studentStore(Request $request, Submission $submission)
     {
         // validate request, check that files are submitted
-        $this->validate($request, ['submissions.*'=>'required'], ['submissions.*'=>'Files are required to make a submission']);
+        $this->validate($request, ['submissions.*' => 'required'], ['submissions.*' => 'Files are required to make a submission']);
         $files = $request->file('submissions');
 
-        foreach ( $files as $file )
-        {
+        foreach ($files as $file) {
 
             $attempt = (Auth::user()->hasSubmissionAttempt($submission->id)) ? Auth::user()->lastSubmissionMade($submission->id)->pivot->attempt + 1 : 1;
             $invalid = [':', '/', '?', '#', '[', ']', '@'];
