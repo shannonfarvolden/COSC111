@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 1 [13 pts]</h2>
-
+        <h2>Lab 1 [14 pts]</h2>
         <p>Getting Started</p>
         The purpose of this lab is to get you setup and ready to go. You will
         become familiar with the school computer environment and try out some
@@ -12,6 +11,7 @@
         <p></p>
         <b>What to Submit:</b>
         <ul>
+            <li>Show your TA you have completed Quiz 1 (nothing to submit)
             <li>Show your TA that a "COSC 111" folder has been created in your F
                 drive (nothing to submit)
             <li>The file <tt>PrintMyName.java</tt>
@@ -21,7 +21,18 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">1. Using School Computers [1 pt]</h3>
+            <h3 class="panel-title">1. Completed quiz mark</h3>
+        </div>
+        <div class="panel-body">
+            At the beginning of the lab, show your TA for completing at least one
+            attempt for Quiz 1.
+            <p>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">2. Using School Computers [1 pt]</h3>
         </div>
         <div class="panel-body">
             <p>
@@ -29,7 +40,6 @@
                 folder called "COSC 111" in your account at the <a
                         href={{ url('/school') }}>school computers</a>. This will be the folder where
                 you store all your work for this course.
-
             <p>
                 <b>[1 pt]</b> Show your TA that you have created a folder called "COSC
                 111" in your F drive.
@@ -38,7 +48,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Working with Eclipse</h3>
+            <h3 class="panel-title">3. Working with Eclipse</h3>
         </div>
         <div class="panel-body">
             In this course, we will be using the Eclipse IDE to write, compile, and
@@ -52,7 +62,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">3. Getting Comfortable with Java [7 pts]</h3>
+            <h3 class="panel-title">4. Getting Comfortable with Java [7 pts]</h3>
         </div>
         <div class="panel-body">
             <p>
@@ -74,12 +84,11 @@
             <p>
                 <b>[1 pt for printing, 1 pt for calculation]</b>
                 After printing your name, have the program print out your age in dog
-                years. The string should be "My age is ... in dog years!" where ... is replaced with your age times 9.
-                (One human year is roughly 9 dog years.) Be sure your code has a multiplication formula that calculates the age in dog years.
-
+                years. The string should be "My age is ... in dog years!" where ... is
+                replaced with your age times 9. (One human year is roughly 9 dog years.)
             <p>
                 Sample output:
-      <pre>
+            <pre>
 My name is Celina
 My age is 216 in dog years!
       </pre>
@@ -89,7 +98,6 @@ My age is 216 in dog years!
                 information on separate lines,
                 and you write <tt>System.out.print( ... )</tt> to display information on
                 the same line.
-
             <p>
                 <b>[1 pt]</b> Lastly, be sure to write comments above your class to
                 indicate the author of this file (you), acknowledgements for any
@@ -99,7 +107,7 @@ My age is 216 in dog years!
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">4. The Guessing Game [5 pts]</h3>
+            <h3 class="panel-title">5. The Guessing Game [5 pts]</h3>
         </div>
         <div class="panel-body">
             <p>
@@ -109,7 +117,7 @@ My age is 216 in dog years!
                 line as written below, or you can download it from this file <a
                         href="/documents/GuessFavNum.java"><tt>GuessFavNum.java</tt></a>.
                 Try running it a few times to see what it does.
-      <pre>
+            <pre>
 1   import java.util.Random;
 2   import java.util.Scanner;
 3
@@ -146,11 +154,11 @@ My age is 216 in dog years!
                 Don't worry if you can't understand everything exactly, just take a
                 guess. The purpose of this activity is to get you comfortable with new
                 Java code that you will be seeing in the next few weeks.
-
             <p>
                 <b>[1 pt each]</b>
-                In particular, answer the following questions by indicating the line
-                number(s) in the program:
+                In this exercise, feel free to discuss your answers with your neighbours
+                and/or TA before submitting them. In particular, answer the following
+                questions by indicating the line number(s) in the program:
             <ol>
                 <li>Which lines of code generates a random number as the computer's
                     favourite number?
@@ -174,7 +182,7 @@ My age is 216 in dog years!
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">5. (Optional) Setting up Your Personal Laptop</h3>
+            <h3 class="panel-title">6. (Optional) Setting up Your Personal Laptop</h3>
         </div>
         <div class="panel-body">
             <p>
@@ -198,7 +206,6 @@ My age is 216 in dog years!
 
         </div>
     </div>
-
 @endsection
 @section('footer')
     {{--Sends pageview google anaytics--}}

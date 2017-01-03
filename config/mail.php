@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'coursecanvasubco@gmail.com', 'name' => 'Course Canvas Admin'],
 
     /*
     |--------------------------------------------------------------------------

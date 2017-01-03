@@ -1,9 +1,9 @@
 <?php
 
 
-Route::get('/', 'PagesController@home');
-Route::get('/consent', 'PagesController@consent');
-Route::post('/consent', 'PagesController@giveConsent');
+Route::get('/', 'HomeController@index');
+Route::get('/consent', 'ConsentController@consent');
+Route::post('/consent', 'ConsentController@giveConsent');
 
 Route::resource('/admin/submission', 'SubmissionsController', ['except'=>'index']);
 Route::get('/submission', 'SubmissionsController@index');
@@ -64,3 +64,4 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+

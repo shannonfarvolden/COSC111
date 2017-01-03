@@ -6,43 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Evaluation;
 use Auth;
 
-class PagesController extends Controller
+class ConsentController extends Controller
 {
     /**
-     * Create a new pages controller instance. User must be logged in to view specified pages.
+     * Create a new consent controller instance. User must be logged in to view specified pages.
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>['home', 'development']]);
+        $this->middleware('auth');
     }
 
-    /**
-     * Display the home page.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function home()
-    {
-        $evaluations = Evaluation::all();
-        $total = 0;
-        foreach($evaluations as $evaluation){
-            $total += $evaluation->grade;
-        }
-        return view('pages.home', ['evaluations'=>$evaluations, 'total'=>$total]);
-    }
-
-    /**
-     * Display the dev page.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function development()
-    {
-        return view('pages.development');
-    }
     /**
      * Display the consent form view.
      *
@@ -72,5 +47,4 @@ class PagesController extends Controller
 
         return redirect('/');
     }
-
 }

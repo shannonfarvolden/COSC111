@@ -29,4 +29,10 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Set redirect route after post.
+     */
+    protected $redirectTo = '/';
+
 }
