@@ -9,7 +9,10 @@
                     <div class="panel-body">
                         @include('partials.error')
                         {!! Form::model($user, ['method' => 'PATCH', 'action' => ['UsersController@update', $user]]) !!}
-                        @include('users.form', ['buttonText'=>'Update'])
+                        @if(Auth::user()->admin)
+                            @include('users.adminform')
+                        @endif
+                        @include('users.form')
                         {!! Form::close() !!}
                     </div>
                 </div>

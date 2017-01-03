@@ -25,4 +25,14 @@ class SurveyAnswer extends Model
     {
         return $this->belongsTo('App\SurveyQuestion', 'survey_question_id');
     }
+
+    /**
+     * Get the users who have given this answer in a survey.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'survey_user', 'survey_answer_id', 'user_id');
+    }
 }

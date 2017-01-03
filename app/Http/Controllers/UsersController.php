@@ -55,6 +55,9 @@ class UsersController extends Controller
     {
         $this->authorize('userProfile', $user);
         $user->update($request->all());
+        ($request->input('admin')) ? $user->admin = true : $user->admin = false;
+        $user->save();
+
         return redirect()->action('UsersController@show', ['user'=>$user]);
     }
     /**
