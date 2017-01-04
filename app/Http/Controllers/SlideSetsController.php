@@ -79,7 +79,8 @@ class SlideSetsController extends Controller {
         $slidename = str_replace($invalid, '-', $slide->getClientOriginalName());
 
         //add time to filename to make it unique
-        $name = time() . $slidename;
+        // $name = time() . $slidename;
+        $name = $slideset->id . $slidename;
 
         //move and create slide
         $slide->move('slides', $name);

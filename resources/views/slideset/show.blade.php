@@ -15,16 +15,16 @@
 
     @foreach($slideset->slides->sortBy('slide_number') as $slide)
         @if(Auth::user()->admin)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {!! Form::open(['method' => 'DELETE', 'action' => ['SlidesController@destroy', $slide]]) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
-                        {!! Form::close() !!}
-                        <a href="/{{$slide->image_path}}" class="swipebox">
-                            <img src="/{{$slide->thumbnail_path}}" alt="image">
-                        </a>
-                    </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {!! Form::open(['method' => 'DELETE', 'action' => ['SlidesController@destroy', $slide]]) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                    {!! Form::close() !!}
+                    <a href="/{{$slide->image_path}}" class="swipebox">
+                        <img src="/{{$slide->thumbnail_path}}" alt="image">
+                    </a>
                 </div>
+            </div>
 
         @else
             <a href="/{{$slide->image_path}}" class="swipebox">
@@ -37,7 +37,7 @@
     @if(Auth::user()->admin)
 
         <form action="/slideset/{{$slideset->id}}/slides" method="POST" class="dropzone">
-            {{csrf_field()}}
+            {{ csrf_field() }}
         </form>
     @endif
 @endsection
