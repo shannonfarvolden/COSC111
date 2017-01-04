@@ -57,6 +57,7 @@ Route::get('/assignment3', 'AssignmentsController@assignment3');
 Route::get('/stats', 'StatsController@show');
 Route::get('/adminStats', 'StatsController@adminStats');
 
+Route::get('/survey/results', 'SurveyController@results');
 Route::resource('/survey', 'SurveyController');
 Route::post('/survey/{survey}', 'SurveyController@userSurvey');
 

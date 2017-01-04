@@ -17,9 +17,8 @@ class SurveyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['only' => [
-            'create','edit','store','update'
-        ]]);
+        $this->middleware('admin', ['except' => [
+            'userSurvey','show', 'index']]);
     }
     /**
      * Display a listing of the resource.
@@ -147,6 +146,12 @@ class SurveyController extends Controller
         $survey->delete();
 
         return redirect()->action('SurveyController@index');
+    }
+
+    public function results(){
+        $surveys = Survey::all();
+
+        return view('survey.results', ['surveys'=>$surveys]);
     }
 
 }

@@ -23,7 +23,8 @@ class Survey extends Model {
      */
     public function users()
     {
-        return $this->belongsToMany('App\User')->withPivot('survey_question_id', 'survey_answer_id')->withTimestamps();
+        return $this->belongsToMany('App\User')->withTimestamps();
+
     }
 
     /**
@@ -40,4 +41,5 @@ class Survey extends Model {
 
         return $this->questions->count();
     }
+
 }

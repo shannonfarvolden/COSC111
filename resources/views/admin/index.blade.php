@@ -23,5 +23,12 @@
             </div>
         </div>
     </a>
+    <a href="{{ action('SurveyController@results') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Survey Results</p>
+            </div>
+        </div>
+    </a>
 
 @endsection

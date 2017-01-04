@@ -35,14 +35,7 @@ class SurveyQuestion extends Model
     {
         return $this->hasMany('App\SurveyAnswer');
     }
-    /**
-     * Get the users who have written a given survey question.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function users()
-    {
-        return $this->belongsToMany('App\User')->withPivot('choice')->withTimestamps();
-    }
+
+
 
 }
