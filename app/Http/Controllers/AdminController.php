@@ -73,7 +73,7 @@ class AdminController extends Controller {
         $order = $request->get('order');
         if ($filter && $filter != 'none')
         {
-            if (strpos($filter, 'L0') !== false)
+            if (strpos($filter, 'L') !== false)
             {
                 $query = $query->where('lab', $filter);
             } elseif ($filter == "file_submitted")

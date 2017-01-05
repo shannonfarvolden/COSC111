@@ -1,3 +1,5 @@
+@inject('labs', 'App\Http\Utilities\Lab')
+
 @extends('app')
 
 @section('content')
@@ -36,7 +38,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Lab Section</label>
                                 <div class="col-md-6">
-                                    {!! Form::select('lab', ['L01'=>'L01', 'L02'=>'L02', 'L03'=>'L03'], old('lab'), ['class' => 'form-control']) !!}
+                                    {!! Form::select('lab', $labs::all(), old('lab'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">

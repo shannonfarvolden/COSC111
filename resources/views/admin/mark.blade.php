@@ -1,3 +1,5 @@
+@inject('labs', 'App\Http\Utilities\Lab')
+
 @extends('app')
 
 @section('content')
@@ -9,7 +11,7 @@
         <div class="col-md-offset-2 col-md-4">
             <div class="form-group">
                 {!! Form::label('filter', 'Filter') !!}
-                {!! Form::select('filter', ['none'=>'None','L01'=>'Lab L01', 'L02'=>'Lab L02', 'L03'=>'Lab L03', 'file_submitted'=>'File Submitted'], old('category'), ['class' => 'form-control']) !!}
+                {!! Form::select('filter', array_merge(['none'=>'None', 'file_submitted'=>'File Submitted'],$labs::all()), old('category'), ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-md-4">
