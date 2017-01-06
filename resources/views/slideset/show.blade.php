@@ -12,7 +12,17 @@
             @endif</h1>
     </div>
 
-
+    @if($slideset->videos->count()>0)
+        <h4>Videos</h4>
+        <ul>
+            @foreach($slideset->videos->sortBy('order') as $video)
+                <a href="{{$video->link}}" target="_blank">
+                    <li>{{$video->name}}</li>
+                </a>
+            @endforeach
+        </ul>
+        <hr>
+    @endif
     @foreach($slideset->slides->sortBy('slide_number') as $slide)
         @if(Auth::user()->admin)
             <div class="panel panel-default">

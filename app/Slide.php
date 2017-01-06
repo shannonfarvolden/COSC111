@@ -20,15 +20,6 @@ class Slide extends Model {
         'thumbnail_path',
     ];
 
-    /**
-     * Generates a thumbnail image of the slide uploaded.
-     */
-    public function makeThumbnail()
-    {
-        Image::make($this->image_path)
-            ->fit(360, 270)
-            ->save($this->thumbnail_path);
-    }
 
     /**
      * A Slide belongs to a Slide Set
@@ -40,6 +31,15 @@ class Slide extends Model {
         return $this->belongsTo('App\SlideSet');
     }
 
+    /**
+     * Generates a thumbnail image of the slide uploaded.
+     */
+    public function makeThumbnail()
+    {
+        Image::make($this->image_path)
+            ->fit(360, 270)
+            ->save($this->thumbnail_path);
+    }
 
     /**
      * Delete Slide and images in database

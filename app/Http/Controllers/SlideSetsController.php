@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\SlideSet;
 use App\Slide;
+use App\Video;
 
 class SlideSetsController extends Controller {
 

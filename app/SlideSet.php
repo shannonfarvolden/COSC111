@@ -27,4 +27,14 @@ class SlideSet extends Model
     {
         return $this->hasMany('App\Slide');
     }
+
+    /**
+     * A Slide Set has many Videos.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
+    }
 }
