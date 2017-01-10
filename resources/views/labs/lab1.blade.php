@@ -21,7 +21,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">1. Completed quiz mark</h3>
+            <h3 class="panel-title">1. Completed quiz mark [1 pt]</h3>
         </div>
         <div class="panel-body">
             At the beginning of the lab, show your TA for completing at least one
@@ -186,22 +186,27 @@ My age is 216 in dog years!
         </div>
         <div class="panel-body">
             <p>
-                If you have your laptop with you and you plan on coding with it, you should install Eclipse.
-                Depending on your setup, you may also need to install Java JDK 8.
+                If you have your laptop with you and you plan on coding with it, you
+                should install Eclipse. Depending on your setup, you may also need to
+                install Java JDK 8.
 
             <p>
                 To download Eclipse, go to <a href=http://www.eclipse.org/downloads/>the
-                    official Eclipse website</a> and select "Get Eclipse Neon". From there, make
-                sure the operating system matches your machine and click on download. When you run the Eclipse
-                installer, it will open up a list of options for you to choose. Select "Eclipse IDE for Java Developers"
-                and then follow the instructions.
+                    official Eclipse website</a> and select "Get Eclipse Neon". From
+                there, make sure the operating system matches your machine and click on
+                download. When you run the Eclipse installer, it will open up a list of
+                options for you to choose. Select "Eclipse IDE for Java Developers" and
+                then follow the instructions.
+
             <p>
                 To download JDK 8, go to <a
                         href=http://www.oracle.com/technetwork/java/javase/downloads/>the
                     official Oracle website</a> and select JDK 8 (or something similar --
-                currently, the site says "JDK 8u111"). Once you click on it, it will bring you to a page with the
-                appropriate options. Accept the license agreement and choose the operating system that matches your
-                machine. Then follow the installation instructions.
+                currently, the site says "JDK 8u111"). Once you click on it, it will
+                bring you to a page with the appropriate options. Accept the license
+                agreement and choose the operating system that matches your machine.
+                Then follow the installation instructions.
+
         </div>
     </div>
 @endsection
