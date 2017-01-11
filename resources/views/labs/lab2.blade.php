@@ -93,7 +93,7 @@ Enter the amount of wet snow fall (in inches):
 2
 Enter the amount of powdery snow fall (in inches):
 6
-The total expected amount of rainfall is 355.6 cm.
+The total expected amount of rainfall is 2.7395714285714283 cm.
       </pre>
 
             <p>
