@@ -4,6 +4,7 @@
     <div class="page-header">
         <h1>Users</h1>
     </div>
+    @include('users.partials.filter')
     <div class="panel panel-default">
         <!-- Users Table -->
         <table class="table">

@@ -5,26 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Evaluation;
 use App\Submission;
-use App\Grade;
-use App\Quiz;
 use App\User;
-use Auth;
 
-class GradesController extends Controller {
-
+class PeerEvalsController extends Controller
+{
     /**
-     * Create a new grades controller instance. User must be logged in to view pages.
+     * Create a new peer evals controller instance. User must be logged in to view pages.
      */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
     }
-
     /**
-     *  Store a new grade in database.
+     *  Store a new peereval in database.
      *
      * @param Request $request
      * @param User $user
@@ -36,13 +30,13 @@ class GradesController extends Controller {
 
         $input = array_add($request->all(), 'submission_id', $submission->id);
         $input = array_add($input, 'user_id', $user->id);
-        Grade::create($input);
+        PeerEval::create($input);
         return redirect()->action('AdminController@mark',['submission'=>$submission]);
 
     }
 
     /**
-     * Show the form for creating a new grade for specified student.
+     * Show the form for creating a new peereval for specified student.
      *
      * @param Submissoin $submission
      * @param User $user
@@ -50,7 +44,7 @@ class GradesController extends Controller {
      */
     public function create(Submission $submission, User $user)
     {
-        return view('grade.create', ['submission'=>$submission, 'user'=>$user]);
+        return view('peerevals.create', ['submission'=>$submission, 'user'=>$user]);
 
     }
 
@@ -64,22 +58,21 @@ class GradesController extends Controller {
      */
     public function edit(Submission $submission, User $user)
     {
-        $grade = $user->grades()->where('submission_id', $submission->id)->first();
-        return view('grade.edit', ['grade'=>$grade]);
+        $peereval = $user->peerevals()->where('submission_id', $submission->id)->first();
+        return view('peerevals.edit', ['peereval'=>$peereval]);
 
     }
 
     /**
-     * Update the specified grade in database.
+     * Update the specified peereval in database.
      *
      * @param Request $request
-     * @param Grade $grade
+     * @param PeerEval $peereval
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Grade $grade)
+    public function update(Request $request, PeerEval $peereval)
     {
-        $grade->update($request->all());
-        return redirect()->action('AdminController@mark',['submission'=>$grade->submission_id]);
+        $peereval->update($request->all());
+        return redirect()->action('AdminController@mark',['submission'=>$peereval->submission_id]);
     }
-
 }

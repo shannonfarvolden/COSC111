@@ -27,7 +27,7 @@
         @if(!$surveys->whereLoose('active',0)->isEmpty())
             <hr>
             <div class="page-header">
-                <h1>Non active submissions</h1>
+                <h1>Non active surveys</h1>
             </div>
             @foreach($surveys->whereLoose('active',0) as $survey)
                 <a href="{{ action('SurveyController@show', $survey) }}">

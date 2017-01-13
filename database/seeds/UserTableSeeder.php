@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder {
             'password'       => bcrypt('password'),
             'student_number' => '87654321',
             'remember_token' => str_random(10),
-            'lab'            => 'L01'
+            'lab'            => 'L2A'
         ]);
 
         factory(App\User::class, 20)->create();

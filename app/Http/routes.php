@@ -23,6 +23,11 @@ Route::get('/admin/mark/{submission}/{user}/edit','GradesController@edit');
 Route::get('/admin/mark/{submission}/{user}/create','GradesController@create');
 Route::patch('/admin/mark/{grade}','GradesController@update');
 
+Route::post('/evals/{submission}/{user}','PeerEvalsController@store');
+Route::get('/evals/{submission}/{user}/edit','PeerEvalsController@edit');
+Route::get('/evals/{submission}/{user}/create','PeerEvalsController@create');
+Route::patch('/evals/{peereval}','PeerEvalsController@update');
+
 Route::resource('/users', 'UsersController');
 
 Route::resource('/slideset', 'SlideSetsController');

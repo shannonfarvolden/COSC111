@@ -16,7 +16,7 @@ class HomeController extends Controller
 */
     public function index()
     {
-        $evaluations = Evaluation::all();
+        $evaluations = Evaluation::where('grade','>',0)->get();
         $total = 0;
         foreach($evaluations as $evaluation){
             $total += $evaluation->grade;
