@@ -7,7 +7,9 @@
     </div>
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">Grades</div>
+        <div class="panel-heading">Grades<p>
+		Note: Your in-class team marks may change depending on your peer eval scores.
+		</div>
         <!-- Table -->
         <table class="table">
             <tr>
