@@ -29,6 +29,13 @@ Route::resource('/slideset', 'SlideSetsController');
 Route::post('/slideset/{slideset}/slides', 'SlideSetsController@addSlide');
 Route::delete('/slide/{slide}', 'SlidesController@destroy');
 
+Route::post('/video/{slideset}','VideosController@store');
+Route::get('/video/{slideset}/create','VideosController@create');
+Route::get('/video/{video}/edit','VideosController@edit');
+Route::patch('/video/{video}','VideosController@update');
+Route::delete('/video/{video}', 'VideosController@destroy');
+
+
 Route::resource('/thread', 'ThreadsController');
 Route::post('/thread/{thread}/star', 'ThreadsController@star');
 Route::post('/thread/{thread}', 'RepliesController@store');

@@ -11,18 +11,10 @@
                 {!! Form::close() !!}
             @endif</h1>
     </div>
-
-    @if($slideset->videos->count()>0)
-        <h4>Videos</h4>
-        <ul>
-            @foreach($slideset->videos->sortBy('order') as $video)
-                <a href="{{$video->link}}" target="_blank">
-                    <li>{{$video->name}}</li>
-                </a>
-            @endforeach
-        </ul>
-        <hr>
+    @if(Auth::user()->admin)
+        <a href="{{ action('VideosController@create', $slideset) }}" class=" btn btn-primary margin-button"> Add Video Link</a>
     @endif
+    @include('slideset.partials.videolink')
     @foreach($slideset->slides->sortBy('slide_number') as $slide)
         @if(Auth::user()->admin)
             <div class="panel panel-default">
@@ -66,8 +58,8 @@
     {{--Sends pageview google anaytics--}}
     <script>
         <?php
-        $gasend = "ga('send', { hitType: 'pageview', title: 'Slide %s' , page: '/slide/%s' });";
-        echo sprintf($gasend, $slideset->topic, $slideset->slide_set);
+        $gasend = "ga('send', { hitType: 'pageview', title: 'Slide %s' , page: '/slideset/%s' });";
+        echo sprintf($gasend, $slideset->topic, $slideset->id);
         ?>
     </script>
 

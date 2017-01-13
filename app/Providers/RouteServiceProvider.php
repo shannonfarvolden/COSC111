@@ -53,6 +53,8 @@ class RouteServiceProvider extends ServiceProvider
         // Evaluation route-model binding
         $router->model('evaluation', 'App\Evaluation');
 
+        // Videos route-model binding
+        $router->model('video', 'App\Video');
 
     }
 

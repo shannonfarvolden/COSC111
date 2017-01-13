@@ -54,11 +54,11 @@
                     <td>{{$user->student_number}}</td>
                     <td>{{$user->lab}}</td>
                     @if(!$user->submissions()->where('id', $submission->id)->get()->isEmpty())
-                        <td>{{$user->submissions->whereLoose('id', $submission->id)->last()->pivot->created_at}}</td>
+                        <td>{{$user->submissions()->where('id', $submission->id)->get()->last()->pivot->created_at}}</td>
 
 
                         <td>
-                            @foreach($user->submissions->whereLoose('id', $submission->id) as $submission)
+                            @foreach($user->submissions()->where('id', $submission->id)->get() as $submission)
                                 <p>Attempt: {{$submission->pivot->attempt}}
                                     <a href="/{{$submission->pivot->file_path}}">{{$submission->pivot->file_name}}</a>
                                 </p>
