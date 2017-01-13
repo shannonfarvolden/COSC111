@@ -132,7 +132,7 @@ The total expected amount of rainfall is 2.7395714285714283 cm.
                 <b>[1 pt for formula, 1 pt for Math.pow]</b> Calculate the future
                 investment amount based on the following formula:
             <p>
-                <img width=400 src=images/investFormula.png>
+                <img width=400 src=images/lab2/investFormula.png>
             <p>
                 Note that you will need to compute the power of a number. To do this,
                 use <tt>Math.pow(a,b)</tt> to calculate "a to the power of b".  Similar

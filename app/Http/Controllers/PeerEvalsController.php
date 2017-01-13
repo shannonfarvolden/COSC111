@@ -29,7 +29,8 @@ class PeerEvalsController extends Controller
     {
 
         $input = array_add($request->all(), 'submission_id', $submission->id);
-        $input = array_add($input, 'user_id', $user->id);
+        $input = array_add($input, 'evaluator', Auth::user()->id);
+        $input = array_add($input, 'evaluatee', $user->id);
         PeerEval::create($input);
         return redirect()->action('AdminController@mark',['submission'=>$submission]);
 
