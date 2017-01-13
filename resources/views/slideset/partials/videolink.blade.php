@@ -5,11 +5,13 @@
             <a href="{{$video->link}}" target="_blank">
                 <li>{{$video->name}}</li>
             </a>
-            <a href="{{action('VideosController@edit', $video)}}"
-               class="btn btn-default btn-xs">Edit</a>
-            {!! Form::open(['method' => 'DELETE', 'action' => ['VideosController@destroy', $video], 'style' => 'display:inline;']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-default btn-xs']) !!}
-            {!! Form::close() !!}
+            @if(Auth::user()->admin)
+                <a href="{{action('VideosController@edit', $video)}}"
+                   class="btn btn-default btn-xs">Edit</a>
+                {!! Form::open(['method' => 'DELETE', 'action' => ['VideosController@destroy', $video], 'style' => 'display:inline;']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-default btn-xs']) !!}
+                {!! Form::close() !!}
+            @endif
         @endforeach
     </ul>
     <hr>
