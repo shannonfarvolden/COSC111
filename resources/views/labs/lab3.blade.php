@@ -11,7 +11,7 @@
         <p></p>
         <b>What to Submit:</b>
         <ul>
-            <li>Show your TA you have completed Quiz 2 (nothing to submit)
+            <li>Show your TA you have completed Quiz 3 (nothing to submit)
             <li>Typed answers for the boolean expressions exercise
             <li><tt>FindNumDays.java</tt>
         </ul>
@@ -23,7 +23,7 @@
         </div>
         <div class="panel-body">
             At the beginning of the lab, show your TA for completing at least one
-            attempt for Quiz 1.
+            attempt for Quiz 3.
             <p>
         </div>
     </div>

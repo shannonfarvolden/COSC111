@@ -23,7 +23,7 @@
         </div>
         <div class="panel-body">
             At the beginning of the lab, show your TA for completing at least one
-            attempt for Quiz 1.
+            attempt for Quiz 2.
             <p>
         </div>
     </div>
