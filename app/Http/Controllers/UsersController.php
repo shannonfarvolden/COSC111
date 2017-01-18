@@ -43,7 +43,7 @@ class UsersController extends Controller
      */
     public function search(Request $request)
     {
-        $query = User::where('admin', 0);
+        $query = User::students();
 
         $filter = $request->get('filter');
         $sort = $request->get('sort');

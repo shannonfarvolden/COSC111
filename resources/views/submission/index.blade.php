@@ -36,21 +36,18 @@
                 <h1>Non active submissions</h1>
             </div>
             @foreach($submissions->whereLoose('active',0) as $submission)
-                <a style="color:black; text-decoration:none"
-                   href="{{ action('SubmissionsController@studentCreate', $submission) }}">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <p>{{$submission->name}}</p>
-                            <a href="{{action('AdminController@mark', $submission->id)}}"
-                               class="btn btn-default">Grade Students</a>
-                            <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
-                               class="btn btn-default">Edit</a>
-                            {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
-                            {!! Form::close() !!}
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{$submission->name}}</p>
+                        <a href="{{action('AdminController@mark', $submission->id)}}"
+                           class="btn btn-default">Grade Students</a>
+                        <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
+                           class="btn btn-default">Edit</a>
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                        {!! Form::close() !!}
                     </div>
-                </a>
+                </div>
             @endforeach
         @endif
     @endif

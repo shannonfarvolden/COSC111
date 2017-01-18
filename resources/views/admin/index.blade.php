@@ -30,5 +30,18 @@
             </div>
         </div>
     </a>
-
+    <a href="{{ action('TeamsController@index') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Teams</p>
+            </div>
+        </div>
+    </a>
+    <a href="{{ action('PeerEvaluationsController@index') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Peer Evaluations</p>
+            </div>
+        </div>
+    </a>
 @endsection

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PeerEval extends Model
+class Assessment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class PeerEval extends Model
     protected $fillable = [
         'evaluator',
         'evaluatee',
-        'submission_id',
+        'peer_evaluation_id',
         'mark',
         'feedback',
     ];
@@ -37,15 +37,14 @@ class PeerEval extends Model
         return $this->belongsTo('App\User', 'evaluatee');
     }
     /**
-     * A peer eval belongs to a submission.
+     * A assessment belongs to a peer evaluation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function submission()
+    public function peerevaluation()
     {
-        return $this->belongsTo('App\Submission');
+        return $this->belongsTo('App\PeerEvaluation', 'peer_evaluation_id');
     }
-
     /**
      * Cast the mark attribute to float (removes unnecessary zeros)
      * @param $num

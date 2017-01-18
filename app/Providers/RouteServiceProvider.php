@@ -56,8 +56,15 @@ class RouteServiceProvider extends ServiceProvider
         // Videos route-model binding
         $router->model('video', 'App\Video');
 
-        // Peer Eval route-model binding
-        $router->model('peereval', 'App\PeerEval');
+        //Team route-model bindign
+        $router->model('team', 'App\Team');
+
+        // Peer Evaluation route-model binding
+        $router->model('peerevaluation', 'App\PeerEvaluation');
+
+        // Assessment route-model binding
+        $router->model('assessment', 'App\Assessment');
+
 
     }
 

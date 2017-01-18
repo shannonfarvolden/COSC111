@@ -59,6 +59,7 @@
                                     class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="{{ action('UsersController@show', Auth::user()) }}">My Grades</a></li>
+                            <li><a href="{{ action('PeerEvaluationsController@index') }}">My Peer Evals</a></li>
                             <li><a href="{{ url('/stats') }}">My Stats</a></li>
                             <li><a href="{{ url('/consent') }}">Consent Form</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>

@@ -114,6 +114,37 @@ class User extends BaseUser
     }
 
     /**
+     * Get the teams a user belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teams()
+    {
+        return $this->belongsToMany('App\Team');
+    }
+    /**
+     * A User can be the evaluator of many assessments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function evaluator()
+    {
+        return $this->hasMany('App\Assessment', 'evaluator');
+
+    }
+
+    /**
+     * A User can be the evaluatee of many assessments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function evaluatee()
+    {
+        return $this->hasMany('App\Assessment', 'evaluatee');
+
+    }
+
+    /**
      * Checks if student has made a submission yet.
      *
      * @param $id
@@ -165,9 +196,7 @@ class User extends BaseUser
      */
     public function retakeQuiz($id)
     {
-
         return $this->lastQuizTaken($id)->pivot->created_at->addHour();
-//        return $this->lastQuizTaken($id)->pivot->created_at;
     }
 
     /**

@@ -3,8 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeerEvalsTable extends Migration
+class CreatePeerEvaluationsTable extends Migration
 {
+    /**
     /**
      * Run the migrations.
      *
@@ -12,28 +13,26 @@ class CreatePeerEvalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('peer_evals', function (Blueprint $table) {
+        Schema::create('peer_evaluations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('evaluator')->unsigned();
-            $table->integer('evaluatee')->unsigned();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('peer_evaluation_submission', function (Blueprint $table) {
+            $table->integer('peer_evaluation_id')->unsigned();
             $table->integer('submission_id')->unsigned();
-            $table->float('mark');
-            $table->text('feedback')->nullable();
-            $table->nullableTimestamps();
+            $table->timestamps();
 
-            $table->foreign('evaluator')
+            $table->foreign('peer_evaluation_id')
                 ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-            $table->foreign('evaluatee')
-                ->references('id')
-                ->on('users')
+                ->on('peer_evaluations')
                 ->onDelete('cascade');
             $table->foreign('submission_id')
                 ->references('id')
                 ->on('submissions')
                 ->onDelete('cascade');
         });
+
     }
 
     /**
@@ -43,6 +42,7 @@ class CreatePeerEvalsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('peer_evals');
+        Schema::drop('peer_evaluation_submission');
+        Schema::drop('peer_evaluations');
     }
 }

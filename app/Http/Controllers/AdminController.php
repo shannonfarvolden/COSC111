@@ -42,7 +42,7 @@ class AdminController extends Controller {
      */
     public function mark(Submission $submission, Request $request)
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
 
         if (sizeof($request->input()) > 0)
         {
@@ -66,7 +66,7 @@ class AdminController extends Controller {
      */
     public function search(Request $request, Submission $submission)
     {
-        $query = User::where('admin', 0);
+        $query = User::students();
 
         $filter = $request->get('filter');
         $sort = $request->get('sort');
@@ -80,14 +80,6 @@ class AdminController extends Controller {
             {
                 $query = $submission->users();
             }
-//            elseif ($filter == "not_marked")
-//            {
-//                $id = $submission->id;
-//                $graded = $query->whereHas('grades', function ($q) use ($id){
-//                    $q->where('submission_id', $id);
-//                });
-//                $query = $query->whereNotIn('id',$graded->list('id'));
-//            }
         }
         if ($sort && $sort != 'none')
         {
