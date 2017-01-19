@@ -13,7 +13,7 @@
             <!-- Table -->
             <table class="table">
                 <tr>
-                    <th>Mark</th>
+                    <th>Mark (Out of 1)</th>
                     <th>Feedback</th>
                 </tr>
                 <tr>

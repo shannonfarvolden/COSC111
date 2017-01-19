@@ -60,7 +60,11 @@ class AssessmentsController extends Controller {
      */
     public function team(PeerEvaluation $peerevaluation, User $user)
     {
-        $teamMembers = $user->teams()->first()->users()->whereNotIn('id', [Auth::user()->id])->get();
+        $teamMembers = collect([]);
+        $team = $user->teams()->first();
+        if($team){
+            $teamMembers = $team->users()->whereNotIn('id', [Auth::user()->id])->get();
+        }
 
         return view('assessments.team', ['peerevaluation' => $peerevaluation, 'teamMembers' => $teamMembers]);
     }
