@@ -52,7 +52,10 @@ class PeerEvaluationsController extends Controller
     public function store(Request $request)
     {
 
-        PeerEvaluation::create($request->all());
+        $peerevaluation= PeerEvaluation::create($request->all());
+
+        ($request->input('active')) ? $peerevaluation->active = true : $peerevaluation->active = false;
+        $peerevaluation->save();
 
         return redirect()->action('PeerEvaluationsController@index');
     }
@@ -79,13 +82,17 @@ class PeerEvaluationsController extends Controller
     public function update(Request $request, PeerEvaluation $peerevaluation)
     {
         $peerevaluation->update($request->all());
+
+        ($request->input('active')) ? $peerevaluation->active = true : $peerevaluation->active = false;
+        $peerevaluation->save();
+
         return redirect()->action('PeerEvaluationsController@index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  PeerEvaluation $peerevaluation
      * @return \Illuminate\Http\Response
      */
     public function destroy(PeerEvaluation $peerevaluation)

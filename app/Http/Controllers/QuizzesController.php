@@ -83,9 +83,9 @@ class QuizzesController extends Controller
      */
     public function userQuiz(Request $request, Quiz $quiz)
     {
-//        if(Gate::denies('allow-quiz', $quiz->id)){
-//            redirect()->action('QuizzesController@index');
-//        };
+        if(Gate::denies('allow-quiz', $quiz->id)){
+            redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
+        };
 
 
         $answers = collect([]);
@@ -115,14 +115,15 @@ class QuizzesController extends Controller
     public function show(Quiz $quiz)
     {
 
-//        if(Gate::denies('allow-quiz', $quiz->id)){
-//            return redirect()->action('QuizzesController@index');
-//        };
-        if (!Auth::user()->hasQuizAttempt($quiz->id) || Auth::user()->canRetakeQuiz($quiz->id)) {
-            return view('quiz.show', ['quiz' => $quiz]);
-        } else {
+        if(Gate::denies('allow-quiz', $quiz->id)){
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
-        }
+        };
+        return view('quiz.show', ['quiz' => $quiz]);
+//        if (!Auth::user()->hasQuizAttempt($quiz->id) || Auth::user()->canRetakeQuiz($quiz->id)) {
+//            return view('quiz.show', ['quiz' => $quiz]);
+//        } else {
+//            return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
+//        }
 
     }
 

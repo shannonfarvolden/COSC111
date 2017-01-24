@@ -4,6 +4,10 @@
             {!! Form::label('name', 'Peer Evaluation Name') !!}
             {!! Form::text('name', null, ['class' => 'form-control']) !!}
         </div>
+        <div class="form-group">
+            {!! Form::label('active', 'Active Peer Evaluations') !!}
+            {!! Form::checkbox('active') !!}
+        </div>
     </div>
 </div>
 <div class="form-group" align="center">

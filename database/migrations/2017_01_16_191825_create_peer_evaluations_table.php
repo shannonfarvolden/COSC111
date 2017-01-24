@@ -16,6 +16,7 @@ class CreatePeerEvaluationsTable extends Migration
         Schema::create('peer_evaluations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
         Schema::create('peer_evaluation_submission', function (Blueprint $table) {

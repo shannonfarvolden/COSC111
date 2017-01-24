@@ -122,6 +122,18 @@ class User extends BaseUser
     {
         return $this->belongsToMany('App\Team');
     }
+
+    public function hasTeam(){
+        return !$this->teams->isEmpty();
+    }
+    public function teamMembers(){
+        return $this->teams()->first()->users()->whereNotIn('id', [$this->id])->get();
+    }
+
+    public function isTeamMember($user_id){
+        return !$this->teamMembers()->whereLoose('id',$user_id)->isEmpty();
+
+    }
     /**
      * A User can be the evaluator of many assessments.
      *

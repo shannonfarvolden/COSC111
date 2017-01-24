@@ -30,6 +30,8 @@ class AssessmentsController extends Controller {
      */
     public function store(Request $request, PeerEvaluation $peerevaluation, User $user)
     {
+        $this->authorize('teamMember', $user);
+
         $input = array_add($request->all(), 'peer_evaluation_id', $peerevaluation->id);
         $input = array_add($input, 'evaluator', Auth::user()->id);
         $input = array_add($input, 'evaluatee', $user->id);
@@ -48,6 +50,7 @@ class AssessmentsController extends Controller {
      */
     public function create(PeerEvaluation $peerevaluation, User $user)
     {
+        $this->authorize('teamMember', $user);
         return view('assessments.create', ['peerevaluation'=>$peerevaluation, 'user'=>$user]);
     }
 
@@ -61,9 +64,9 @@ class AssessmentsController extends Controller {
     public function team(PeerEvaluation $peerevaluation, User $user)
     {
         $teamMembers = collect([]);
-        $team = $user->teams()->first();
-        if($team){
-            $teamMembers = $team->users()->whereNotIn('id', [Auth::user()->id])->get();
+        //If user has a team
+        if($user->hasTeam()){
+            $teamMembers = $user->teamMembers();
         }
 
         return view('assessments.team', ['peerevaluation' => $peerevaluation, 'teamMembers' => $teamMembers]);
@@ -73,14 +76,24 @@ class AssessmentsController extends Controller {
      * Displays users assessments.
      *
      * @param PeerEvaluation $peerevaluation
-     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function myEvals(PeerEvaluation $peerevaluation)
+    public function myEvals(PeerEvaluation $peerevaluation, User $user)
     {
-        $assessments = Auth::user()->evaluatee()->where('peer_evaluation_id', $peerevaluation->id)->get();
+        // authorize that user or admin can access users evals
+        $this->authorize('userProfile', $user);
+        $assessments = $user->evaluatee()->where('peer_evaluation_id', $peerevaluation->id)->get();
+        $total =0;
+        $average = 0;
 
-        return view('assessments.myEvals', ['assessments'=> $assessments]);
+            foreach($assessments as $assessment){
+                $total += $assessment->mark;
+            }
+        if($assessments->count()>0){
+            $average = $total/$assessments->count();
+        }
+
+        return view('assessments.myEvals', ['peerevaluation'=>$peerevaluation,'assessments'=> $assessments, 'average'=>$average]);
     }
 
     /**
@@ -92,6 +105,7 @@ class AssessmentsController extends Controller {
      */
     public function edit(PeerEvaluation $peerevaluation, User $user)
     {
+        $this->authorize('teamMember', $user);
         $assessment = $user->evaluatee()->where('peer_evaluation_id', $peerevaluation->id)->where('evaluator', Auth::user()->id)->get()->first();
         return view('assessments.edit', ['assessment'=>$assessment]);
 
@@ -106,6 +120,7 @@ class AssessmentsController extends Controller {
      */
     public function update(Request $request, Assessment $assessment)
     {
+
         $assessment->update($request->all());
         return redirect()->action('AssessmentsController@team',['peerevaluation'=>$assessment->peerevaluation, 'user'=>Auth::user()]);
     }

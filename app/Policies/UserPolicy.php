@@ -14,4 +14,11 @@ class UserPolicy
     {
         return ($user == $profile_user) || $user->admin;
     }
+    public function teamMember(User $user, $teamMember)
+    {
+        if($user->hasTeam()){
+            return ($user->isTeamMember($teamMember->id));
+        }
+        return false;
+    }
 }

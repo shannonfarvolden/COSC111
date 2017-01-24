@@ -3,11 +3,12 @@
 @section('content')
 
     @if($assessments->isEmpty())
-        <p>No evaluations yet.</p>
+        <div class="well">
+        <p>No evaluations from team members yet.</p>
+        </div>
     @else
-        @foreach($assessments as $assessment)
         <div class="page-header center-title">
-            <h1>{{$assessment->peerevaluation->name}}</h1>
+            <h1>{{$peerevaluation->name}}</h1>
         </div>
         <div class="panel panel-default">
             <!-- Table -->
@@ -16,6 +17,7 @@
                     <th>Mark (Out of 1)</th>
                     <th>Feedback</th>
                 </tr>
+                @foreach($assessments as $assessment)
                 <tr>
                     <td>{{$assessment->mark}}</td>
                     <td>{{$assessment->feedback}}</td>
@@ -24,6 +26,7 @@
                 @endforeach
             </table>
         </div>
+        <p>Average:{{$average}}/1</p>
     @endif
 
 @endsection

@@ -43,7 +43,7 @@ Route::get('/assessment/{peerevaluation}/{user}/create','AssessmentsController@c
 Route::get('/assessment/{peerevaluation}/{user}/edit','AssessmentsController@edit');
 Route::patch('/assessment/{assessment}','AssessmentsController@update');
 Route::get('/assessment/{peerevaluation}/{user}/team', 'AssessmentsController@team');
-Route::get('/assessment/{peerevaluation}/myEvals', 'AssessmentsController@myEvals');
+Route::get('/assessment/{peerevaluation}/{user}/myEvals', 'AssessmentsController@myEvals');
 
 //Users Routes
 Route::resource('/users', 'UsersController');

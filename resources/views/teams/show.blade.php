@@ -1,12 +1,16 @@
 @extends('app')
 
 @section('content')
+    <a href="{{ action('TeamsController@index') }}"><span class="glyphicon glyphicon-menu-left"
+                                                            aria-hidden="true"></span>Back to teams index</a>
     <div class="page-header center-title">
         <h1>Teams</h1>
     </div>
     <h3>Team Members</h3>
     @if($team->users->isEmpty())
-        <p>No students in this team yet.</p>
+        <div class="well">
+            <p>No students in this team yet.</p>
+        </div>
     @else
         <div class="panel panel-default">
             <!-- Users Table -->
