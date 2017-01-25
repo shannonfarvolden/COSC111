@@ -53,10 +53,10 @@
                 <li><tt>3 * 3 - 3 > 2 && 4 - 2 > 5 </tt>
                 <li><tt>3 * 3 - 3 > 2 || 4 - 2 > 5 </tt>
                 <li><tt>x > 0 || (x < 10 && y < 0) </tt>, assume x = -1 and y = 3
-                <li><tt>!(x > 0) ^ (y == 3)) </tt>, assume x = -1 and y = 3
+                <li><tt>!(x > 0) ^ (y == 3) </tt>, assume x = -1 and y = 3
                 <li><tt>(x + y > 10) && y < 5) </tt>, assume x = -1 and y = 3
                 <li><tt>!y > 3 </tt>, assume y = 3
-                <li><tt>(x + y < 10) || !(y < 5)) </tt>, assume x = -1 and y = 3
+                <li><tt>(x + y < 10) || !(y < 5) </tt>, assume x = -1 and y = 3
             </ol>
 
             Note: one of the expressions above generates a syntax error and cannot
