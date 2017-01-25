@@ -143,7 +143,7 @@ Enter a month (e.g., 1 for January):
 6
 Enter a year (e.g., 2012):
 2014
-There are 30 for the 6th month of year 2014
+There are 30 days for the 6th month of year 2014
       </pre>
             <p>
                 Sample output:
@@ -152,7 +152,7 @@ Enter a month (e.g., 1 for January):
 2
 Enter a year (e.g., 2012):
 2012
-There are 29 for the 2nd month of year 2012
+There are 29 days for the 2nd month of year 2012
       </pre>
             <p>
                 Sample output:
@@ -161,7 +161,7 @@ Enter a month (e.g., 1 for January):
 2
 Enter a year (e.g., 2012):
 2013
-There are 28 for the 2nd month of year 2013
+There are 28 days for the 2nd month of year 2013
       </pre>
 
             <p>
