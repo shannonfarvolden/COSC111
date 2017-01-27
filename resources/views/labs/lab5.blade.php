@@ -1,10 +1,6 @@
 @extends('app')
 
 @section('content')
-    <div class="jumbotron">
-        <h2>Lab 5</h2>
-        <p>TBA</p>
-    </div>
   <div class="jumbotron">
     <h2>Lab 5 [32 pts]</h2>
     <p>Working with Loops</p>
