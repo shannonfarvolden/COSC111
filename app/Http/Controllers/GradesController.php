@@ -64,7 +64,7 @@ class GradesController extends Controller {
      */
     public function edit(Submission $submission, User $user)
     {
-        $grade = $user->grades()->where('submission_id', $submission->id)->first();
+        $grade = $user->grades()->where('submission_id', $submission->id)->get()->last();
         return view('grade.edit', ['grade'=>$grade]);
 
     }
