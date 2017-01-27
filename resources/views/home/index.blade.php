@@ -108,7 +108,8 @@
                 <td>N/A</td>
                 <!--assignments/tests-->
                 <td><font color=red>Midterm 1</font>
-                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)
+                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)<br>
+                    <a href="/documents/old-mt1.pdf">Practice Midterm</a> 
                 </td>
                 <!--labs-->
                 <td><a href="/lab5">Lab 5</a></td>
@@ -165,7 +166,8 @@
                 <td>N/A</td>
                 <!--assignments/tests-->
                 <td><font color=red>Midterm 2</font>
-                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)
+                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)<br>
+                    <a href="/documents/old-mt2.pdf">Practice Midterm</a> 
                 </td>
                 <!--labs-->
                 <td><a href="/lab7">Lab 7</a></td>
