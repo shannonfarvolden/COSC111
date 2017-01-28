@@ -28,7 +28,7 @@
     </div>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">1. Soring Mail [14 pts]</h3>
+      <h3 class="panel-title">2. Sorting Mail [14 pts]</h3>
     </div>
     <div class="panel-body">
       <p>
@@ -208,7 +208,7 @@ Delivering to Abdallah, then Bowen, then Yong
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">2. Swap Letters in a Word [10 pts]</h3>
+      <h3 class="panel-title">3. Swap Letters in a Word [10 pts]</h3>
     </div>
     <div class="panel-body">
       <p>
