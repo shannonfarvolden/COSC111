@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 4 [24 pts]</h2>
+        <h2>Lab 4 [25 pts]</h2>
         <p>Working with Strings and Characters</p>
         The purpose of this lab is to give you hands on practice with methods
         in the String class and working with variables of type <tt>char</tt>.
@@ -16,6 +16,16 @@
         </ul>
     </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">1. Completed quiz mark [1 pt]</h3>
+        </div>
+        <div class="panel-body">
+            At the beginning of the lab, show your TA for completing at least one
+            attempt for Quiz 4.
+            <p>
+        </div>
+    </div>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">1. Soring Mail [14 pts]</h3>
