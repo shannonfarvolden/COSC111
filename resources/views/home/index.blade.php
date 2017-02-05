@@ -108,7 +108,7 @@
                 <td>N/A</td>
                 <!--assignments/tests-->
                 <td><font color=red>Midterm 1</font>
-                    (<a href="/documents/111cheatsheet.pdf">cheatsheet</a> provided)<br>
+                    (<a href="/documents/cheatsheet.pdf">cheatsheet</a> provided)<br>
                     <a href="/documents/old-mt1.pdf">Practice Midterm</a> 
                 </td>
                 <!--labs-->
