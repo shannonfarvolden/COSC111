@@ -27,9 +27,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        $gate->define('allow-quiz', function($user, $quiz_id){
-            if($user->hasQuizAttempt($quiz_id)) {
-                if (!$user->canRetakeQuiz($quiz_id)) {
+        $gate->define('allow-quiz', function($user, $quiz){
+            if($user->hasQuizAttempt($quiz->id)) {
+                if (!$user->canRetakeQuiz($quiz->id)) {
                     return false;
                 }
             }

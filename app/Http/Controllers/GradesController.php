@@ -36,7 +36,13 @@ class GradesController extends Controller {
 
         $input = array_add($request->all(), 'submission_id', $submission->id);
         $input = array_add($input, 'user_id', $user->id);
+
+        //check if grade already exists delete old grades, only one grade should exist for a user submission
+        if(!Grade::where('user_id', $user->id)->where('submission_id',$submission->id)->get()->isEmpty()){
+            Grade::where('user_id', $user->id)->where('submission_id',$submission->id)->delete();
+        }
         Grade::create($input);
+
         return redirect()->action('AdminController@mark',['submission'=>$submission]);
 
     }
@@ -44,7 +50,7 @@ class GradesController extends Controller {
     /**
      * Show the form for creating a new grade for specified student.
      *
-     * @param Submissoin $submission
+     * @param Submission $submission
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
