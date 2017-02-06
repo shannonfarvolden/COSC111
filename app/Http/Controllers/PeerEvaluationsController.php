@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PeerEvaluation;
+use App\Submission;
+use App\Evaluation;
 use Auth;
 
 class PeerEvaluationsController extends Controller
@@ -52,7 +54,7 @@ class PeerEvaluationsController extends Controller
     public function store(Request $request)
     {
 
-        $peerevaluation= PeerEvaluation::create($request->all());
+        $peerevaluation = PeerEvaluation::create($request->all());
 
         ($request->input('active')) ? $peerevaluation->active = true : $peerevaluation->active = false;
         $peerevaluation->save();
@@ -99,6 +101,27 @@ class PeerEvaluationsController extends Controller
     {
         $peerevaluation->delete();
         return redirect()->action('PeerEvaluationsController@index');
+    }
+
+    public function link(PeerEvaluation $peerevaluation)
+    {
+
+        $inclassSubmissions = Evaluation::where('category', 'In-class activities')->get()->first()->submissions;
+
+        return view('peerevaluations.link', ['peerevaluation' => $peerevaluation, 'inclassSubmissions'=>$inclassSubmissions]);
+    }
+
+    public function storeLink(PeerEvaluation $peerevaluation, Submission $submission)
+    {
+        $peerevaluation->submissions()->attach($submission->id);
+        return back();
+
+    }
+
+    public function deleteLink(PeerEvaluation $peerevaluation, Submission $submission)
+    {
+        $peerevaluation->submissions()->detach($submission->id);
+        return back();
     }
 
 }

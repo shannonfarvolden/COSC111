@@ -36,6 +36,9 @@ Route::get('/team/{team}/{user}/deleteUser','TeamsController@deleteUser');
 
 //Peer Evaluations Routes
 Route::resource('/peerevaluation', 'PeerEvaluationsController');
+Route::get('/peerevaluation/{peerevaluation}/link', 'PeerEvaluationsController@link');
+Route::get('/peerevaluation/{peerevaluation}/{submission}/storeLink', 'PeerEvaluationsController@storeLink');
+Route::get('/peerevaluation/{peerevaluation}/{submission}/deleteLink','PeerEvaluationsController@deleteLink');
 
 //Assessment Routes
 Route::post('/assessment/{peerevaluation}/{user}','AssessmentsController@store');

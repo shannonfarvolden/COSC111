@@ -45,7 +45,7 @@ class Submission extends Model
     }
 
     /**
-     * Set due date attribute
+     * Set due date attribute to a carbon value.
      *
      * @param $date
      */
@@ -63,6 +63,15 @@ class Submission extends Model
         return $this->belongsTo('App\Evaluation');
     }
 
+    /**
+     * A submission may belong to many peer evaluations.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function peerevaluations()
+    {
+        return $this->belongsToMany('App\PeerEvaluation');
+    }
     /**
      * Calculate class average of submission.
      *

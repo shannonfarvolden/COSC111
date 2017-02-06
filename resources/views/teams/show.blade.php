@@ -16,7 +16,7 @@
             <!-- Users Table -->
             <table class="table">
                 <tr>
-                    <th>Add</th>
+                    <th>Delete</th>
                     <th>Student Name</th>
                     <th>Student Number</th>
                     <th>Lab Section</th>

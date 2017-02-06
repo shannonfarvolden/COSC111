@@ -16,12 +16,12 @@ class PeerEvaluation extends Model
     ];
 
     /**
-     * Get the submissions that belong to a peer evaluation.
+     * A Peer Evaluation belongs to many submissions.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function submissions()
     {
-        return $this->belongsToMany('App\Submission')->withPivot('score', 'attempt')->withTimestamps();
+        return $this->belongsToMany('App\Submission')->withTimestamps();
     }
 }
