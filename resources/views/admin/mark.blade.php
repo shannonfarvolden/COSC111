@@ -1,6 +1,8 @@
 @extends('app')
 
 @section('content')
+    <a href="{{ action('SubmissionsController@index') }}"><span class="glyphicon glyphicon-menu-left"
+                                                                aria-hidden="true"></span>Back to Submissions</a>
     <div class="page-header center-title">
         <h1>Add Grades</h1>
     </div>

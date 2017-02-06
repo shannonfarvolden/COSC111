@@ -16,11 +16,16 @@ Route::get('/submission', 'SubmissionsController@index');
 Route::get('/submission/complete/{submission}', 'SubmissionsController@complete');
 Route::get('/submission/create/{submission}', 'SubmissionsController@studentCreate');
 Route::post('/submission/create/{submission}', 'SubmissionsController@studentStore');
+Route::get('/submissions/{submission}/team', 'SubmissionsController@team');
 
 //Grading Routes
 Route::post('/admin/mark/{submission}/{user}','GradesController@store');
 Route::get('/admin/mark/{submission}/{user}/edit','GradesController@edit');
 Route::get('/admin/mark/{submission}/{user}/create','GradesController@create');
+Route::get('/admin/mark/{submission}/{team}/teamEdit','GradesController@teamEdit');
+Route::get('/admin/mark/{submission}/{team}/teamCreate','GradesController@teamCreate');
+Route::post('/admin/mark/{submission}/{team}/teamStore','GradesController@teamStore');
+Route::post('/admin/mark/{submission}/{team}/teamUpdate','GradesController@teamUpdate');
 Route::patch('/admin/mark/{grade}','GradesController@update');
 
 //Admin Routes

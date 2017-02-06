@@ -10,6 +10,7 @@ use App\Submission;
 use App\Grade;
 use App\Quiz;
 use App\User;
+use App\Team;
 use Auth;
 
 class GradesController extends Controller {
@@ -87,5 +88,73 @@ class GradesController extends Controller {
         $grade->update($request->all());
         return redirect()->action('AdminController@mark',['submission'=>$grade->submission_id]);
     }
+
+    /**
+     * Show the form for creating a new grade for team.
+     *
+     * @param Submission $submission
+     * @param Team $team
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function teamCreate(Submission $submission, Team $team)
+    {
+        return view('grade.teamCreate', ['submission'=>$submission, 'team'=>$team]);
+
+    }
+
+
+    /**
+     * Show the form for editing the specified submission for team.
+     *
+     * @param Submission $submission
+     * @param Team $team
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function teamEdit(Submission $submission, Team $team)
+    {
+
+        return view('grade.teamEdit', ['submission'=>$submission,'team'=>$team]);
+
+    }
+    /**
+     * Update the specified grade in database for each member of the team.
+     *
+     * @param Team $team
+     * @param Submission $submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function teamUpdate(Request $request, Submission $submission, Team $team)
+    {
+        foreach($team->users as $user){
+            $grade = $user->grades()->where('submission_id', $submission->id)->get()->last();
+            if($grade){
+                $this->update($request, $grade);
+            }
+            else{
+                $this->store($request, $submission, $user);
+            }
+        }
+        return redirect()->action('SubmissionsController@team',['submission'=>$submission]);
+    }
+    /**
+     *  Store a new grade in database for each member of the team.
+     *
+     * @param Request $request
+     * @param Team $team
+     * @param Submission $submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function teamStore(Request $request, Submission $submission, Team $team)
+    {
+        foreach($team->users as $user){
+
+            $this->store($request, $submission, $user);
+        }
+
+        return redirect()->action('SubmissionsController@team',['submission'=>$submission]);
+
+    }
+
+
 
 }

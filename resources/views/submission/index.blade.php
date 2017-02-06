@@ -19,6 +19,8 @@
                     @if(Auth::user()->admin)
                         <a href="{{action('AdminController@mark', $submission->id)}}"
                            class="btn btn-default">Grade Students</a>
+                        <a href="{{action('SubmissionsController@team', $submission->id)}}"
+                           class="btn btn-default">Grade By Team</a>
                         <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
                            class="btn btn-default">Edit </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
@@ -41,6 +43,8 @@
                         <p>{{$submission->name}}</p>
                         <a href="{{action('AdminController@mark', $submission->id)}}"
                            class="btn btn-default">Grade Students</a>
+                        <a href="{{action('SubmissionsController@team', $submission->id)}}"
+                        class="btn btn-default">Grade By Team</a>
                         <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
                            class="btn btn-default">Edit</a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}

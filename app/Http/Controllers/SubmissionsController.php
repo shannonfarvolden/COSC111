@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Evaluation;
 use App\Submission;
+use App\Team;
 use Auth;
 
 class SubmissionsController extends Controller
@@ -101,7 +102,7 @@ class SubmissionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  Submission $submission
      * @return \Illuminate\Http\Response
      */
     public function destroy(Submission $submission)
@@ -163,5 +164,15 @@ class SubmissionsController extends Controller
         return view('submission.complete', ['submission' => $submission]);
     }
 
+    /**
+     * Grade submission by team.
+     * @param Submission $submission
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function team(Submission $submission){
+        $teams = Team::all();
+
+        return view('submission.teams', ['teams' => $teams, 'submission'=>$submission]);
+    }
 
 }
