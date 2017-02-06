@@ -79,6 +79,7 @@
                     </tr>
                 @endif
             @endforeach
+
         </table>
     </div>
     <a href="{{action('UsersController@edit', $user)}}" class="btn btn-default">Edit Account Info </a>

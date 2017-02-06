@@ -17,7 +17,10 @@
                 <p>{{$peerevaluation->name}}</p>
                 <hr>
                 @if(Auth::user()->admin)
-                    <a href="{{ action('PeerEvaluationsController@link', $peerevaluation) }}" class=" btn btn-default"> Link with Submission</a>
+                    <a href="{{ action('PeerEvaluationsController@link', $peerevaluation) }}" class="btn btn-default">
+                        Link with Submission</a>
+                    <a href="{{ action('PeerEvaluationsController@students', $peerevaluation) }}" class="btn btn-default">
+                       Students Peer Evals</a>
                     <a href="{{action('PeerEvaluationsController@edit', $peerevaluation)}}"
                        class="btn btn-default">Edit Peer Eval </a>
                     {!! Form::open(['method' => 'DELETE', 'action' => ['PeerEvaluationsController@destroy', $peerevaluation], 'style' => 'display:inline;']) !!}
@@ -48,7 +51,10 @@
                         <p>{{$peerevaluation->name}}</p>
                         <hr>
                         @if(Auth::user()->admin)
-
+                            <a href="{{ action('PeerEvaluationsController@link', $peerevaluation) }}"
+                               class="btn btn-default"> Link with Submission</a>
+                            <a href="{{ action('PeerEvaluationsController@students', $peerevaluation) }}" class="btn btn-default">
+                                Students Peer Evals</a>
                             <a href="{{action('PeerEvaluationsController@edit', $peerevaluation)}}"
                                class="btn btn-default">Edit Peer Eval Name </a>
                             {!! Form::open(['method' => 'DELETE', 'action' => ['PeerEvaluationsController@destroy', $peerevaluation], 'style' => 'display:inline;']) !!}

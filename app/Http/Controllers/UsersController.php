@@ -17,24 +17,27 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['except'=>['show', 'edit', 'update']]);
+        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
     }
+
     /**
-     * Displays vew of users registered to the site.
+     * Displays view of users registered to the site.
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $users = User::all();
-        if (sizeof($request->input()) > 0)
-        {
+        // check for input from filter
+        if (sizeof($request->input()) > 0) {
             $users = $this->search($request);
         }
 
-        return view('users.index', ['users'=>$users]);
+        return view('users.index', ['users' => $users]);
     }
+
     /**
      * Filter and Sort users.
      *
@@ -48,29 +51,23 @@ class UsersController extends Controller
         $filter = $request->get('filter');
         $sort = $request->get('sort');
         $order = $request->get('order');
-        if ($filter && $filter != 'none')
-        {
-            if (strpos($filter, 'L') !== false)
-            {
+        if ($filter && $filter != 'none') {
+            if (strpos($filter, 'L') !== false) {
                 $query = $query->where('lab', $filter);
             }
         }
-        if ($sort && $sort != 'none')
-        {
-            if ($sort == 'last_name')
-            {
+        if ($sort && $sort != 'none') {
+            if ($sort == 'last_name') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('last_name', 'desc');
                 else
                     $query = $query->orderBy('last_name');
-            } elseif ($sort == 'first_name')
-            {
+            } elseif ($sort == 'first_name') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('first_name', 'desc');
                 else
                     $query = $query->orderBy('first_name');
-            } elseif ($sort == 'student_number')
-            {
+            } elseif ($sort == 'student_number') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('student_number', 'desc');
                 else
@@ -91,29 +88,54 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        //check if user is authorized to view user profile.
         $this->authorize('userProfile', $user);
+
         $grades = $user->grades;
         $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
-        //temp
-        $evaluations  = Evaluation::where('category','labs')->get();
-        //$evaluations = Evaluation::all();
-        return view('users.show', ['grades'=>$grades, 'quizzes'=>$quizzes, 'evaluations'=>$evaluations, 'user'=>$user]);
+
+        $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
+
+        // get all evals except inclass
+        $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
+
+        return view('users.show', ['grades' => $grades, 'quizzes' => $quizzes, 'evaluations' => $evaluations, 'user' => $user]);
 
     }
-    public function edit(User $user){
+
+    /**
+     * Displays view to edit a user.
+     *
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(User $user)
+    {
+        //check if user is authorized to edit user profile.
         $this->authorize('userProfile', $user);
-        return view('users.edit', ['user'=>$user]);
+
+        return view('users.edit', ['user' => $user]);
     }
 
+    /**
+     * Update a user in the database.
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, User $user)
     {
+        //check if user is authorized to update user profile.
         $this->authorize('userProfile', $user);
+
         $user->update($request->all());
         ($request->input('admin')) ? $user->admin = true : $user->admin = false;
         $user->save();
 
-        return redirect()->action('UsersController@show', ['user'=>$user]);
+        return redirect()->action('UsersController@show', ['user' => $user]);
     }
+
     /**
      * Destroy a specific user.
      *
@@ -121,7 +143,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(User $user){
+    public function destroy(User $user)
+    {
         $user->delete();
         return back();
     }

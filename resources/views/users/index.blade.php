@@ -12,7 +12,6 @@
                 <th>Student Name</th>
                 <th>Student Number</th>
                 <th>Lab Section</th>
-                {{--<th>Peer Evaluations</th>--}}
                 <th>Edit/Delete</th>
 
             </tr>
@@ -24,7 +23,7 @@
                     </td>
                     <td>{{$user->student_number}}</td>
                     <td>{{$user->lab}}</td>
-                    {{--<td></td>--}}
+
                     <td>
                         <a href="{{ action('UsersController@edit', $user) }}" class="btn btn-default">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -33,7 +32,6 @@
                         <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
-                        {{--{!! Form::submit('Delete User', ['class' => 'btn btn-default']) !!}--}}
                         {!! Form::close() !!}
                     </td>
                 </tr>

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\PeerEvaluation;
 use App\Submission;
 use App\Evaluation;
+use App\User;
 use Auth;
 
 class PeerEvaluationsController extends Controller
@@ -103,6 +104,12 @@ class PeerEvaluationsController extends Controller
         return redirect()->action('PeerEvaluationsController@index');
     }
 
+    /**
+     * Displays view to link peer evaluations with inclass submissions.
+     *
+     * @param PeerEvaluation $peerevaluation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function link(PeerEvaluation $peerevaluation)
     {
 
@@ -111,17 +118,87 @@ class PeerEvaluationsController extends Controller
         return view('peerevaluations.link', ['peerevaluation' => $peerevaluation, 'inclassSubmissions'=>$inclassSubmissions]);
     }
 
+    /**
+     * Store in database link for peer evaluation to submissions.
+     *
+     * @param PeerEvaluation $peerevaluation
+     * @param Submission $submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeLink(PeerEvaluation $peerevaluation, Submission $submission)
     {
         $peerevaluation->submissions()->attach($submission->id);
         return back();
-
     }
 
+    /**
+     * Delete link from database for link between peer evaluation and submission.
+     *
+     * @param PeerEvaluation $peerevaluation
+     * @param Submission $submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteLink(PeerEvaluation $peerevaluation, Submission $submission)
     {
         $peerevaluation->submissions()->detach($submission->id);
         return back();
+    }
+
+    /**
+     * Display users of a peer evaluation.
+     *
+     * @param PeerEvaluation $peerevaluation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function students(Request $request, PeerEvaluation $peerevaluation){
+        $users = User::students()->get();
+        // check for input from filter
+        if (sizeof($request->input()) > 0) {
+            $users = $this->search($request);
+        }
+        return view('peerevaluations.students', ['peerevaluation'=>$peerevaluation, 'users' => $users]);
+    }
+
+    /**
+     * Filter and Sort users.
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function search(Request $request)
+    {
+        $query = User::students();
+
+        $filter = $request->get('filter');
+        $sort = $request->get('sort');
+        $order = $request->get('order');
+        if ($filter && $filter != 'none') {
+            if (strpos($filter, 'L') !== false) {
+                $query = $query->where('lab', $filter);
+            }
+        }
+        if ($sort && $sort != 'none') {
+            if ($sort == 'last_name') {
+                if ($order && $order == 'desc')
+                    $query = $query->orderBy('last_name', 'desc');
+                else
+                    $query = $query->orderBy('last_name');
+            } elseif ($sort == 'first_name') {
+                if ($order && $order == 'desc')
+                    $query = $query->orderBy('first_name', 'desc');
+                else
+                    $query = $query->orderBy('first_name');
+            } elseif ($sort == 'student_number') {
+                if ($order && $order == 'desc')
+                    $query = $query->orderBy('student_number', 'desc');
+                else
+                    $query = $query->orderBy('student_number');
+            }
+        }
+        // Flash old input to repopulate on search
+        $request->flash();
+
+        return $query->get();
     }
 
 }

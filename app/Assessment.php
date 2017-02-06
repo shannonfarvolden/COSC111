@@ -19,7 +19,7 @@ class Assessment extends Model
         'feedback',
     ];
     /**
-     * A peer eval belongs to a user.
+     * An assessment belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -28,7 +28,7 @@ class Assessment extends Model
         return $this->belongsTo('App\User', 'evaluator');
     }
     /**
-     * A peer eval belongs to a user.
+     * An assessment belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -37,7 +37,7 @@ class Assessment extends Model
         return $this->belongsTo('App\User', 'evaluatee');
     }
     /**
-     * A assessment belongs to a peer evaluation.
+     * An assessment belongs to a peer evaluation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -123,17 +123,38 @@ class User extends BaseUser
         return $this->belongsToMany('App\Team');
     }
 
-    public function hasTeam(){
+    /**
+     * Check if user has a team.
+     *
+     * @return bool
+     */
+    public function hasTeam()
+    {
         return !$this->teams->isEmpty();
     }
-    public function teamMembers(){
+
+    /**
+     * Get users team members, not including him/her self.
+     *
+     * @return mixed
+     */
+    public function teamMembers()
+    {
         return $this->teams()->first()->users()->whereNotIn('id', [$this->id])->get();
     }
 
-    public function isTeamMember($user_id){
-        return !$this->teamMembers()->whereLoose('id',$user_id)->isEmpty();
+    /**
+     * Check if another user is a team member of this user.
+     *
+     * @param $user_id
+     * @return bool
+     */
+    public function isTeamMember($user_id)
+    {
+        return !$this->teamMembers()->whereLoose('id', $user_id)->isEmpty();
 
     }
+
     /**
      * A User can be the evaluator of many assessments.
      *
@@ -142,7 +163,6 @@ class User extends BaseUser
     public function evaluator()
     {
         return $this->hasMany('App\Assessment', 'evaluator');
-
     }
 
     /**
@@ -153,7 +173,6 @@ class User extends BaseUser
     public function evaluatee()
     {
         return $this->hasMany('App\Assessment', 'evaluatee');
-
     }
 
     /**
