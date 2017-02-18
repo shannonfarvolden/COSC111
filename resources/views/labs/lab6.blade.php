@@ -40,9 +40,8 @@
       <b>[1 pt]</b>
       The following program has several methods defined which prints out an
       emoticon in ASCII format. Load this program into Eclipse and run it.
-      You can type it in line by line as written below, or you can download it
-      from this file <a
-        href=/documents/Smiley.java><tt>Smiley.java</tt></a>. 
+      You can type it in line by line as written below (without the line
+	  numbers on the left hand side).
       Try running it a few times and make sure you understand how it works.
       <pre>
 1  public class Smileys
