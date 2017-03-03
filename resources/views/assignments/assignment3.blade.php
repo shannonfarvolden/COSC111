@@ -27,7 +27,7 @@
       In this question, you are given the following class definition and are
       asked to add new code to <tt>main</tt> and additional methods to it. 
       When you are done, you will be able to play tic taco toe with the
-      computer. Download the following <a href=TicTacToe.java>template</a> to get started.
+      computer. Download the following <a href=/documents/TicTacToe.java>template</a> to get started.
       
       <p>
       Specific requirements to complete this question are:
