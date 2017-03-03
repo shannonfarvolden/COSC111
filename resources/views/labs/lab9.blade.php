@@ -35,9 +35,9 @@
       <p>
       <b>[1 pt]</b>
       Add to this project a class called <tt>Arena</tt> by downloading
-      <a href=Arena.java>Arena.java</a>. This class is responsible for setting
+      <a href=/documents/Arena.java>Arena.java</a>. This class is responsible for setting
       up the environment for individual battles between two animals. Also,
-      download <a href=Tournament.java>Tournament.java</a> and add the
+      download <a href=/documents/Tournament.java>Tournament.java</a> and add the
       <tt>Tournament</tt> class to your project. This file is going to take
       the winners from each arena and have them compete in subsequent battles
       in order to get a final winner. For now, these files don't do a lot, but
