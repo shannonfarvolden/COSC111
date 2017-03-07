@@ -80,6 +80,18 @@
                 @endif
             @endforeach
 
+            @if($inclassEvaluation->evaluationTotal($user, $inclassSubmissions)>0)
+                <tr>
+                    <td>{{$inclassEvaluation->category}} (Individual Marks)</td>
+                    <td>{{$inclassEvaluation->userTotalMark($user, $inclassSubmissions)}}/{{$evaluation->evaluationTotal($user, $inclassSubmissions)}}</td>
+                    <td>{{$inclassEvaluation->userPercentage($user, $inclassSubmissions)}}%</td>
+                    <td>{{$inclassEvaluation->userFinalPercentage($user, $inclassSubmissions)}}/{{$inclassEvaluation->grade}}%
+                    </td>
+                    <td>
+                        <span class="label label-{{$inclassEvaluation->userStanding($user, $inclassSubmissions)}}">{{$inclassEvaluation->userStanding($user, $inclassSubmissions)}}</span>
+                    </td>
+                </tr>
+            @endif
         </table>
     </div>
     <a href="{{action('UsersController@edit', $user)}}" class="btn btn-default">Edit Account Info </a>

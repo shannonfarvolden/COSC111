@@ -148,10 +148,9 @@ class SurveyController extends Controller
         return redirect()->action('SurveyController@index');
     }
 
-    public function results(){
-        $surveys = Survey::all();
+    public function results(Survey $survey){
 
-        return view('survey.results', ['surveys'=>$surveys]);
+        return view('survey.results', ['survey'=>$survey]);
     }
 
 }

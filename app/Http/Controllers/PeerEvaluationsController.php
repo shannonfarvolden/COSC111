@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\PeerEvaluation;
 use App\Submission;
 use App\Evaluation;
+use App\Grade;
 use App\User;
 use Auth;
 
@@ -199,6 +200,43 @@ class PeerEvaluationsController extends Controller
         $request->flash();
 
         return $query->get();
+    }
+
+    /**
+     * Generate Individiual Submission with personalized mark based off peer eval assessments
+     */
+    public function individualMark(PeerEvaluation $peerevaluation){
+
+        $users = User::students()->get();
+        foreach($peerevaluation->submissions as $submission){
+
+            $name = $submission->name;
+            if(stripos($name,"team") === false) {
+                //name does not contain team add individual
+                $name = $name . ' Individual';
+            }
+            else{
+                //contains team replace with individual
+                $name = str_ireplace("team","Individual",$submission->name);
+            }
+
+            $individualSub = Submission::create(['name'=>$name,'due_date'=>$submission->due_date, 'total'=>$submission->total, 'evaluation_id'=>$submission->evaluation_id, 'active'=>false,
+            'bonus'=>$submission->bonus]);
+
+            //generate individual grades if student has a team mark
+            foreach($users as $user){
+                //if user has a team mark create individual mark based on peer eval average and team mark
+                if(!$user->grades->whereLoose('submission_id', $submission->id)->isEmpty()){
+                    $mark = $user->grades->whereLoose('submission_id', $submission->id)->last()->mark * $peerevaluation->assessmentAvg($user->id);
+                }
+                else{
+                    $mark = 0;
+                }
+                Grade::create(['user_id'=>$user->id, 'submission_id'=>$individualSub->id, 'mark'=>$mark ]);
+            }
+        }
+        return redirect()->action('PeerEvaluationsController@index');
+
     }
 
 }

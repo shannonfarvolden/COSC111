@@ -53,7 +53,10 @@ class AdminController extends Controller {
     }
 
     public function overview(){
-        $evaluations = Evaluation::all();
+        $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
+        $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
+        // get all evals except inclass
+        $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
 
         return view('admin.overview', ['evaluations'=>$evaluations]);
     }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 
@@ -156,18 +157,22 @@ class Evaluation extends Model {
 
     }
 
+
     /**
      * Returns total mark for an evaluation.
      *
      * @param \App\User $user
+     * @param Collection|null $submissions
      * @return int
      */
-    public function evaluationTotal(User $user)
+    public function evaluationTotal(User $user, Collection $submissions = null)
     {
 
         $evaluationTotal = 0;
-
-        foreach ( $this->submissions as $submission )
+        if(!$submissions){
+            $submissions = $this->submissions;
+        }
+        foreach ( $submissions as $submission )
         {
             $userGrade = $submission->grades()->where('user_id', $user->id);
             if ($userGrade->exists())
@@ -187,13 +192,17 @@ class Evaluation extends Model {
      * Returns user total mark for an evaluation.
      *
      * @param \App\User $user
+     * @param Collection|null $submissions
      * @return int
      */
-    public function userTotalMark(User $user)
+    public function userTotalMark(User $user,  Collection $submissions = null)
     {
 
         $userTotalMark = 0;
-        foreach ( $this->submissions as $submission )
+        if(!$submissions){
+            $submissions = $this->submissions;
+        }
+        foreach ( $submissions as $submission )
         {
             $userGrade = $submission->grades()->where('user_id', $user->id);
             if ($userGrade->exists())
@@ -212,9 +221,9 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return float
      */
-    public function userPercentage(User $user)
+    public function userPercentage(User $user, Collection $submissions = null)
     {
-        return round($this->userTotalMark($user) / $this->evaluationTotal($user), 4) * 100;
+        return round($this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions), 4) * 100;
     }
 
     /**
@@ -223,9 +232,9 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return float
      */
-    public function userFinalPercentage(User $user)
+    public function userFinalPercentage(User $user, Collection $submissions = null)
     {
-        return round(($this->userTotalMark($user) / $this->evaluationTotal($user)) * $this->grade, 1);
+        return round(($this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions)) * $this->grade, 1);
     }
 
     /**
@@ -234,17 +243,17 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return string
      */
-    public function userStanding(User $user)
+    public function userStanding(User $user, Collection $submissions = null)
     {
-        if ($this->userPercentage($user) < 55)
+        if ($this->userPercentage($user, $submissions) < 55)
             return 'danger';
-        elseif ($this->userPercentage($user) >= 55 && $this->userPercentage($user) < 70)
+        elseif ($this->userPercentage($user, $submissions) >= 55 && $this->userPercentage($user, $submissions) < 70)
             return 'warning';
         else
             return 'success';
     }
 
-    public function riskArray(){
+    public function riskArray( Collection $submissions = null){
         //get all users that are students
         $users = User::where('admin', 0)->get();
         //create a collection
@@ -252,22 +261,26 @@ class Evaluation extends Model {
         // loop through students
         foreach($users as $key=>$user){
             //add userid and risk factor to collection
-            if ($this->evalGradeExists($user)){
+            if ($this->evalGradeExists($user, $submissions)){
                 $studentrisk=$studentrisk->push(collect(['user_id'=>$user->id, 'standing'=>$this->userStanding($user)]));
             }
         }
 
        return $studentrisk->values();
     }
-    public function risk($risk){
-        $studentrisk = $this->riskArray();
+    public function risk($risk, Collection $submissions = null){
 
-        return $studentrisk->where('standing', $risk);;
+        $studentrisk = $this->riskArray($submissions);
+
+        return $studentrisk->where('standing', $risk);
     }
 
-    public function evalGradeExists(User $user)
+    public function evalGradeExists(User $user, Collection $submissions = null)
     {
-        $list = $this->submissions()->pluck('id');
+        if(!$submissions){
+            $submissions = $this->submissions;
+        }
+        $list = $submissions->pluck('id');
         $userGrade = $user->grades()->whereIn('submission_id', $list)->get();
         return !$userGrade->isEmpty();
 

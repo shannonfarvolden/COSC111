@@ -45,6 +45,7 @@ Route::get('/peerevaluation/{peerevaluation}/students', 'PeerEvaluationsControll
 Route::get('/peerevaluation/{peerevaluation}/link', 'PeerEvaluationsController@link');
 Route::get('/peerevaluation/{peerevaluation}/{submission}/storeLink', 'PeerEvaluationsController@storeLink');
 Route::get('/peerevaluation/{peerevaluation}/{submission}/deleteLink','PeerEvaluationsController@deleteLink');
+Route::get('/peerevaluation/{peerevaluation}/individualMark','PeerEvaluationsController@individualMark');
 
 //Assessment Routes
 Route::post('/assessment/{peerevaluation}/{user}','AssessmentsController@store');
@@ -103,7 +104,7 @@ Route::get('/stats', 'StatsController@show');
 Route::get('/adminStats', 'StatsController@adminStats');
 
 //Survey Routes
-Route::get('/survey/results', 'SurveyController@results');
+Route::get('/survey/results/{survey}', 'SurveyController@results');
 Route::resource('/survey', 'SurveyController');
 Route::post('/survey/{survey}', 'SurveyController@userSurvey');
 

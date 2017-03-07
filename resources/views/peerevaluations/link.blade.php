@@ -30,6 +30,9 @@
                 @endforeach
             </table>
         </div>
+        <a href="{{ action('PeerEvaluationsController@individualMark', [$peerevaluation]) }}" class="btn btn-primary">
+            Generate Individual Marks
+        </a>
     @endif
     <hr>
 

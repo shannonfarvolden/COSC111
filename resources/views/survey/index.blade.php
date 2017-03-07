@@ -13,6 +13,8 @@
                 <div class="panel-body">
                     <p>{{$survey->name}}</p>
                     @if(Auth::user()->admin)
+                        <a href="{{action('SurveyController@results', [$survey])}}"
+                           class="btn btn-default">Results</a>
                         <a href="{{action('SurveyController@edit', [$survey])}}"
                            class="btn btn-default">Edit Survey </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SurveyController@destroy', $survey], 'style' => 'display:inline;']) !!}
@@ -34,6 +36,8 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p>{{$survey->name}}</p>
+                            <a href="{{action('SurveyController@results', [$survey])}}"
+                               class="btn btn-default">Results</a>
                                 <a href="{{action('SurveyController@edit', [$survey])}}"
                                    class="btn btn-default">Edit Survey </a>
                                 {!! Form::open(['method' => 'DELETE', 'action' => ['SurveyController@destroy', $survey], 'style' => 'display:inline;']) !!}

@@ -95,11 +95,12 @@ class UsersController extends Controller
         $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
 
         $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
-
+        $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
 
-        return view('users.show', ['grades' => $grades, 'quizzes' => $quizzes, 'evaluations' => $evaluations, 'user' => $user]);
+        // quiz user total/evaluation total, user percentage, percentage of final mark so far
+        return view('users.show', ['grades' => $grades, 'quizzes' => $quizzes, 'evaluations' => $evaluations, 'inclassEvaluation' => $inclassEval, 'inclassSubmissions'=>$inclassSub, 'user' => $user]);
 
     }
 
