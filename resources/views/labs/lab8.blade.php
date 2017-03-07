@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="jumbotron">
-    <h2>Lab 8 [27 pts]</h2>
+    <h2>Lab 8 [27 pts + 2 bonus]</h2>
     <p>Exercises with 2D Arrays and Array of Objects</p>
     The purpose of this lab is to give you hands on practice with 2D arrays.
     If you need clarification with any of the steps below, ask your TA and/or
@@ -18,7 +18,21 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">1. Short Exercises [20 pts]</h3>
+      <h3 class="panel-title">1. Completed survey mark [2 pts bonus]</h3>
+    </div>
+    <div class="panel-body">
+      At the beginning of the lab, show your TA that you have completed Survey
+	  3. Note that the surveys are anonymous so we can't check who completed
+	  it and who didn't. Once you have submitted, you will need to show the TA
+	  the notification message. If you leave that screen, we won't be able to
+	  grade it.
+      <p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">2. Short Exercises [20 pts]</h3>
     </div>
     <div class="panel-body">
       <p>
@@ -134,7 +148,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">2. Array of Objects [7 pts]</h3>
+      <h3 class="panel-title">3. Array of Objects [7 pts]</h3>
     </div>
     <div class="panel-body">
       <p>
