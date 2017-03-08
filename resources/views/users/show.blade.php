@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-header">
-        <h1>{{$user->first_name}} {{$user->last_name}}'s Account @if($user->admin)<small>Admin</small>@endif</h1>
+        <h1>{{$user->first_name}} {{$user->last_name}}'s Account @if($user->admin)<small>Admin</small>@endif @if($user->hasTeam())<small>{{$user->teams->first()->name}}</small>@endif</h1>
 
     </div>
     <div class="panel panel-default">
