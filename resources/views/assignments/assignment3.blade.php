@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-    <h2>Assignment 3</h2>
+    <h2>Assignment 3 [33 pts]</h2>
     <p>Due: Sunday 9:00am on April 02nd</p>
     The purpose of this assignment is to give you practice with 2D arrays as
     well as classes and objects on your own without step-by-step guidelines.
