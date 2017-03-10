@@ -120,7 +120,7 @@ There are 4 consonants.
 Enter a word
 audio
 letter at position i = 2 is a consonant
-There are 1 consonant.
+There is 1 consonant.
       </pre>
 
       <p>
