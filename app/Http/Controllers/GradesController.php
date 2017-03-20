@@ -154,7 +154,18 @@ class GradesController extends Controller {
         return redirect()->action('SubmissionsController@team',['submission'=>$submission]);
 
     }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Grade $grade, User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Grade $grade)
+    {
+        $user = $grade->user;
+        $grade->delete();
+        return redirect()->action('UsersController@show',['user'=>$user]);
+    }
 
 
 }

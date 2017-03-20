@@ -11,6 +11,7 @@ use App\Evaluation;
 use App\Submission;
 use App\Team;
 use Auth;
+use Gate;
 
 class SubmissionsController extends Controller
 {
@@ -118,6 +119,8 @@ class SubmissionsController extends Controller
      */
     public function studentCreate(Submission $submission)
     {
+        if(Gate::denies('submission-active', $submission))
+            return view('errors.notactive', ['name' => $submission->name]);
         $lastAttempt = Auth::user()->submissions()->where('id', $submission->id)->get()->last();
 
         return view('submission.studentCreate', ['submission' => $submission, 'lastAttempt' => $lastAttempt]);
@@ -131,6 +134,8 @@ class SubmissionsController extends Controller
      */
     public function studentStore(Request $request, Submission $submission)
     {
+        if(Gate::denies('submission-active', $submission))
+            return view('errors.notactive', ['name' => $submission->name]);
         // validate request, check that files are submitted
         $this->validate($request, ['submissions.*' => 'required'], ['submissions.*' => 'Files are required to make a submission']);
         $files = $request->file('submissions');

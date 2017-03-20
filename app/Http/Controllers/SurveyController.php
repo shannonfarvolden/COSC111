@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\SurveyAnswer;
 use App\Survey;
 use Auth;
+use Gate;
 
 class SurveyController extends Controller
 {
@@ -74,6 +75,8 @@ class SurveyController extends Controller
      */
     public function userSurvey(Request $request, Survey $survey)
     {
+        if(Gate::denies('survey-active', $survey))
+            return view('errors.notactive', ['name' => $survey->name]);
         // add validation rules and error messages to insure all radio buttons of the survey are filled out
         $rules = [];
         $messages = [];
@@ -103,6 +106,8 @@ class SurveyController extends Controller
      */
     public function show(Survey $survey)
     {
+        if(Gate::denies('survey-active', $survey))
+            return view('errors.notactive', ['name' => $survey->name]);
         if(Auth::user()->surveyComplete($survey->id)){
             return view('survey.complete', ['survey' => $survey]);
         }

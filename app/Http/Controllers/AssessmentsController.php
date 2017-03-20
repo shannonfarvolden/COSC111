@@ -9,6 +9,7 @@ use App\PeerEvaluation;
 use App\Assessment;
 use App\User;
 use Auth;
+use Gate;
 
 class AssessmentsController extends Controller
 {
@@ -31,6 +32,9 @@ class AssessmentsController extends Controller
      */
     public function store(Request $request, PeerEvaluation $peerevaluation, User $user)
     {
+        if(Gate::denies('peerevaluation-active', $peerevaluation))
+            return view('errors.notactive', ['name' => $peerevaluation->name]);
+
         $this->authorize('teamMember', $user);
 
         $input = array_add($request->all(), 'peer_evaluation_id', $peerevaluation->id);
@@ -51,6 +55,8 @@ class AssessmentsController extends Controller
      */
     public function create(PeerEvaluation $peerevaluation, User $user)
     {
+        if(Gate::denies('peerevaluation-active', $peerevaluation))
+            return view('errors.notactive', ['name' => $peerevaluation->name]);
         $this->authorize('teamMember', $user);
         return view('assessments.create', ['peerevaluation' => $peerevaluation, 'user' => $user]);
     }
@@ -64,6 +70,9 @@ class AssessmentsController extends Controller
      */
     public function team(PeerEvaluation $peerevaluation, User $user)
     {
+        if(Gate::denies('peerevaluation-active', $peerevaluation))
+            return view('errors.notactive', ['name' => $peerevaluation->name]);
+
         $teamMembers = collect([]);
         //If user has a team, get team members
         if ($user->hasTeam()) {
@@ -81,7 +90,7 @@ class AssessmentsController extends Controller
      */
     public function myEvals(PeerEvaluation $peerevaluation, User $user)
     {
-        // authorize that user can access users evals
+        // authorize that user can access evals
         $this->authorize('userProfile', $user);
         $assessments = $user->evaluatee()->where('peer_evaluation_id', $peerevaluation->id)->get();
         $total = 0;
@@ -106,6 +115,9 @@ class AssessmentsController extends Controller
      */
     public function edit(PeerEvaluation $peerevaluation, User $user)
     {
+        if(Gate::denies('peerevaluation-active', $peerevaluation))
+            return view('errors.notactive', ['name' => $peerevaluation->name]);
+
         $this->authorize('teamMember', $user);
         $assessment = $user->evaluatee()->where('peer_evaluation_id', $peerevaluation->id)->where('evaluator', Auth::user()->id)->get()->first();
         return view('assessments.edit', ['assessment' => $assessment]);

@@ -35,5 +35,27 @@ class AuthServiceProvider extends ServiceProvider
             }
              return true;
         });
+
+        $gate->define('quiz-active', function($user, $quiz){
+            if($quiz->active|| $user->admin)
+                return true;
+            else return false;
+        });
+
+        $gate->define('survey-active', function($user, $survey){
+            if($survey->active|| $user->admin)
+                return true;
+            else return false;
+        });
+        $gate->define('submission-active', function($user, $submission){
+            if($submission->active|| $user->admin)
+                return true;
+            else return false;
+        });
+        $gate->define('peerevaluation-active', function($user, $peerevaluation){
+            if($peerevaluation->active || $user->admin)
+                return true;
+            else return false;
+        });
     }
 }

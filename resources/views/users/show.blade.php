@@ -22,8 +22,18 @@
                     <td>{{$grade->submission->name}}</td>
                     <td>{{$grade->mark}}/{{$grade->submission->total}}</td>
                     <td>{!! nl2br($grade->feedback) !!}</td>
+                    <td>
+                    @if(Auth::user()->admin)
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['GradesController@destroy', $grade], 'style' => 'display:inline;']) !!}
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        {!! Form::close() !!}
+                    @endif
+                    </td>
                 </tr>
             @endforeach
+
         </table>
     </div>
     <div class="panel panel-default">

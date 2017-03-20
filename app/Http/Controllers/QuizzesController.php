@@ -83,6 +83,8 @@ class QuizzesController extends Controller
      */
     public function userQuiz(Request $request, Quiz $quiz)
     {
+        if(Gate::denies('quiz-active', $quiz))
+            return view('errors.notactive', ['name' => $quiz->name]);
         if(Gate::denies('allow-quiz', $quiz)){
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
         };
@@ -113,6 +115,8 @@ class QuizzesController extends Controller
      */
     public function show(Quiz $quiz)
     {
+        if(Gate::denies('quiz-active', $quiz))
+            return view('errors.notactive', ['name' => $quiz->name]);
         if(Gate::denies('allow-quiz', $quiz)){
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
         };
