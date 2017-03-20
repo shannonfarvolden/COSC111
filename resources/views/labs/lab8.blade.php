@@ -158,8 +158,8 @@
       objects before). 
       First, create a project called <tt>Textbook</tt>. In this project,
       download 
-      <a href=Textbook.java>Textbook.java</a> and
-      <a href=TestTextbook.java>TestTextbook.java</a>. 
+      <a href=/documents/Textbook.java>Textbook.java</a> and
+      <a href=/documents/TestTextbook.java>TestTextbook.java</a>. 
       Make sure <b>both</b> files are added to the same project.
 
       <p>
