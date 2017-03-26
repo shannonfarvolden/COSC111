@@ -46,7 +46,7 @@
                 <th>Attempt</th>
                 <th>Score</th>
             </tr>
-            @foreach($quizzes as $attempt)
+            @foreach($quizAttempts as $attempt)
                 <tr>
                     <td>{{$attempt->name}}</td>
                     <td>#{{$attempt->pivot->attempt}}</td>
@@ -100,6 +100,15 @@
                     <td>
                         <span class="label label-{{$inclassEvaluation->userStanding($user, $inclassSubmissions)}}">{{$inclassEvaluation->userStanding($user, $inclassSubmissions)}}</span>
                     </td>
+                </tr>
+            @endif
+            @if($quizzes->count()>0)
+                <tr>
+                    <td>Quizzes (Max mark)</td>
+                    <td>{{$userQuizMark}}/{{$quizTotal}}</td>
+                    <td>{{round($userQuizMark/$quizTotal,4)*100}}%</td>
+                    <td>{{round(($userQuizMark/$quizTotal)*$quizEval->grade,1)}}/{{$quizEval->grade}}%</td>
+                    <td><span class="label label-{{$quizEval->gradeStanding(round($userQuizMark/$quizTotal,4)*100)}}">{{$quizEval->gradeStanding(round($userQuizMark/$quizTotal,4)*100)}}</span></td>
                 </tr>
             @endif
         </table>

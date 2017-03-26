@@ -209,6 +209,23 @@ class User extends BaseUser
     }
 
     /**
+     * Returns max quiz mark that student has gotten.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function maxQuizMark($id)
+    {
+        $max = 0;
+        $quizzes = $this->quizzes()->where('id', $id)->get();
+        foreach($quizzes as $quiz){
+            if($quiz->pivot->score > $max){
+                $max = $quiz->pivot->score;
+            }
+        }
+        return $max;
+    }
+    /**
      * Returns last quiz that student has taken.
      *
      * @param $id

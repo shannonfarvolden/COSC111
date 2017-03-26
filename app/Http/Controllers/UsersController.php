@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Evaluation;
 use App\User;
-
+use App\Quiz;
 
 class UsersController extends Controller
 {
@@ -92,15 +92,24 @@ class UsersController extends Controller
         $this->authorize('userProfile', $user);
 
         $grades = $user->grades;
-        $quizzes = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
+        $quizzes = Quiz::all();
+        $userQuizMark =0;
+        $quizTotal = 0;
+        foreach($quizzes as $quiz){
+
+            $userQuizMark += $user->maxQuizMark($quiz->id);
+            $quizTotal+=10;
+        }
+        $quizAttempts = $user->quizzes()->withPivot('attempt')->orderBy('name', 'asc')->orderBy('pivot_attempt', 'asc')->get();
 
         $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
         $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
 
-        // quiz user total/evaluation total, user percentage, percentage of final mark so far
-        return view('users.show', ['grades' => $grades, 'quizzes' => $quizzes, 'evaluations' => $evaluations, 'inclassEvaluation' => $inclassEval, 'inclassSubmissions'=>$inclassSub, 'user' => $user]);
+        $quizEval = Evaluation::where('category', 'like', '%Quizzes%')->get()->first();
+
+        return view('users.show', ['grades' => $grades, 'quizzes'=>$quizzes, 'quizEval'=>$quizEval,'userQuizMark' => $userQuizMark, 'quizTotal'=>$quizTotal , 'quizAttempts' => $quizAttempts, 'evaluations' => $evaluations, 'inclassEvaluation' => $inclassEval, 'inclassSubmissions'=>$inclassSub, 'user' => $user]);
 
     }
 

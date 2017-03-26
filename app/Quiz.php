@@ -36,21 +36,4 @@ class Quiz extends Model
     {
         return $this->hasMany('App\Question');
     }
-
-    public function quizTotal(User $user){
-
-    }
-
-    public function userTotalMark(){
-
-    }
-    public function userPercentage(){
-
-    }
-    public function userFinalPercentage(){
-
-    }
-
-
-
 }

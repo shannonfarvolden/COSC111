@@ -245,9 +245,12 @@ class Evaluation extends Model {
      */
     public function userStanding(User $user, Collection $submissions = null)
     {
-        if ($this->userPercentage($user, $submissions) < 55)
+        return $this->gradeStanding($this->userPercentage($user, $submissions));
+    }
+    public function gradeStanding($mark){
+        if ($mark < 55)
             return 'danger';
-        elseif ($this->userPercentage($user, $submissions) >= 55 && $this->userPercentage($user, $submissions) < 70)
+        elseif ($mark >= 55 && $mark < 70)
             return 'warning';
         else
             return 'success';

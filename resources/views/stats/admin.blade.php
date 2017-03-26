@@ -69,18 +69,18 @@
             </tr>
             <tr>
                 <td class="text-center">
-                    <iframe width="650" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=941886812&amp;format=interactive"></iframe>
-                </td>
+                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/175xCzWgdzSWYfjaXU8dvxhDQt_EgAgCBono7tRLdpw4/pubchart?oid=2013262538&amp;format=interactive"></iframe> </td>
             </tr>
             <tr>
                 <td class="text-center">
-                    <iframe width="675" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=437415473&amp;format=interactive"></iframe>
-                </td>
+                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/175xCzWgdzSWYfjaXU8dvxhDQt_EgAgCBono7tRLdpw4/pubchart?oid=1894817649&amp;format=interactive"></iframe></td>
             </tr>
             <tr>
                 <td class="text-center">
-                    <iframe width="650" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1hymCmLRyeQjdaja-v0xPg45aAaSMFMce8vQNIGVD_Qs/pubchart?oid=1464334678&amp;format=interactive"></iframe>
-                </td>
+                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/175xCzWgdzSWYfjaXU8dvxhDQt_EgAgCBono7tRLdpw4/pubchart?oid=621825265&amp;format=interactive"></iframe></td>
+            </tr>
+            <tr>
+                <td class="text-center"><iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/175xCzWgdzSWYfjaXU8dvxhDQt_EgAgCBono7tRLdpw4/pubchart?oid=599570150&amp;format=interactive"></iframe></td>
             </tr>
         </table>
     </div>
