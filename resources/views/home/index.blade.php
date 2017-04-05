@@ -204,6 +204,7 @@
                 <!--readings-->
                 <td>Ch 10</td>
                 <!--assignments/tests-->
+                <a href="/documents/old-final.pdf">Practice Final</a> 
                 <td></td>
                 <!--labs-->
                 <td>No labs</td>
