@@ -210,9 +210,10 @@ class PeerEvaluationsController extends Controller
         $users = User::students()->get();
         foreach($peerevaluation->submissions as $submission){
 
+            // Create Individual Submission name based of Team name
             $name = $submission->name;
             if(stripos($name,"team") === false) {
-                //name does not contain team add individual
+                //if name does not contain team add individual to submission name
                 $name = $name . ' Individual';
             }
             else{

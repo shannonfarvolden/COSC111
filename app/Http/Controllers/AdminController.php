@@ -12,7 +12,8 @@ use App\User;
 use Auth;
 
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
 
     /**
      * Create a new admin controller instance. User must be logged in to view pages.
@@ -44,22 +45,23 @@ class AdminController extends Controller {
     {
         $users = User::students()->get();
 
-        if (sizeof($request->input()) > 0)
-        {
+        if (sizeof($request->input()) > 0) {
             $users = $this->search($request, $submission);
         }
 
         return view('admin.mark', ['submission' => $submission, 'users' => $users]);
     }
 
-    public function overview(){
+    public function overview()
+    {
         $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
         $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
 
-        return view('admin.overview', ['evaluations'=>$evaluations]);
+        return view('admin.overview', ['evaluations' => $evaluations]);
     }
+
     /**
      * Filter and Sort users.
      *
@@ -74,38 +76,30 @@ class AdminController extends Controller {
         $filter = $request->get('filter');
         $sort = $request->get('sort');
         $order = $request->get('order');
-        if ($filter && $filter != 'none')
-        {
-            if (strpos($filter, 'L') !== false)
-            {
+        if ($filter && $filter != 'none') {
+            if (strpos($filter, 'L') !== false) {
                 $query = $query->where('lab', $filter);
-            } elseif ($filter == "file_submitted")
-            {
+            } elseif ($filter == "file_submitted") {
                 $query = $submission->users();
             }
         }
-        if ($sort && $sort != 'none')
-        {
-            if ($sort == 'last_name')
-            {
+        if ($sort && $sort != 'none') {
+            if ($sort == 'last_name') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('last_name', 'desc');
                 else
                     $query = $query->orderBy('last_name');
-            } elseif ($sort == 'first_name')
-            {
+            } elseif ($sort == 'first_name') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('first_name', 'desc');
                 else
                     $query = $query->orderBy('first_name');
-            } elseif ($sort == 'student_number')
-            {
+            } elseif ($sort == 'student_number') {
                 if ($order && $order == 'desc')
                     $query = $query->orderBy('student_number', 'desc');
                 else
                     $query = $query->orderBy('student_number');
-            } elseif ($sort == 'submission_date')
-            {
+            } elseif ($sort == 'submission_date') {
                 if ($order && $order == 'desc')
                     $query = $submission->users()->orderBy('pivot_created_at', 'desc');
                 else
@@ -125,21 +119,30 @@ class AdminController extends Controller {
      * @param $level
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function risk(Evaluation $evaluation, $level){
+    public function risk(Evaluation $evaluation, $level)
+    {
 
         $studentRisk = $evaluation->risk($level);
         $studentIds = [];
 
         $i = 0;
-        foreach($studentRisk as $student)
-        {
-           $studentIds[$i] = $student['user_id'];
-           $i++;
+        foreach ($studentRisk as $student) {
+            $studentIds[$i] = $student['user_id'];
+            $i++;
 
         }
         $students = User::students()->whereIn('id', $studentIds)->get();
 
-        return view('admin.risk',['evaluation'=>$evaluation, 'students'=>$students, 'level'=>$level]);
+        return view('admin.risk', ['evaluation' => $evaluation, 'students' => $students, 'level' => $level]);
     }
 
+    /**
+     * Display view for student data.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function data()
+    {
+        return view('admin.data');
+    }
 }

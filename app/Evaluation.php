@@ -214,7 +214,16 @@ class Evaluation extends Model {
 
         return $userTotalMark;
     }
-
+    /**
+     * Returns a specific users mark for evaluation.
+     *
+     * @param \App\User $user
+     * @return float
+     */
+    public function userMark(User $user, Collection $submissions = null)
+    {
+        return $this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions);
+    }
     /**
      * Returns a specific users average percentage for an evaluation.
      *
@@ -223,7 +232,7 @@ class Evaluation extends Model {
      */
     public function userPercentage(User $user, Collection $submissions = null)
     {
-        return round($this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions), 4) * 100;
+        return round($this->userMark($user, $submissions), 4) * 100;
     }
 
     /**
@@ -234,7 +243,7 @@ class Evaluation extends Model {
      */
     public function userFinalPercentage(User $user, Collection $submissions = null)
     {
-        return round(($this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions)) * $this->grade, 1);
+        return round(($this->userMark($user, $submissions)) * $this->grade, 1);
     }
 
     /**
@@ -247,6 +256,13 @@ class Evaluation extends Model {
     {
         return $this->gradeStanding($this->userPercentage($user, $submissions));
     }
+
+    /**
+     * Get grade standing given user mark.
+     *
+     * @param $mark
+     * @return string
+     */
     public function gradeStanding($mark){
         if ($mark < 55)
             return 'danger';
@@ -255,10 +271,14 @@ class Evaluation extends Model {
         else
             return 'success';
     }
-
-    public function riskArray( Collection $submissions = null){
+    /**
+     * Get risk array for students for admin overview.
+     * @param Collection|null $submissions
+     * @return static
+     */
+    public function riskArray(Collection $submissions = null){
         //get all users that are students
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         //create a collection
         $studentrisk = collect([]);
         // loop through students
@@ -271,6 +291,14 @@ class Evaluation extends Model {
 
        return $studentrisk->values();
     }
+
+    /**
+     * Get students for a given risk level.
+     *
+     * @param $risk
+     * @param Collection|null $submissions
+     * @return mixed
+     */
     public function risk($risk, Collection $submissions = null){
 
         $studentrisk = $this->riskArray($submissions);
@@ -278,6 +306,11 @@ class Evaluation extends Model {
         return $studentrisk->where('standing', $risk);
     }
 
+    /** Check if user has grades for an evaluation.
+     * @param \App\User $user
+     * @param Collection|null $submissions
+     * @return bool
+     */
     public function evalGradeExists(User $user, Collection $submissions = null)
     {
         if(!$submissions){

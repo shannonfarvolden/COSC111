@@ -33,6 +33,7 @@ Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/overview', 'AdminController@overview');
 Route::get('/admin/mark/{submission}','AdminController@mark');
 Route::get('/admin/{evaluation}/{level}', 'AdminController@risk');
+Route::get('/admin/data', 'AdminController@data');
 
 //Team Routes
 Route::resource('/team', 'TeamsController');

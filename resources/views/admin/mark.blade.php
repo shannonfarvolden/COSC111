@@ -14,16 +14,16 @@
             <h3 class="panel-title">{{$submission->name}} | Out of {{$submission->total}} pts</h3>
         </div>
         <!-- Table -->
-        <table class="table">
+        <table class="table table-mark">
             <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Student Number</th>
-                <th>Lab Section</th>
-                <th>Submission Date</th>
-                <th>Files Submitted</th>
-                <th>Latest Attempt Comments</th>
-                <th>Mark</th>
+                <th class="sm-column">Last Name</th>
+                <th class="sm-column">First Name</th>
+                <th class="sm-column">Student Number</th>
+                <th class="sm-column">Lab Section</th>
+                <th class="md-column">Submission Date</th>
+                <th class="lg-column">Files Submitted</th>
+                <th class="xl-column">Latest Attempt Comments</th>
+                <th class="lg-column">Mark</th>
             </tr>
 
             @foreach($users as $user)
@@ -43,7 +43,7 @@
                                 </p>
                             @endforeach
                         </td>
-                        <td>
+                        <td class="comments">
                             {!! nl2br($user->submissions->whereLoose('id', $submission->id)->last()->pivot->comments) !!}
                         </td>
                     @else
@@ -55,14 +55,15 @@
                         <td>
                             <a href="{{action('GradesController@create', [$submission, $user])}}"
                                class="btn btn-default">Add
-                                Grade/Feedback </a>
+                                Grade </a>
                         </td>
                     @else
                         <td>
                             {{$user->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
-                            <br><a href="{{action('GradesController@edit', [$submission, $user])}}"
+                            <br>
+                            <a href="{{action('GradesController@edit', [$submission, $user])}}"
                                    class="btn btn-info">Edit
-                                Grade/Feedback </a>
+                                Grade </a>
                         </td>
                     @endif
                 </tr>

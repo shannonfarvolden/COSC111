@@ -91,3 +91,28 @@
 .padding-star {
   padding-bottom: 20px;
 }
+
+table.table-mark {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table.table-mark .sm-column {
+  width: 7.5%;
+}
+
+table.table-mark .md-column {
+  width: 10%;
+}
+
+table.table-mark .lg-column {
+  width: 15%;
+}
+
+table.table-mark .xl-column {
+  width: 30%;
+}
+
+table.table-mark td.comments {
+  word-wrap: break-word;
+}

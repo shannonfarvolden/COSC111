@@ -44,3 +44,22 @@
 
   padding-bottom: 20px;
 }
+table.table-mark {
+  table-layout: fixed;
+  width: 100%;
+  .sm-column{
+    width:7.5%;
+  }
+  .md-column{
+    width:10%;
+  }
+  .lg-column{
+    width:15%;
+  }
+  .xl-column{
+    width:30%;
+  }
+  td.comments {
+    word-wrap: break-word;
+  }
+}

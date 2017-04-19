@@ -37,4 +37,11 @@
             </div>
         </div>
     </a>
+    <a href="{{ action('AdminController@data') }}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Student Data</p>
+            </div>
+        </div>
+    </a>
 @endsection
