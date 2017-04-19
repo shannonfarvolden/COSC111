@@ -118,7 +118,7 @@ class UsersController extends Controller
         $quizOverall = ($userQuizMark/$quizTotal)*$quizEval->grade;
 
         //inclass Overall
-        $inclassOverall = ($inclassEval->evalGradeExists($user))?$inclassEval->userMark($user, $inclassSub)*$inclassEval->grade:0;
+        $inclassOverall = ($inclassEval->evalGradeExists($user))?$inclassEval->userMark($user, $inclassSub, true)*$inclassEval->grade:0;
 
         // get labs
         $labEval = Evaluation::where('category','Labs')->get()->first();

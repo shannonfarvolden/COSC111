@@ -95,8 +95,8 @@
                     <td>{{$inclassEvaluation->category}} (Individual Marks)</td>
                     <td>{{$inclassEvaluation->userTotalMark($user, $inclassSubmissions)}}
                         /{{$inclassEvaluation->evaluationTotal($user, $inclassSubmissions)}}</td>
-                    <td>{{$inclassEvaluation->userPercentage($user, $inclassSubmissions)}}%</td>
-                    <td>{{$inclassEvaluation->userFinalPercentage($user, $inclassSubmissions)}}
+                    <td>{{$inclassEvaluation->userPercentage($user, $inclassSubmissions, true)}}%</td>
+                    <td>{{$inclassEvaluation->userFinalPercentage($user, $inclassSubmissions, true)}}
                         /{{$inclassEvaluation->grade}}%
                     </td>
                     <td>

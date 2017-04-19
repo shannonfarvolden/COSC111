@@ -220,9 +220,14 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return float
      */
-    public function userMark(User $user, Collection $submissions = null)
+    public function userMark(User $user, Collection $submissions = null, $limit=false)
     {
-        return $this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions);
+        $userMark =$this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions);
+        if($limit){
+            if($userMark>1)
+                return 1;
+        }
+        return $userMark;
     }
     /**
      * Returns a specific users average percentage for an evaluation.
@@ -230,9 +235,9 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return float
      */
-    public function userPercentage(User $user, Collection $submissions = null)
+    public function userPercentage(User $user, Collection $submissions = null, $limit=false)
     {
-        return round($this->userMark($user, $submissions), 4) * 100;
+        return round($this->userMark($user, $submissions, $limit), 4) * 100;
     }
 
     /**
@@ -241,10 +246,11 @@ class Evaluation extends Model {
      * @param \App\User $user
      * @return float
      */
-    public function userFinalPercentage(User $user, Collection $submissions = null)
+    public function userFinalPercentage(User $user, Collection $submissions = null, $limit=false)
     {
-        return round(($this->userMark($user, $submissions)) * $this->grade, 1);
+        return round(($this->userMark($user, $submissions, $limit)) * $this->grade, 1);
     }
+
 
     /**
      * Returns the risk level for a given user's in the evaluation category.
