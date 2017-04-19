@@ -112,8 +112,7 @@ class UsersController extends Controller
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
 
-
-        //TEMP Use to get final percent
+        //TEMP: Use to get final percent
 
         //quiz overall
         $quizOverall = ($userQuizMark/$quizTotal)*$quizEval->grade;
@@ -139,7 +138,7 @@ class UsersController extends Controller
         $finalExamEval = Evaluation::where('category','Final Exam')->get()->first();
         $finalExamMark = ($finalExamEval->evalGradeExists($user))?$finalExamEval->userMark($user):0;
 
-        $finalOverall = 0;
+        // Rules for exams
         //1) if MT2 > MT1, then MT1 = MT2
         //2) if Final > MT2 && Final > MT1, then MT1 = Final and MT2 = Final.
         //3) if Final < 50, then Overall = min( actualOverall, 45).
@@ -159,6 +158,7 @@ class UsersController extends Controller
         if($finalExamMark*100<50){
             $finalCourseMark = min($finalCourseMark,45);
         }
+
         $finalLetterGrade = $this->letterGrade($finalCourseMark);
 
         return view('users.show', ['user' => $user, 'grades' => $grades,'evaluations'=>$evaluations, 'quizzes'=>$quizzes, 'quizEval'=>$quizEval,'userQuizMark' => $userQuizMark, 'quizTotal'=>$quizTotal , 'quizAttempts' => $quizAttempts, 'labEval' => $labEval, 'assignmentEval'=>$assignmentEval, 'inclassEvaluation' => $inclassEval, 'inclassSubmissions'=>$inclassSub, 'finalCourseMark'=>$finalCourseMark, 'finalLetterGrade'=>$finalLetterGrade ]);
