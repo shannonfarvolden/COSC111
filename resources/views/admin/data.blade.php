@@ -7,6 +7,9 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <h4>Marks</h4>
+            <a href="{{ action('GradesController@finalMark') }}" class="btn btn-primary">
+                Generate Final Marks
+            </a>
         </div>
     </div>
     <div class="panel panel-default">

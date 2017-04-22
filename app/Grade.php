@@ -45,4 +45,34 @@ class Grade extends Model
         return (float)$num;
 
     }
+    /**
+     * Return letter grade given a mark.
+     *
+     * @param $mark
+     * @return string
+     */
+    public function letterGrade($mark){
+        if($mark<50)
+            return 'F';
+        else if($mark<55)
+            return 'D';
+        else if($mark<60)
+            return 'C-';
+        else if($mark<64)
+            return 'C';
+        else if($mark<68)
+            return 'C+';
+        else if($mark<72)
+            return 'B-';
+        else if($mark<76)
+            return 'B';
+        else if($mark<80)
+            return 'B+';
+        else if($mark<85)
+            return 'A-';
+        else if($mark<90)
+            return 'A';
+        else
+            return 'A+';
+    }
 }

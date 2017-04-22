@@ -223,8 +223,7 @@ class Evaluation extends Model {
     public function userMark(User $user, Collection $submissions = null, $limit=false)
     {
         $userMark =$this->userTotalMark($user, $submissions) / $this->evaluationTotal($user, $submissions);
-        if($limit){
-            if($userMark>1)
+        if($limit&&$userMark>1){
                 return 1;
         }
         return $userMark;

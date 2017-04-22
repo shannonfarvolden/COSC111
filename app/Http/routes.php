@@ -28,6 +28,7 @@ Route::post('/admin/mark/{submission}/{team}/teamStore','GradesController@teamSt
 Route::post('/admin/mark/{submission}/{team}/teamUpdate','GradesController@teamUpdate');
 Route::patch('/admin/mark/{grade}','GradesController@update');
 Route::delete('/grade/{grade}','GradesController@destroy');
+Route::get('admin/mark/final', 'GradesController@finalMark');
 //Admin Routes
 Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/overview', 'AdminController@overview');

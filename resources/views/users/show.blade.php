@@ -116,15 +116,26 @@
                     </td>
                 </tr>
             @endif
-            <tr>
-                <td>
-                    <Strong>Final Course Mark</Strong>
-                </td>
-                <td>{{round($finalCourseMark,2)}}/100</td>
-                <td>{{round($finalCourseMark)}}%</td>
-                <td></td>
-                <td><span class="label label-default">{{$finalLetterGrade}}</span></td>
-            </tr>
+            {{--<tr>--}}
+                {{--<td>--}}
+                    {{--<Strong>Final Course Mark</Strong>--}}
+                {{--</td>--}}
+                {{--<td>{{round($finalCourseMark,2)}}/100</td>--}}
+                {{--<td>{{round($finalCourseMark)}}%</td>--}}
+                {{--<td></td>--}}
+                {{--<td><span class="label label-default">{{$finalLetterGrade}}</span></td>--}}
+            {{--</tr>--}}
+            @if($finalGrade)
+                <tr>
+                    <td>
+                    <Strong>{{$finalGrade->submission->name}}</Strong>
+                    </td>
+                    <td>{{round($finalGrade->mark,2)}}/100</td>
+                    <td>{{round($finalGrade->mark)}}%</td>
+                    <td></td>
+                    <td><span class="label label-default">{{$finalGrade->letterGrade($finalGrade->mark)}}</span></td>
+                </tr>
+            @endif
         </table>
 
     </div>

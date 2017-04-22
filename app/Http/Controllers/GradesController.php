@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Evaluation;
 use App\Submission;
+use Carbon\Carbon;
 use App\Grade;
 use App\Quiz;
 use App\User;
@@ -165,6 +166,83 @@ class GradesController extends Controller {
         $user = $grade->user;
         $grade->delete();
         return redirect()->action('UsersController@show',['user'=>$user]);
+    }
+    /**
+     * Generate Individiual Submission with personalized mark based off peer eval assessments
+     */
+    public function finalMark(){
+
+        $users = User::students()->get();
+
+        //TEMP: switch to other category later
+        $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
+
+        $finalSubmission = Submission::create(['name'=>'Final Course Mark','due_date'=>Carbon::now(), 'total'=>100, 'evaluation_id'=>$inclassEval->id]);
+        $quizEval = Evaluation::where('category', 'like', '%Quizzes%')->get()->first();
+
+        //get inclass evals
+        $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
+        $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
+        // get labs
+        $labEval = Evaluation::where('category','Labs')->get()->first();
+        //get assignments
+        $assignmentEval = Evaluation::where('category','Assignments')->get()->first();
+        //get Midterm 1
+        $midterm1Eval = Evaluation::where('category','Midterm 1')->get()->first();
+        //get Midterm 2
+        $midterm2Eval = Evaluation::where('category','Midterm 2')->get()->first();
+        // get Final Exam
+        $finalExamEval = Evaluation::where('category','Final Exam')->get()->first();
+
+        //generate individual grades if student has a team mark
+        foreach($users as $user){
+            // get quiz marks
+            $quizzes = Quiz::all();
+            $userQuizMark =0;
+            $quizTotal = 0;
+            foreach($quizzes as $quiz){
+
+                $userQuizMark += $user->maxQuizMark($quiz->id);
+                $quizTotal+=10;
+            }
+
+            //TEMP: Use to get final percent
+
+            //evaluation marks
+            $quizOverall = ($userQuizMark/$quizTotal)*$quizEval->grade;
+            $inclassOverall = ($inclassEval->evalGradeExists($user))?$inclassEval->userMark($user, $inclassSub, true)*$inclassEval->grade:0;
+            $labOverall = ($labEval->evalGradeExists($user))?$labEval->userMark($user)*$labEval->grade:0;
+            $assignmentOverall = ($assignmentEval->evalGradeExists($user))?$assignmentEval->userMark($user)*$assignmentEval->grade:0;
+            $midterm1Mark = ($midterm1Eval->evalGradeExists($user))?$midterm1Eval->userMark($user):0;
+            $midterm2Mark = ($midterm2Eval->evalGradeExists($user))?$midterm2Eval->userMark($user):0;
+            $finalExamMark = ($finalExamEval->evalGradeExists($user))?$finalExamEval->userMark($user):0;
+
+            // Rules for exams
+            //1) if MT2 > MT1, then MT1 = MT2
+            //2) if Final > MT2 && Final > MT1, then MT1 = Final and MT2 = Final.
+            //3) if Final < 50, then Overall = min( actualOverall, 45).
+            if($midterm2Mark>$midterm1Mark){
+                $midterm1Mark = $midterm2Mark;
+            }
+            if($finalExamMark > $midterm2Mark && $finalExamMark > $midterm1Mark){
+                $midterm1Mark = $finalExamMark;
+                $midterm2Mark = $finalExamMark;
+            }
+            $midterm1Overall = $midterm1Mark * $midterm1Eval->grade;
+            $midterm2Overall = $midterm2Mark * $midterm2Eval->grade;
+            $finalExamOverall = $finalExamMark * $finalExamEval->grade;
+
+            $finalCourseMark = $labOverall + $assignmentOverall + $quizOverall + $inclassOverall + $midterm1Overall + $midterm2Overall+$finalExamOverall;
+
+            if($finalExamMark*100<50){
+                $finalCourseMark = min($finalCourseMark,45);
+            }
+
+            Grade::create(['user_id'=>$user->id, 'submission_id'=>$finalSubmission->id, 'mark'=>$finalCourseMark ]);
+        }
+
+        return redirect()->action('SubmissionsController@index');
+
     }
 
 
