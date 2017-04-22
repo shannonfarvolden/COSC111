@@ -112,9 +112,11 @@ class UsersController extends Controller
 
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
-        $submission = Submission::where('name', 'Final Course Mark')->get()->last();
-        $finalGrade = $submission->grades()->where('user_id', $user->id)->get()->last();
-
+        $finalGrade=null;
+        if(!Submission::where('name', 'Final Course Mark')->get()->isEmpty()){
+            $submission = Submission::where('name', 'Final Course Mark')->get()->last();
+            $finalGrade = $submission->grades()->where('user_id', $user->id)->get()->last();
+        }
         return view('users.show', ['user' => $user, 'grades' => $grades,'evaluations'=>$evaluations, 'quizzes'=>$quizzes, 'quizEval'=>$quizEval,'userQuizMark' => $userQuizMark, 'quizTotal'=>$quizTotal , 'quizAttempts' => $quizAttempts, 'inclassEvaluation' => $inclassEval, 'inclassSubmissions'=>$inclassSub, 'finalGrade'=>$finalGrade]);
 
     }
