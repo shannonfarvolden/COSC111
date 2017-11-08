@@ -24,7 +24,7 @@
                         <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
                            class="btn btn-default">Edit </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this submission?')"]) !!}
                         {!! Form::close() !!}
                     @endif
                 </div>
@@ -48,7 +48,7 @@
                         <a href="{{action('SubmissionsController@edit', [$submission->id])}}"
                            class="btn btn-default">Edit</a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SubmissionsController@destroy', $submission], 'style' => 'display:inline;']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this submission?')"]) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

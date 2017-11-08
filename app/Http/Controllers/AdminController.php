@@ -44,8 +44,9 @@ class AdminController extends Controller
     public function mark(Submission $submission, Request $request)
     {
         $users = User::students()->get();
-
+        //Session::flash('backUrl', Request::fullUrl());
         if (sizeof($request->input()) > 0) {
+
             $users = $this->search($request, $submission);
         }
 
@@ -72,7 +73,6 @@ class AdminController extends Controller
     public function search(Request $request, Submission $submission)
     {
         $query = User::students();
-
         $filter = $request->get('filter');
         $sort = $request->get('sort');
         $order = $request->get('order');

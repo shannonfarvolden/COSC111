@@ -6,7 +6,7 @@
         <h1>{{$quiz->name}}</h1>
     </div>
     {!! Form::open([ 'action' => ['QuizzesController@userQuiz', $quiz->id]]) !!}
-    @foreach($quiz->questions->shuffle() as $count=>$question)
+    @foreach($quiz->questions->shuffle()->take(10) as $count=>$question)
         <div class="panel panel-default">
             <div class="panel-body">
                 <pre>{{$count+1}}) {{$question->question}}</pre>

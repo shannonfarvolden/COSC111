@@ -7,14 +7,14 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Submission', 'Your Grade', 'Class Average'],
-                    @foreach($grades as $grade)
-                    ['{{$grade->submission->name}}', {{$grade->mark/$grade->submission->total*100}}, {{$grade->submission->average()}}],
+                ['Quiz', 'Users taken quiz'],
+                @foreach($quizzes as $quiz)
+                ['{{$quiz->name}}', {{$quiz->users->count()}}],
                 @endforeach
             ]);
             var options = {
                 chart: {
-                    title: 'Grades vs. Class Average'
+                    title: 'Number of users taken quiz'
                 }
             };
 
@@ -27,25 +27,14 @@
 @endsection
 
 @section('content')
-    <div class="jumbotron">
-        <h2>Stats</h2>
+    <div class="page-header">
+        <h2>Quiz Data</h2>
     </div>
-
-    @if(!$grades->isEmpty())
+    <br>
+    @if(!$quizzes->isEmpty())
         <div id="columnchart" style="width: 900px; height: 500px"></div>
     @else
-        <h3>You have marks to show stats on yet.</h3>
+        <h3>No Quizzes created.</h3>
     @endif
 
-@endsection
-
-@section('footer')
-    {{--Sends pageview google anaytics--}}
-    <script>
-        ga('send', {
-            hitType: 'pageview',
-            title: 'Stats',
-            page: '/stats'
-        });
-    </script>
 @endsection

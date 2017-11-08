@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Thread;
 use App\ThreadRead;
 use Carbon\Carbon;
+use App\Setting;
+use App\Thread;
 use Auth;
+use Gate;
 
 
 class ThreadsController extends Controller
@@ -20,7 +22,7 @@ class ThreadsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['only' => 'star']);
+        $this->middleware('admin', ['only' => ['star', 'destroy', 'setting']]);
     }
     /**
      * Display a listing of the resource.
@@ -29,6 +31,7 @@ class ThreadsController extends Controller
      */
     public function index(Request $request)
     {
+
         // get category in select field for filtering
         $category = $request->get('category');
 
@@ -52,6 +55,9 @@ class ThreadsController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('forum-active'))
+            return view('errors.notactive', ['name' => 'Discussion Forum']);
+
         return view('threads.create');
     }
 
@@ -63,6 +69,8 @@ class ThreadsController extends Controller
      */
     public function store(ThreadRequest $request)
     {
+        if(Gate::denies('forum-active'))
+            return view('errors.notactive', ['name' => 'Discussion Forum']);
         $thread = Auth::user()->threads()->create($request->all());
 
         return redirect()->action('ThreadsController@show', ['thread'=>$thread]);
@@ -101,27 +109,17 @@ class ThreadsController extends Controller
         return view('threads.edit', ['thread'=>$thread]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Thread $thread)
     {
-        //
+        $thread->delete();
+        return redirect()->action('ThreadsController@index');
     }
 
 
@@ -145,5 +143,29 @@ class ThreadsController extends Controller
         return back();
     }
 
+    /**
+     * Show settings view for thread.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function setting(){
+        $setting = Setting::first();
+        return view('threads.setting', ['setting'=>$setting]);
+    }
+
+    /**
+     * Store forum setting in database.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateSetting(Request $request){
+
+        $setting = Setting::first();
+        ($request->input('active_forum')) ? $setting->active_forum = true : $setting->active_forum = false;
+        $setting->save();
+
+        return redirect()->action('ThreadsController@index');
+    }
 
 }

@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Database\Seeder;
 use App\Submission;
 use App\User;
-use Illuminate\Database\Seeder;
 
 class GradeTableSeeder extends Seeder
 {

@@ -137,20 +137,7 @@ class SlideSetsController extends Controller {
 
         return view('slideset.edit', ['slideset'=>$slideset]);
     }
-
-    /**
-     * Displays adminIndex of slides
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function adminIndex()
-    {
-        $slides = Slide::all()->unique('slide_set')->sortBy('slide_set');
-
-        return view('slideset.adminIndex', ['slides' => $slides]);
-    }
-
-
+    
     /**
      * Update the specified resource in storage.
      *

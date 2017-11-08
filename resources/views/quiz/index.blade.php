@@ -5,7 +5,9 @@
         <h1>Quizzes</h1>
     </div>
     @if(Auth::user()->admin)
-        <a href="{{ action('QuizzesController@create') }}" class=" btn btn-primary margin-button"> Create Quiz </a>
+        {{--<a href="{{ action('QuizzesController@create') }}" class=" btn btn-primary margin-button"> Create Quiz </a>--}}
+        <a href="{{ action('QuizzesController@data') }}" class=" btn btn-default margin-button">Quiz Data</a>
+        <a href="{{ action('QuizzesController@setting') }}" class=" btn btn-default margin-button"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
     @endif
     @foreach($quizzes->whereLoose('active',1) as $quiz)
         <a style="color:black; text-decoration:none" href="{{ action('QuizzesController@show', [$quiz->id]) }}">
@@ -26,7 +28,7 @@
                         <a href="{{action('QuizzesController@edit', $quiz)}}"
                            class="btn btn-default">Edit Quiz </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['QuizzesController@destroy', $quiz], 'style' => 'display:inline;']) !!}
-                        {!! Form::submit('Delete Quiz', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Delete Quiz', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this quiz?')"]) !!}
                         {!! Form::close() !!}
                     @endif
                 </div>
@@ -47,7 +49,7 @@
                                 <a href="{{action('QuizzesController@edit', $quiz)}}"
                                    class="btn btn-default">Edit Quiz </a>
                                 {!! Form::open(['method' => 'DELETE', 'action' => ['QuizzesController@destroy', $quiz], 'style' => 'display:inline;']) !!}
-                                {!! Form::submit('Delete Quiz', ['class' => 'btn btn-default']) !!}
+                                {!! Form::submit('Delete Quiz', ['class' => 'btn btn-default','onClick'=>"return confirm('Delete this quiz?')"]) !!}
                                 {!! Form::close() !!}
                         </div>
                     </div>

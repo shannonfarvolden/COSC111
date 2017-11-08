@@ -18,8 +18,13 @@
         {!! Form::close() !!}
     </div>
     <hr>
-
+    @if(App\Setting::first()->exists() && App\Setting::first()->active_forum)
     <a href="{{ action('ThreadsController@create') }}" class=" btn btn-primary margin-button"> Create Thread </a>
+    @endif
+    @if(Auth::user()->admin)
+        <a href="{{ action('ThreadsController@setting') }}" class=" btn btn-default margin-button"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+    @endif
+
     @foreach( $threads as $thread)
         <a style="color:black; text-decoration:none" href="{{ action('ThreadsController@show', [$thread]) }}">
             <div class="panel panel-default">

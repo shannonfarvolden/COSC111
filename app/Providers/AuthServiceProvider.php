@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Setting;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -55,6 +56,13 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('peerevaluation-active', function($user, $peerevaluation){
             if($peerevaluation->active || $user->admin)
                 return true;
+            else return false;
+        });
+
+        $gate->define('forum-active', function(){
+            if(Setting::first()->exists() && Setting::first()->active_forum) {
+                return true;
+            }
             else return false;
         });
     }

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Quiz;
 use App\Question;
+use App\Setting;
 use App\Answer;
+use App\Quiz;
 use Auth;
 use Gate;
 
@@ -21,8 +22,8 @@ class QuizzesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['only' => [
-            'create', 'edit', 'store', 'update'
+        $this->middleware('admin', ['except' => [
+            'index', 'userQuiz', 'show', 'attempts'
         ]]);
     }
 
@@ -83,9 +84,9 @@ class QuizzesController extends Controller
      */
     public function userQuiz(Request $request, Quiz $quiz)
     {
-        if(Gate::denies('quiz-active', $quiz))
+        if (Gate::denies('quiz-active', $quiz))
             return view('errors.notactive', ['name' => $quiz->name]);
-        if(Gate::denies('allow-quiz', $quiz)){
+        if (Gate::denies('allow-quiz', $quiz)) {
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
         };
 
@@ -115,9 +116,9 @@ class QuizzesController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        if(Gate::denies('quiz-active', $quiz))
+        if (Gate::denies('quiz-active', $quiz))
             return view('errors.notactive', ['name' => $quiz->name]);
-        if(Gate::denies('allow-quiz', $quiz)){
+        if (Gate::denies('allow-quiz', $quiz)) {
             return redirect()->action('QuizzesController@attempts', ['quiz' => $quiz]);
         };
 
@@ -183,6 +184,40 @@ class QuizzesController extends Controller
     {
         $quiz->delete();
 
+        return redirect()->action('QuizzesController@index');
+    }
+
+    /**
+     * Display all quiz data.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function data()
+    {
+        $quizzes = Quiz::all();
+
+        return view('quiz.data', ['quizzes' => $quizzes]);
+    }
+
+    /**
+     * Show settings view for quiz.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function setting(){
+        $setting = Setting::first();
+        return view('quiz.setting', ['setting'=>$setting]);
+    }
+    /**
+     * Store quiz setting in database.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateSetting(Request $request){
+
+        $setting = Setting::first();
+        $setting->update($request->all());
         return redirect()->action('QuizzesController@index');
     }
 }

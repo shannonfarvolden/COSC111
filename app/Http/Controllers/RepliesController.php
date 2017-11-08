@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Reply;
 use Auth;
+use Gate;
 
 class RepliesController extends Controller
 {
@@ -15,6 +16,7 @@ class RepliesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['only' => 'destroy']);
 
     }
 
@@ -26,11 +28,26 @@ class RepliesController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('forum-active'))
+            return view('errors.notactive', ['name' => 'Discussion Forum']);
+
         $this->validate($request, ['body'=>'required']);
         $reply = new Reply($request->all());
         Auth::user()->replies()->save($reply);
 
         return back();
 
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Reply $reply
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Reply $reply)
+    {
+        $reply->delete();
+        return back();
     }
 }

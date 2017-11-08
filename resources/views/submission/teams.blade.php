@@ -11,7 +11,9 @@
         <div class="panel-heading">
             <h3 class="panel-title">{{$submission->name}} | Out of {{$submission->total}} pts</h3>
         </div>
-        <!-- Table -->
+
+    @if(!$teams->isEmpty())
+    <!-- Table -->
     <table class="table">
         <tr>
             <th>Team</th>
@@ -36,5 +38,10 @@
             </tr>
         @endforeach
     </table>
+    @else
+        <div class="panel-body">
+            <p>No teams have been created yet.</p>
+        </div>
+    @endif
     </div>
 @endsection

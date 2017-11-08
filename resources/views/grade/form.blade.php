@@ -1,5 +1,3 @@
-
-
 <div class="form-group">
     {!! Form::label('feedback', 'Feedback') !!}
     {!! Form::textarea('feedback', null, ['class'=>'form-control', 'rows' => 3]) !!}
@@ -11,4 +9,3 @@
 <div class="form-group">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 </div>
-

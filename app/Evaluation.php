@@ -276,8 +276,10 @@ class Evaluation extends Model {
         else
             return 'success';
     }
+
     /**
      * Get risk array for students for admin overview.
+     *
      * @param Collection|null $submissions
      * @return static
      */

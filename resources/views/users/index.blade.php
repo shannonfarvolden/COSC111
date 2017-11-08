@@ -29,7 +29,7 @@
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user], 'style' => 'display:inline;']) !!}
-                        <button type="submit" class="btn btn-default">
+                        <button type="submit" class="btn btn-default" onClick="return confirm('Delete this user?')" >
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                         {!! Form::close() !!}

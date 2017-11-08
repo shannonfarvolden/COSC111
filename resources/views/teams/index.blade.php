@@ -18,7 +18,7 @@
                 <a href="{{action('TeamsController@edit', [$team])}}"
                    class="btn btn-default">Edit Team Name </a>
                 {!! Form::open(['method' => 'DELETE', 'action' => ['TeamsController@destroy', $team], 'style' => 'display:inline;']) !!}
-                {!! Form::submit('Delete Team', ['class' => 'btn btn-default']) !!}
+                {!! Form::submit('Delete Team', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this team?')"]) !!}
                 {!! Form::close() !!}
             </div>
         </div>

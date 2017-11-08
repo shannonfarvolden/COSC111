@@ -7,7 +7,7 @@
                 <a href="{{action('SlideSetsController@edit', $slideset)}}"
                    class="btn btn-default">Edit </a>
                 {!! Form::open(['method' => 'DELETE', 'action' => ['SlideSetsController@destroy', $slideset], 'style' => 'display:inline;']) !!}
-                {!! Form::submit('Delete', ['class' => 'btn btn-default']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this slide set?')"]) !!}
                 {!! Form::close() !!}
             @endif</h1>
     </div>

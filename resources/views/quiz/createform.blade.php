@@ -27,7 +27,7 @@
                 </div>
             @endfor
             <div class="form-group">
-                {!! Form::label('active', 'Active Submission (students can see quiz)') !!}
+                {!! Form::label('active', 'Active Quiz (students can see quiz)') !!}
                 {!! Form::checkbox('active') !!}
             </div>
             <div class="form-group">

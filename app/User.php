@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as BaseUser;
+use App\Setting;
 
 class User extends BaseUser
 {
@@ -19,7 +20,7 @@ class User extends BaseUser
         'lab',
         'email',
         'password',
-        'consent',
+        'data_consent',
     ];
 
     /**
@@ -244,7 +245,8 @@ class User extends BaseUser
      */
     public function retakeQuiz($id)
     {
-        return $this->lastQuizTaken($id)->pivot->created_at->addHour();
+        $delay = Setting::first()->quiz_delay;
+        return $this->lastQuizTaken($id)->pivot->created_at->addHours($delay);
     }
 
     /**

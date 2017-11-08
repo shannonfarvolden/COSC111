@@ -6,6 +6,6 @@
     </div>
     @include('partials.error')
     {!! Form::model($survey, ['method' => 'PATCH', 'action' => ['SurveyController@update', $survey]]) !!}
-    @include('survey.form', ['submitButtonText' => 'Edit Survey'])
+    @include('survey.editform', ['submitButtonText' => 'Edit Survey'])
     {!! Form::close() !!}
 @endsection

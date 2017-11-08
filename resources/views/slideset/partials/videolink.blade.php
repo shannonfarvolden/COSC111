@@ -9,7 +9,7 @@
                 <a href="{{action('VideosController@edit', $video)}}"
                    class="btn btn-default btn-xs">Edit</a>
                 {!! Form::open(['method' => 'DELETE', 'action' => ['VideosController@destroy', $video], 'style' => 'display:inline;']) !!}
-                {!! Form::submit('Delete', ['class' => 'btn btn-default btn-xs']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-default btn-xs', 'onClick'=>"return confirm('Delete this video link?')"]) !!}
                 {!! Form::close() !!}
             @endif
         @endforeach

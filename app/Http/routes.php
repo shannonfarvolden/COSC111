@@ -29,6 +29,8 @@ Route::post('/admin/mark/{submission}/{team}/teamUpdate','GradesController@teamU
 Route::patch('/admin/mark/{grade}','GradesController@update');
 Route::delete('/grade/{grade}','GradesController@destroy');
 Route::get('admin/mark/final', 'GradesController@finalMark');
+Route::get('admin/download', 'GradesController@download');
+
 //Admin Routes
 Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/overview', 'AdminController@overview');
@@ -73,11 +75,17 @@ Route::patch('/video/{video}','VideosController@update');
 Route::delete('/video/{video}', 'VideosController@destroy');
 
 //Thread Routes
+Route::get('/thread/setting', 'ThreadsController@setting');
+Route::patch('/thread/setting', 'ThreadsController@updateSetting');
 Route::resource('/thread', 'ThreadsController');
 Route::post('/thread/{thread}/star', 'ThreadsController@star');
 Route::post('/thread/{thread}', 'RepliesController@store');
+Route::delete('/thread/{reply}/destroy', 'RepliesController@destroy');
 
 //Quiz Routes
+Route::get('/quiz/setting', 'QuizzesController@setting');
+Route::patch('/quiz/setting', 'QuizzesController@updateSetting');
+Route::get('/quiz/data', 'QuizzesController@data');
 Route::resource('/quiz', 'QuizzesController');
 Route::get('/quiz/{quiz}/attempts', 'QuizzesController@attempts');
 Route::get('/quiz/{quiz}/{answers}/result', 'QuizzesController@result');

@@ -30,7 +30,7 @@
                                 <td>{{$evaluation->category}}</td>
                                 <td><a href="{{action('EvaluationsController@edit', [$evaluation])}}" class=" btn btn-info"> Edit</a></td>
                                 <td> {!! Form::open(['method' => 'DELETE', 'action' => ['EvaluationsController@destroy', $evaluation], 'style' => 'display:inline;']) !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onClick'=>"return confirm('Delete this evaluation?')"]) !!}
                                     {!! Form::close() !!}</td>
                             </tr>
                         @endforeach

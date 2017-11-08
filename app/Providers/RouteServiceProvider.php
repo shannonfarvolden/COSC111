@@ -35,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
         // Thread route-model binding
         $router->model('thread', 'App\Thread');
 
+        // Reply route-model binding
+        $router->model('reply', 'App\Reply');
+
         // Grade route-model binding
         $router->model('grade', 'App\Grade');
 

@@ -6,29 +6,34 @@
     </div>
     @include('partials.error')
     {!! Form::open(['url' => 'survey']) !!}
-    @include('survey.form', ['submitButtonText' => 'Create Survey'])
+    @include('survey.createform', ['submitButtonText' => 'Create Survey'])
     {!! Form::close() !!}
-
-    {{--<button type="button" id="removequestion" class="btn btn-default btn-lg">Remove Questions</button>--}}
 
 @endsection
 @section('footer')
     <script>
-        var i = 0;
-        var j = 0;
-        $( "#addquestion" ).click(function() {
-            $( '.questions' ).append("<div class=\"form-group questionform"+i+"\"><label for=\"question["+i+"]\">Question "+(i+1)+"</label><input type=\"text\" class=\"form-control\" name=\"question["+i+"]\"> <button type=\"button\" id=\"addanswer\" class=\"btn btn-default\">Add Answer</button></div>");
-            i=i+1;
-        });
 
-        $( "#removequestion" ).click(function() {
-            i=i-1;
-            $( ".questionform"+i ).remove();
+        var j = 0;
+        $("div.panel-body").on('click', '#addquestion', function() {
+            var question = $(".question");
+            var i = question.index(question.last())+1;
+            console.log(i);
+
+            $( '.questions' ).append("<div class=\"form-group><label for=\"question["+i+"]\">Question "+(i+1)+"</label><input type=\"text\" class=\"question form-control\" name=\"question["+i+"]\"><hr>");
+
+            "<button type=\"button\" id=\"addanswer\" class=\"btn btn-default\">Add Answer</button></div>"
         });
-//        $( "#addanswer" ).click(function() {
-//            $( '.questions' ).append("<div class=\"form-group questionform"+i+"\"><label for=\"question["+i+"]\">Question "+(i+1)+"</label><input type=\"text\" class=\"form-control\" name=\"question["+i+"]\"> <button type=\"button\" id=\"addanswer\" class=\"btn btn-default\">Add Answer</button></div>");
-//            i=i+1;
-//        });
+        $("div.panel-body").on('click', '#removequestion', function() {
+            console.log($(".question").last().parent('.question-group'));
+            $(".question").last().parent('.question-group').remove();
+
+        });
+        $("div.questions").on('click', '#addanswer', function() {
+            console.log('hit');
+        });
+        $("div.questions").on('click', '#removeanswer', function() {
+            console.log('hit');
+        });
 
     </script>
 @endsection

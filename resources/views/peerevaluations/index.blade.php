@@ -24,7 +24,7 @@
                     <a href="{{action('PeerEvaluationsController@edit', $peerevaluation)}}"
                        class="btn btn-default">Edit Peer Eval </a>
                     {!! Form::open(['method' => 'DELETE', 'action' => ['PeerEvaluationsController@destroy', $peerevaluation], 'style' => 'display:inline;']) !!}
-                    {!! Form::submit('Delete Peer Eval', ['class' => 'btn btn-default']) !!}
+                    {!! Form::submit('Delete Peer Eval', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this peer evaluation?')"]) !!}
                     {!! Form::close() !!}
                 @else
                     <a href="{{action('AssessmentsController@myEvals', [$peerevaluation, Auth::user()])}}"
@@ -58,7 +58,7 @@
                             <a href="{{action('PeerEvaluationsController@edit', $peerevaluation)}}"
                                class="btn btn-default">Edit Peer Eval Name </a>
                             {!! Form::open(['method' => 'DELETE', 'action' => ['PeerEvaluationsController@destroy', $peerevaluation], 'style' => 'display:inline;']) !!}
-                            {!! Form::submit('Delete Peer Eval', ['class' => 'btn btn-default']) !!}
+                            {!! Form::submit('Delete Peer Eval', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this peer evaluation?')"]) !!}
                             {!! Form::close() !!}
                         @else
                             <a href="{{action('AssessmentsController@myEvals', $peerevaluation)}}"

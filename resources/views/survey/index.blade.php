@@ -4,9 +4,9 @@
     <div class="page-header">
         <h1>Surveys</h1>
     </div>
-    @if(Auth::user()->admin)
-        <a href="{{ action('SurveyController@create') }}" class=" btn btn-primary margin-button"> Create Survey </a>
-    @endif
+    {{--@if(Auth::user()->admin)--}}
+        {{--<a href="{{ action('SurveyController@create') }}" class=" btn btn-primary margin-button"> Create Survey </a>--}}
+    {{--@endif--}}
     @foreach($surveys->whereLoose('active',1) as $survey)
         <a href="{{ action('SurveyController@show', $survey) }}">
             <div class="panel panel-default">
@@ -18,7 +18,7 @@
                         <a href="{{action('SurveyController@edit', [$survey])}}"
                            class="btn btn-default">Edit Survey </a>
                         {!! Form::open(['method' => 'DELETE', 'action' => ['SurveyController@destroy', $survey], 'style' => 'display:inline;']) !!}
-                        {!! Form::submit('Delete Survey', ['class' => 'btn btn-default']) !!}
+                        {!! Form::submit('Delete Survey', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this survey?')"]) !!}
                         {!! Form::close() !!}
                     @endif
                 </div>
@@ -41,7 +41,7 @@
                                 <a href="{{action('SurveyController@edit', [$survey])}}"
                                    class="btn btn-default">Edit Survey </a>
                                 {!! Form::open(['method' => 'DELETE', 'action' => ['SurveyController@destroy', $survey], 'style' => 'display:inline;']) !!}
-                                {!! Form::submit('Delete Survey', ['class' => 'btn btn-default']) !!}
+                                {!! Form::submit('Delete Survey', ['class' => 'btn btn-default', 'onClick'=>"return confirm('Delete this survey?')"]) !!}
                                 {!! Form::close() !!}
                         </div>
                     </div>

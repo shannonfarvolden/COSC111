@@ -110,8 +110,8 @@ class UsersController extends Controller
         $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
         $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
 
-        // get all evals except inclass
-        $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
+        // get all evals except inclass and evals that are zero.
+        $evaluations = Evaluation::where('grade', '>', 0)->whereNotIn('id', [$inclassEval->id])->get();
         $finalGrade=null;
         if(!Submission::where('name', 'Final Course Mark')->get()->isEmpty()){
             $submission = Submission::where('name', 'Final Course Mark')->get()->last();

@@ -63,3 +63,17 @@ table.table-mark {
     word-wrap: break-word;
   }
 }
+
+.panel-btn{
+  width:60%;
+}
+.remove.form-group {
+  position: relative;
+
+  .glyphicon-remove-circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+}

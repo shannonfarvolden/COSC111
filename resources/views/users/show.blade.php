@@ -27,7 +27,7 @@
                     <td>
                         @if(Auth::user()->admin)
                             {!! Form::open(['method' => 'DELETE', 'action' => ['GradesController@destroy', $grade], 'style' => 'display:inline;']) !!}
-                            <button type="submit" class="btn btn-default">
+                            <button type="submit" class="btn btn-default" onClick="return confirm('Delete this grade?')">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>
                             {!! Form::close() !!}
@@ -116,15 +116,6 @@
                     </td>
                 </tr>
             @endif
-            {{--<tr>--}}
-                {{--<td>--}}
-                    {{--<Strong>Final Course Mark</Strong>--}}
-                {{--</td>--}}
-                {{--<td>{{round($finalCourseMark,2)}}/100</td>--}}
-                {{--<td>{{round($finalCourseMark)}}%</td>--}}
-                {{--<td></td>--}}
-                {{--<td><span class="label label-default">{{$finalLetterGrade}}</span></td>--}}
-            {{--</tr>--}}
             @if($finalGrade)
                 <tr>
                     <td>

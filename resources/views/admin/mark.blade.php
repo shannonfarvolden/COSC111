@@ -52,18 +52,76 @@
                         <td>No Submission</td>
                     @endif
                     @if($user->grades->whereLoose('submission_id', $submission->id)->isEmpty())
-                        <td>
+                        <td id="student_mark">
                             <a href="{{action('GradesController@create', [$submission, $user])}}"
                                class="btn btn-default">Add
                                 Grade </a>
+                            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createGradeModel">Add Grade</button>--}}
+                            {{--<div class="modal fade" id="createGradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">--}}
+                                {{--<div class="modal-dialog" role="document">--}}
+                                    {{--<div class="modal-content">--}}
+                                        {{--<div class="modal-header">--}}
+                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
+                                                        {{--aria-hidden="true">&times;</span></button>--}}
+                                            {{--<h4 class="modal-title" id="exampleModalLabel">Add Grade</h4>--}}
+                                        {{--</div>--}}
+                                        {{--{!! Form::open([ 'action' => ['GradesController@store', $submission, $user]]) !!}--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--{!! Form::label('feedback', 'Feedback') !!}--}}
+                                                {{--{!! Form::textarea('feedback', null, ['class'=>'form-control', 'rows' => 3]) !!}--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--{!! Form::label('mark', 'Mark') !!}--}}
+                                                {{--{!! Form::text('mark', null, ['class'=>'form-control']) !!}--}}
+                                            {{--</div>--}}
+
+                                        {{--</div>--}}
+                                        {{--<div class="modal-footer">--}}
+                                            {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                                            {{--<button type="submit" class="btn btn-default" data-dismiss="modal" data-user_id="{{$user->id}}" data-submission_id="{{$submission->id}} ">Save</button>--}}
+                                        {{--</div>--}}
+                                        {{--{!! Form::close() !!}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </td>
                     @else
-                        <td>
-                            {{$user->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
+                        <td id="student_mark">
+                            {{$mark = $user->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
                             <br>
                             <a href="{{action('GradesController@edit', [$submission, $user])}}"
                                    class="btn btn-info">Edit
                                 Grade </a>
+                            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editGradeModel">Edit Grade</button>--}}
+                            {{--<div class="modal fade" id="editGradeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">--}}
+                                {{--<div class="modal-dialog" role="document">--}}
+                                    {{--<div class="modal-content">--}}
+                                        {{--<div class="modal-header">--}}
+                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
+                                                        {{--aria-hidden="true">&times;</span></button>--}}
+                                            {{--<h4 class="modal-title" id="exampleModalLabel">Edit Grade</h4>--}}
+                                        {{--</div>--}}
+                                        {{--{!! Form::model($grade = $user->grades->whereLoose('submission_id', $submission->id)->last(), ['method' => 'PATCH', 'action' => ['GradesController@update', $grade->id]]) !!}--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--{!! Form::label('feedback', 'Feedback') !!}--}}
+                                                {{--{!! Form::textarea('feedback', null, ['class'=>'form-control', 'id'=>'feedback', 'rows' => 3]) !!}--}}
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--{!! Form::label('mark', 'Mark') !!}--}}
+                                                {{--{!! Form::text('mark', null, ['class'=>'form-control', 'id'=>'mark']) !!}--}}
+                                            {{--</div>--}}
+
+                                        {{--</div>--}}
+                                        {{--<div class="modal-footer">--}}
+                                            {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                                            {{--<button type="submit" id="submit" class="btn btn-default" data-dismiss="modal" data-grade="{{$grade->id}}" data-feedback=""data-mark="{{$mark}}">Save</button>--}}
+                                        {{--</div>--}}
+                                        {{--{!! Form::close() !!}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </td>
                     @endif
                 </tr>
@@ -72,4 +130,32 @@
     </div>
 
 
+@endsection
+@section('footer')
+    <script>
+        $(document).ready(function() {
+            $('#editGradeModel').on('show.bs.modal', function (event) {
+                console.log("hit edit");
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var grade = button.data('grade'); // Extract info from data-* attributes
+                var mark = button.data('mark'); // Extract info from data-* attributes
+                console.log(grade);
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this);
+                //modal.find('#feedback').val();
+                modal.find('#mark').val(mark);
+            })
+            $('button#submit').click(function(){
+                console.log("hit")
+            })
+//            $('form').on('submit', function (e) {
+//                console.log('hit create');
+//
+//            });
+//            $('form').on('submit', function (e) {
+//                console.log('hit edit');
+//            });
+        });
+    </script>
 @endsection
