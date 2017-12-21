@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>1 (Jan 04)</td>
+                <td>1 (Jan 03)</td>
                 <!--topics-->
                 <td>Introduction
                 </td>
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>2 (Jan 11)</td>
+                <td>2 (Jan 10)</td>
                 <!--topics-->
                 <td>Basic Programming</td>
                 <!--readings-->
@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>3 (Jan 18)</td>
+                <td>3 (Jan 17)</td>
                 <!--topics-->
                 <td>Conditionals</td>
                 <!--readings-->
@@ -77,7 +77,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>4 (Jan 25)</td>
+                <td>4 (Jan 24)</td>
                 <!--topics-->
                 <td>Math Functions, Chars, Strings</td>
                 <!--readings-->
@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>5 (Feb 01)</td>
+                <td>5 (Jan 31)</td>
                 <!--topics-->
                 <td>Loops</td>
                 <!--readings-->
@@ -101,7 +101,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>6 (Feb 08)</td>
+                <td>6 (Feb 07)</td>
                 <!--topics-->
                 <td>Two-Stage Exam</td>
                 <!--readings-->
@@ -116,14 +116,14 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>7 (Feb 15)</td>
-                <td colspan=3 align=center>Family Day: No class</td>
+                <td>7 (Feb 14)</td>
+                <td colspan=3 align=center>Reading Week: No class</td>
                 <!--labs-->
                 <td>No labs</td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>8 (Feb 22)</td>
+                <td>8 (Feb 21)</td>
                 <!--topics-->
                 <td>Methods</td>
                 <!--readings-->
@@ -135,7 +135,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>9 (Mar 01)</td>
+                <td>9 (Feb 28)</td>
                 <!--topics-->
                 <td>Arrays</td>
                 <!--readings-->
@@ -147,7 +147,7 @@
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>10 (Mar 08)</td>
+                <td>10 (Mar 07)</td>
                 <!--topics-->
                 <td>Multidimensional Arrays</td>
                 <!--readings-->
@@ -155,11 +155,11 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab6">Lab 6 Continued</a></td>
+                <td><a href="/lab7">Lab 7</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>11 (Mar 15)</td>
+                <td>11 (Mar 14)</td>
                 <!--topics-->
                 <td>Two-Stage Exam</td>
                 <!--readings-->
@@ -170,11 +170,11 @@
                     <a href="/documents/old-mt2.pdf">Practice Midterm</a> 
                 </td>
                 <!--labs-->
-                <td><a href="/lab7">Lab 7</a></td>
+                <td><a href="/lab8">Lab 8</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>12 (Mar 22)</td>
+                <td>12 (Mar 21)</td>
                 <!--topics-->
                 <td>Objects and Classes</td>
                 <!--readings-->
@@ -182,11 +182,11 @@
                 <!--assignments/tests-->
                 <td></td>
                 <!--labs-->
-                <td><a href="/lab8">Lab 8</a></td>
+                <td><a href="/lab9">Lab 9</a></td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>13 (Mar 29)</td>
+                <td>13 (Mar 28)</td>
                 <!--topics-->
                 <td>Object-Oriented Thinking</td>
                 <!--readings-->
@@ -194,11 +194,11 @@
                 <!--assignments/tests-->
                 <td><a href="/assignment3">A3</a> (due Apr 02)</td>
                 <!--labs-->
-                <td><a href="/lab9">Lab 9</a></td>
+                <td>Lab used as TA office hours (No lab on Friday)</td>
             </tr>
             <tr>
                 <!--week (date)-->
-                <td>14 (Apr 05)</td>
+                <td>14 (Apr 04)</td>
                 <!--topics-->
                 <td>Object-Oriented Thinking</td>
                 <!--readings-->
