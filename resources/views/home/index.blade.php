@@ -83,7 +83,7 @@
                 <!--readings-->
                 <td>Ch 4</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment1">A1</a> (due Jan 29)</td>
+                <td><a href="/assignment1">A1</a> (due Jan 28)</td>
                 <!--labs-->
                 <td><a href="/lab3">Lab 3</a></td>
             </tr>
@@ -141,7 +141,7 @@
                 <!--readings-->
                 <td>Ch 7</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment2">A2</a> (due Mar 05)</td>
+                <td><a href="/assignment2">A2</a> (due Mar 04)</td>
                 <!--labs-->
                 <td><a href="/lab6">Lab 6</a></td>
             </tr>
@@ -192,7 +192,7 @@
                 <!--readings-->
                 <td>Ch 10</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment3">A3</a> (due Apr 02)</td>
+                <td><a href="/assignment3">A3</a> (due Apr 01)</td>
                 <!--labs-->
                 <td>Lab used as TA office hours (No lab on Friday)</td>
             </tr>
