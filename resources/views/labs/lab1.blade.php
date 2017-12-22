@@ -90,7 +90,7 @@
                 in my life are: ..." where "..." is replaced with the names of
                 three people of your choice.
             <p>
-                <b>[1 pt for printing, 1 pt for calculation]</b>
+                <b>[1 pt for calculation]</b>
                 Lastly, practice using arithmetic operators with your
                 <tt>println</tt> statement. Pick a future year (say 5 years
                 from now), and display the age of one of your most important
@@ -208,20 +208,20 @@ In 5 years, Bennett will be 8.5 years old
 
             <p>
                 To download Eclipse, go to <a href=http://www.eclipse.org/downloads/>the
-                    official Eclipse website</a> and select "Get Eclipse Neon". From
-                there, make sure the operating system matches your machine and click on
-                download. When you run the Eclipse installer, it will open up a list of
-                options for you to choose. Select "Eclipse IDE for Java Developers" and
-                then follow the instructions.
+                    official Eclipse website</a> and select "Get Eclipse Oxygen". From
+                there, follow its instructions and complete the installation.
+                (Older versions: Make sure the operating system you select
+                matches the operating system of your machine. You may also
+                need to specify that you want "Eclipse IDE for Java
+                Developers".)
 
             <p>
                 To download JDK 8, go to <a
                         href=http://www.oracle.com/technetwork/java/javase/downloads/>the
-                    official Oracle website</a> and select JDK 8 (or something similar --
-                currently, the site says "JDK 8u111"). Once you click on it, it will
-                bring you to a page with the appropriate options. Accept the license
-                agreement and choose the operating system that matches your machine.
-                Then follow the installation instructions.
+                    official Oracle website</a> and select JDK 9 (or something similar --
+                currently, the site says "JDK 9.0.1"). Accept the license
+                agreement and choose the operating system that matches your
+                machine. Then follow the installation instructions.
 
         </div>
     </div>
