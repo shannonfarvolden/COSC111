@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder {
         $this->call(SurveyTableSeeder::class);
 
         // for testing
-        $this->call(UserTableSeeder::class);
-        $this->call(SubmissionTableSeeder::class);
-        $this->call(GradeTableSeeder::class);
-        $this->call(ThreadTableSeeder::class);
+//        $this->call(UserTableSeeder::class);
+//        $this->call(SubmissionTableSeeder::class);
+//        $this->call(GradeTableSeeder::class);
+//        $this->call(ThreadTableSeeder::class);
 
         Model::reguard();
     }
