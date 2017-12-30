@@ -9,6 +9,8 @@ class Lab
         'L2A' => 'L2A',
         'L2B' => 'L2B',
         'L2C' => 'L2C'
+        'L2D' => 'L2D'
+        'L2E' => 'L2E'
     ];
 
     /**
