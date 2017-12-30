@@ -35,7 +35,7 @@ class Evaluation extends Model {
      */
     public function evalEmpty()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         $evalEmpty = true;
         foreach ( $users as $user )
         {
@@ -54,7 +54,7 @@ class Evaluation extends Model {
      */
     public function evalMin()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         $min = 100;
         foreach ( $users as $user )
         {
@@ -78,7 +78,7 @@ class Evaluation extends Model {
      */
     public function evalMax()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         $max = 0;
 
         foreach ( $users as $user )
@@ -104,7 +104,7 @@ class Evaluation extends Model {
      */
     public function evalMedian()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         $marks = [];
         foreach ( $users as $user )
         {
@@ -136,15 +136,13 @@ class Evaluation extends Model {
      */
     public function evalAvg()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::students()->get();
         $marks = [];
         foreach ( $users as $user )
         {
             if ($this->evalGradeExists($user))
             {
                 array_push($marks,$this->userPercentage($user));
-
-
             }
         }
         $count = count($marks); //total numbers in array
@@ -167,7 +165,6 @@ class Evaluation extends Model {
      */
     public function evaluationTotal(User $user, Collection $submissions = null)
     {
-
         $evaluationTotal = 0;
         if(!$submissions){
             $submissions = $this->submissions;

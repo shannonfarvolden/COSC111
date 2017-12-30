@@ -56,11 +56,29 @@ class AdminController extends Controller
     public function overview()
     {
         $inclassEval = Evaluation::where('category', 'like', 'In-class%')->get()->first();
-        $inclassSub = $inclassEval->submissions()->where('name', 'like', '%Individual%')->get();
+
         // get all evals except inclass
         $evaluations = Evaluation::whereNotIn('id', [$inclassEval->id])->get();
+        $evaluationsRisk = collect([]);
 
-        return view('admin.overview', ['evaluations' => $evaluations]);
+        foreach ($evaluations as $evaluation) {
+            if (!$evaluation->evalEmpty()) {
+                $values = [
+                    'id' => $evaluation->id,
+                    'category' => $evaluation->category,
+                    'min' => $evaluation->evalMin(),
+                    'max' => $evaluation->evalMax(),
+                    'median' => $evaluation->evalMedian(),
+                    'average' => $evaluation->evalAvg(),
+                    'danger' => $evaluation->risk('danger')->count(),
+                    'warning' => $evaluation->risk('warning')->count(),
+                    'success' => $evaluation->risk('success')->count()
+                ];
+
+                $evaluationsRisk->push($values);
+            }
+        }
+        return view('admin.overview', ['evaluationsRisk' => $evaluationsRisk]);
     }
 
     /**

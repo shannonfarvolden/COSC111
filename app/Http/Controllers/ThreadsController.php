@@ -168,4 +168,34 @@ class ThreadsController extends Controller
         return redirect()->action('ThreadsController@index');
     }
 
+    /**
+     * Download threads data to json.
+     *
+     */
+    public function download(){
+        $threads = Thread::all();
+
+        // output headers so that the file is downloaded rather than displayed
+        header('Content-Type: json; charset=utf-8');
+        header('Content-Disposition: attachment; filename=Thread Data.json');
+        // create a file pointer connected to the output stream
+        $output = fopen('php://output', 'w');
+        fwrite($output, $threads."\n");
+
+        fwrite($output, '[');
+        foreach($threads as $i => $thread){
+            foreach($thread->replies as $reply){
+                if($i == $threads->count()-1){
+                    fwrite($output, $reply);
+                }
+            else{
+                    fwrite($output, $reply.",");
+                }
+
+            }
+        }
+        fwrite($output, ']');
+
+        fclose($output);
+    }
 }

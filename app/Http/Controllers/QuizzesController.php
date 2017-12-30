@@ -57,7 +57,6 @@ class QuizzesController extends Controller
      */
     public function store(Request $request)
     {
-
         $questions = $request->input('question');
         $answers = $request->input('answer');
         $correct = $request->input('correct');
@@ -123,12 +122,16 @@ class QuizzesController extends Controller
         };
 
         return view('quiz.show', ['quiz' => $quiz]);
-
     }
 
+    /**
+     * Display quiz attempts.
+     *
+     * @param Quiz $quiz
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function attempts(Quiz $quiz)
     {
-
         $attempts = Auth::user()->quizzes()->where('id', $quiz->id)->get();
 
         return view('quiz.attempts', ['attempts' => $attempts]);
@@ -204,18 +207,20 @@ class QuizzesController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function setting(){
+    public function setting()
+    {
         $setting = Setting::first();
-        return view('quiz.setting', ['setting'=>$setting]);
+        return view('quiz.setting', ['setting' => $setting]);
     }
+
     /**
      * Store quiz setting in database.
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateSetting(Request $request){
-
+    public function updateSetting(Request $request)
+    {
         $setting = Setting::first();
         $setting->update($request->all());
         return redirect()->action('QuizzesController@index');

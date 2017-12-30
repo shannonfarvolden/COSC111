@@ -38,7 +38,6 @@ class GradesController extends Controller
      */
     public function store(Request $request, Submission $submission, User $user)
     {
-
         $input = array_add($request->all(), 'submission_id', $submission->id);
         $input = array_add($input, 'user_id', $user->id);
 
@@ -46,10 +45,9 @@ class GradesController extends Controller
         if (!Grade::where('user_id', $user->id)->where('submission_id', $submission->id)->get()->isEmpty()) {
             Grade::where('user_id', $user->id)->where('submission_id', $submission->id)->delete();
         }
-        Grade::create($input);
+        $grade = Grade::create($input);
 
-        return redirect()->action('AdminController@mark', ['submission' => $submission]);
-
+        return $grade;
     }
 
     /**
@@ -83,14 +81,15 @@ class GradesController extends Controller
     /**
      * Update the specified grade in database.
      *
-     * @param Request $request
      * @param Grade $grade
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Grade $grade)
     {
         $grade->update($request->all());
-        return redirect()->action('AdminController@mark', ['submission' => $grade->submission_id]);
+        $grade->save();
+
+        return $grade;
     }
 
     /**

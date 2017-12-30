@@ -18,19 +18,17 @@
                 <th># Green Flags</th>
             </tr>
 
-            @foreach($evaluations as $evaluation)
-                @if(!$evaluation->evalEmpty())
-                    <tr>
-                        <td>{{$evaluation->category}}</td>
-                        <td>{{$evaluation->evalMin()}}</td>
-                        <td>{{$evaluation->evalMax()}}</td>
-                        <td>{{$evaluation->evalMedian()}}</td>
-                        <td>{{$evaluation->evalAvg()}}</td>
-                        <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation,'level'=>'danger'])}}">{{$evaluation->risk('danger')->count()}}</a></td>
-                        <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation,'level'=>'warning'])}}">{{$evaluation->risk('warning')->count()}}</a></td>
-                        <td><a href="{{action('AdminController@risk', ['$evaluation'=>$evaluation,'level'=>'success'])}}">{{$evaluation->risk('success')->count()}}</a></td>
-                    </tr>
-                @endif
+            @foreach($evaluationsRisk as $evaluation)
+                <tr>
+                    <td>{{$evaluation['category']}}</td>
+                    <td>{{$evaluation['min']}}</td>
+                    <td>{{$evaluation['max']}}</td>
+                    <td>{{$evaluation['median']}}</td>
+                    <td>{{$evaluation['average']}}</td>
+                    <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation['id'],'level'=>'danger'])}}">{{$evaluation['danger']}}</a></td>
+                    <td><a href="{{action('AdminController@risk',['$evaluation'=>$evaluation['id'],'level'=>'warning'])}}">{{$evaluation['warning']}}</a></td>
+                    <td><a href="{{action('AdminController@risk', ['$evaluation'=>$evaluation['id'],'level'=>'success'])}}">{{$evaluation['success']}}</a></td>
+                </tr>
             @endforeach
         </table>
     </div>

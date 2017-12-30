@@ -1,5 +1,7 @@
 @extends('app')
-
+@section('head')
+    <meta name="csrf-token" content="{{csrf_token()}}">
+@endsection
 @section('content')
     <a href="{{ action('SubmissionsController@index') }}"><span class="glyphicon glyphicon-menu-left"
                                                                 aria-hidden="true"></span>Back to Submissions</a>
@@ -34,8 +36,6 @@
                     <td>{{$user->lab}}</td>
                     @if(!$user->submissions()->where('id', $submission->id)->get()->isEmpty())
                         <td>{{$user->submissions()->where('id', $submission->id)->get()->last()->pivot->created_at}}</td>
-
-
                         <td>
                             @foreach($user->submissions()->where('id', $submission->id)->get() as $submission)
                                 <p>Attempt: {{$submission->pivot->attempt}}
@@ -52,80 +52,44 @@
                         <td>No Submission</td>
                     @endif
                     @if($user->grades->whereLoose('submission_id', $submission->id)->isEmpty())
-                        <td id="student_mark">
-                            <a href="{{action('GradesController@create', [$submission, $user])}}"
-                               class="btn btn-default">Add
-                                Grade </a>
-                            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createGradeModel">Add Grade</button>--}}
-                            {{--<div class="modal fade" id="createGradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">--}}
-                                {{--<div class="modal-dialog" role="document">--}}
-                                    {{--<div class="modal-content">--}}
-                                        {{--<div class="modal-header">--}}
-                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
-                                                        {{--aria-hidden="true">&times;</span></button>--}}
-                                            {{--<h4 class="modal-title" id="exampleModalLabel">Add Grade</h4>--}}
-                                        {{--</div>--}}
-                                        {{--{!! Form::open([ 'action' => ['GradesController@store', $submission, $user]]) !!}--}}
-                                        {{--<div class="modal-body">--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--{!! Form::label('feedback', 'Feedback') !!}--}}
-                                                {{--{!! Form::textarea('feedback', null, ['class'=>'form-control', 'rows' => 3]) !!}--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--{!! Form::label('mark', 'Mark') !!}--}}
-                                                {{--{!! Form::text('mark', null, ['class'=>'form-control']) !!}--}}
-                                            {{--</div>--}}
-
-                                        {{--</div>--}}
-                                        {{--<div class="modal-footer">--}}
-                                            {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
-                                            {{--<button type="submit" class="btn btn-default" data-dismiss="modal" data-user_id="{{$user->id}}" data-submission_id="{{$submission->id}} ">Save</button>--}}
-                                        {{--</div>--}}
-                                        {{--{!! Form::close() !!}--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                        <td>
+                            <p id="mark-{{$user->id}}"></p>
+                            <button id="button-{{$user->id}}" type="button" class="btn btn-default" data-toggle="modal" data-target="#gradeModel" data-modal="create" data-submission="{{$submission->id}}" data-user="{{$user->id}}" data-feedback data-mark>Create Grade</button>
                         </td>
                     @else
-                        <td id="student_mark">
-                            {{$mark = $user->grades->whereLoose('submission_id', $submission->id)->last()->mark}}
-                            <br>
-                            <a href="{{action('GradesController@edit', [$submission, $user])}}"
-                                   class="btn btn-info">Edit
-                                Grade </a>
-                            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editGradeModel">Edit Grade</button>--}}
-                            {{--<div class="modal fade" id="editGradeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">--}}
-                                {{--<div class="modal-dialog" role="document">--}}
-                                    {{--<div class="modal-content">--}}
-                                        {{--<div class="modal-header">--}}
-                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
-                                                        {{--aria-hidden="true">&times;</span></button>--}}
-                                            {{--<h4 class="modal-title" id="exampleModalLabel">Edit Grade</h4>--}}
-                                        {{--</div>--}}
-                                        {{--{!! Form::model($grade = $user->grades->whereLoose('submission_id', $submission->id)->last(), ['method' => 'PATCH', 'action' => ['GradesController@update', $grade->id]]) !!}--}}
-                                        {{--<div class="modal-body">--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--{!! Form::label('feedback', 'Feedback') !!}--}}
-                                                {{--{!! Form::textarea('feedback', null, ['class'=>'form-control', 'id'=>'feedback', 'rows' => 3]) !!}--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--{!! Form::label('mark', 'Mark') !!}--}}
-                                                {{--{!! Form::text('mark', null, ['class'=>'form-control', 'id'=>'mark']) !!}--}}
-                                            {{--</div>--}}
-
-                                        {{--</div>--}}
-                                        {{--<div class="modal-footer">--}}
-                                            {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
-                                            {{--<button type="submit" id="submit" class="btn btn-default" data-dismiss="modal" data-grade="{{$grade->id}}" data-feedback=""data-mark="{{$mark}}">Save</button>--}}
-                                        {{--</div>--}}
-                                        {{--{!! Form::close() !!}--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                        <td>
+                            <p id="mark-{{$user->id}}">{{$mark = $user->grades->whereLoose('submission_id', $submission->id)->last()->mark}}</p>
+                            <button id="button-{{$user->id}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#gradeModel" data-modal="edit" data-user="{{$user->id}}" data-grade="{{$user->grades->whereLoose('submission_id', $submission->id)->last()->id}}" data-feedback="{{$user->grades->whereLoose('submission_id', $submission->id)->last()->feedback}}" data-mark="{{$mark}}">Edit Grade</button>
                         </td>
                     @endif
                 </tr>
             @endforeach
+            <div class="modal fade" id="gradeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Edit Grade</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                {!! Form::label('feedback', 'Feedback') !!}
+                                {!! Form::textarea('feedback', null, ['class'=>'form-control', 'id'=>'feedback', 'rows' => 3]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('mark', 'Mark') !!}
+                                {!! Form::text('mark', null, ['class'=>'form-control', 'id'=>'mark']) !!}
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-default" id="submit-modal" data-dismiss="modal" data-user data-modal data-submission data-grade>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </table>
     </div>
 
@@ -134,28 +98,64 @@
 @section('footer')
     <script>
         $(document).ready(function() {
-            $('#editGradeModel').on('show.bs.modal', function (event) {
-                console.log("hit edit");
+            $('#gradeModel').on('show.bs.modal', function (event) {
+                console.log("hit show");
                 var button = $(event.relatedTarget); // Button that triggered the modal
-                var grade = button.data('grade'); // Extract info from data-* attributes
+                // Extract info from data-* attributes
+                var modal = button.data('modal');
                 var mark = button.data('mark'); // Extract info from data-* attributes
-                console.log(grade);
-                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                var modal = $(this);
-                //modal.find('#feedback').val();
-                modal.find('#mark').val(mark);
-            })
-            $('button#submit').click(function(){
-                console.log("hit")
-            })
-//            $('form').on('submit', function (e) {
-//                console.log('hit create');
-//
-//            });
-//            $('form').on('submit', function (e) {
-//                console.log('hit edit');
-//            });
+                var feedback = button.data('feedback');
+                var user = button.data('user');
+
+                var container = $(this);
+                container.find('#submit-modal').data('user', user);
+                container.find('#feedback').val(feedback);
+                container.find('#mark').val(mark);
+            });
+
+            $(".modal").on("click", "#submit-modal", function(e){
+                var user = $(e.target).data('user');
+                var form = $(e.target).closest(".modal-content");
+                var button = $('#button-'+user)
+                var modal = button.data('modal');
+                var url = "/admin/mark/";
+                if (modal == "edit"){
+                    var grade = button.data('grade');
+                    url = url + grade;
+                }
+                else{
+                    var submission = button.data('submission');
+                    url = url + submission + "/" + user;
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: url,
+                    data: {
+                        feedback: form.find('#feedback').val(),
+                        mark: form.find('#mark').val()
+                    }
+                }).success(function(data){
+                    // change mark displayed
+                    $("#mark-"+user).text(data.mark);
+                    button.data('mark', data.mark);
+                    button.data('feedback', data.feedback);
+                   if(modal == "create"){
+                        button.data('modal', 'edit');
+                        button.data('grade', data.id);
+                        //change to edit button
+                        button.text('Edit Grade');
+                        //change edit colour
+                        button.removeClass('class', "btn-default");
+                        button.addClass("btn-primary");
+                    }
+
+                }).error(function(msg){
+                    alert("Error: " + msg.statusText);
+                });
+            });
         });
     </script>
 @endsection

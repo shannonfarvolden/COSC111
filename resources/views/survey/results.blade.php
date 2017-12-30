@@ -1,10 +1,13 @@
 @extends('app')
 
 @section('content')
-
     <div class="page-header">
         <h1>{{$survey->name}}</h1>
     </div>
+    <a href="{{ action('SurveyController@download', $survey) }}" class="btn btn-primary margin-button">
+        Download Results to CSV
+    </a>
+
     @foreach($survey->questions as $i=>$question)
         <div class="panel panel-default">
             <!-- Default panel contents -->

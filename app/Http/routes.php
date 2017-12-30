@@ -26,7 +26,7 @@ Route::get('/admin/mark/{submission}/{team}/teamEdit','GradesController@teamEdit
 Route::get('/admin/mark/{submission}/{team}/teamCreate','GradesController@teamCreate');
 Route::post('/admin/mark/{submission}/{team}/teamStore','GradesController@teamStore');
 Route::post('/admin/mark/{submission}/{team}/teamUpdate','GradesController@teamUpdate');
-Route::patch('/admin/mark/{grade}','GradesController@update');
+Route::post('/admin/mark/{grade}','GradesController@update');
 Route::delete('/grade/{grade}','GradesController@destroy');
 Route::get('admin/mark/final', 'GradesController@finalMark');
 Route::get('admin/download', 'GradesController@download');
@@ -75,6 +75,7 @@ Route::patch('/video/{video}','VideosController@update');
 Route::delete('/video/{video}', 'VideosController@destroy');
 
 //Thread Routes
+Route::get('/thread/download', 'ThreadsController@download');
 Route::get('/thread/setting', 'ThreadsController@setting');
 Route::patch('/thread/setting', 'ThreadsController@updateSetting');
 Route::resource('/thread', 'ThreadsController');
@@ -117,6 +118,7 @@ Route::get('/adminStats', 'StatsController@adminStats');
 Route::get('/survey/results/{survey}', 'SurveyController@results');
 Route::resource('/survey', 'SurveyController');
 Route::post('/survey/{survey}', 'SurveyController@userSurvey');
+Route::get('/survey/{survey}/download', 'SurveyController@download');
 
 //Authentication Routes
 Route::controllers([

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\SurveyAnswer;
 use App\Survey;
+use App\User;
 use Auth;
 use Gate;
 
@@ -177,39 +178,31 @@ class SurveyController extends Controller
         return view('survey.results', ['survey'=>$survey]);
     }
 
-    public function download(){
+
+    /**
+     * Download survey results to csv given a survey.
+     *
+     * @param Survey $survey
+     */
+    public function download(Survey $survey){
 
         // output headers so that the file is downloaded rather than displayed
         header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=SurveyResults.csv');
+        header('Content-Disposition: attachment; filename='.$survey->name.' Results.csv');
 
         // create a file pointer connected to the output stream
         $output = fopen('php://output', 'w');
         $users = User::students()->get();
-        $quizzes = Quiz::all();
-        $peerEvals = PeerEvaluation::all();
-        $evaluations = Evaluation::all();
 
         //excel header
-        $header = ["Id", "Last Name", "First Name", "Student Number", "Data Consent"];
+        $header = ["Id", "Last Name", "First Name", "Student Number"];
 
-        foreach ($evaluations as $evalaution) {
-            foreach ($evalaution->submissions as $submission) {
-                $header[] = $submission->name . " Mark (out of " . $submission->total . ")";
-            }
-        }
-        foreach($peerEvals as $peerEval){
-            $header[] = $peerEval->name. " Avg. Mark";
-        }
-
-        foreach ($quizzes as $quiz) {
-            $header[] = $quiz->name . " best mark";
-            $header[] = $quiz->name . " number of attempts";
+        foreach($survey->questions as $question){
+            $header[] = $question->question;
         }
 
         // output the column headings
         fputcsv($output, $header);
-
 
         //excel rows
         foreach ($users as $user) {
@@ -218,40 +211,21 @@ class SurveyController extends Controller
             $row[] = $user->last_name;
             $row[] = $user->first_name;
             $row[] = $user->student_number;
-            $row[] = $user->data_consent;
-            $row[] = $user->threads->count();
-            $row[] = $user->replies->count();
 
-            if ($user->lab != null)
-                $row[] = $user->lab;
-            else
-                $row[] = "#N/A,";
 
-            foreach ($evaluations as $evalaution) {
-                foreach ($evalaution->submissions as $submission) {
-                    $userGrade = $submission->grades()->where('user_id', $user->id);
-                    if ($userGrade->exists()) {
-                        $row[] = $userGrade->get()->first()->mark;
-
-                    } else {
-                        $row[] = "#N/A";
-                    }
+            foreach ($survey->questions as $question){
+                if($user->surveys()->wherePivot('survey_question_id', $question->id)->exists()){
+                    $surveyAnswer = SurveyAnswer::findOrFail($user->surveys()->wherePivot('survey_question_id', $question->id)->get()->first()->pivot->survey_answer_id);
+                    $row[] = $surveyAnswer->answer;
                 }
-            }
-            foreach ($peerEvals as $peerEval){
-                $row[] = $peerEval->assessmentAvg($user->id);
-
-            }
-            foreach ($quizzes as $quiz) {
-                $row[] = $user->maxQuizMark($quiz->id);
-                $row[] = $user->hasQuizAttempt($quiz->id) ? $user->lastQuizTaken($quiz->id)->pivot->attempt : 0;
+                else{
+                    $row[] = "#N/A";
+                }
             }
 
             fputcsv($output, $row);
-
         }
 
     }
-
 
 }
