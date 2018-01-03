@@ -2,33 +2,96 @@
 
 @section('content')
   <div class="jumbotron">
-    <h2>Assignment 1 [xx pts]</h2>
+    <h2>Assignment 1 [26 pts]</h2>
     <p>Due: Sunday 9:00am on Jan 28th</p>
     The purpose of this assignment is to give you practice writing simple Java
     programs on your own without step-by-step guidelines. You will still have
-    the option to discuss problems with others and search online for help, but
-    <b>please remember to cite all your sources and follow proper academic
+    the option to discuss problems with TAs/others and search online for help,
+    but <b>please remember to cite all your sources and follow proper academic
     conduct</b>.
     <p></p>
     <b>What to Submit:</b>
     <ul>
-      <li>Items to submit xx
+      <li>ClassGrade.java 
+      <li>ClassGrade-output.txt showing the test results of your program
+      <li>BinaryToDecimal.java
+      <li>BinaryToDecimal-output.txt showing the test results of your program
     </ul>
   </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">1. Activity [xx pts]</h3>
+      <h3 class="panel-title">1. Activity [13 pts]</h3>
     </div>
     <div class="panel-body">
-      Description
+      Write a program that lets the user enter scores for various course
+      components and calculates the course grade obtained so far (without the
+      final exam mark). The program will then assume the user will get the
+      same grade for the final exam, and use that to project an overall grade
+      for the course.
       <p>
+
+      Specific requirements:
+
+      <ul>
+      <li> There are several course components to consider: in-class
+      activities, online quizzes, labs, assignments, midterm 1, midterm 2, and
+      final exam.
+      <li> Each course component has a weight towards the final course grade.
+      These weights are identical to the ones used in this course COSC 111. In
+      the order they are listed above, the weights are: 10%, 5%, 10%, 15%,
+      10%, 20%, and 30% respectively.
+
+      <li> You can assume the user will enter a percentage for a course
+      component (i.e., for assignments, the user enters one single overall
+      assignment percentage, not individual assignment marks from A1, A2, and
+      A3).
+
+      <li> If the student does better on midterm 2 than on midterm 1, then the
+      mark used for midterm 1 will be replaced by the midterm 2 mark.
+      </ul>
+      <p>
+      Sample output:
+      <pre>
+Enter your in-class activities score (in percentage): 
+97.5
+Enter your quizzes score (in percentage): 
+90
+Enter your labs score (in percentage): 
+100
+Enter your assignment score (in percentage): 
+88.3
+Enter your midterm 1 score (in percentage): 
+57.333
+Enter your midterm 2 score (in percentage): 
+78.5
+Your grade so far is 61.05 out of 70.
+If you do just as well on the final, your overall grade could be 87.21.
+      </pre>
+      <p>
+
+      Lastly, be sure to write comments above your class to indicate the
+      author of this file (you), acknowledgements for any external help you
+      got, and what the purpose of this program is.
+      <p>
+      <b>Grading Scheme:</b>
+      <ul>
+      <li> <b>[2 pts]</b> Comments to explain program logic
+      <li> <b>[2 pts]</b> Use of constants  
+      <li> <b>[1 pt]</b> Taking user input 
+      <li> <b>[2 pts]</b> Input data validation (percentages must be between 0 and 100)
+      <li> <b>[1 pt]</b> Replacing MT1 mark if applicable
+      <li> <b>[1 pt]</b> Calculating weighted course grade so far 
+      <li> <b>[1 pt]</b> Calculating projected course grade overall
+      <li> <b>[1 pt]</b> Displaying results 
+      <li> <b>[2 pts]</b> Output file with test cases to show your program
+      works as expected
     </div>
   </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">2. Converting Binary to Decimal [11 pts]</h3>
+      <h3 class="panel-title">2. Converting Binary to Decimal [13 pts]</h3>
     </div>
     <div class="panel-body">
       Write a program that lets the user enter a 3-digit binary number and
@@ -116,41 +179,9 @@ Its equivalent decimal number is: 2
       Sample output:
       <pre>
 Enter a 3-digit number in binary: 
-011
-The binary number you entered: 11
-Its equivalent decimal number is: 3
-      </pre>
-      <p>
-      Sample output:
-      <pre>
-Enter a 3-digit number in binary: 
-100
-The binary number you entered: 100
-Its equivalent decimal number is: 4
-      </pre>
-      <p>
-      Sample output:
-      <pre>
-Enter a 3-digit number in binary: 
-101
-The binary number you entered: 101
-Its equivalent decimal number is: 5
-      </pre>
-      <p>
-      Sample output:
-      <pre>
-Enter a 3-digit number in binary: 
 110
 The binary number you entered: 110
 Its equivalent decimal number is: 6
-      </pre>
-      <p>
-      Sample output:
-      <pre>
-Enter a 3-digit number in binary: 
-111
-The binary number you entered: 111
-Its equivalent decimal number is: 7
       </pre>
       <p>
 
@@ -158,6 +189,7 @@ Its equivalent decimal number is: 7
       before doing any calculation. To extract a digit, use % and / in
       combination.
       <p>
+
       Lastly, be sure to write comments above your class to indicate the
       author of this file (you), acknowledgements for any external help you
       got, and what the purpose of this program is.
@@ -171,6 +203,8 @@ Its equivalent decimal number is: 7
       is not binary
       <li> <b>[2 pts]</b> Calculating the decimal number correctly 
       <li> <b>[1 pt]</b> Displaying the converted decimal number
+      <li> <b>[2 pts]</b> Output file with test cases to show your program
+      works as expected
       </ul>
     </div>
   </div>
