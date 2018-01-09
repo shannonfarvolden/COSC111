@@ -45,7 +45,7 @@
                 this case, your file will be called <tt>CalulateSnowToRain.java</tt>.
                 For now, just have a simple statement that displays "The total expected
                 amount of rainfall is ". We will handle the calculations in the next few
-                steps. Run it and make sure it works as expected before going on.
+                steps. Run it and make sure it works as expected before moving on.
 
             <p>
                 Sample output (so far):
