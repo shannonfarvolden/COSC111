@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 2 [xx pts]</h2>
+        <h2>Lab 2 [19 pts]</h2>
         <p>Diving into Programming</p>
         The purpose of this lab is to give you hands on practice with writing
         small Java programs and getting used to the Eclipse environment. 
@@ -13,7 +13,7 @@
         <ul>
             <li>Show your TA you have completed Quiz 2 (nothing to submit)
             <li>BMIcalc.java 
-            <li>xx
+            <li>Rectangle.java
         </ul>
     </div>
 
@@ -30,7 +30,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Calculating BMI [xx pts]</h3>
+            <h3 class="panel-title">2. Calculating BMI [10 pts]</h3>
         </div>
         <div class="panel-body">
             <b>[1 pt]</b>
@@ -118,7 +118,7 @@ Your BMI is 22.910603005956744 kg/m^2.
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Properties of a Rectangle [xx pts]</h3>
+            <h3 class="panel-title">2. Properties of a Rectangle [8 pts]</h3>
         </div>
         <div class="panel-body">
             <b>[1 pt]</b> 
