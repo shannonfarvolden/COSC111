@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 3 [xx pts]</h2>
+        <h2>Lab 3 [16 pts]</h2>
         <p>Practicing Conditionals</p>
         The purpose of this lab is to give you hands on practice designing and
         organizing conditional statements. If you need clarification with any
@@ -11,7 +11,8 @@
         <b>What to Submit:</b>
         <ul>
             <li>Show your TA you have completed Quiz 3 (nothing to submit)
-            <li>Items to submit xx
+            <li>GuessIf.java (with the final solution)
+            <li>pennies.txt 
             <li>WhoIsOlder.java
         </ul>
     </div>
@@ -28,17 +29,109 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Activity [xx pts]</h3>
+            <h3 class="panel-title">2. Structuring If-Statements [5 pts]</h3>
         </div>
         <div class="panel-body">
-        Description
+        <b>[1 pt]</b>
+        This exercise lets you think about how different kinds of
+        if-statements work. 
+        First, create a program called <tt>GuessIf</tt>. The code for this
+        program is given below. Copy it line by line into your program.
+        Compile and run the program to make sure it works properly. 
         <p>
+
+        <pre>
+import java.util.Random;
+
+public class GuessIf
+{
+  public static void main( String[] args )
+  {
+    // generate random integer in [1,100]
+    Random gen = new Random();
+    int numPennies = 1 + gen.nextInt( 100 );
+
+    System.out.println( "Guess how many pennies I have in my hands?" );
+
+    // check guess and give feedback
+    if( numPennies < 25 )
+      System.out.println( "I have less than a quarter" ); 
+
+    if( numPennies < 50 )
+      System.out.println( "I have less than half a dollar" ); 
+
+    if( numPennies < 100 ) 
+      System.out.println( "I have less than a dollar" ); 
+
+    if( numPennies == 100 ) 
+      System.out.println( "I have a dollar" ); 
+
+    // display actual number of pennies
+    System.out.println( "I had " + numPennies + " pennies" ); 
+  }
+}
+        </pre>
+
+        This program generates a random number between 1 and 100 (inclusive),
+        uses 4 if-statements to tell you roughly how much you have, then
+        tells you the actual answer at the end. Run the program a few times
+        and make sure you understand how the program works.
+        <p>
+
+        First, consider the following sample ouptut:
+        <pre>
+Guess how many pennies I have in my hands?
+I have less than half a dollar
+I have less than a dollar
+I had 36 pennies
+        </pre>
+
+        <b>[1 pt]</b>
+        Why did two sentences get displayed to tell me that I had less than
+        half a dollar and less than a dollar? Although this is true, it's just
+        silly to display such redundant information: if I have less than half
+        a dollar then of course I also have less than a dollar! Why is the
+        program doing this?
+        Type up your answer to this question in a separate text file called
+        <tt>pennies.txt</tt>.
+        <p>
+
+        <b>[1 pt]</b>
+        Change the structure of the if-statements so that your program now
+        uses 1 if-else statement to connect all four of these cases. What
+        happens to your program?
+        Type up your answer to this question in a separate text file called
+        <tt>pennies.txt</tt>.
+        <p>
+
+        <b>[1 pt]</b>
+        Next, try changing the order of the conditions in your if-else
+        statement and re-run your program. What changes occur in the output of
+        the program? Why did this happen?
+        Type up your answer to this question.
+        <p>
+
+        <b>[1 pt]</b>
+        Now that you understand some of the variations of if-statements,
+        organize your code so that:
+        <ul>
+        <li> It only displays one feedback statement each time.
+        <li> The feedback statement describes the smallest range possible
+        (e.g., 12 pennies should correspond to "I have less than a quarter"
+        not "I have less than half a dollar").
+        </ul>
+        <p>
+
+        <b>[1 pt]</b> 
+        Lastly, be sure to write comments above your class to indicate the
+        author of this file (you), acknowledgements for any external help
+        you got, and what the purpose of this program is.
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">3. Compare Birthdates [xx pts]</h3>
+            <h3 class="panel-title">3. Compare Birthdates [10 pts]</h3>
         </div>
         <div class="panel-body">
         <b>[1 pt]</b>
@@ -60,7 +153,7 @@
         is between 1 and 12 (inclusive).
         <p>
 
-        <b>[1 pt]</b>
+        <b>[2 pts]</b>
         Next, check that the day entered is within a valid range based on the
         month entered and/or the year entered. For example, November only has
         30 days, and February only has 28 days on non-leap years.
