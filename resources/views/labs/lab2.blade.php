@@ -151,7 +151,9 @@ Your BMI is 22.910603005956744 kg/m^2.
 			Finally, calculate the length of the diagonal using Pythagarus
 			Theorem, so that the length is the square root of <it>w^2 +
 			h^2</it> (the notation <it>^2</it> denotes raised to the power of
-			2).
+			2). In Java, there are two ways to get the square of a number:
+			either use the multiply operator (*) or use the function
+			<tt>Math.pow</tt>.
             <p>
 
             <b>[1 pt]</b> 
