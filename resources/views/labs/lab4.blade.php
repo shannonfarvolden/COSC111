@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 4 [xx pts]</h2>
+        <h2>Lab 4 [22 pts]</h2>
         <p>Working with Strings and Characters</p>
         The purpose of this lab is to give you hands on practice with methods
         in the String class and working with variables of type <tt>char</tt>.
@@ -130,7 +130,7 @@ New word: kelaidoscope
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">3. Prize Draw for Winner [xx pts]</h3>
+            <h3 class="panel-title">3. Prize Draw for Winner [13 pts]</h3>
         </div>
         <div class="panel-body">
         <b>[1 pt]</b> 
