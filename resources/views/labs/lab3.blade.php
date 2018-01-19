@@ -111,7 +111,7 @@ I had 36 pennies
         Type up your answer to this question.
         <p>
 
-        <b>[1 pt]</b>
+        <b>[2 pts]</b>
         Now that you understand some of the variations of if-statements,
         organize your code so that:
         <ul>
