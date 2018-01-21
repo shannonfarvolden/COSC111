@@ -19,6 +19,17 @@
         <div class="panel-body">
 		    Description
             <p>
+        Be sure to write comments above your class to indicate the
+        author of this file (you), acknowledgements for any external help you
+        got, and what the purpose of this program is.
+  
+        <p>
+        <b>Grading Scheme</b>:
+        <ul>
+          <li> <b>[2 pts]</b> Comments to explain program logic
+          <li> <b>[1 pt]</b> xxx
+        </ul>
+
         </div>
     </div>
 
@@ -29,6 +40,17 @@
         <div class="panel-body">
 		    Description
             <p>
+        Be sure to write comments above your class to indicate the
+        author of this file (you), acknowledgements for any external help you
+        got, and what the purpose of this program is.
+  
+        <p>
+        <b>Grading Scheme</b>:
+        <ul>
+          <li> <b>[2 pts]</b> Comments to explain program logic
+          <li> <b>[1 pt]</b> xxx
+        </ul>
+
         </div>
     </div>
 
