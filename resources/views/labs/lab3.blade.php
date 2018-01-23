@@ -140,6 +140,12 @@ I had 36 pennies
         First, create a program called <tt>WhoIsOlder</tt>.
         <p>
 
+        Since the purpose of this exercise is to get you to understand how
+		conditional statements work, <b>you will only get full marks if your
+		solution does NOT use <tt>System.exit</tt>.</b> 
+        <p>
+
+
         <b>[1 pt]</b>
         Prompt the user for your birthday and your friend's birthday in a
         specific format: enter the year (as an integer with 4 digits),
