@@ -87,6 +87,7 @@ Enter the second operand:
           <li> <b>[2 pts]</b> Comments to explain program logic
           <li> <b>[2 pts]</b> Reading in the necessary user input
           <li> <b>[3 pts]</b> Calculating the math result 
+		  (without using <tt>System.exit</tt>)
           <li> <b>[1 pt]</b> Displaying the math expression calculated and its answer
         </ul>
         </div>
@@ -179,6 +180,10 @@ Encrypted message: EASCNSLLOSWLLTKO
         Be sure to write comments above your class to indicate the
         author of this file (you), acknowledgements for any external help you
         got, and what the purpose of this program is.
+        <p>
+
+		Also, in order to get full marks, you cannot use <tt>System.exit</tt>
+		in your loop or conditional statements.
 
         <p>
         <b>Grading Scheme</b>:
