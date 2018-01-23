@@ -22,11 +22,6 @@
     </div>
     <div class="panel-body">
       <p>
-      <b>[1 pts]</b>
-      This exercise gets you to count the number of consonants there are in a
-      given word. First, create a program called <tt>CountConsonants</tt>.
-
-      <p>
       <b>[1 pt]</b>
       This exercise gets you to count the number of consonants there are in a
       given word. First, create a program called <tt>CountConsonants</tt>.
@@ -209,7 +204,7 @@ My number is: 13
       This exercise gets you to work on nested loops. If you can successfully
       complete and understand how to write this program, you will be a master
       of loops! First, create a program called <tt>DrawX</tt>.
-      By the end of the program, you will be able to display a pyramid shaped
+      By the end of the program, you will be able to display an X shaped
       pattern as shown in the sample output below.
 
       <p>
