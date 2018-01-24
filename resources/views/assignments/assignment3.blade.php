@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Assignment 3 [xx pts]</h2>
+        <h2>Assignment 3 [35 pts]</h2>
         <p>Due: Sunday 9:00am on April 01st</p>
         The purpose of this assignment is to give you practice with 2D arrays
         as well as classes and objects on your own without step-by-step
@@ -481,27 +481,6 @@ You ordered the following:
           getters, setters, or helper methods for your program
           <li> <b>[1 pt]</b> only methods that need to be called outside the
           class should be <tt>public</tt>
-        </ul>
-
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">3. Activity [xx pts]</h3>
-        </div>
-        <div class="panel-body">
-            Description
-            <p>
-        Be sure to write comments above your class to indicate the
-        author of this file (you), acknowledgements for any external help you
-        got, and what the purpose of this program is.
-  
-        <p>
-        <b>Grading Scheme</b>:
-        <ul>
-          <li> <b>[2 pts]</b> Comments to explain program logic
-          <li> <b>[1 pt]</b> xxx
         </ul>
 
         </div>
