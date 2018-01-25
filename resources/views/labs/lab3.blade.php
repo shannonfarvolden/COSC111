@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 3 [16 pts]</h2>
+        <h2>Lab 3 [18 pts]</h2>
         <p>Practicing Conditionals</p>
         The purpose of this lab is to give you hands on practice designing and
         organizing conditional statements. If you need clarification with any
@@ -29,7 +29,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Structuring If-Statements [5 pts]</h3>
+            <h3 class="panel-title">2. Structuring If-Statements [7 pts]</h3>
         </div>
         <div class="panel-body">
         <b>[1 pt]</b>
