@@ -10,6 +10,8 @@
         <p></p>
         This is a longer lab, so you will have two lab periods to work on the
         exercises. 
+        <b>Note:</b> To get full marks, your solution cannot include
+        <tt>System.exit</tt>.
         <p></p>
         <b>What to Submit:</b>
         <ul>
