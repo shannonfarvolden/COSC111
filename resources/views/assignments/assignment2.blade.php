@@ -3,12 +3,15 @@
 @section('content')
     <div class="jumbotron">
         <h2>Assignment 2 [28 pts]</h2>
-        <p>Due: Sunday 9:00am on March 04th</p>
+        <p>Due: Sunday Noon on March 04th</p>
         The purpose of this assignment is to give you practice writing simple
         Java programs on your own without step-by-step guidelines. You will
         still have the option to discuss problems with others and search
         online for help, but please remember to cite all your sources and
         follow proper academic conduct.
+        <p></p>
+        <b>Note:</b> To get full marks, your solution cannot include
+        <tt>System.exit</tt>.
         <p></p>
         <b>What to Submit:</b>
         <ul>
@@ -87,7 +90,7 @@ Enter the second operand:
           <li> <b>[2 pts]</b> Comments to explain program logic
           <li> <b>[2 pts]</b> Reading in the necessary user input
           <li> <b>[3 pts]</b> Calculating the math result 
-		  (without using <tt>System.exit</tt>)
+          (without using <tt>System.exit</tt>)
           <li> <b>[1 pt]</b> Displaying the math expression calculated and its answer
         </ul>
         </div>
@@ -182,8 +185,8 @@ Encrypted message: EASCNSLLOSWLLTKO
         got, and what the purpose of this program is.
         <p>
 
-		Also, in order to get full marks, you cannot use <tt>System.exit</tt>
-		in your loop or conditional statements.
+        Also, in order to get full marks, you cannot use <tt>System.exit</tt>
+        in your loop or conditional statements.
 
         <p>
         <b>Grading Scheme</b>:

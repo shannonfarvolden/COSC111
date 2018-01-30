@@ -10,6 +10,9 @@
         others and search online for help, but please remember to cite all
         your sources and follow proper academic conduct.
         <p></p>
+        <b>Note:</b> To get full marks, your solution cannot include
+        <tt>System.exit</tt>.
+        <p></p>
         <b>What to Submit:</b>
         <ul>
             <li>Memory.java 
