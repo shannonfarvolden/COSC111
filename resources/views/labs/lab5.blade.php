@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 5 [29 pts]</h2>
+        <h2>Lab 5 [28 pts + 2 bonus]</h2>
         <p>Working with Loops</p>
         The purpose of this lab is to give you hands on practice with loops.
         If you need clarification with any of the steps below, ask your TA
@@ -23,13 +23,23 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">1. Completed quiz mark [1 pt]</h3>
+            <h3 class="panel-title">1. Completed Survey Mark [2 pts bonus]</h3>
         </div>
         <div class="panel-body">
-        At the beginning of the lab, show your TA for completing at least one
-        attempt for Quiz 5.
+		<b>If your lab is held before the midterm, then do this in the
+		following week.</b>
+		<p>
+
+		At the beginning of the lab, complete Survey 2 and show your TA that
+		you have completed it. <b>Note that the surveys are anonymous so we
+		can't check who completed it and who didn't.</b> Once you have
+		completed and submitted the survey results, you will need to show the
+		TA the notification message. Don't close that screen -- if you leave
+		that screen, we won't be able to grade it.
+        <p>
         </div>
     </div>
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -347,7 +357,6 @@ How high do you want the pyramid to be?
         Lastly, be sure to write comments above your class to indicate the
         author of this file (you), acknowledgements for any external help
         you got, and what the purpose of this program is.
-        </div>
         </div>
     </div>
 
