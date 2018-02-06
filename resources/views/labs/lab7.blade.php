@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Lab 7 [xx pts]</h2>
+        <h2>Lab 7 [29 pts]</h2>
         <p>Working with Arrays</p>
         The purpose of this lab is to give you hands on practice with arrays,
         from declaring them, initializing them, passing them as arguments, as
@@ -18,7 +18,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">1. Short Exercises [13 pts]</h3>
+            <h3 class="panel-title">1. Short Exercises [11 pts]</h3>
         </div>
         <div class="panel-body">
         This exercise gets you to do a series of short exercises pertaining to
@@ -26,11 +26,11 @@
         and saved into a text document called <tt>Part1.txt</tt>.
         <p>
         <ol>
-        <li> <b>[2 pts: 1 pt for proper statement, 1 pt for rationale]</b>
+        <li> <b>[1 pt: 0.5 pt for proper statement, 0.5 pt for rationale]</b>
         Declare an array that stores 50 exam scores. Give a point-form
         explanation of the data type you've chosen.
         
-        <li> <b>[2 pts: 1 pt for proper statement, 1 pt for rationale]</b>
+        <li> <b>[1 pt: 0.5 pt for proper statement, 0.5 pt for rationale]</b>
         Declare an array that stores 120 student names. Give a point-form
         explanation of the data type you've chosen.
 
@@ -60,7 +60,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">2. Visualizing a Running Race [xx pts]</h3>
+            <h3 class="panel-title">2. Visualizing a Running Race [18 pts]</h3>
         </div>
         <div class="panel-body">
         <b>[1 pt]</b> 
@@ -196,7 +196,7 @@ They crossed the finish line at the same time!
         the progress exceeds 100.
         <p>
 
-        The next few steps focuses on what goes inside this <tt>while</tt> loop.
+        The next 6 steps focuses on what goes inside this <tt>while</tt> loop.
         <p>
 
         <b>[1 pt]</b> 
