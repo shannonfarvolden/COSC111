@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="jumbotron">
-    <h2>Lab 9 [29 pts]</h2>
+    <h2>Lab 9 [29 pts + 2 bonus]</h2>
     <p>Working with Classes and Objects</p>
     The purpose of this lab is to give you hands on practice with building
     classes and objects.
@@ -18,9 +18,23 @@
     </ul>
   </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">1. Completed Survey Mark [2 pts bonus]</h3>
+        </div>
+        <div class="panel-body">
+        At the beginning of the lab, show your TA that you have completed
+		Survey 3. Note that the surveys are anonymous so we can't check who
+		completed it and who didn't. Once you have submitted, you will need to
+		show the TA the notification message. If you leave that screen, we
+		won't be able to grade it.
+        <p>
+        </div>
+    </div>
+
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">1. The Battle Tournament [29 pts]</h3>
+      <h3 class="panel-title">2. The Battle Tournament [29 pts]</h3>
     </div>
     <div class="panel-body">
       <p>
