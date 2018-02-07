@@ -9,6 +9,10 @@
     If you need clarification with any of the steps below, ask your TA and/or
     your neighbour.
     <p> </p>
+	Note that this lab is <b>due 1 week plus 1 day</b> after the lab. So if
+	your lab is on Monday, March 19 from 4:30pm-6:30pm, the due date will be 
+	Tuesday, March 27 at 6:30pm. 
+    <p> </p>
     <b>What to Submit:</b>
     <ul>
       <li><tt>Animal.java</tt>
