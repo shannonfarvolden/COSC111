@@ -192,7 +192,7 @@
                 <!--readings-->
                 <td>Ch 10</td>
                 <!--assignments/tests-->
-                <td><a href="/assignment3">A3</a> (due Apr 01)</td>
+                <td>
                 <!--labs-->
                 <td>Lab used as TA office hours (No lab on Friday)</td>
             </tr>
@@ -205,6 +205,7 @@
                 <td>Ch 10</td>
                 <!--assignments/tests-->
                 <td>
+                <a href="/assignment3">A3</a> (due Apr 05)<br>
                 <a href="/documents/old-final.pdf">Practice Final</a> 
                 </td>
                 <!--labs-->
