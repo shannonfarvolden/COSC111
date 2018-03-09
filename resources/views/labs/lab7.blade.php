@@ -229,7 +229,7 @@ They crossed the finish line at the same time!
         <b>[2 pts]</b> 
         Fourth, call the <tt>updateProgress</tt> method with Guido's array and
         Sally's array, so that their progress is updated into their character
-        arrays. 
+        arrays. Be careful to not get an ArrayIndexOutOfBounds error!
         <p>
 
         To ensure your code is working so far, you may want to insert some
@@ -300,9 +300,9 @@ SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
         <b>[2 pts]</b> 
         In your report, you will need to indicate who the winner is, and how
         many meters that contestant won by. To do this properly, you will need
-        to add some code in the <tt>while</tt>loop to see who won first and
-        calculate the winning distance. Once you get this working, your
-        program's output will be like the ones shown in the beginning of this
+        to add some code in the <tt>main</tt>method to see who won first and
+		calculate the winning distance. Once you get this working, your
+		program's output will be like the ones shown in the beginning of this
         exercise.
         <p>
 
